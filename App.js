@@ -13,7 +13,7 @@ import WelcomeScreen from './App/screens/WelcomeScreen';
 import ViewImageScreen from './App/screens/ViewImageScreen';
  
 export default function App() {
-  return <ViewImageScreen />;
+  return <WelcomeScreen />;
   
 }
  
