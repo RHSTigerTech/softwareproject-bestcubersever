@@ -10,9 +10,10 @@ import {useDimensions, useDeviceOrientation} from '@react-native-community/hooks
 import Constants from 'expo-constants';
 import {Button} from 'react-native-elements'
 import WelcomeScreen from './App/screens/WelcomeScreen';
+import ViewImageScreen from './App/screens/ViewImageScreen';
  
 export default function App() {
-  return <WelcomeScreen />;
+  return <ViewImageScreen />;
   
 }
  
