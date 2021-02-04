@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView, Text, View,
   Image, Alert, TouchableWithoutFeedback, 
   TouchableOpacity, TouchableHighlight, 
  Platform, Dimensions, StatusBar } from 'react-native';
+ import GradientButton from 'react-native-gradient-buttons';
 
  import colors from '../config/colors'
 
@@ -14,6 +15,19 @@ import { StyleSheet, SafeAreaView, Text, View,
             style={styles.image} source={require('../Assets/chair.jpg')} />        
             <View style={styles.blue}/>
             <View style={styles.red}/>
+            <GradientButton
+                style={{ marginVertical: 8 }}
+                textStyle={{ fontSize: 20 }}
+                gradientBegin="#874f00"
+                gradientEnd="#f5ba57"
+                gradientDirection="diagonal"
+                height={60}
+                width={300}
+                radius={15}
+                impact
+                impactStyle='Light'
+                onPressAction={() => alert('You pressed me!')}
+            ></GradientButton>
         </SafeAreaView>
     );
 
