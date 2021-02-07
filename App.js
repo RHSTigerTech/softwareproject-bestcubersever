@@ -11,10 +11,22 @@ import ViewImageScreen from './App/screens/ViewImageScreen';
 import Gradient from './App/screens/Gradient';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native'
+import {createStackNavigator} from '@react-navigation/stack';
 
+const Stack = createStackNavigator();
 
+const App = () => {
+  return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Gradient" component={Gradient}/>
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+        <Stack.Screen name="ViewImageScreen" component={ViewImageScreen}/>
+      </Stack.Navigator>
 
-export default function App() {	
-  return <Gradient/>;
- 
-}
+    </NavigationContainer>
+  );
+    
+};
+
+export default App;
