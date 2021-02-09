@@ -1,8 +1,16 @@
+
 import React from 'react';
 import { Text } from 'react-native';
 import { Image } from 'react-native';
 import { SafeAreaView, View } from 'react-native';
 import { ImageBackground, StyleSheet } from 'react-native';
+import GradientButton from 'react-native-gradient-buttons';
+import {NavigationContainer} from '@react-navigation/native'
+import {createStackNavigator} from '@react-navigation/stack';
+
+
+
+
 
 function WelcomeScreen(props) {
     return (
@@ -14,6 +22,22 @@ function WelcomeScreen(props) {
             <Text style={styles.textlogo}>Sell What You Don't Need</Text>
             
             <View style={styles.loginButton}></View>
+            <GradientButton
+                
+                style={{ marginVertical: 8 }}
+                text="Gradient Button #1"
+                textStyle={{ fontSize: 20 }}
+                gradientBegin="#ffafbd"
+                gradientEnd="#ffc3a0"
+                gradientDirection="diagonal"
+                height={60}
+                width={300}
+                radius={15}
+                impact
+                impactStyle='Light'
+                onPressAction={() => navigation.navigate('ViewImageScreen')}
+                
+            />
             <View style={styles.registerButton}></View>
         </ImageBackground>        
     );
