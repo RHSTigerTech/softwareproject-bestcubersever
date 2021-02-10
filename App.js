@@ -4,7 +4,7 @@ import GradientButton from 'react-native-gradient-buttons'
 import { Actions, Router, Scene } from "react-native-router-flux";	
 import Constants from 'expo-constants';	
 import { StyleSheet, SafeAreaView, Text, View,
-  TouchableOpacity, TouchableHighlight,Platform, Dimensions, StatusBar } from 'react-native';
+  TouchableOpacity, TouchableHighlight,Platform, Dimensions, StatusBar, Header } from 'react-native';
 import {Button} from 'react-native-elements'	
 import WelcomeScreen from './App/screens/WelcomeScreen';	
 import ViewImageScreen from './App/screens/ViewImageScreen';	
@@ -19,8 +19,12 @@ const App = () => {
   return(
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Gradient" component={Gradient}/>
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+        <Stack.Screen 
+            name="Gradient" 
+            component={Gradient} 
+            options={{headerShown:false}}
+        />
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="ViewImageScreen" component={ViewImageScreen}/>
       </Stack.Navigator>
 

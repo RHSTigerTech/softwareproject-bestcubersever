@@ -12,7 +12,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 
 
-function WelcomeScreen(props) {
+function WelcomeScreen({navigation}) {
     return (
         <ImageBackground style={styles.background} 
             source={require('../Assets/background.jpg')}
@@ -25,7 +25,7 @@ function WelcomeScreen(props) {
             <GradientButton
                 
                 style={{ marginVertical: 8 }}
-                text="Gradient Button #1"
+                text="Gradient Screen"
                 textStyle={{ fontSize: 20 }}
                 gradientBegin="#ffafbd"
                 gradientEnd="#ffc3a0"
@@ -35,7 +35,8 @@ function WelcomeScreen(props) {
                 radius={15}
                 impact
                 impactStyle='Light'
-                onPressAction={() => navigation.navigate('ViewImageScreen')}
+                onPressAction={() => navigation.navigate('Gradient')}
+
                 
             />
             <View style={styles.registerButton}></View>

@@ -7,7 +7,7 @@ import { StyleSheet, SafeAreaView, Text, View,
 
  import colors from '../config/colors'
 
- function ViewImageScreen(props) {
+ function ViewImageScreen(navigation) {
     return (
         <SafeAreaView style={styles.background}>
 
