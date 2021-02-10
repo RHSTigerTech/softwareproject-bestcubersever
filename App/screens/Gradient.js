@@ -17,15 +17,12 @@ import colors from '../config/colors'
     return (
         <View style={styles.ViewContainer}>
                 <Header
+                    
                     containerStyle={styles.viewStyle}
                     centerContainerStyle={{flex:7}}
                     centerComponent={{ text: 'Rubiks Cube App', style: { color: '#fff', fontSize:40,}}}
                     // ViewComponent={LinearGradient} // Don't forget this!
-                    // linearGradientProps={{
-                    //     colors: ['red', 'pink'],
-                    //     start: { x: 0, y: 0.5 },
-                    //     end: { x: 1, y: 0.5 },
-                    // }}
+                    
                     
                     />
                 <GradientButton
@@ -105,6 +102,8 @@ const styles = StyleSheet.create({
     viewStyle: {
         borderBottomColor: 'black',
         marginBottom:10,
+        
+
     },
 
 })

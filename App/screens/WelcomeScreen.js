@@ -12,12 +12,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 
 
+
+
 function WelcomeScreen({navigation}) {
     return (
         <ImageBackground style={styles.background} 
             source={require('../Assets/background.jpg')}
         >
-            
+           
             <Image style={styles.logo} source={require('../Assets/logo-red.png')} />
             <Text style={styles.textlogo}>Sell What You Don't Need</Text>
             
