@@ -11,8 +11,8 @@ import { StyleSheet, SafeAreaView, Text, View,
     return (
         <SafeAreaView style={styles.background}>
 
-            <Image resizeMode='contain'
-            style={styles.image} source={require('../Assets/chair.jpg')} />        
+            <Image resizeMode='cover'
+            style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} />        
             <View style={styles.blue}/>
             <View style={styles.red}/>
             <GradientButton
@@ -35,7 +35,7 @@ import { StyleSheet, SafeAreaView, Text, View,
 }
 const styles = StyleSheet.create({
     image:{
-        width:"100%",
+        width:'100%',
         height:'100%',
     },
     background:{
