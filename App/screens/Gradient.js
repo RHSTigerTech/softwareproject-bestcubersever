@@ -24,20 +24,22 @@ import { ImageBackground } from 'react-native';
                         
                         containerStyle={styles.viewStyle}
                         centerContainerStyle={{flex:10}}
-                        centerComponent={{ text: 'Rubiks Cube App', style: { color: '#fff', fontSize:40,}}}
+                        centerComponent={{ text: 'Rubiks Cube App', style: { color: 'white', fontSize:40,}}}
                         // ViewComponent={LinearGradient} // Don't forget this!
                         
                         
                         />
                 
-                <View style = {{justifyContent: 'space-evenly',flex:1}}>
+                <View style = {{justifyContent: 'space-evenly',flex:1,}}>
                     <GradientButton
                         
-                        style={{ marginVertical: 10 }}
+                        style={{ marginVertical: 10, }}
                         text="Learn"
-                        textStyle={{ fontSize: 20 }}
-                        blueMarine
-                        gradientDirection="diagonal"
+                        
+                        textStyle={{ fontSize: 20,}}
+                        gradientBegin='#FE0944'
+                        gradientEnd='#FF4E00'
+                        gradientDirection="vertical"
                         height={60}
                         width={300}
                         radius={15}
@@ -51,8 +53,9 @@ import { ImageBackground } from 'react-native';
                         style={{ marginVertical: 10 }}
                         text="Solver"
                         textStyle={{ fontSize: 20 }}
-                        blueMarine
-                        gradientDirection="diagonal"
+                        gradientBegin='#FF4E00'
+                        gradientEnd='#EC9F05'
+                        gradientDirection="vertical"
                         height={60}
                         width={300}
                         radius={15}
@@ -63,11 +66,14 @@ import { ImageBackground } from 'react-native';
                     </GradientButton>
 
                     <GradientButton
-                        style={{ marginVertical: 10 }}
+                        style={{ marginVertical: 10, }}
+                        textStyle={{textColor:'black'}}
                         text="Timer and Scrambler"
                         textStyle={{ fontSize: 20 }}
-                        blueMarine
-                        gradientDirection="diagonal"
+                        gradientBegin='#EC9F05'
+                        gradientEnd='#64e764'
+                        gradientDirection="vertical"
+                        
                         height={60}
                         width={300}
                         radius={15}
@@ -80,8 +86,9 @@ import { ImageBackground } from 'react-native';
                         style={{ marginVertical: 10 }}
                         text="Virtual Cube"
                         textStyle={{ fontSize: 20 }}
-                        blueMarine
-                        gradientDirection="diagonal"
+                        gradientBegin='#64e764'
+                        gradientEnd='#add8e6'
+                        gradientDirection="vertical"
                         height={60}
                         width={300}
                         radius={15}
@@ -95,8 +102,9 @@ import { ImageBackground } from 'react-native';
                         style={{ marginVertical: 10 }}
                         text="Statistics"
                         textStyle={{ fontSize: 20 }}
-                        blueMarine
-                        gradientDirection="diagonal"
+                        gradientBegin='#add8e6'
+                        gradientEnd='#009FFD'
+                        gradientDirection="vertical"
                         height={60}
                         width={300}
                         radius={15}
@@ -159,13 +167,13 @@ const styles = StyleSheet.create({
         height:'100%',
         position:'absolute',
         //color:'transparent'
-        top:50,
+        top:24,
     },
     viewStyle: {
         borderBottomColor: 'transparent',
         //marginBottom:10,
         marginTop:0,
-        
+        backgroundColor:'transparent'        
 
     },
 
