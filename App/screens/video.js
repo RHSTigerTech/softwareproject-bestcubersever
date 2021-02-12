@@ -15,7 +15,7 @@ export default class YourClass extends Component {
                 rate={1.0}
                 volume={1.0}
                 isMuted={false}
-                resizeMode="cover"
+                resizeMode="contain"
                 shouldPlay
                 isLooping
                 style={{ width: 500, height: 500, right:50 }}
