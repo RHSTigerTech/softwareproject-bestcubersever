@@ -87,7 +87,7 @@ import { ImageBackground } from 'react-native';
                         text="Virtual Cube"
                         textStyle={{ fontSize: 20 }}
                         gradientBegin='#64e764'
-                        gradientEnd='#add8e6'
+                        gradientEnd='#009FFD'
                         gradientDirection="vertical"
                         height={60}
                         width={300}
@@ -102,14 +102,14 @@ import { ImageBackground } from 'react-native';
                         style={{ marginVertical: 10 }}
                         text="Statistics"
                         textStyle={{ fontSize: 20 }}
-                        gradientBegin='#add8e6'
-                        gradientEnd='#009FFD'
+                        gradientBegin='#009FFD'
+                        gradientEnd='#add8e6'
                         gradientDirection="vertical"
                         height={60}
                         width={300}
                         radius={15}
                         impact
-                        onPressAction={() => navigation.navigate('ViewImageScreen')}
+                        onPressAction={() => navigation.navigate('Video')}
 
                     >
                     </GradientButton>
