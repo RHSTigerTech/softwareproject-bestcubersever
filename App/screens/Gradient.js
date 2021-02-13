@@ -17,21 +17,20 @@ import colors from '../config/colors'
     return (
         <View style={styles.ViewContainer}>
                 <Header
-                    
+
                     containerStyle={styles.viewStyle}
                     centerContainerStyle={{flex:7}}
-                    centerComponent={{ text: 'Rubiks Cube App', style: { color: '#fff', fontSize:40,}}}
+                    centerComponent={{ text: 'Rubiks Cube App', style: { color: '#fff', fontSize:35,}}}
                     // ViewComponent={LinearGradient} // Don't forget this!
-                    
-                    
-                    />
+
+                />
                 <GradientButton
                     
                     style={{ marginVertical: 8 }}
                     text="Welcome Screen"
                     textStyle={{ fontSize: 20 }}
                     gradientBegin="#ffafbd"
-                    gradientEnd="#ffc3a0"
+                    gradiectEnd="#ffc3a0"
                     gradientDirection="diagonal"
                     height={60}
                     width={300}
@@ -72,7 +71,13 @@ import colors from '../config/colors'
                     <Text>ok</Text>
                 </AwesomeButton>
 
-                <GradientButton text="Violet Pink" width='90%' violetPink impact />
+                <GradientButton 
+                    text="Learn" 
+                    width='90%' 
+                    violetPink 
+                    impact 
+                    onPressAction={() => navigation.navigate('Learn')}
+                />
                 <GradientButton text="Pink Dark Green" width='90%' pinkDarkGreen impact />
                 <GradientButton text="Blue Violet" width='90%' blueViolet impact />
                 <GradientButton text="Blue Marine" width='90%' blueMarine impact />
@@ -84,8 +89,6 @@ import colors from '../config/colors'
         
 
             );
-
-
 }
 
 
@@ -98,6 +101,13 @@ const styles = StyleSheet.create({
         backgroundColor:'black',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     
+    },
+    image: {
+        width:'100%',
+        height: '100%',
+        position: 'absolute',
+        //color: 'transparent',
+        top: 24,
     },
     viewStyle: {
         borderBottomColor: 'black',

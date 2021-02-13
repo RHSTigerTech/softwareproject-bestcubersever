@@ -9,6 +9,8 @@ import {Button} from 'react-native-elements'
 import WelcomeScreen from './App/screens/WelcomeScreen';	
 import ViewImageScreen from './App/screens/ViewImageScreen';	
 import Gradient from './App/screens/Gradient';
+import Learn from './App/screens/Learn';
+import BeginnerLearn from './App/screens/BeginnerLearn'
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
@@ -20,12 +22,27 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen 
-            name="Gradient" 
-            component={Gradient} 
-            options={{headerShown:false}}
+          name="Gradient" 
+          component={Gradient} 
+          options={{headerShown:false}}
         />
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="ViewImageScreen" component={ViewImageScreen}/>
+        <Stack.Screen 
+          name="WelcomeScreen" 
+          component={WelcomeScreen} 
+          options={{headerShown:false}}
+        />
+        <Stack.Screen 
+          name="ViewImageScreen" 
+          component={ViewImageScreen}
+        />
+        <Stack.Screen 
+          name="Learn" 
+          component={Learn}
+        />
+        <Stack.Screen
+          name="BeginnerLearn"
+          component={BeginnerLearn}
+        />
       </Stack.Navigator>
 
     </NavigationContainer>
