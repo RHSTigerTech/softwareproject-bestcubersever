@@ -11,6 +11,7 @@ import ViewImageScreen from './App/screens/ViewImageScreen';
 import Gradient from './App/screens/Gradient';
 import Learn from './App/screens/Learn';
 import BeginnerLearn from './App/screens/BeginnerLearn'
+import Video from './App/screens/video.js';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
@@ -42,6 +43,10 @@ const App = () => {
         <Stack.Screen
           name="BeginnerLearn"
           component={BeginnerLearn}
+        />
+        <Stack.Screen 
+          name="Video" 
+          component={Video}
         />
       </Stack.Navigator>
 

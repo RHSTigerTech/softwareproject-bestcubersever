@@ -12,77 +12,126 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import colors from '../config/colors'
+import { ImageBackground } from 'react-native';
 
  function Gradient({navigation}) {
     return (
         <View style={styles.ViewContainer}>
-                <Header
-
-                    containerStyle={styles.viewStyle}
-                    centerContainerStyle={{flex:7}}
-                    centerComponent={{ text: 'Rubiks Cube App', style: { color: '#fff', fontSize:35,}}}
-                    // ViewComponent={LinearGradient} // Don't forget this!
-
-                />
-                <GradientButton
+            <Image resizeMode='cover'
+                style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} />
+                
                     
-                    style={{ marginVertical: 8 }}
-                    text="Welcome Screen"
-                    textStyle={{ fontSize: 20 }}
-                    gradientBegin="#ffafbd"
-                    gradiectEnd="#ffc3a0"
-                    gradientDirection="diagonal"
-                    height={60}
-                    width={300}
-                    radius={15}
-                    impact
-                    impactStyle='Light'
-                    onPressAction={() => navigation.navigate('WelcomeScreen')}
-                    
-                />
 
-                <GradientButton
-                    style={{ marginVertical: 8 }}
-                    textStyle={{ fontSize: 20 }}
-                    gradientBegin="#2F4353"
-                    gradientEnd="#696969"
-                    gradientDirection="diagonal"
-                    height={60}
-                    width={300}
-                    radius={15}
-                    impact
-                    impactStyle='Light'
-                    onPressAction={() => alert('You pressed me!')}
-                >
-                Gradient Button #2
-                </GradientButton>
 
-                <AwesomeButton
-                    
-                    size="small"
-                    type="primaryFlat"
-                    backgroundActive="rgba(0,0,0,0)"
-                    activeOpacity={0.5}
-                    textColor="#FFFFFF"
-                    width={250}
-                    onPress={() => navigation.navigate("ViewImageScreen")}
-                    
-                >
-                    <Text>ok</Text>
-                </AwesomeButton>
+                
+                <View style = {{justifyContent: 'space-evenly',flex:1,}}>
+                    <GradientButton
+                        
+                        style={{ marginVertical: 10, }}
+                        text="Learn"
+                        
+                        textStyle={{ fontSize: 20,}}
+                        gradientBegin='#FE0944'
+                        gradientEnd='#FF4E00'
+                        gradientDirection="vertical"
+                        height={60}
+                        width={300}
+                        radius={15}
+                        impact
+                        
+                        onPressAction={() => navigation.navigate('WelcomeScreen')}
+                        
+                    />
 
-                <GradientButton 
-                    text="Learn" 
-                    width='90%' 
-                    violetPink 
-                    impact 
-                    onPressAction={() => navigation.navigate('Learn')}
-                />
-                <GradientButton text="Pink Dark Green" width='90%' pinkDarkGreen impact />
-                <GradientButton text="Blue Violet" width='90%' blueViolet impact />
-                <GradientButton text="Blue Marine" width='90%' blueMarine impact />
-                <GradientButton text="Deep Blue" width='90%' deepBlue impact />
-                <GradientButton text="Disabled" width='90%' disabled impact />
+                    <GradientButton
+                        style={{ marginVertical: 10 }}
+                        text="Solver"
+                        textStyle={{ fontSize: 20 }}
+                        gradientBegin='#FF4E00'
+                        gradientEnd='#EC9F05'
+                        gradientDirection="vertical"
+                        height={60}
+                        width={300}
+                        radius={15}
+                        impact
+                        onPressAction={() => navigation.navigate('ViewImageScreen')}
+
+                    >
+                    </GradientButton>
+
+                    <GradientButton
+                        style={{ marginVertical: 10, }}
+                        textStyle={{textColor:'black'}}
+                        text="Timer and Scrambler"
+                        textStyle={{ fontSize: 20 }}
+                        gradientBegin='#EC9F05'
+                        gradientEnd='#64e764'
+                        gradientDirection="vertical"
+                        
+                        height={60}
+                        width={300}
+                        radius={15}
+                        impact
+                        onPressAction={() => navigation.navigate('ViewImageScreen')}
+                    >
+                    </GradientButton>
+
+                    <GradientButton
+                        style={{ marginVertical: 10 }}
+                        text="Virtual Cube"
+                        textStyle={{ fontSize: 20 }}
+                        gradientBegin='#64e764'
+                        gradientEnd='#009FFD'
+                        gradientDirection="vertical"
+                        height={60}
+                        width={300}
+                        radius={15}
+                        impact
+                        onPressAction={() => navigation.navigate('ViewImageScreen')}
+
+                    >
+                    </GradientButton>
+
+                    <GradientButton
+                        style={{ marginVertical: 10 }}
+                        text="Statistics"
+                        textStyle={{ fontSize: 20 }}
+                        gradientBegin='#009FFD'
+                        gradientEnd='#add8e6'
+                        gradientDirection="vertical"
+                        height={60}
+                        width={300}
+                        radius={15}
+                        impact
+                        onPressAction={() => navigation.navigate('Video')}
+
+                    >
+                    </GradientButton>
+
+                    {/* <AwesomeButton
+                        
+                        size="small"
+                        type="primaryFlat"
+                        backgroundActive="rgba(0,0,0,0)"
+                        activeOpacity={0.5}
+                        textColor="#FFFFFF"
+                        width={250}
+                        onPress={() => navigation.navigate("ViewImageScreen")}
+                        
+                    >
+                        <Text>ok</Text>
+                    </AwesomeButton> */}
+
+
+                    {/* Different colored gradient buttons that can be used */}
+                        {/* <GradientButton text="Violet Pink" width='90%' violetPink impact />
+                        <GradientButton text="Pink Dark Green" width='90%' pinkDarkGreen impact />
+                        <GradientButton text="Blue Violet" width='90%' blueViolet impact />
+                        <GradientButton text="Blue Marine" width='90%' gradientBegin="#52A0FD"
+                        gradientEnd="#00e2fa" impact />
+                        <GradientButton text="Deep Blue" width='90%' deepBlue impact />
+                        <GradientButton text="Disabled" width='90%' disabled impact /> */}
+                </View>
             
         </View>
             
@@ -96,23 +145,26 @@ const styles = StyleSheet.create({
    
     ViewContainer:{
         flex: 1, 
-        justifyContent: 'space-evenly', 
+        //justifyContent: 'space-evenly', 
         alignItems: 'center', 
-        backgroundColor:'black',
+        
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     
     },
-    image: {
+
+    image:{
+        
         width:'100%',
-        height: '100%',
-        position: 'absolute',
-        //color: 'transparent',
-        top: 24,
+        height:'100%',
+        position:'absolute',
+        //color:'transparent'
+        top:24,
     },
     viewStyle: {
-        borderBottomColor: 'black',
-        marginBottom:10,
-        
+        borderBottomColor: 'transparent',
+        //marginBottom:10,
+        marginTop:0,
+        backgroundColor:'transparent'        
 
     },
 
