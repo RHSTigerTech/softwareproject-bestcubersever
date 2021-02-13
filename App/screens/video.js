@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, Text, View, TextInput} from 'react-native';
 
 
-import LightVideo from '../Assets/RubiksCubeVideo.mp4';
+import LightVideo from '../Assets/MobileCube.mp4';
 
 import { Video } from 'expo-av';
 
@@ -15,10 +15,10 @@ export default class YourClass extends Component {
                 rate={1.0}
                 volume={1.0}
                 isMuted={false}
-                resizeMode="contain"
+                //resizeMode="cover"
                 shouldPlay
                 isLooping
-                style={{ width: 500, height: 500, right:50 }}
+                style={{ width: 500, height: 500, right:70, alignItems:'center',down:150}}
                 /> 
            </View>
         );
