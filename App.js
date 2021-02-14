@@ -9,7 +9,7 @@ import {Button} from 'react-native-elements'
 import WelcomeScreen from './App/screens/WelcomeScreen';	
 import ViewImageScreen from './App/screens/ViewImageScreen';	
 import Gradient from './App/screens/Gradient';
-import Video from './App/screens/video.js';
+
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
@@ -27,7 +27,7 @@ const App = () => {
         />
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="ViewImageScreen" component={ViewImageScreen}/>
-        <Stack.Screen name="Video" component={Video}/>
+        
       </Stack.Navigator>
 
     </NavigationContainer>

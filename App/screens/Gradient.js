@@ -1,32 +1,44 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, Text, View, 
-  Image, Platform, Dimensions, StatusBar, Pressable} from 'react-native';
+  Image, Platform, Dimensions, StatusBar, Pressable, opacity} from 'react-native';
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
+import LightVideo from '../Assets/RubiksCubeVideoLoop.mp4';
 
-const ButtonHeight=80;
+import { Video } from 'expo-av';
+
+const ButtonHeight=60;
 const ButtonWidth=300;
 const ButtonRadius=15; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
-const ButtonFont=25 
 
 function Gradient({navigation}) {    
     return (
         <View style={styles.ViewContainer}>
-            <Image resizeMode='cover'
+
+            <Video
+                source={LightVideo}
+                rate={1.0}
+                volume={1.0}
+                isMuted={false}
+                resizeMode="cover"
+                shouldPlay
+                isLooping
                 style={styles.image}
-                style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} />
+                /> 
+            
+          
 
                 <Header                       
                     containerStyle={styles.viewStyle}
-                    centerContainerStyle={{flex:10}}
-                    centerComponent={{ text: 'Rubiks Cube App', style: { color: 'white', fontSize:40,}}} 
+                    centerContainerStyle={{flex:14}}
+                    centerComponent={{ text: 'Rubiks Cube App', style: { color: 'black', fontSize:39, fontWeight:'bold'}}} 
                     />
                 
-                    <View style = {{justifyContent: 'space-evenly',flex:1,}}>
+                    <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.95}}>
                         <GradientButton
                             text="Learn"                        
-                            textStyle={{ fontSize: ButtonFont,}}
+                            textStyle={styles.textStyle}
                             gradientBegin='#fe0936'
                             gradientEnd='#ff7700'
                             gradientDirection={ButtonGradientDirection}
@@ -39,7 +51,7 @@ function Gradient({navigation}) {
 
                         <GradientButton
                             text="Solver"
-                            textStyle={{ fontSize: ButtonFont }}
+                            textStyle={styles.textStyle}
                             gradientBegin='#ff7700'
                             gradientEnd='#ecc205'
                             gradientDirection={ButtonGradientDirection}
@@ -53,7 +65,7 @@ function Gradient({navigation}) {
 
                         <GradientButton                        
                             text="Timer and Scrambler"
-                            textStyle={{ fontSize: ButtonFont }}
+                            textStyle={styles.textStyle}
                             gradientBegin='#ecc205'
                             gradientEnd='#5ad16c'
                             gradientDirection={ButtonGradientDirection} 
@@ -67,7 +79,7 @@ function Gradient({navigation}) {
 
                         <GradientButton
                             text="Virtual Cube"
-                            textStyle={{ fontSize: ButtonFont }}
+                            textStyle={styles.textStyle}
                             gradientBegin='#5ad16c'
                             gradientEnd='#009FFD'
                             gradientDirection={ButtonGradientDirection}
@@ -81,7 +93,7 @@ function Gradient({navigation}) {
 
                         <GradientButton
                             text="Statistics"
-                            textStyle={{ fontSize: ButtonFont }}
+                            textStyle={styles.textStyle}
                             gradientBegin='#009FFD'
                             gradientEnd='#add8e6'
                             gradientDirection={ButtonGradientDirection}
@@ -89,7 +101,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('Video')}
+                            onPressAction={() => navigation.navigate('ViewImageScreen')}
                         >
                         </GradientButton>
                     </View>            
@@ -103,18 +115,26 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        
     },
     image:{        
-        width:'100%',
-        height:'100%',
+        width:'140%',
+        height:'125%',
         position:'absolute',
-        top:24,
+        top:-30,
+        right:-58
     },
     viewStyle: {
         borderBottomColor: 'transparent',
         marginTop:0,
         backgroundColor:'transparent'        
     },
+    textStyle:{
+        color:'black',
+        fontSize:25,
+        opacity:0.8
+    }
+    
 })
 
 export default Gradient;
