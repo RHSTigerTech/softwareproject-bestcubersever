@@ -4,12 +4,12 @@ import { StyleSheet, SafeAreaView, Text, View,
   Image, Platform, Dimensions, StatusBar, Pressable, opacity} from 'react-native';
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
-import LightVideo from '../Assets/RubiksCubeVideoLoop.mp4';
+import LightVideo from '../Assets/FinalBackgroundRubiksCube.mp4';
 import ParticleEffectButton from 'react-particle-effect-button';
 import { Video } from 'expo-av';
 
-const ButtonHeight=70;
-const ButtonWidth=330;
+const ButtonHeight=65;
+const ButtonWidth=320;
 const ButtonRadius=30; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
 
@@ -127,10 +127,10 @@ const styles = StyleSheet.create({
     },
     image:{        
         width:'140%',
-        height:'125%',
+        height:'150%',
         position:'absolute',
-        top:-30,
-        right:-58
+        top:-120,
+        right:-54
     },
     viewStyle: {
         borderBottomColor: 'transparent',
