@@ -4,12 +4,12 @@ import { StyleSheet, SafeAreaView, Text, View,
   Image, Platform, Dimensions, StatusBar, Pressable, opacity} from 'react-native';
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
-import LightVideo from '../Assets/RubiksCubeVideoLoop.mp4';
+import LightVideo from '../Assets/RotatingCube.mp4';
 import ParticleEffectButton from 'react-particle-effect-button';
 import { Video } from 'expo-av';
 
-const ButtonHeight=70;
-const ButtonWidth=330;
+const ButtonHeight=65;
+const ButtonWidth=320;
 const ButtonRadius=30; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
 
@@ -30,6 +30,7 @@ function Gradient({navigation}) {
                 shouldPlay
                 isLooping
                 style={styles.image}
+                
                 /> 
             
           
@@ -40,7 +41,7 @@ function Gradient({navigation}) {
                     centerComponent={{ text: 'Rubiks Cube App', style: { color: 'black', fontSize:39, fontWeight:'bold'}}} 
                     />
                 
-                    <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.95}}>
+                    <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.9}}>
                         
                         <GradientButton
                             text="Learn"                        
@@ -129,8 +130,8 @@ const styles = StyleSheet.create({
         width:'140%',
         height:'125%',
         position:'absolute',
-        top:-30,
-        right:-58
+        top:-80,
+        right:-69
     },
     viewStyle: {
         borderBottomColor: 'transparent',
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     textStyle:{
         color:'black',
         fontSize:30,    
-        opacity:0.8,
+        opacity:0.9,
         
     }
     
