@@ -59,7 +59,7 @@ function Gradient({navigation}) {
                         
 
                         <GradientButton
-                            text="Solver"
+                            text="Timer"
                             textStyle={styles.textStyle}
                             gradientBegin='#ff7700'
                             gradientEnd='#ecc205'
@@ -68,12 +68,12 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('ViewImageScreen')}
+                            onPressAction={() => navigation.navigate('Timer')}
                         >
                         </GradientButton>
 
                         <GradientButton                        
-                            text="Timer"
+                            text="Solver"
                             textStyle={styles.textStyle}
                             gradientBegin='#ecc205'
                             gradientEnd='#5ad16c'
@@ -96,7 +96,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('ViewImageScreen')}
+                            onPressAction={() => navigation.navigate('ThreeJSTest')}
                         >
                         </GradientButton>
 
