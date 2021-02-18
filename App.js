@@ -10,6 +10,7 @@ import WelcomeScreen from './App/screens/WelcomeScreen';
 import ViewImageScreen from './App/screens/ViewImageScreen';	
 import Gradient from './App/screens/Gradient';
 import Timer from './App/screens/Timer';
+import ThreeJSTest from './App/screens/ThreeJSTest.js';
 
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native'
@@ -29,6 +30,7 @@ const App = () => {
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="ViewImageScreen" component={ViewImageScreen}/>
         <Stack.Screen name='Timer' component={Timer}/>
+        <Stack.Screen name='ThreeJSTest' component={ThreeJSTest}/>
         
       </Stack.Navigator>
 
