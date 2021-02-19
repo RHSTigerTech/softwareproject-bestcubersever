@@ -2,17 +2,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { Image } from 'react-native';
-import { SafeAreaView, View } from 'react-native';
 import { ImageBackground, StyleSheet } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
-import {NavigationContainer} from '@react-navigation/native'
-import {createStackNavigator} from '@react-navigation/stack';
-
-
-
-
-
-//test to see if committing to my branch instead of master
 
 function WelcomeScreen({navigation}) {
     return (
@@ -36,7 +27,7 @@ function WelcomeScreen({navigation}) {
                 width={300}
                 radius={15}
                 impact
-                impactStyle='Light'
+                impactStyle='Heavy'
                 onPressAction={() => navigation.navigate('Gradient')}
 
                 
