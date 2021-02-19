@@ -12,7 +12,6 @@
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
-    "@react-spring/three": "^9.0.0-rc.3",
     "expo": "^40.0.1",
     "expo-asset": "~8.2.1",
     "expo-av": "~8.7.0",
@@ -34,7 +33,6 @@
     "react-native-video": "^5.1.1",
     "react-native-web": "~0.13.12",
     "react-native-webview": "11.0.0",
-    "react-particle-effect-button": "^1.0.1",
     "react-three-fiber": "^5.3.18",
     "three": "^0.125.2"
   },
