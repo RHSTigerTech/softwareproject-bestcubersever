@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, View, 
-  Image, Platform, StatusBar, ImageBackground, Text } from 'react-native';
+import { StyleSheet, ImageBackground} from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
-import colors from '../config/colors'
 
 function ViewImageScreen({navigation}) {
     return (

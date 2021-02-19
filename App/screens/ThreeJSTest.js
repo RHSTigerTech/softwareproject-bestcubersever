@@ -1,9 +1,9 @@
-import Expo from "expo";
+//Not Useful atm. Was trying to render a gltf object in expo but might not need to
+
 import React, { Component } from "react";
-import * as THREE from "three";
-import ExpoTHREE from "expo-three";
 import { GLView } from "expo-gl";
 import { Renderer } from "expo-three";
+import * as THREE from 'expo-three';
 
 export default class App extends Component {
   render() {
