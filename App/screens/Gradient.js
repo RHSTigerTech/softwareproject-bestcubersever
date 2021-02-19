@@ -1,19 +1,15 @@
 import React from 'react';
-
-import { StyleSheet, SafeAreaView, Text, View, 
-  Image, Platform, Dimensions, StatusBar, Pressable, opacity} from 'react-native';
+import { StyleSheet, View, Platform, StatusBar,} from 'react-native';
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import LightVideo from '../Assets/RotatingCube.mp4';
-import ParticleEffectButton from 'react-particle-effect-button';
 import { Video } from 'expo-av';
+
 
 const ButtonHeight=65;
 const ButtonWidth=320;
 const ButtonRadius=30; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
-
-
 
 function Gradient({navigation}) {  
     
@@ -33,8 +29,6 @@ function Gradient({navigation}) {
                 
                 /> 
             
-          
-
                 <Header                       
                     containerStyle={styles.viewStyle}
                     centerContainerStyle={{flex:14}}
@@ -53,11 +47,10 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact                        
-                            onPressAction={() => navigation.navigate('WelcomeScreen')}                        
+                            onPressAction={() => navigation.navigate('ViewImageScreen')}                        
                         >
                         </GradientButton>
                         
-
                         <GradientButton
                             text="Timer"
                             textStyle={styles.textStyle}
@@ -68,7 +61,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('Timer')}
+                            onPressAction={() => navigation.navigate('ViewImageScreen')}
                         >
                         </GradientButton>
 
@@ -96,7 +89,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('ThreeJSTest')}
+                            onPressAction={() => navigation.navigate('VirtualCube')}
                         >
                         </GradientButton>
 
