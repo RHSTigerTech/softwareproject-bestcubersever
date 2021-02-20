@@ -3,6 +3,6 @@ import { WebView } from 'react-native-webview';
 
 export default class App extends React.Component {
   render() {
-    return <WebView source={{ uri: 'http://nleslie2408.github.io/cuber/cuber/index.html' }} />;
+    return <WebView source={require('')} />;
   }
 }
