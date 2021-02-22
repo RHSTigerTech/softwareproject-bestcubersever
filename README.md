@@ -12,3 +12,5 @@ that will impress your friends and family.
 * Top 5 to 10 times/Statistics
 * Algorithms for patterns
 * Ability to create sessions
+
+Interactive Rubiks Cube Demo: https://rhstigertech.github.io/softwareproject-bestcubersever/cuber/
