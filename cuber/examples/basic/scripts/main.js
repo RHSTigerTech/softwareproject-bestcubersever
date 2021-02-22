@@ -112,12 +112,12 @@ $(document).ready( function(){
 	// The effect can be used with the Freeform and Locked controls.
 	// This could also integrate device orientation on mobile
 
-	var motion = deviceMotion( cube, container );
+// 	var motion = deviceMotion( cube, container );
 
-	motion.decay = 0.1; 				// The drag effect
-	motion.range.x = Math.PI * 0.06;	// The range of rotation 
-	motion.range.y = Math.PI * 0.06;
-	motion.range.z = 0;
+// 	motion.decay = 0.1; 				// The drag effect
+// 	motion.range.x = Math.PI * 0.06;	// The range of rotation 
+// 	motion.range.y = Math.PI * 0.06;
+// 	motion.range.z = 0;
 	//motion.paused = false;				// disables the effect
 
 	
