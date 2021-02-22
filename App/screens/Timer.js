@@ -63,7 +63,7 @@ const App = () => {
               setResetStopwatch(true);
               
             }}>
-            <Text style={styles.resetbuttonText}></Text>
+            <Text style={styles.resetbuttonText}>previous time</Text>
           </TouchableHighlight>
         </View>
       </View>
