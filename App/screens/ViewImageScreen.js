@@ -10,9 +10,10 @@ import { StyleSheet, SafeAreaView, Text, View,
  function ViewImageScreen(navigation) {
     return (
         <SafeAreaView style={styles.background}>
-
             <Image resizeMode='cover'
-            style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} />        
+                style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
+            />        
+
             <View style={styles.blue}/>
             <View style={styles.red}/>
             <GradientButton
