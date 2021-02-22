@@ -74,11 +74,12 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         <Card>
-                            <Card.Title style={{fontSize: 20}}>4: Yellow Cross</Card.Title>
+                            <Card.Title style={{fontSize: 20}}>4: Orient Yellow Edges</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
-                                This is the first step to solving the last layer.  The goal is to create a yellow cross like what was done on
-                                the white layer in the first step, except you use algorithms now so that the rest of the cube is not messed up.
+                                This is the first step to solving the last layer.  The goal is to orient the yellow edges which creates a yellow 
+                                cross like what was done on the white layer in the first step, except you use algorithms now so that the rest 
+                                of the cube does not get messed up.
                             </Text>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases</Text>
@@ -97,28 +98,28 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         <Card>
-                            <Card.Title style={{fontSize: 20}}>5: Yellow Corners</Card.Title>
+                            <Card.Title style={{fontSize: 20}}>5: Orient Yellow Corners</Card.Title>
                             <Card.Divider/>
-                            <Text style={styles.textSummary}>In this step, the corners are solved so that yellow is facing up.</Text>
+                            <Text style={styles.textSummary}>In this step, you orient the yellow corners so that they are facing up.</Text>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases</Text>
                             <View style={{flexDirection: 'row'}}>
                                 {/* 
-                                    000
-                                    000
                                     _0_
+                                    000
+                                    000
                                 */}
                                 <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textOther}>R2 D R' U2 RD' R' U2 R'</Text>
+                                <Text style={styles.textOther}>R2 D' R U2 R' D R U2 R</Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 {/*
-                                    00_
+                                    _00
                                     000
-                                    00_                   
+                                    _00
                                 */}
                                 <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textOther}></Text>
+                                <Text style={styles.textOther}>(F R F' Rw)(U R' U' Rw)</Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 {/*
@@ -127,7 +128,7 @@ function BeginnerLearn({navigation}) {
                                     _00
                                 */}
                                 <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textOther}></Text>
+                                <Text style={styles.textOther}>(F R' F' Rw)(U R U' Rw)</Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 {/*
@@ -136,7 +137,7 @@ function BeginnerLearn({navigation}) {
                                     00_
                                 */}
                                 <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textOther}></Text>
+                                <Text style={styles.textOther}>R U R' U R U2 R'</Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 {/*
@@ -145,7 +146,7 @@ function BeginnerLearn({navigation}) {
                                     _0|
                                 */}
                                 <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textOther}></Text>
+                                <Text style={styles.textOther}>R U2 R' U' R U' R'</Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 {/*
@@ -154,7 +155,7 @@ function BeginnerLearn({navigation}) {
                                     |0_
                                 */}
                                 <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textOther}></Text>
+                                <Text style={styles.textOther}>R U2 (R2 U' R2 U') R2 U2 R</Text>
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 {/*
@@ -168,11 +169,16 @@ function BeginnerLearn({navigation}) {
                         </Card>
                         
                         <Card>
-                            <Card.Title style={{fontSize: 20}}>6: Orient Yellow Corners</Card.Title>
+                            <Card.Title style={{fontSize: 20}}>6: Permute Yellow Edges</Card.Title>
                             <Card.Divider/>
-                            <Text style={styles.textSummary}>The sixth and final step to solving a 3x3 Rubik's Cube is orienting the yellow corners.</Text>
+                            <Text style={styles.textSummary}>
+                                In this step, you permute the yellow edges so that the other color on the edges align with their respective 
+                                colors on the sides.
+                            </Text>
                             <Card.Divider/>
                         </Card>
+
+
                     </ScrollView>
                 </View>
             </View>
