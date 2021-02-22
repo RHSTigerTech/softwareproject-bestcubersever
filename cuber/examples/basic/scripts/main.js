@@ -81,7 +81,7 @@ $(document).ready( function(){
 
 //change to false to allow for freeform movement rather than restricted.
 //Could later add button to let user choose of they want freeform or a locked position
-	var useLockedControls = false, 
+	var useLockedControls = true, 
 		controls = useLockedControls ? ERNO.Locked : ERNO.Freeform;
 
 	var ua = navigator.userAgent,
