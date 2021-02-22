@@ -14,29 +14,30 @@ import {
   Text,
   View,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 
+
 const App = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  const [timerDuration, setTimerDuration] = useState(90000);
+  const [timerDuration, setTimerDuration] = useState(9000);
   const [resetTimer, setResetTimer] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
-
+    
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text style={styles.title}>
-          Example of React Native Timer and Stopwatch
-        </Text>
         <View style={styles.sectionStyle}>
           <Stopwatch
-            laps
+            
             msecs
             start={isStopwatchStart}
+                
             //To start
             reset={resetStopwatch}
             //To reset
@@ -45,58 +46,30 @@ const App = () => {
             getTime={(time) => {
               console.log(time);
             }}
+            
           />
-          <TouchableHighlight
+          <TouchableOpacity style={styles.startbuttonSize}
+            underlayColor='white'
+
             onPress={() => {
+                
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false);
+
+              
+              
             }}>
-            <Text style={styles.buttonText}>
+            <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'START' : 'STOP'}
             </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableHighlight style={styles.resetbuttonSize}
             onPress={() => {
               setIsStopwatchStart(false);
               setResetStopwatch(true);
+              
             }}>
-            <Text style={styles.buttonText}>RESET</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={styles.sectionStyle}>
-          <Timer
-            totalDuration={timerDuration}
-            msecs
-            //Time Duration
-            start={isTimerStart}
-            //To start
-            reset={resetTimer}
-            //To reset
-            options={options}
-            //options for the styling
-            handleFinish={() => {
-              alert('Custom Completion Function');
-            }}
-            //can call a function On finish of the time
-            getTime={(time) => {
-              console.log(time);
-            }}
-          />
-          <TouchableHighlight
-            onPress={() => {
-              setIsTimerStart(!isTimerStart);
-              setResetTimer(false);
-            }}>
-            <Text style={styles.buttonText}>
-              {!isTimerStart ? 'START' : 'STOP'}
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => {
-              setIsTimerStart(false);
-              setResetTimer(true);
-            }}>
-            <Text style={styles.buttonText}>RESET</Text>
+            <Text style={styles.resetbuttonText}>RESET</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -109,40 +82,66 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    //padding: 10,
+    
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor:'black'
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
-    padding: 20,
-  },
+  
   sectionStyle: {
     flex: 1,
-    marginTop: 32,
+    //marginTop: 32,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonText: {
-    fontSize: 20,
-    marginTop: 10,
+  startbuttonText: {
+    fontSize: 80,
+    //marginTop: 10,
+    color:'#FFF',
+    top:320,
+    
   },
+  resetbuttonText: {
+    fontSize: 60,
+    //marginTop: 10,
+    color:'#FFF',
+    top:-10,
+    
+  },
+  resetbuttonSize:{
+      alignSelf:'stretch',
+      height: '10%',
+      alignItems:'center'
+  },
+  startbuttonSize:{
+    //position:'absolute',
+    width: 500,
+    height: '90%',
+    alignItems:'center',
+        
+    
+
+}
 });
 
 const options = {
   container: {
-    backgroundColor: '#FF0000',
-    padding: 5,
-    borderRadius: 5,
-    width: 200,
+    //flex: 1,
+    //padding: 10,
+    position:'absolute',
+    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor:'black',
+    height:70
   },
   text: {
-    fontSize: 25,
+    fontSize: 70,
+    //fontFamily:'Helvetica Neue',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
     color: '#FFF',
-    marginLeft: 7,
+    marginLeft: 0,
+    top:-150,
   },
 };
 
