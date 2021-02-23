@@ -49,18 +49,12 @@ const App = () => {
             
           />
           <TouchableOpacity style={styles.startbuttonSize}
-            underlayColor='white'
-
-            onPress={() => {
-                
+            onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
-              setResetStopwatch(false);
-
-              
-              
+              setResetStopwatch(false); 
             }}>
             <Text style={styles.startbuttonText}>
-              {!isStopwatchStart ? 'START' : 'STOP'}
+              {!isStopwatchStart ? 'READY' : 'STOP'}
             </Text>
           </TouchableOpacity>
           <TouchableHighlight style={styles.resetbuttonSize}
@@ -69,7 +63,7 @@ const App = () => {
               setResetStopwatch(true);
               
             }}>
-            <Text style={styles.resetbuttonText}>RESET</Text>
+            <Text style={styles.resetbuttonText}>previous time</Text>
           </TouchableHighlight>
         </View>
       </View>
