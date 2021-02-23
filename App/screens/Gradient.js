@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     },
 
         
-    },
+    
     image:{        
         width:'140%',
         height:'125%',
