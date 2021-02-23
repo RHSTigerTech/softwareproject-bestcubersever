@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Platform, StatusBar,} from 'react-native';
+
+import { StyleSheet, SafeAreaView, Text, View, 
+  Image, Alert, TouchableWithoutFeedback, 
+  TouchableOpacity, TouchableHighlight, 
+ Platform, Dimensions, StatusBar, Pressable, SafeAreView} from 'react-native';
+
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import LightVideo from '../Assets/RotatingCube.mp4';
@@ -14,7 +19,6 @@ const ButtonGradientDirection='vertical';
 function Gradient({navigation}) {  
     
     return (
-        
         <View style={styles.ViewContainer}>
 
             <Video
@@ -108,15 +112,24 @@ function Gradient({navigation}) {
                         </GradientButton>
                     </View>            
         </View>
+
     );
 }
 
 const styles = StyleSheet.create({
-   
+    background:{
+        backgroundColor:'black',
+        flex:1
+    },
+
     ViewContainer:{
         flex: 1, 
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+
+    
+    },
+
         
     },
     image:{        
@@ -141,4 +154,3 @@ const styles = StyleSheet.create({
 })
 
 export default Gradient;
-
