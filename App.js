@@ -14,7 +14,7 @@ import BeginnerLearn from './App/screens/BeginnerLearn';
 import IntermediateLearn from './App/screens/IntermediateLearn';
 import HowToReadAlg from './App/screens/HowToReadAlg';
 import AdvancedLearn from './App/screens/AdvancedLearn';
-import Video from './App/screens/video.js';
+//import Video from './App/screens/video.js';
 import * as React from 'react';
 import Timer from './App/screens/Timer.js';
 import ThreeJSTest from './App/screens/ThreeJSTest.js';
@@ -54,10 +54,10 @@ const App = () => {
           // options={{headerShown:false}}
         />
 
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="Video" 
           component={Video}
-        />
+        /> */}
 
         {/*   Learn Screens    */}
         <Stack.Screen
