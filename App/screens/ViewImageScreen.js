@@ -7,11 +7,6 @@ function ViewImageScreen({navigation}) {
         <ImageBackground style={styles.background} 
             source={require('../Assets/MobileRubiksCubeBackground.jpg')}
         >
-           
-            
-            
-            
-            
             <GradientButton
                 
                 style={styles.Button}

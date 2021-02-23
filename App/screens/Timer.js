@@ -57,14 +57,14 @@ const App = () => {
               {!isStopwatchStart ? 'READY' : 'STOP'}
             </Text>
           </TouchableOpacity>
-          <TouchableHighlight style={styles.resetbuttonSize}
+          {/* <TouchableHighlight style={styles.resetbuttonSize}
             onPress={() => {
               setIsStopwatchStart(false);
               setResetStopwatch(true);
               
             }}>
             <Text style={styles.resetbuttonText}>previous time</Text>
-          </TouchableHighlight>
+          </TouchableHighlight> */}
         </View>
       </View>
     </SafeAreaView>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   startbuttonSize:{
     //position:'absolute',
     width: 500,
-    height: '90%',
+    height: '100%',
     alignItems:'center',
         
     
