@@ -44,11 +44,6 @@ const App = () => {
         />
 
         <Stack.Screen 
-          name="ViewImageScreen" 
-          component={ViewImageScreen}
-        />
-
-        <Stack.Screen 
           name="Learn" 
           component={Learn}
           // options={{headerShown:false}}
@@ -70,8 +65,8 @@ const App = () => {
           component={BeginnerLearn}
         />
 
-        <Stack.Screen name="Gradient" component={Gradient} options={{headerShown:false}}/>
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown:false}}/>
+        
+        
         <Stack.Screen name="ViewImageScreen" component={ViewImageScreen} options={{headerShown:false}}/>
         <Stack.Screen name='VirtualCube' component={VirtualCube}/>
         <Stack.Screen name='Timer' component={Timer}/>
