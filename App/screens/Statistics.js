@@ -47,7 +47,7 @@ const chartConfigs = [
     else{
         width = Dimensions.get("window").width;
     }
-    console.log(tester)
+    
     //const height='100%';
       //const { width } = Dimensions.get("window");
     //const {height} = Dimensions.get('window');
