@@ -68,24 +68,18 @@ const App = () => {
           options={{headerShown:false}}
         />
 
-<<<<<<< HEAD
-=======
         <Stack.Screen 
         name="ViewImageScreen" 
         component={ViewImageScreen} 
         options={{headerShown:false}}/>
         
         
->>>>>>> 8be74bc61e6910963c0b83fcdd97f43b633ef54d
         {/* <Stack.Screen 
           name="Video" 
           component={Video}
         /> */}
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 8be74bc61e6910963c0b83fcdd97f43b633ef54d
 
         {/*   Learn Screens    */}
         <Stack.Screen

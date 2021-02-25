@@ -4,7 +4,7 @@ import {Header} from 'react-native-elements';
 
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-import {testdata} from "./Timer";
+
 import {
  LineChart,
   BarChart,
@@ -14,7 +14,7 @@ import {
   StackedBarChart
 } from "react-native-chart-kit";
 import { View } from "react-native";
-const tester=testdata;
+
 
 const chartConfigs = [
     
