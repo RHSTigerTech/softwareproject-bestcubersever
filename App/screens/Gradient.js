@@ -107,7 +107,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('ViewImageScreen')}
+                            onPressAction={() => navigation.navigate('Statistics')}
                         >
                         </GradientButton>
                     </View>            

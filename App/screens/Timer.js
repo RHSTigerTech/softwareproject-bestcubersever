@@ -21,6 +21,8 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 
+let finaltime='';
+
 
 const App = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
@@ -28,7 +30,7 @@ const App = () => {
   const [timerDuration, setTimerDuration] = useState(9000);
   const [resetTimer, setResetTimer] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
-    
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
@@ -44,7 +46,8 @@ const App = () => {
             options={options}
             //options for the styling
             getTime={(time) => {
-              console.log(time);
+              //console.log(time);
+              finaltime=time;
             }}
             
           />
@@ -55,8 +58,14 @@ const App = () => {
             }}>
             <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'READY' : 'STOP'}
+              
             </Text>
+            <Text style={styles.resetbuttonText}>
+            {'Previous Time:\n   '+finaltime}
+            </Text>
+            
           </TouchableOpacity>
+          
           {/* <TouchableHighlight style={styles.resetbuttonSize}
             onPress={() => {
               setIsStopwatchStart(false);
@@ -97,11 +106,11 @@ const styles = StyleSheet.create({
     
   },
   resetbuttonText: {
-    fontSize: 60,
+    fontSize: 40,
     //marginTop: 10,
     color:'#FFF',
-    top:-10,
-    
+    position:'absolute',
+    bottom:0,
   },
   resetbuttonSize:{
       alignSelf:'stretch',
