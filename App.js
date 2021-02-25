@@ -17,6 +17,7 @@ import AdvancedLearn from './App/screens/AdvancedLearn';
 //import Video from './App/screens/video.js';
 import * as React from 'react';
 import Timer from './App/screens/Timer.js';
+import Statistics from './App/screens/Statistics';
 import ThreeJSTest from './App/screens/ThreeJSTest.js';
 import VirtualCube from './App/screens/VirtualCube.js';
 import {NavigationContainer} from '@react-navigation/native'
@@ -30,12 +31,36 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
 
-        {/*   Home Screens   */}
         <Stack.Screen 
           name="Gradient" 
           component={Gradient} 
           options={{headerShown:false}}
         />
+
+        {/*   Home Screens   */}
+        <Stack.Screen 
+          name="Learn" 
+          component={Learn}
+          // options={{headerShown:false}}
+        />
+
+        <Stack.Screen 
+        name='Timer' 
+        component={Timer}
+        />
+
+        <Stack.Screen 
+          name='VirtualCube' 
+          component={VirtualCube}
+        />
+
+        <Stack.Screen
+          name='Statistics'
+          component={Statistics}
+          options={{headerShown:false}}
+        />
+
+        
 
         <Stack.Screen 
           name="WelcomeScreen" 
@@ -43,21 +68,24 @@ const App = () => {
           options={{headerShown:false}}
         />
 
+<<<<<<< HEAD
+=======
         <Stack.Screen 
-          name="ViewImageScreen" 
-          component={ViewImageScreen}
-        />
-
-        <Stack.Screen 
-          name="Learn" 
-          component={Learn}
-          // options={{headerShown:false}}
-        />
-
+        name="ViewImageScreen" 
+        component={ViewImageScreen} 
+        options={{headerShown:false}}/>
+        
+        
+>>>>>>> 8be74bc61e6910963c0b83fcdd97f43b633ef54d
         {/* <Stack.Screen 
           name="Video" 
           component={Video}
         /> */}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 8be74bc61e6910963c0b83fcdd97f43b633ef54d
 
         {/*   Learn Screens    */}
         <Stack.Screen
@@ -69,16 +97,7 @@ const App = () => {
           name="BeginnerLearn"
           component={BeginnerLearn}
         />
-
-        <Stack.Screen name="Gradient" component={Gradient} options={{headerShown:false}}/>
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="ViewImageScreen" component={ViewImageScreen} options={{headerShown:false}}/>
-        <Stack.Screen name='VirtualCube' component={VirtualCube}/>
-        <Stack.Screen name='Timer' component={Timer}/>
         
-     
-
-
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
