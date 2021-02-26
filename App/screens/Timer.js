@@ -24,11 +24,14 @@ import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 let finaltime='';
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 let l=null;
+let s=[];
 for(let i=0; i<20;i++){
   let l =Math.floor(Math.random()*possiblemoves.length)
   console.log(possiblemoves[l])
+  s.append(possiblemoves[l])
 }
 console.log(possiblemoves[l])
+console.log(s)
 
 // for(let i=0; i<=20;i++){
   
