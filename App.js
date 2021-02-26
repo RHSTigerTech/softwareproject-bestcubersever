@@ -62,11 +62,11 @@ const App = () => {
 
         
 
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="WelcomeScreen" 
           component={WelcomeScreen} 
           options={{headerShown:false}}
-        />
+        /> */}
 
         <Stack.Screen 
         name="ViewImageScreen" 
