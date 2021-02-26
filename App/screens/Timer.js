@@ -22,7 +22,17 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 
 let finaltime='';
+const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
+let l=null;
+for(let i=0; i<20;i++){
+  let l =Math.floor(Math.random()*possiblemoves.length)
+  console.log(possiblemoves[l])
+}
+console.log(possiblemoves[l])
 
+// for(let i=0; i<=20;i++){
+  
+// }
 
 const App = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
@@ -62,6 +72,9 @@ const App = () => {
             </Text>
             <Text style={styles.resetbuttonText}>
             {'Previous Time:\n   '+finaltime}
+            </Text>
+            <Text>
+
             </Text>
             
           </TouchableOpacity>
