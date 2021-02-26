@@ -56,8 +56,8 @@ const chartConfigs = [
         <Header                       
                     containerStyle={styles}
                     centerContainerStyle={{flex:14}}
-                    centerComponent={{ text: 'Session Statistics', style: { color: 'black', fontSize:30, fontWeight:'bold'}}} 
-                    shadowColor={'transparent'}
+                    centerComponent={{ text: 'Session Statistics', style: { color: 'black', fontSize:30, fontWeight:'bold', bottom:-5}}} 
+                    //shadowColor={'transparent'}
                     />
         <ScrollView directionalLockEnabled='vertical' vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
@@ -73,7 +73,7 @@ const chartConfigs = [
             //paddingTop:20,
             strokeWidth:2,
             bottom: 0,
-            position:'center',
+            //position:'center',
               ...chartConfig.style
             };
             <Text style={labelStyle}>Bezier Line Chart</Text>
