@@ -4,7 +4,7 @@ import {Header} from 'react-native-elements';
 
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-import {testdata} from "./Timer";
+
 import {
  LineChart,
   BarChart,
@@ -14,7 +14,7 @@ import {
   StackedBarChart
 } from "react-native-chart-kit";
 import { View } from "react-native";
-const tester=testdata;
+
 
 const chartConfigs = [
     
@@ -47,7 +47,7 @@ const chartConfigs = [
     else{
         width = Dimensions.get("window").width;
     }
-    console.log(tester)
+    
     //const height='100%';
       //const { width } = Dimensions.get("window");
     //const {height} = Dimensions.get('window');
@@ -56,8 +56,8 @@ const chartConfigs = [
         <Header                       
                     containerStyle={styles}
                     centerContainerStyle={{flex:14}}
-                    centerComponent={{ text: 'Session Statistics', style: { color: 'black', fontSize:30, fontWeight:'bold'}}} 
-                    shadowColor={'transparent'}
+                    centerComponent={{ text: 'Session Statistics', style: { color: 'black', fontSize:30, fontWeight:'bold', bottom:-5}}} 
+                    //shadowColor={'transparent'}
                     />
         <ScrollView directionalLockEnabled='vertical' vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
@@ -73,7 +73,7 @@ const chartConfigs = [
             //paddingTop:20,
             strokeWidth:2,
             bottom: 0,
-            position:'center',
+            //position:'center',
               ...chartConfig.style
             };
             <Text style={labelStyle}>Bezier Line Chart</Text>
