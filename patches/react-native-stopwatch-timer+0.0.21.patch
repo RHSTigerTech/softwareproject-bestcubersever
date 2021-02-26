@@ -1,8 +1,13 @@
 diff --git a/node_modules/react-native-stopwatch-timer/lib/stopwatch.js b/node_modules/react-native-stopwatch-timer/lib/stopwatch.js
-index c59be85..776699c 100644
+index c59be85..31cbc31 100644
 --- a/node_modules/react-native-stopwatch-timer/lib/stopwatch.js
 +++ b/node_modules/react-native-stopwatch-timer/lib/stopwatch.js
-@@ -8,7 +8,9 @@ class StopWatch extends Component {
+@@ -1,3 +1,4 @@
++//testing patch
+ import React, {Component} from 'react';
+ import {Text, View, StyleSheet} from 'react-native';
+ import PropTypes from 'prop-types';
+@@ -8,14 +9,16 @@ class StopWatch extends Component {
    static propTypes = {
      start: PropTypes.bool,
      reset: PropTypes.bool,
@@ -12,7 +17,15 @@ index c59be85..776699c 100644
      options: PropTypes.object,
      laps: PropTypes.bool,
      getTime: PropTypes.func,
-@@ -24,11 +26,13 @@ class StopWatch extends Component {
+     startTime: PropTypes.number,
+     getMsecs: PropTypes.func,
+   }
+-
++//testing change
+   constructor(props) {
+     super(props);
+     const { startTime } = props;
+@@ -24,11 +27,12 @@ class StopWatch extends Component {
        stopTime: null,
        pausedTime: null,
        started: false,
@@ -21,44 +34,50 @@ index c59be85..776699c 100644
      };
      this.start = this.start.bind(this);
      this.stop = this.stop.bind(this);
-+    this.show = this.reset.bind(this);
      this.reset = this.reset.bind(this);
-+    
++    this.show = this.reset.bind(this);
      this.formatTime = this.formatTime.bind(this);
      const width = props.msecs ? 220 : 150;
      this.defaultStyles = {
-@@ -51,15 +55,20 @@ class StopWatch extends Component {
-       this.start();
+@@ -52,48 +56,71 @@ class StopWatch extends Component {
      }
    }
-+  componentDidUpdate(prevProps,prevState){
-+      if (prevProps.start !== this.props.start) {
-+        if(this.props.start){
-+          this.start();
-+ 
-+        } else {
-+          this.stop();
-+        }
-  
+ 
 -  componentWillReceiveProps(newProps) {
 -    if(newProps.start) {
 -      this.start();
 -    } else {
 -      this.stop();
++  componentDidUpdate(prevProps,prevState){
++    if (prevProps.start !== this.props.start) {
++      if(this.props.start){
++        this.start();
++        
++        
++      } else {
++        this.stop();
++        
++          
++        
++
++      }
      }
 -    if(newProps.reset) {
 -      this.reset();
 +    if (prevProps.reset !== this.props.reset) {
-+            if(this.props.reset) {
-+             this.reset();
-+           }
++      if(this.props.reset) {
++        this.reset();
++      }
      }
    }
  
-@@ -68,15 +77,23 @@ class StopWatch extends Component {
++  
+   componentWillUnmount() {
+      clearInterval(this.interval);
    }
  
    start() {
++
 +    const { startTime } = this.props;
 +    this.setState({
 +      elapsed: startTime || 0,
@@ -66,13 +85,15 @@ index c59be85..776699c 100644
 +      stopTime: null,
 +      pausedTime: null
 +    });
++    
      if (this.props.laps && this.state.elapsed) {
 -      let lap = new Date() - this.state.stopTime;
-+      let lap=stopTime;
++      let lap = stopTime;
 +      this.state.elapsed=0,
        this.setState({
          stopTime: null,
          pausedTime: this.state.pausedTime + lap
++
        })
      }
      
@@ -81,16 +102,22 @@ index c59be85..776699c 100644
        new Date(), started: true});
        
      this.interval = this.interval ? this.interval : setInterval(() => {
-@@ -88,12 +105,12 @@ class StopWatch extends Component {
+         this.setState({elapsed: new Date() - this.state.startTime });
+     }, 1);
++    
+   }
+ 
+   stop() {
      if(this.interval) {
        if (this.props.laps) {
          this.setState({stopTime: new Date()})
 -      }
-       
+-
 -      clearInterval(this.interval);
 -      this.interval = null;
      }
 -    this.setState({started: false});
++
 +    clearInterval(this.interval);
 +    this.interval = null;
 +  }
@@ -98,7 +125,7 @@ index c59be85..776699c 100644
    }
  
    reset() {
-@@ -107,9 +124,9 @@ class StopWatch extends Component {
+@@ -107,9 +134,9 @@ class StopWatch extends Component {
    }
  
    formatTime() {
@@ -111,19 +138,20 @@ index c59be85..776699c 100644
        getTime(formatted);
      }
 diff --git a/node_modules/react-native-stopwatch-timer/lib/utils.js b/node_modules/react-native-stopwatch-timer/lib/utils.js
-index 60bac43..9a15864 100644
+index 60bac43..8c971fa 100644
 --- a/node_modules/react-native-stopwatch-timer/lib/utils.js
 +++ b/node_modules/react-native-stopwatch-timer/lib/utils.js
-@@ -1,4 +1,4 @@
+@@ -1,4 +1,5 @@
 -function formatTimeString(time, showMsecs) {
++//testing patch
 +function formatTimeString(time, showMsecs, showHours) {
    let msecs = time % 1000;
  
    if (msecs < 10) {
-@@ -12,18 +12,14 @@ function formatTimeString(time, showMsecs) {
+@@ -12,18 +13,14 @@ function formatTimeString(time, showMsecs) {
    let hours = Math.floor(time / 3600000);
    seconds = seconds - minutes * 60;
-   minutes = minutes - hours * 60;
+   minutes = minutes - hours * 60;  
 -  let formatted;
 -  if (showMsecs) {
 -    formatted = `${hours < 10 ? 0 : ""}${hours}:${
@@ -134,15 +162,15 @@ index 60bac43..9a15864 100644
 -      minutes < 10 ? 0 : ""
 -    }${minutes}:${seconds < 10 ? 0 : ""}${seconds}`;
 -  }
-+  let formattedHours = showHours ? `${hours < 10 ? 0 : ""}${hours}:` :'';
-+  
-+  let formattedMinutes = `${minutes < 10 ? 0 : ""}${hours}:`
-+  let formattedSeconds = `${seconds < 10 ? 0 : ""}${seconds}:`
-+  let formattedMsecs = showMsecs ? `${msecs}` : '';
-+  
++  let formattedHours = showHours ? `${hours < 10 ? 0 : ""}${hours}:` : '';
++  let formattedMinutes = `${minutes < 10 ? 0 : ""}${minutes}:`;
++  let formattedSeconds = `${seconds < 10 ? 0 : ""}${seconds}`;
++  let formattedMsecs = showMsecs ? `:${msecs}` : '';
++
++  return `${formattedHours}${formattedMinutes}${formattedSeconds}${formattedMsecs}`;
  
 -  return formatted;
-+  return `${formattedHours}${formattedMinutes}${formattedSeconds}${formattedMsecs}`;
  }
  
++
  export { formatTimeString };
