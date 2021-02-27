@@ -5,8 +5,8 @@
 //Statists
 
 // import React in our code
-import React, { useState } from 'react';
-
+import React, { useState, Component } from 'react';
+import PropTypes from 'prop-types';
 // import all the components we are going to use
 import {
   SafeAreaView,
@@ -24,25 +24,34 @@ import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 let finaltime='';
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 let l=null;
+let j=100;
 let s=[];
-for(let i=0; i<20;i++){
-  let l =Math.floor(Math.random()*possiblemoves.length)
-  console.log(possiblemoves[l])
-  s.append(possiblemoves[l])
-}
-console.log(possiblemoves[l])
-console.log(s)
 
-// for(let i=0; i<=20;i++){
-  
-// }
 
+  for(let i=0; i<20;i++){
+    
+    console.log('--')
+    l =Math.floor(Math.random()*possiblemoves.length)
+    console.log(l)
+    console.log(j)
+    //add more conditions to scrmabler so there aren't any uneccessary notations given
+    if(j===l){ 
+      s.pop();
+      i--
+    }
+    j=l;
+    s.push(possiblemoves[l])
+  }
+  s=s.join(' ')
+
+console.log('--------------')
 const App = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [timerDuration, setTimerDuration] = useState(9000);
   const [resetTimer, setResetTimer] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
+  
   
   return (
     <SafeAreaView style={styles.container}>
@@ -73,12 +82,14 @@ const App = () => {
               {!isStopwatchStart ? 'READY' : 'STOP'}
               
             </Text>
+            
             <Text style={styles.resetbuttonText}>
             {'Previous Time:\n   '+finaltime}
             </Text>
-            <Text>
-
+            <Text style={styles.ScrambleText}>
+            {s}
             </Text>
+            
             
           </TouchableOpacity>
           
@@ -127,6 +138,18 @@ const styles = StyleSheet.create({
     color:'#FFF',
     position:'absolute',
     bottom:0,
+  },
+  ScrambleText: {
+    
+    fontSize: 30,
+    //width: '70%',
+    width:'60%',
+    
+    //marginTop: 10,
+    color:'#FFF',
+    position:'absolute',
+    top:0,
+    textAlign:'center'
   },
   resetbuttonSize:{
       alignSelf:'stretch',
