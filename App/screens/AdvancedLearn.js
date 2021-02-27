@@ -19,7 +19,7 @@ function AdvancedLearn({navigation}) {
                     resizeMode='cover'
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
-                <View style={{height: '90%'}}>
+                <View style={{height: '90%', opacity: 0.9}}>
                     <ScrollView style={styles.scroll}> 
                         <Card>
                             <Card.Title>advanced method</Card.Title>
@@ -37,21 +37,6 @@ const styles = StyleSheet.create({
         flex:1
     },
 
-    ViewContainer:{
-        // Holds the whole screen
-        flex: 1, 
-        //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'black',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    
-    },
-
-    cardText:{
-        // Text for the instructions
-        color: 'red',
-    },
-
     image: {
         // Background image of cube
         width:'100%',
@@ -61,10 +46,53 @@ const styles = StyleSheet.create({
         //top: 24,
     },
 
+    imageDescrip:{
+        // Text for the instructions
+        color: 'black',
+        width: '60%',
+    },
+
+    placeHolder: {
+        // Text with this style holds the place of something that will be implemented later
+        color: 'blue',
+        fontWeight: 'bold',
+        width: '40%',
+    },
+
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
-    }
+    },
+
+    textHeader: {
+        //headers
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 17.5,
+        textAlign: 'center',
+    },
+
+    textOther:{
+        // Text thats not header, description, or main summary
+        color: 'black',
+        fontSize: 13,
+    },
+
+    textSummary: {
+        // the summary of the step
+        color: 'black',
+        fontSize: 15,
+    },
+
+    ViewContainer:{
+        // Holds the whole screen
+        flex: 1, 
+        //justifyContent: 'space-evenly', 
+        alignItems: 'center', 
+        backgroundColor:'black',
+        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+    
+    },
 })
 
 export default AdvancedLearn;

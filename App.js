@@ -14,66 +14,33 @@ import BeginnerLearn from './App/screens/BeginnerLearn';
 import IntermediateLearn from './App/screens/IntermediateLearn';
 import HowToReadAlg from './App/screens/HowToReadAlg';
 import AdvancedLearn from './App/screens/AdvancedLearn';
-import Video from './App/screens/video.js';
 import * as React from 'react';
+import Timer from './App/screens/Timer.js';
+import ThreeJSTest from './App/screens/ThreeJSTest.js';
+import VirtualCube from './App/screens/VirtualCube.js';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 
+
 const Stack = createStackNavigator();
-//testing
+
 const App = () => {
   return(
     <NavigationContainer>
       <Stack.Navigator>
         {/*   Home Screens   */}
-        <Stack.Screen 
-          name="Gradient" 
-          component={Gradient} 
-          options={{headerShown:false}}
-        />
-
-        <Stack.Screen 
-          name="WelcomeScreen" 
-          component={WelcomeScreen} 
-          options={{headerShown:false}}
-        />
-
-        <Stack.Screen 
-          name="ViewImageScreen" 
-          component={ViewImageScreen}
-        />
-
-        <Stack.Screen 
-          name="Learn" 
-          component={Learn}
-          // options={{headerShown:false}}
-        />
-
-        <Stack.Screen 
-          name="Video" 
-          component={Video}
-        />
+        <Stack.Screen name="Gradient" component={Gradient} options={{headerShown:false}}/>
+        <Stack.Screen name="Learn" component={Learn}/>
+        {/* <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown:false}}/> */}
+        <Stack.Screen name="ViewImageScreen" component={ViewImageScreen} options={{headerShown:false}}/>
+        {/*<Stack.Screen name='VirtualCube' component={VirtualCube}/>
+        <Stack.Screen name='Timer' component={Timer}/>*/}
 
         {/*   Learn Screens    */}
-        <Stack.Screen
-          name="HowToReadAlg"
-          component={HowToReadAlg}
-        />
-
-        <Stack.Screen
-          name="BeginnerLearn"
-          component={BeginnerLearn}
-        />
-
-        <Stack.Screen 
-          name="IntermediateLearn"
-          component={IntermediateLearn}
-        />
-
-        <Stack.Screen
-          name="AdvancedLearn"
-          component={AdvancedLearn}
-        />
+        <Stack.Screen name="HowToReadAlg" component={HowToReadAlg}/>
+        <Stack.Screen name="BeginnerLearn" component={BeginnerLearn}/>
+        <Stack.Screen  name="IntermediateLearn" component={IntermediateLearn}/>
+        <Stack.Screen name="AdvancedLearn" component={AdvancedLearn}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

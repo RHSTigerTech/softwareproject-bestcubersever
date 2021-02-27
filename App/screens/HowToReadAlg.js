@@ -3,13 +3,6 @@ import { StyleSheet, View,
  Platform, StatusBar, Text, Image, ScrollView, SafeAreaView} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
-import AwesomeButton from "react-native-really-awesome-button";
-import LinearGradient from "react-native-linear-gradient";
-
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import colors from '../config/colors'
 
 function HowToReadAlg({navigation}) {
     return (
@@ -19,11 +12,16 @@ function HowToReadAlg({navigation}) {
                     resizeMode='cover'
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
-                <View style={{height: '90%'}}>
+                <View style={{height: '90%', opacity: 0.9}}>
                     <ScrollView style={styles.scroll}>
                         <Card>
                             <Card.Title>how to read algorithm screen</Card.Title>
                         </Card>
+                        {
+                            //two cards wide, clockwise and counter clockwise for each side, also add wide turns (f and Fw)
+                            //also add color scheme (which colors are always opposite on most cubes)
+                            //
+                        }
                     </ScrollView>
                 </View>
             </View>
