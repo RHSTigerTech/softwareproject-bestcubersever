@@ -21,8 +21,14 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 
+
+
+
 let finaltime='';
+
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
+//                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
+
 let l=null;
 let j=100;
 let s=[];
@@ -34,15 +40,41 @@ let s=[];
     l =Math.floor(Math.random()*possiblemoves.length)
     console.log(l)
     console.log(j)
-    //add more conditions to scrmabler so there aren't any uneccessary notations given
     if(j===l){ 
       s.pop();
       i--
     }
+    else if ((l===0 || l===6 || l===12)&&(j===0 || j===6 || j===12)) {
+      s.pop();
+      i--
+    } 
+    else if ((l===1 || l===7 || l===13)&&(j===1 || j===7 || j===13)) {
+      s.pop();
+      i--
+    }
+    else if ((l===2 || l===8 || l===14)&&(j===2 || j===8 || j===14)) {
+      s.pop();
+      i--
+    }
+    else if ((l===3 || l===9 || l===15)&&(j===3 || j===9 || j===15)) {
+      s.pop();
+      i--
+    }
+    else if ((l===4 || l===10 || l===16)&&(j===4 || j===10 || j===16)) {
+      s.pop();
+      i--
+    }
+    else if ((l===5 || l===11 || l===17)&&(j===5 || j===11 || j===17)) {
+      s.pop();
+      i--
+    }    
+    else {}
     j=l;
     s.push(possiblemoves[l])
   }
   s=s.join(' ')
+  console.log(s)
+
 
 console.log('--------------')
 const App = () => {
@@ -53,10 +85,14 @@ const App = () => {
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
   
+  
+  
   return (
+    
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
+        
           <Stopwatch
             
             msecs
@@ -72,22 +108,29 @@ const App = () => {
               finaltime=time;
             }}
             
+            
           />
+         
           <TouchableOpacity style={styles.startbuttonSize}
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
+              
+              
             }}>
             <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'READY' : 'STOP'}
               
+            
             </Text>
             
             <Text style={styles.resetbuttonText}>
             {'Previous Time:\n   '+finaltime}
             </Text>
             <Text style={styles.ScrambleText}>
+            
             {s}
+            
             </Text>
             
             
@@ -106,6 +149,7 @@ const App = () => {
     </SafeAreaView>
   );
 };
+
 
 export default App;
 
@@ -141,7 +185,7 @@ const styles = StyleSheet.create({
   },
   ScrambleText: {
     
-    fontSize: 30,
+    fontSize: 25,
     //width: '70%',
     width:'60%',
     
