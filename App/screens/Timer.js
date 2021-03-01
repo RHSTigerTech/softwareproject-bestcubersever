@@ -21,42 +21,18 @@ import {
 } from 'react-native';
 import {Header} from 'react-native-elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-function Complete (){
-  const navigation = useNavigation(); 
-  const ButtonHeight=65;
-  const ButtonWidth=320;
-  const ButtonRadius=30; // effects how circular the buttons look
-  const ButtonGradientDirection='vertical';
-  return(
-    <View style={{flex:1,alignItems: 'center',position: 'absolute',bottom: 0}}>
-    
-        
-      
-                        
-        <GradientButton
-            text="Home"                        
-            textStyle={styles.textStyle}
-            gradientBegin='white'
-            gradientEnd='grey'
-            gradientDirection={ButtonGradientDirection}
-            height={ButtonHeight}
-            width={ButtonWidth}
-            radius={ButtonRadius}
-            impact                        
-            onPressAction={() => navigation.navigate('Gradient')}                        
-        >
-        </GradientButton>  
-      </View>
-    
-  )
+import { IconButton, Colors } from 'react-native-paper';
 
-}
+const Tab = createBottomTabNavigator();
 
 
+  
+  
 let finaltime='';
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
@@ -112,7 +88,8 @@ function k(){
 
 
 console.log('--------------')
-const App = () => {
+
+const App = ({navigation}) => {
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [timerDuration, setTimerDuration] = useState(9000);
@@ -121,7 +98,7 @@ const App = () => {
   
   
   
-  
+ 
   return (
     
     <SafeAreaView style={styles.container}>
@@ -170,7 +147,7 @@ const App = () => {
             
             
           </TouchableOpacity>
-          {Complete()}
+          {/* {Complete()} */}
           {/* <TouchableHighlight style={styles.resetbuttonSize}
             onPress={() => {
               setIsStopwatchStart(false);
@@ -179,12 +156,19 @@ const App = () => {
             }}>
             <Text style={styles.resetbuttonText}>previous time</Text>
           </TouchableHighlight> */}
+          <IconButton
+            icon="camera"
+            color={Colors.red500}
+            size={20}
+            onPressAction={() => navigation.navigate('Statistics')}
+          />
+          
         </View>
       </View>
     </SafeAreaView>
+    
   );
-};
-
+}
 
 export default App;
 
@@ -245,7 +229,7 @@ const styles = StyleSheet.create({
   startbuttonSize:{
     //position:'absolute',
     width: 500,
-    height: '100%',
+    height: '90%',
     alignItems:'center',
   },
   ViewContainer:{
