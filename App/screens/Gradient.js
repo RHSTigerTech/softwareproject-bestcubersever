@@ -11,12 +11,14 @@ import LightVideo from '../Assets/RotatingCube.mp4';
 import { Video } from 'expo-av';
 
 
-const ButtonHeight=65;
-const ButtonWidth=320;
-const ButtonRadius=30; // effects how circular the buttons look
-const ButtonGradientDirection='vertical';
 
-function Gradient({navigation}) {  
+
+function Gradient({navigation}) { 
+
+    const ButtonHeight=65;
+    const ButtonWidth=320;
+    const ButtonRadius=30; // effects how circular the buttons look
+    const ButtonGradientDirection='vertical';
     
     return (
         <View style={styles.ViewContainer}>
