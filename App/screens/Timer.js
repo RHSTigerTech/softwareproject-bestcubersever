@@ -27,7 +27,7 @@ import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { IconButton, Colors } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
 
@@ -164,21 +164,21 @@ const App = ({navigation}) => {
             
             backgroundColor='black'
             //color={Colors.red500}
-            //size={20}
+            size={30}
             onPress={() => navigation.navigate('Statistics')}
           />
           <IconButton
             
             icon="graph"
             color={Colors.red500}
-            size={20}
+            size={30}
             onPress={() => navigation.navigate('Gradient')}
           />
           <IconButton
             
             icon="camera"
             color={Colors.red500}
-            size={20}
+            size={30}
             onPress={() => navigation.navigate('Statistics')}
           />
           </View>
