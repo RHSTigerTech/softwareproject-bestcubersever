@@ -7,73 +7,108 @@
 // import React in our code
 import React, { useState, Component } from 'react';
 import PropTypes from 'prop-types';
+import GradientButton from 'react-native-gradient-buttons';
 // import all the components we are going to use
 import {
   SafeAreaView,
   StyleSheet,
   Text,
   View,
+  
   TouchableHighlight,
   TouchableOpacity,
+  StatusBar
 } from 'react-native';
+import {Header} from 'react-native-elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-
+import { useNavigation } from '@react-navigation/native';
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 
+function Complete (){
+  const navigation = useNavigation(); 
+  const ButtonHeight=65;
+  const ButtonWidth=320;
+  const ButtonRadius=30; // effects how circular the buttons look
+  const ButtonGradientDirection='vertical';
+  return(
+    <View style={{flex:1,alignItems: 'center',position: 'absolute',bottom: 0}}>
+    
+        
+      
+                        
+        <GradientButton
+            text="Home"                        
+            textStyle={styles.textStyle}
+            gradientBegin='white'
+            gradientEnd='grey'
+            gradientDirection={ButtonGradientDirection}
+            height={ButtonHeight}
+            width={ButtonWidth}
+            radius={ButtonRadius}
+            impact                        
+            onPressAction={() => navigation.navigate('Gradient')}                        
+        >
+        </GradientButton>  
+      </View>
+    
+  )
 
+}
 
 
 let finaltime='';
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
+function k(){
+  let l=null;
+  let j=100;
+  let s=[];
 
-let l=null;
-let j=100;
-let s=[];
 
-
-  for(let i=0; i<20;i++){
-    
-    console.log('--')
-    l =Math.floor(Math.random()*possiblemoves.length)
-    console.log(l)
-    console.log(j)
-    if(j===l){ 
-      s.pop();
-      i--
+    for(let i=0; i<20;i++){
+      
+      console.log('--')
+      l =Math.floor(Math.random()*possiblemoves.length)
+      console.log(l)
+      console.log(j)
+      if(j===l){ 
+        s.pop();
+        i--
+      }
+      else if ((l===0 || l===6 || l===12)&&(j===0 || j===6 || j===12)) {
+        s.pop();
+        i--
+      } 
+      else if ((l===1 || l===7 || l===13)&&(j===1 || j===7 || j===13)) {
+        s.pop();
+        i--
+      }
+      else if ((l===2 || l===8 || l===14)&&(j===2 || j===8 || j===14)) {
+        s.pop();
+        i--
+      }
+      else if ((l===3 || l===9 || l===15)&&(j===3 || j===9 || j===15)) {
+        s.pop();
+        i--
+      }
+      else if ((l===4 || l===10 || l===16)&&(j===4 || j===10 || j===16)) {
+        s.pop();
+        i--
+      }
+      else if ((l===5 || l===11 || l===17)&&(j===5 || j===11 || j===17)) {
+        s.pop();
+        i--
+      }    
+      else {}
+      j=l;
+      s.push(possiblemoves[l])
     }
-    else if ((l===0 || l===6 || l===12)&&(j===0 || j===6 || j===12)) {
-      s.pop();
-      i--
-    } 
-    else if ((l===1 || l===7 || l===13)&&(j===1 || j===7 || j===13)) {
-      s.pop();
-      i--
-    }
-    else if ((l===2 || l===8 || l===14)&&(j===2 || j===8 || j===14)) {
-      s.pop();
-      i--
-    }
-    else if ((l===3 || l===9 || l===15)&&(j===3 || j===9 || j===15)) {
-      s.pop();
-      i--
-    }
-    else if ((l===4 || l===10 || l===16)&&(j===4 || j===10 || j===16)) {
-      s.pop();
-      i--
-    }
-    else if ((l===5 || l===11 || l===17)&&(j===5 || j===11 || j===17)) {
-      s.pop();
-      i--
-    }    
-    else {}
-    j=l;
-    s.push(possiblemoves[l])
-  }
-  s=s.join(' ')
-  console.log(s)
+    s=s.join(' ')
+    console.log(s)
+    return(s)
+}
 
 
 console.log('--------------')
@@ -117,6 +152,7 @@ const App = () => {
               setResetStopwatch(false); 
               
               
+              
             }}>
             <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'READY' : 'STOP'}
@@ -124,18 +160,17 @@ const App = () => {
             
             </Text>
             
-            <Text style={styles.resetbuttonText}>
-            {'Previous Time:\n   '+finaltime}
-            </Text>
+            
+            
             <Text style={styles.ScrambleText}>
             
-            {s}
+            {!isStopwatchStart ? k() : ''}
             
             </Text>
             
             
           </TouchableOpacity>
-          
+          {Complete()}
           {/* <TouchableHighlight style={styles.resetbuttonSize}
             onPress={() => {
               setIsStopwatchStart(false);
@@ -154,6 +189,12 @@ const App = () => {
 export default App;
 
 const styles = StyleSheet.create({
+
+  viewStyle: {
+    borderBottomColor: 'transparent',
+    marginBottom:0,
+    backgroundColor:'blue'        
+  },
   container: {
     flex: 1,
     //padding: 10,
@@ -193,7 +234,8 @@ const styles = StyleSheet.create({
     color:'#FFF',
     position:'absolute',
     top:0,
-    textAlign:'center'
+    textAlign:'center',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
   resetbuttonSize:{
       alignSelf:'stretch',
@@ -205,10 +247,20 @@ const styles = StyleSheet.create({
     width: 500,
     height: '100%',
     alignItems:'center',
-        
+  },
+  ViewContainer:{
+    //flex: 1, 
+    //alignItems: 'center', 
+    position:'absolute',
+    bottom:0,
     
-
+  },
+  textStyle:{
+    color:'black',
+    fontSize:30,    
+    opacity:0.9,
 }
+
 });
 
 const options = {
