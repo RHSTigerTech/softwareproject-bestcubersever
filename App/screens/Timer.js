@@ -9,52 +9,22 @@ import React, { useState, Component } from 'react';
 import PropTypes from 'prop-types';
 import GradientButton from 'react-native-gradient-buttons';
 // import all the components we are going to use
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  
-  TouchableHighlight,
-  TouchableOpacity,
-  StatusBar
-} from 'react-native';
+import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar} from 'react-native';
 import {Header} from 'react-native-elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Statistics from './Statistics';
 
-function Complete (){
-  const navigation = useNavigation(); 
-  const ButtonHeight=65;
-  const ButtonWidth=320;
-  const ButtonRadius=30; // effects how circular the buttons look
-  const ButtonGradientDirection='vertical';
-  return(
-    <View style={{flex:1,alignItems: 'center',position: 'absolute',bottom: 0}}>
-    
-        
-      
-                        
-        <GradientButton
-            text="Home"                        
-            textStyle={styles.textStyle}
-            gradientBegin='white'
-            gradientEnd='grey'
-            gradientDirection={ButtonGradientDirection}
-            height={ButtonHeight}
-            width={ButtonWidth}
-            radius={ButtonRadius}
-            impact                        
-            onPressAction={() => navigation.navigate('Gradient')}                        
-        >
-        </GradientButton>  
-      </View>
-    
-  )
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-}
+
 
 
 let finaltime='';
@@ -124,9 +94,11 @@ const App = () => {
   
   return (
     
+    
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
+        
         
           <Stopwatch
             
@@ -166,11 +138,13 @@ const App = () => {
             
             {!isStopwatchStart ? k() : ''}
             
+            
             </Text>
             
             
           </TouchableOpacity>
-          {Complete()}
+          
+          {/* {MyTabs()} */}
           {/* <TouchableHighlight style={styles.resetbuttonSize}
             onPress={() => {
               setIsStopwatchStart(false);
@@ -179,6 +153,7 @@ const App = () => {
             }}>
             <Text style={styles.resetbuttonText}>previous time</Text>
           </TouchableHighlight> */}
+          
         </View>
       </View>
     </SafeAreaView>
@@ -187,6 +162,8 @@ const App = () => {
 
 
 export default App;
+
+  
 
 const styles = StyleSheet.create({
 
@@ -233,7 +210,7 @@ const styles = StyleSheet.create({
     //marginTop: 10,
     color:'#FFF',
     position:'absolute',
-    top:0,
+    top:10,
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
@@ -245,7 +222,7 @@ const styles = StyleSheet.create({
   startbuttonSize:{
     //position:'absolute',
     width: 500,
-    height: '100%',
+    height: '90%',
     alignItems:'center',
   },
   ViewContainer:{
