@@ -27,6 +27,7 @@ import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { IconButton, Colors } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
@@ -156,13 +157,31 @@ const App = ({navigation}) => {
             }}>
             <Text style={styles.resetbuttonText}>previous time</Text>
           </TouchableHighlight> */}
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+          <Icon.Button
+            
+            name='chart-line'
+            
+            backgroundColor='black'
+            //color={Colors.red500}
+            //size={20}
+            onPress={() => navigation.navigate('Statistics')}
+          />
           <IconButton
+            
+            icon="graph"
+            color={Colors.red500}
+            size={20}
+            onPress={() => navigation.navigate('Gradient')}
+          />
+          <IconButton
+            
             icon="camera"
             color={Colors.red500}
             size={20}
-            onPressAction={() => navigation.navigate('Statistics')}
+            onPress={() => navigation.navigate('Statistics')}
           />
-          
+          </View>
         </View>
       </View>
     </SafeAreaView>
