@@ -15,6 +15,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 let finaltime='';
 
+let storedTimes=[];
+function times(){
+  
+  storedTimes.push(finaltime)
+  console.log(storedTimes)
+  const lastItem= storedTimes[storedTimes.length-1]
+  //return(storedTimes)
+}
+
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
 function k(){
@@ -102,7 +111,7 @@ const App = ({navigation}) => {
             }}>
             <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'READY' : 'STOP'}
-              
+                
             
             </Text>
             
@@ -111,9 +120,13 @@ const App = ({navigation}) => {
             <Text style={styles.ScrambleText}>
             
             {!isStopwatchStart ? k() : ''}
+            {!isStopwatchStart ? times() : ''}
             
             
             </Text>
+            <Text style={styles.resetbuttonText}>
+            {'Previous Time:\n   '+finaltime}	
+            </Text>	          
             
             
           </TouchableOpacity>
@@ -199,7 +212,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor:'black'
   },
-  
+  resetbuttonText: {
+    fontSize: 40,
+    //marginTop: 10,
+    color:'#FFF',
+    position:'absolute',
+    bottom:0,
+  },
   sectionStyle: {
     flex: 1,
     alignItems: 'center',
@@ -230,7 +249,7 @@ const styles = StyleSheet.create({
 
   startbuttonSize:{
     width: 500,
-    height: '90%',
+    height: '87%',
     alignItems:'center',
   },
 
