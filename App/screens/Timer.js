@@ -12,21 +12,21 @@ import GradientButton from 'react-native-gradient-buttons';
 import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar} from 'react-native';
 import {Header} from 'react-native-elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Statistics from './Statistics';
 
-const Stack = createStackNavigator();
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { IconButton, Colors } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const Tab = createBottomTabNavigator();
 
 
 
-
+  
+  
 let finaltime='';
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
@@ -82,7 +82,8 @@ function k(){
 
 
 console.log('--------------')
-const App = () => {
+
+const App = ({navigation}) => {
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [timerDuration, setTimerDuration] = useState(9000);
@@ -91,7 +92,7 @@ const App = () => {
   
   
   
-  
+ 
   return (
     
     
@@ -143,8 +144,7 @@ const App = () => {
             
             
           </TouchableOpacity>
-          
-          {/* {MyTabs()} */}
+          {/* {Complete()} */}
           {/* <TouchableHighlight style={styles.resetbuttonSize}
             onPress={() => {
               setIsStopwatchStart(false);
@@ -153,13 +153,37 @@ const App = () => {
             }}>
             <Text style={styles.resetbuttonText}>previous time</Text>
           </TouchableHighlight> */}
-          
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+          <Icon.Button
+            
+            name='chart-line'
+            
+            backgroundColor='black'
+            //color={Colors.red500}
+            size={30}
+            onPress={() => navigation.navigate('Statistics')}
+          />
+          <IconButton
+            
+            icon="graph"
+            color={Colors.red500}
+            size={30}
+            onPress={() => navigation.navigate('Gradient')}
+          />
+          <IconButton
+            
+            icon="camera"
+            color={Colors.red500}
+            size={30}
+            onPress={() => navigation.navigate('Statistics')}
+          />
+          </View>
         </View>
       </View>
     </SafeAreaView>
+    
   );
-};
-
+}
 
 export default App;
 
