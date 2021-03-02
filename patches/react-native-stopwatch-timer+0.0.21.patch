@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-native-stopwatch-timer/lib/stopwatch.js b/node_modules/react-native-stopwatch-timer/lib/stopwatch.js
-index c59be85..31cbc31 100644
+index c59be85..ab59c2d 100644
 --- a/node_modules/react-native-stopwatch-timer/lib/stopwatch.js
 +++ b/node_modules/react-native-stopwatch-timer/lib/stopwatch.js
 @@ -1,3 +1,4 @@
@@ -7,7 +7,7 @@ index c59be85..31cbc31 100644
  import React, {Component} from 'react';
  import {Text, View, StyleSheet} from 'react-native';
  import PropTypes from 'prop-types';
-@@ -8,14 +9,16 @@ class StopWatch extends Component {
+@@ -8,14 +9,17 @@ class StopWatch extends Component {
    static propTypes = {
      start: PropTypes.bool,
      reset: PropTypes.bool,
@@ -17,6 +17,7 @@ index c59be85..31cbc31 100644
      options: PropTypes.object,
      laps: PropTypes.bool,
      getTime: PropTypes.func,
++    
      startTime: PropTypes.number,
      getMsecs: PropTypes.func,
    }
@@ -25,7 +26,7 @@ index c59be85..31cbc31 100644
    constructor(props) {
      super(props);
      const { startTime } = props;
-@@ -24,11 +27,12 @@ class StopWatch extends Component {
+@@ -24,11 +28,13 @@ class StopWatch extends Component {
        stopTime: null,
        pausedTime: null,
        started: false,
@@ -34,13 +35,23 @@ index c59be85..31cbc31 100644
      };
      this.start = this.start.bind(this);
      this.stop = this.stop.bind(this);
++    
      this.reset = this.reset.bind(this);
 +    this.show = this.reset.bind(this);
      this.formatTime = this.formatTime.bind(this);
      const width = props.msecs ? 220 : 150;
      this.defaultStyles = {
-@@ -52,48 +56,71 @@ class StopWatch extends Component {
+@@ -46,55 +52,84 @@ class StopWatch extends Component {
+     };
+   }
+ 
++
++
+   componentDidMount() {
+     if(this.props.start) {
+       this.start();
      }
++    
    }
  
 -  componentWillReceiveProps(newProps) {
@@ -120,12 +131,16 @@ index c59be85..31cbc31 100644
 +
 +    clearInterval(this.interval);
 +    this.interval = null;
-+  }
-+  this.setState({started: false});
    }
++  this.setState({started: false}); 
++  
++  }
++
++
  
    reset() {
-@@ -107,9 +134,9 @@ class StopWatch extends Component {
+     const { startTime } = this.props;
+@@ -107,9 +142,9 @@ class StopWatch extends Component {
    }
  
    formatTime() {
