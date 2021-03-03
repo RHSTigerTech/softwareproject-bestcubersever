@@ -16,12 +16,17 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 let finaltime='';
 
 let storedTimes=[];
-function times(){
+export const times = () =>{
   
   storedTimes.push(finaltime)
   console.log(storedTimes)
   const lastItem= storedTimes[storedTimes.length-1]
   //return(storedTimes)
+}
+
+function testtimes(){
+  let stattimes=[3,8,9,4,1,7,9,0,8,10];
+  return(stattimes)
 }
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
@@ -81,6 +86,7 @@ console.log('--------------')
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
+  
 
   return (
     
@@ -272,5 +278,4 @@ const options = {
     top:-150,
   },
 };
-
 
