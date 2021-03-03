@@ -11,6 +11,7 @@ import AdvancedLearn from './App/screens/AdvancedLearn';
 import * as React from 'react';
 import Timer from './App/screens/Timer.js';
 import Statistics from './App/screens/Statistics';
+import Scanner from './App/screens/Scanner';
 
 import VirtualCube from './App/screens/VirtualCube.js';
 import {NavigationContainer} from '@react-navigation/native'
@@ -69,6 +70,11 @@ const App = () => {
         <Stack.Screen 
         name="ViewImageScreen" 
         component={ViewImageScreen} 
+        options={{headerShown:false}}/>
+
+        <Stack.Screen 
+        name="Scanner" 
+        component={Scanner} 
         options={{headerShown:false}}/>
         
         
