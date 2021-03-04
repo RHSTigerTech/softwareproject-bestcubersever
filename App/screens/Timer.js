@@ -13,12 +13,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-let finaltime='';
+let finaltime;
 
 let storedTimes=[];
+
 export const times = () =>{
+  storedTimes=storedTimes.filter(function(element){
+    return element !== undefined;
+  });
+  if(storedTimes[storedTimes.length-1]===storedTimes[storedTimes.length-2]){
+    storedTimes.pop();
+  }
   
   storedTimes.push(finaltime)
+  
   console.log(storedTimes)
   const lastItem= storedTimes[storedTimes.length-1]
   //return(storedTimes)
