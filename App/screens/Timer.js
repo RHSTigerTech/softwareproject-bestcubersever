@@ -13,7 +13,45 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-let finaltime='';
+let finaltime;
+
+let storedTimes=[];
+
+export const times = () =>{
+  storedTimes=storedTimes.filter(function(element){
+    return element !== undefined;
+  });
+  if(storedTimes[storedTimes.length-1]===storedTimes[storedTimes.length-2]){
+    storedTimes.pop();
+  }
+  storedTimes.push(finaltime)
+  console.log(storedTimes)
+  const lastItem= storedTimes[storedTimes.length-1]
+  //return(storedTimes)
+}
+
+function convert(){
+  //want to convert the timer formate to seconds a milliseconds so it can be read by the chart.
+  //will keep milliseconds the same but will have to convert the minutes into seconds
+}
+
+function deletetime(){
+  //delete a time the user accidentally put in
+  //make a button that can be pressed to delete the last solve
+  //possibly allow them to delete more than just the last time
+  //add a are you sure prompt so they dont delete on accident
+  //will have to later ad a way to delete any time in the list
+}
+
+function addtime(){
+  //give the abilty to add a time 
+}
+
+
+function testtimes(){
+  let stattimes=[3,8,9,4,1,7,9,0,8,10];
+  return(stattimes)
+}
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
@@ -72,6 +110,7 @@ console.log('--------------')
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
+  
 
   return (
     
@@ -102,7 +141,7 @@ const App = ({navigation}) => {
             }}>
             <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'READY' : 'STOP'}
-              
+                
             
             </Text>
             
@@ -111,9 +150,13 @@ const App = ({navigation}) => {
             <Text style={styles.ScrambleText}>
             
             {!isStopwatchStart ? k() : ''}
+            {!isStopwatchStart ? times() : ''}
             
             
             </Text>
+            <Text style={styles.resetbuttonText}>
+            {'Previous Time:\n   '+finaltime}	
+            </Text>	          
             
             
           </TouchableOpacity>
@@ -199,7 +242,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor:'black'
   },
-  
+  resetbuttonText: {
+    fontSize: 40,
+    //marginTop: 10,
+    color:'#FFF',
+    position:'absolute',
+    bottom:0,
+  },
   sectionStyle: {
     flex: 1,
     alignItems: 'center',
@@ -230,7 +279,7 @@ const styles = StyleSheet.create({
 
   startbuttonSize:{
     width: 500,
-    height: '90%',
+    height: '87%',
     alignItems:'center',
   },
 
@@ -253,5 +302,4 @@ const options = {
     top:-150,
   },
 };
-
 
