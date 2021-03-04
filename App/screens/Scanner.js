@@ -52,7 +52,7 @@ if (hasPermission === null) {
               
             }
             console.log(PhotoUri)
-            let yourPicture = require (PhotoUri);
+            //let yourPicture = require (PhotoUri);
             
           }}>
             <View style={{ 
