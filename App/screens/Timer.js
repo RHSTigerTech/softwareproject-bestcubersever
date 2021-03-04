@@ -17,6 +17,12 @@ let finaltime;
 
 let storedTimes=[];
 
+let convertedTimes=[];
+
+let convertedItem;
+
+let lastItem='00:00:000';
+
 export const times = () =>{
   storedTimes=storedTimes.filter(function(element){
     return element !== undefined;
@@ -25,15 +31,39 @@ export const times = () =>{
     storedTimes.pop();
   }
   storedTimes.push(finaltime)
+  convertedTimes.push(finaltime)
   console.log(storedTimes)
-  const lastItem= storedTimes[storedTimes.length-1]
+  
+  
+  // if(storedTimes.length>1){
+  // lastItem= storedTimes[storedTimes.length-1]
+  // lastItem=lastItem.replace("00:"," ");
+  // lastItem=lastItem.replace(":",".");
+  //   if(lastItem.charAt(0)==='0'){
+  //     lastItem=lastItem.replace('0','')
+  //   }
+  // }
+  
+  console.log(lastItem)
+  
+  
   //return(storedTimes)
 }
 
-function convert(){
-  //want to convert the timer formate to seconds a milliseconds so it can be read by the chart.
-  //will keep milliseconds the same but will have to convert the minutes into seconds
-}
+// export const convert = () =>{
+//   storedTimes=storedTimes.filter(function(element){
+//     return element !== undefined;
+//   });
+//   if(storedTimes[storedTimes.length-1]===storedTimes[storedTimes.length-2]){
+//     storedTimes.pop();
+//   }
+//   storedTimes.push(finaltime)
+  
+//   console.log(storedTimes)
+//   let lastItem= storedTimes[storedTimes.length-1]
+//   //convertedItem=lastItem.replace(':','');
+//   //return(storedTimes)
+// }
 
 function deletetime(){
   //delete a time the user accidentally put in
@@ -151,6 +181,7 @@ const App = ({navigation}) => {
             
             {!isStopwatchStart ? k() : ''}
             {!isStopwatchStart ? times() : ''}
+            
             
             
             </Text>
