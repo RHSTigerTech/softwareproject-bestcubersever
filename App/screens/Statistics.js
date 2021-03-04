@@ -45,7 +45,7 @@ const chartConfigs = [
     console.log(times())
     
     let width;
-    let data=[65,72,45,54,58,60,60,59,52,40,65,72,45,92,30 ]
+    let data=[65,72,45,54,58,60,60,59,52,40,65.673,72,45,92,30 ]
     //add more if else statements to male scroll look good no matter how many data points
     if (data.length>10){
         width = 800;
