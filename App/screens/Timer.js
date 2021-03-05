@@ -21,6 +21,8 @@ let convertedTimes=[];
 
 let addedMinutes='';
 
+let minutes;
+
 let convertedItem;
 
 let lastItem='00:00:000';
@@ -42,26 +44,45 @@ export const times = () =>{
   //lastItem=lastItem.replace("00:"," ");
   lastItem=lastItem.replace(":",".");
   lastItem=lastItem.replace(":",".");
-    if(lastItem.substring(0,1)==='0'){
-      lastItem=lastItem.replace('0','')
-    }
+  
 
-    if(lastItem.substring(0,1)==='0'){
-      lastItem=lastItem.replace('0.','')
-    }
-    if(lastItem.substring(0,1)==='0'){
-      lastItem=lastItem.replace('0','')
-    }
+    // if(lastItem.substring(0,1)||lastItem.substring(1,2)!==0)
+    
+    console.log(lastItem.substring(0,2))
+    minutes= lastItem.substring(0,2)
+    minutes=parseInt(minutes)
+    console.log(minutes)
     if(lastItem.substring(0,1)==='0'){
       lastItem=lastItem.replace('0','')
     }
     
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0.','')
+    }
+
+    if(minutes>=1){
+      lastItem=lastItem.replace('.','')
+      console.log(lastItem.substring(1))
+      lastItem=lastItem.substring(1)
+      
+    }
+    
+    // console.log(convertedTimes)
+    // if(lastItem.substring(0,1)==='0'){
+    //   lastItem=lastItem.replace('0','')
+    // }
+    // console.log(convertedTimes)
+    // if(lastItem.substring(0,1)==='0'){
+    //   lastItem=lastItem.replace('0','')
+    // }
+    
     lastItem=parseFloat(lastItem)
+    lastItem=lastItem+(60*minutes)
     convertedTimes.push(lastItem)
     // if(convertedTimes!=='undefined' && convertedTimes[0]===0){
     //   convertedTimes.replace(0,1);
     // }
-    //console.log(convertedTimes)
+    console.log(convertedTimes)
     return (convertedTimes);
 
   }
@@ -193,7 +214,7 @@ const App = ({navigation}) => {
 
             </Text>
 
-            <Text>{!isStopwatchStart ? times() : ''}</Text>
+            <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
 
 
             <Text style={styles.resetbuttonText}>
