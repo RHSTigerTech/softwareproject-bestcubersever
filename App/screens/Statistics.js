@@ -34,21 +34,26 @@ const chartConfigs = [
     
     
   ];
-  
+
   export default class App extends React.Component {
+  
     renderTabBar() {
       return <StatusBar hidden />;
     }
     
     
     render() {
+      times()
       //console.log(times())
-    
+     ///
     let width;
-    //let data=[0];
+    //let data=[0];k
     let data;
 
-    
+    if(times()[0]===0){
+      times().shift();
+    }
+
     data=times();
 
     data.pop();
@@ -104,7 +109,7 @@ const chartConfigs = [
               >
 
 
-              
+            
               <LineChart
                 
                 //bezier
@@ -142,7 +147,8 @@ const chartConfigs = [
     </ScrollView>
     </View>
     );
-
+        
+        
 }
 
 }

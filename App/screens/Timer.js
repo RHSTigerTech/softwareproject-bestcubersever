@@ -11,13 +11,13 @@ import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+//y
 
 let finaltime;
 
 let storedTimes=[];
 
-let convertedTimes=[];
+let convertedTimes=[0];
 
 let addedMinutes='';
 
@@ -83,14 +83,15 @@ export const times = () =>{
     //   convertedTimes.replace(0,1);
     // }
     console.log(convertedTimes)
-    return (convertedTimes);
+    
 
   }
   
+  return (convertedTimes);
   //console.log(lastItem)
   
   
-  
+  //re
   //return(storedTimes)
 }
 
