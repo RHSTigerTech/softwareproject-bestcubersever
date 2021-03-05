@@ -105,7 +105,7 @@ function Learn({navigation}) {
 
                         impact
                         impactStyle='Light'
-                        //navigate to the algorithm list screen
+                        onPressAction={() => navigation.navigate('AlgList')} //navigate to the algorithm list screen
                     />
                 </View>
             </View>

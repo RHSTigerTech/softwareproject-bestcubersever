@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View,
- Platform, StatusBar, Text, Image, ScrollView, SafeAreaView} from 'react-native';
+ Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 
@@ -8,14 +8,16 @@ function HowToReadAlg({navigation}) {
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer}>
+                {/*
                 <Image 
                     resizeMode='cover'
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
-                <View style={{height: '90%', opacity: 0.9}}>
+                */}
+                <View style={{height: '90%'}}>
                     <ScrollView style={styles.scroll}>
-                        <Card>
-                            <Card.Title>how to read algorithm screen</Card.Title>
+                        <Card containerStyle={{backgroundColor: 'black'}}>
+                            <Card.Title style={styles.textTitle}>how to read algorithm screen</Card.Title>
                         </Card>
                         {
                             //two cards wide, clockwise and counter clockwise for each side, also add wide turns (f and Fw)
@@ -35,19 +37,11 @@ const styles = StyleSheet.create({
         flex:1
     },
 
-    ViewContainer:{
-        // Holds the whole screen
-        flex: 1, 
-        //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'black',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    
-    },
-
-    cardText:{
-        // Text for the instructions
-        color: 'red',
+    exImage: {
+        width: '35%', 
+        height: (Dimensions.get('window').width)*.35, 
+        resizeMode: 'contain', 
+        marginRight: '5%', 
     },
 
     image: {
@@ -59,10 +53,68 @@ const styles = StyleSheet.create({
         //top: 24,
     },
 
+    placeHolder: {
+        // Text with this style holds the place of something that will be implemented later
+        color: 'blue',
+        fontWeight: 'bold',
+        width: '40%',
+    },
+
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
-    }
+    },
+
+    textHeader: {
+        //headers
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 17.5,
+        textAlign: 'center',
+    },
+
+    textDescrip:{
+        // Text thats a description
+        paddingTop: 10,
+        color: 'white',
+        fontSize: 13,
+        width: '60%',
+    },
+
+    textDescripWide:{
+        // Text thats a description but full width
+        paddingTop: 10,
+        color: 'white',
+        fontSize: 13,
+    },
+
+    textSubHeader: {
+        //Text that goes under headers
+        color: 'white',
+        fontSize: 13,
+        textAlign: 'center'
+    },
+
+    textSummary: {
+        // the summary of the step
+        color: 'white',
+        fontSize: 15,
+    },
+
+    textTitle: {
+        // Titles of the cards
+        color: 'white',
+        fontSize: 20
+    },
+
+    ViewContainer:{
+        // Holds the whole screen
+        flex: 1, 
+        //justifyContent: 'space-evenly', 
+        alignItems: 'center', 
+        backgroundColor:'gray',
+        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+    },
 })
 
 export default HowToReadAlg;

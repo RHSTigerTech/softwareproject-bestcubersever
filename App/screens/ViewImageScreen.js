@@ -7,7 +7,7 @@ function ViewImageScreen({navigation}) {
         <ImageBackground style={styles.background} 
             source={require('../Assets/MobileRubiksCubeBackground.jpg')}
         >
-        <GradientButton
+            <GradientButton
                 style={styles.Button}
                 text="Home Screen"
                 textStyle={{ fontSize: 20 }}

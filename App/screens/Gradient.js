@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Platform, StatusBar,} from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, 
+  Image, Alert, TouchableWithoutFeedback, 
+  TouchableOpacity, TouchableHighlight, 
+ Platform, Dimensions, StatusBar, Pressable, SafeAreView} from 'react-native';
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import LightVideo from '../Assets/RotatingCube.mp4';
@@ -30,78 +33,77 @@ function Gradient({navigation}) {
                 centerContainerStyle={{flex:14}}
                 centerComponent={{ text: 'Rubiks Cube App', style: { color: 'black', fontSize:39, fontWeight:'bold'}}} 
             />
-                
-            <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.9}}>
-                <GradientButton
-                    text="Learn"                        
-                    textStyle={styles.textStyle}
-                    gradientBegin='#fe0936'
-                    gradientEnd='#ff7700'
-                    gradientDirection={ButtonGradientDirection}
-                    height={ButtonHeight}
-                    width={ButtonWidth}
-                    radius={ButtonRadius}
-                    impact                        
-                    onPressAction={() => navigation.navigate('Learn')}                        
-                >
-                </GradientButton>
+                    <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.9}}>
+                        <GradientButton
+                            text="Learn"                        
+                            textStyle={styles.textStyle}
+                            gradientBegin='#fe0936'
+                            gradientEnd='#ff7700'
+                            gradientDirection={ButtonGradientDirection}
+                            height={ButtonHeight}
+                            width={ButtonWidth}
+                            radius={ButtonRadius}
+                            impact                        
+                            onPressAction={() => navigation.navigate('Learn')}                        
+                        >
+                        </GradientButton>
+                        
+                        <GradientButton
+                            text="Timer"
+                            textStyle={styles.textStyle}
+                            gradientBegin='#ff7700'
+                            gradientEnd='#ecc205'
+                            gradientDirection={ButtonGradientDirection}
+                            height={ButtonHeight}
+                            width={ButtonWidth}
+                            radius={ButtonRadius}
+                            impact
+                            onPressAction={() => navigation.navigate('Timer')}
+                        >
+                        </GradientButton>
 
-                <GradientButton
-                    text="Timer"
-                    textStyle={styles.textStyle}
-                    gradientBegin='#ff7700'
-                    gradientEnd='#ecc205'
-                    gradientDirection={ButtonGradientDirection}
-                    height={ButtonHeight}
-                    width={ButtonWidth}
-                    radius={ButtonRadius}
-                    impact
-                    //onPressAction={() => navigation.navigate('Timer')}
-                >
-                </GradientButton>
+                        <GradientButton                        
+                            text="Solver"
+                            textStyle={styles.textStyle}
+                            gradientBegin='#ecc205'
+                            gradientEnd='#5ad16c'
+                            gradientDirection={ButtonGradientDirection} 
+                            height={ButtonHeight}
+                            width={ButtonWidth}
+                            radius={ButtonRadius}
+                            impact
+                            onPressAction={() => navigation.navigate('ViewImageScreen')}
+                        >
+                        </GradientButton>
 
-                <GradientButton                        
-                    text="Solver"
-                    textStyle={styles.textStyle}
-                    gradientBegin='#ecc205'
-                    gradientEnd='#5ad16c'
-                    gradientDirection={ButtonGradientDirection} 
-                    height={ButtonHeight}
-                    width={ButtonWidth}
-                    radius={ButtonRadius}
-                    impact
-                    onPressAction={() => navigation.navigate('ViewImageScreen')}
-                >
-                </GradientButton>
+                        <GradientButton
+                            text="Virtual Cube"
+                            textStyle={styles.textStyle}
+                            gradientBegin='#5ad16c'
+                            gradientEnd='#009FFD'
+                            gradientDirection={ButtonGradientDirection}
+                            height={ButtonHeight}
+                            width={ButtonWidth}
+                            radius={ButtonRadius}
+                            impact
+                            onPressAction={() => navigation.navigate('VirtualCube')}
+                        >
+                        </GradientButton>
 
-                <GradientButton
-                    text="Virtual Cube"
-                    textStyle={styles.textStyle}
-                    gradientBegin='#5ad16c'
-                    gradientEnd='#009FFD'
-                    gradientDirection={ButtonGradientDirection}
-                    height={ButtonHeight}
-                    width={ButtonWidth}
-                    radius={ButtonRadius}
-                    impact
-                    //onPressAction={() => navigation.navigate('VirtualCube')}
-                >
-                </GradientButton>
-
-                <GradientButton
-                    text="Statistics"
-                    textStyle={styles.textStyle}
-                    gradientBegin='#009FFD'
-                    gradientEnd='#add8e6'
-                    gradientDirection={ButtonGradientDirection}
-                    height={ButtonHeight}
-                    width={ButtonWidth}
-                    radius={ButtonRadius}
-                    impact
-                    onPressAction={() => navigation.navigate('ViewImageScreen')}
-                >
-                </GradientButton>
-            </View>            
+                        <GradientButton
+                            text="Statistics"
+                            textStyle={styles.textStyle}
+                            gradientBegin='#009FFD'
+                            gradientEnd='#add8e6'
+                            gradientDirection={ButtonGradientDirection}
+                            height={ButtonHeight}
+                            width={ButtonWidth}
+                            radius={ButtonRadius}
+                            impact
+                            onPressAction={() => navigation.navigate('Statistics')}
+                        >
+                        </GradientButton>
+                    </View>            
         </View>
     );
 }
@@ -116,7 +118,6 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    
     },
 
     image:{        

@@ -28,6 +28,6 @@
     "web": {
       "favicon": "./app/assets/favicon.png"
     },
-    "description": "A demo for practice"
+    "description": "Rubiks Cube Application"
   }
 }

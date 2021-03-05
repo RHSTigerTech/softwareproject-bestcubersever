@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View,
- Platform, StatusBar, Text, Image, ScrollView, SafeAreaView} from 'react-native';
+ Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import AwesomeButton from "react-native-really-awesome-button";
@@ -15,14 +15,16 @@ function AdvancedLearn({navigation}) {
     return(
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer}>
+                {/*
                 <Image 
                     resizeMode='cover'
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
-                <View style={{height: '90%', opacity: 0.9}}>
+                */}
+                <View style={{height: '90%'}}>
                     <ScrollView style={styles.scroll}> 
-                        <Card>
-                            <Card.Title>advanced method</Card.Title>
+                        <Card containerStyle={{backgroundColor: 'black'}}>
+                            <Card.Title style={styles.textTitle}>advanced method</Card.Title>
                         </Card>
                     </ScrollView>
                 </View>
@@ -37,6 +39,13 @@ const styles = StyleSheet.create({
         flex:1
     },
 
+    exImage: {
+        width: '35%', 
+        height: (Dimensions.get('window').width)*.35, 
+        resizeMode: 'contain', 
+        marginRight: '5%', 
+    },
+
     image: {
         // Background image of cube
         width:'100%',
@@ -44,12 +53,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         //color: 'transparent',
         //top: 24,
-    },
-
-    imageDescrip:{
-        // Text for the instructions
-        color: 'black',
-        width: '60%',
     },
 
     placeHolder: {
@@ -66,22 +69,44 @@ const styles = StyleSheet.create({
 
     textHeader: {
         //headers
-        color: 'black',
+        color: 'white',
         fontWeight: 'bold',
         fontSize: 17.5,
         textAlign: 'center',
     },
 
-    textOther:{
-        // Text thats not header, description, or main summary
-        color: 'black',
+    textDescrip:{
+        // Text thats a description
+        paddingTop: 10,
+        color: 'white',
         fontSize: 13,
+        width: '60%',
+    },
+
+    textDescripWide:{
+        // Text thats a description but full width
+        paddingTop: 10,
+        color: 'white',
+        fontSize: 13,
+    },
+
+    textSubHeader: {
+        //Text that goes under headers
+        color: 'white',
+        fontSize: 13,
+        textAlign: 'center'
     },
 
     textSummary: {
         // the summary of the step
-        color: 'black',
+        color: 'white',
         fontSize: 15,
+    },
+
+    textTitle: {
+        // Titles of the cards
+        color: 'white',
+        fontSize: 20
     },
 
     ViewContainer:{
@@ -89,9 +114,8 @@ const styles = StyleSheet.create({
         flex: 1, 
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
-        backgroundColor:'black',
+        backgroundColor:'gray',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    
     },
 })
 
