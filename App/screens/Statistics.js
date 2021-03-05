@@ -19,6 +19,10 @@ import { View } from "react-native";
 
 // let storedTimes=times();
 
+
+
+
+
 const chartConfigs = [
     
     
@@ -43,14 +47,16 @@ const chartConfigs = [
     
     
     render() {
-      times()
+      
+      try{
+      
       //console.log(times())
      ///
     let width;
     //let data=[0];k
     let data;
 
-    if(times()[0]===0){
+    if(times()[0]===0 && times().length>1){
       times().shift();
     }
 
@@ -95,7 +101,7 @@ const chartConfigs = [
             //paddingTop:20,
             strokeWidth:2,
             bottom: 0,
-            //position:'center',
+            //position:'center',k
               ...chartConfig.style
             };
             <Text style={labelStyle}>Bezier Line Chart</Text>
@@ -149,9 +155,20 @@ const chartConfigs = [
     );
         
         
-}
 
+
+    
+    
+    }
+    catch(err){
+      return(
+        <Text style={{color:'black'}}>yo</Text>
+        )
+  }
+  
 }
+  }
+
 const styles = StyleSheet.create({
     ViewContainer:{
         flex: 1, 

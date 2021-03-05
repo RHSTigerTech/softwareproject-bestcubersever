@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 //y
 
-let finaltime;
+let finaltime='00:00:000';
 
 let storedTimes=[];
 
@@ -91,7 +91,7 @@ export const times = () =>{
   //console.log(lastItem)
   
   
-  //re
+  //r
   //return(storedTimes)
 }
 
