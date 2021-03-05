@@ -1,7 +1,7 @@
 import { Dimensions, ScrollView, StatusBar, Text, Flex, SafeAreaView, StyleSheet } from "react-native";
 import React, { Component } from "react";
 import {Header} from 'react-native-elements';
-import { times } from './Timer';
+import { times, convertedItem, convertedTimes, storedTimes } from './Timer';
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 
@@ -42,10 +42,21 @@ const chartConfigs = [
     
     
     render() {
-    console.log(times())
+      //console.log(times())
     
     let width;
-    let data=[65,72,45,54,58,60,60,59,52,40,65.673,72,45,92,30 ]
+    //let data=[0];
+    let data;
+
+    
+    data=times();
+
+    data.pop();
+    
+    
+    
+    
+    console.log(data.length)
     //add more if else statements to male scroll look good no matter how many data points
     if (data.length>10){
         width = 800;
@@ -53,7 +64,7 @@ const chartConfigs = [
     else{
         width = Dimensions.get("window").width;
     }
-    
+    //width = Dimensions.get("window").width;
     //const height='100%';
       //const { width } = Dimensions.get("window");
     //const {height} = Dimensions.get('window');

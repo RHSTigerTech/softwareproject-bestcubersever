@@ -19,51 +19,61 @@ let storedTimes=[];
 
 let convertedTimes=[];
 
+let addedMinutes='';
+
 let convertedItem;
 
 let lastItem='00:00:000';
 
 export const times = () =>{
-  storedTimes=storedTimes.filter(function(element){
+  convertedTimes=convertedTimes.filter(function(element){
     return element !== undefined;
   });
-  if(storedTimes[storedTimes.length-1]===storedTimes[storedTimes.length-2]){
-    storedTimes.pop();
+  if(convertedTimes[convertedTimes.length-1]===convertedTimes[convertedTimes.length-2]){
+    convertedTimes.pop();
   }
   storedTimes.push(finaltime)
-  convertedTimes.push(finaltime)
-  console.log(storedTimes)
+  //convertedTimes.push(finaltime)
+  //console.log(storedTimes)
   
   
-  // if(storedTimes.length>1){
-  // lastItem= storedTimes[storedTimes.length-1]
-  // lastItem=lastItem.replace("00:"," ");
-  // lastItem=lastItem.replace(":",".");
-  //   if(lastItem.charAt(0)==='0'){
-  //     lastItem=lastItem.replace('0','')
-  //   }
-  // }
+  if(storedTimes.length>1){
+  lastItem= storedTimes[storedTimes.length-1]
+  //lastItem=lastItem.replace("00:"," ");
+  lastItem=lastItem.replace(":",".");
+  lastItem=lastItem.replace(":",".");
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0','')
+    }
+
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0.','')
+    }
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0','')
+    }
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0','')
+    }
+    
+    lastItem=parseFloat(lastItem)
+    convertedTimes.push(lastItem)
+    // if(convertedTimes!=='undefined' && convertedTimes[0]===0){
+    //   convertedTimes.replace(0,1);
+    // }
+    //console.log(convertedTimes)
+    return (convertedTimes);
+
+  }
   
-  console.log(lastItem)
+  //console.log(lastItem)
+  
   
   
   //return(storedTimes)
 }
 
-// export const convert = () =>{
-//   storedTimes=storedTimes.filter(function(element){
-//     return element !== undefined;
-//   });
-//   if(storedTimes[storedTimes.length-1]===storedTimes[storedTimes.length-2]){
-//     storedTimes.pop();
-//   }
-//   storedTimes.push(finaltime)
-  
-//   console.log(storedTimes)
-//   let lastItem= storedTimes[storedTimes.length-1]
-//   //convertedItem=lastItem.replace(':','');
-//   //return(storedTimes)
-// }
+
 
 function deletetime(){
   //delete a time the user accidentally put in
@@ -180,11 +190,12 @@ const App = ({navigation}) => {
             <Text style={styles.ScrambleText}>
             
             {!isStopwatchStart ? k() : ''}
-            {!isStopwatchStart ? times() : ''}
-            
-            
-            
+
             </Text>
+
+            <Text>{!isStopwatchStart ? times() : ''}</Text>
+
+
             <Text style={styles.resetbuttonText}>
             {'Previous Time:\n   '+finaltime}	
             </Text>	          
