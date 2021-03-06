@@ -23,11 +23,14 @@ let addedMinutes='';
 
 let minutes;
 
+let del;
+
 let convertedItem;
 
 let lastItem='00:00:000';
 
 export const times = () =>{
+  
   convertedTimes=convertedTimes.filter(function(element){
     return element !== undefined;
   });
@@ -82,9 +85,9 @@ export const times = () =>{
     // if(convertedTimes!=='undefined' && convertedTimes[0]===0){
     //   convertedTimes.replace(0,1);
     // }
-    console.log(convertedTimes)
     
-
+    
+    console.log(convertedTimes)
   }
   
   return (convertedTimes);
@@ -97,18 +100,30 @@ export const times = () =>{
 
 
 
-function deletetime(){
+export const deletetime = () =>{
   //delete a time the user accidentally put in
   //make a button that can be pressed to delete the last solve
   //possibly allow them to delete more than just the last time
   //add a are you sure prompt so they dont delete on accident
   //will have to later ad a way to delete any time in the list
+  if(del===true){
+    convertedTimes.pop();
+  }
+  
+  console.log(convertedTimes)
+  return (convertedTimes);
+  
 }
 
 function addtime(){
   //give the abilty to add a time 
 }
 
+function convert(){
+  times()
+  console.log(convertedTimes)
+  return (convertedTimes);
+}
 
 function testtimes(){
   let stattimes=[3,8,9,4,1,7,9,0,8,10];
@@ -208,7 +223,12 @@ const App = ({navigation}) => {
             </Text>
             
             
+            {/* <Text style={styles.ScrambleText}>
             
+            Session:{}
+
+            </Text> */}
+
             <Text style={styles.ScrambleText}>
             
             {!isStopwatchStart ? k() : ''}
@@ -216,11 +236,12 @@ const App = ({navigation}) => {
             </Text>
 
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
+            <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text>
 
 
-            <Text style={styles.resetbuttonText}>
+            {/* <Text style={styles.resetbuttonText}>
             {'Previous Time:\n   '+finaltime}	
-            </Text>	          
+            </Text>	           */}
             
             
           </TouchableOpacity>
@@ -254,7 +275,7 @@ const App = ({navigation}) => {
           
           <Icon.Button
             
-            name='home'
+            name='home' 
             flexDirection='column'
             backgroundColor='black'
             color='white'
@@ -265,14 +286,19 @@ const App = ({navigation}) => {
           </Icon.Button>
           <Icon.Button
             
-            name='camera'
+            name='delete'
             flexDirection='column'
             backgroundColor='black'
             color='white'
             size={30}
-            onPress={() => navigation.navigate('ViewImageScreen')}
+            
+            onPress={() => {del=true,deletetime()}}
+            //onPressOut={()=> del=false}
+            
+            //onPress={() => times()=deletetime()}
           >
-          <Text style={styles.BottomTabText}>Solver   </Text>
+          {del=false}
+          <Text style={styles.BottomTabText}>Delete   </Text>
           </Icon.Button>
           <Icon.Button
             
