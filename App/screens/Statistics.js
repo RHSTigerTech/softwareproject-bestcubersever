@@ -47,8 +47,8 @@ const chartConfigs = [
     
     
     render() {
-      
-      //try{
+      //times()
+      try{
       
       //console.log(times())
      ///
@@ -59,20 +59,44 @@ const chartConfigs = [
     if(times()[0]===0 && times().length>1){
       times().shift();
     }
+    
 
     data=times();
+
+    data.pop();
+
+    if(times().length!==deletetime().length && deletetime().length>0){
+      data=deletetime()
+      
+    }
+
+    
+
+    // if(deletetime[deletetime().length-1]!==deletetime()[deletetime().length-2]){
+    //   data.pop();
+    // }
+    // console.log(deletetime()[deletetime().length-1]+'---------------------------')
+    // console.log(deletetime()[deletetime().length-2]+'---------------------------')
+
+    
+
+    
 
     // if(deletetime().length!==times().length){
     //   data.pop();
     // }
-    data.pop();
     
     
     
     
-    console.log(data.length)
+    
+    
+    
+    //console.log(data.length)
     console.log(times())
     console.log(deletetime())
+    console.log(data)
+    
     //add more if else statements to male scroll look good no matter how many data points
     if (data.length>10){
         width = 800;
@@ -165,13 +189,13 @@ const chartConfigs = [
     
     
     }
-//     catch(err){
-//       return(
-//         <Text style={{color:'black'}}>yo</Text>
-//         )
-//   }
+    catch(err){
+      return(
+        <Text style={{color:'black', position:'center'}}>yo</Text>
+        )
+  }
   
-// }
+}
   }
 
 const styles = StyleSheet.create({

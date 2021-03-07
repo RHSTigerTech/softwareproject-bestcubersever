@@ -186,6 +186,7 @@ console.log('--------------')
 
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
+  
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
 
@@ -293,11 +294,10 @@ const App = ({navigation}) => {
             size={30}
             
             onPress={() => {del=true,deletetime()}}
-            //onPressOut={()=> del=false}
-            
-            //onPress={() => times()=deletetime()}
           >
           {del=false}
+          
+          
           <Text style={styles.BottomTabText}>Delete   </Text>
           </Icon.Button>
           <Icon.Button
