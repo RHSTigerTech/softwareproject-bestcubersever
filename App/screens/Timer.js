@@ -29,7 +29,7 @@ let lastItem='00:00:000';
 const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value)
-    console.log(jsonValue)
+    //console.log(jsonValue)
     await AsyncStorage.setItem('@storage_Key', jsonValue)
   } catch (e) {
     // saving error
@@ -39,11 +39,15 @@ const getData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('@storage_Key')
     //console.log(jsonValue)
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
+    console.log(jsonValue)
+    //return jsonValue != null ? JSON.parse(jsonValue) : null;
+    return (jsonValue)
   } catch(e) {
     // error reading value
   }
 }
+
+//getData()
 
 export const times = () =>{
   
@@ -108,8 +112,11 @@ export const times = () =>{
   //console.log(storeData(convertedTimes))
   //console.log(getData(convertedTimes))
   //console.log(getData())
+  
   storeData(convertedTimes)
-
+  getData()
+  //console.log(getData())
+  
   return (convertedTimes);
   
   //console.log(lastItem)
