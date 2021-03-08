@@ -11,6 +11,7 @@ import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //y
 
 let finaltime='00:00:000';
@@ -19,15 +20,30 @@ let storedTimes=[];
 
 let convertedTimes=[0];
 
-let addedMinutes='';
-
 let minutes;
 
 let del;
 
-let convertedItem;
-
 let lastItem='00:00:000';
+
+const storeData = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    console.log(jsonValue)
+    await AsyncStorage.setItem('@storage_Key', jsonValue)
+  } catch (e) {
+    // saving error
+  }
+}
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@storage_Key')
+    //console.log(jsonValue)
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch(e) {
+    // error reading value
+  }
+}
 
 export const times = () =>{
   
@@ -89,8 +105,13 @@ export const times = () =>{
     
     console.log(convertedTimes)
   }
-  
+  //console.log(storeData(convertedTimes))
+  //console.log(getData(convertedTimes))
+  //console.log(getData())
+  storeData(convertedTimes)
+
   return (convertedTimes);
+  
   //console.log(lastItem)
   
   
@@ -98,7 +119,11 @@ export const times = () =>{
   //return(storedTimes)
 }
 
+// storeData(times());
 
+// getData();
+
+//console.log(getData()+'------------')
 
 export const deletetime = () =>{
   //delete a time the user accidentally put in
@@ -111,7 +136,8 @@ export const deletetime = () =>{
   }
   del=false;
   
-  console.log(convertedTimes)
+  //console.log(convertedTimes)
+  //console.log(storeData(convertedTimes))
   return (convertedTimes);
   
 }
@@ -126,10 +152,6 @@ function convert(){
   return (convertedTimes);
 }
 
-function testtimes(){
-  let stattimes=[3,8,9,4,1,7,9,0,8,10];
-  return(stattimes)
-}
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
@@ -181,7 +203,6 @@ function k(){
     console.log(s)
     return(s)
 }
-
 
 console.log('--------------')
 
