@@ -11,42 +11,120 @@ import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+//y
 
-
-let finaltime;
+let finaltime='00:00:000';
 
 let storedTimes=[];
 
+let convertedTimes=[0];
+
+let addedMinutes='';
+
+let minutes;
+
+let del;
+
+let convertedItem;
+
+let lastItem='00:00:000';
+
 export const times = () =>{
-  storedTimes=storedTimes.filter(function(element){
+  
+  convertedTimes=convertedTimes.filter(function(element){
     return element !== undefined;
   });
-  if(storedTimes[storedTimes.length-1]===storedTimes[storedTimes.length-2]){
-    storedTimes.pop();
+  if(convertedTimes[convertedTimes.length-1]===convertedTimes[convertedTimes.length-2]){
+    convertedTimes.pop();
   }
   storedTimes.push(finaltime)
-  console.log(storedTimes)
-  const lastItem= storedTimes[storedTimes.length-1]
+  //convertedTimes.push(finaltime)
+  //console.log(storedTimes)
+  
+  
+  if(storedTimes.length>1){
+  lastItem= storedTimes[storedTimes.length-1]
+  //lastItem=lastItem.replace("00:"," ");
+  lastItem=lastItem.replace(":",".");
+  lastItem=lastItem.replace(":",".");
+  
+
+    // if(lastItem.substring(0,1)||lastItem.substring(1,2)!==0)
+    
+    console.log(lastItem.substring(0,2))
+    minutes= lastItem.substring(0,2)
+    minutes=parseInt(minutes)
+    console.log(minutes)
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0','')
+    }
+    
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0.','')
+    }
+
+    if(minutes>=1){
+      lastItem=lastItem.replace('.','')
+      console.log(lastItem.substring(1))
+      lastItem=lastItem.substring(1)
+      
+    }
+    
+    // console.log(convertedTimes)
+    // if(lastItem.substring(0,1)==='0'){
+    //   lastItem=lastItem.replace('0','')
+    // }
+    // console.log(convertedTimes)
+    // if(lastItem.substring(0,1)==='0'){
+    //   lastItem=lastItem.replace('0','')
+    // }
+    
+    lastItem=parseFloat(lastItem)
+    lastItem=lastItem+(60*minutes)
+    convertedTimes.push(lastItem)
+    // if(convertedTimes!=='undefined' && convertedTimes[0]===0){
+    //   convertedTimes.replace(0,1);
+    // }
+    
+    
+    console.log(convertedTimes)
+  }
+  
+  return (convertedTimes);
+  //console.log(lastItem)
+  
+  
+  //r
   //return(storedTimes)
 }
 
-function convert(){
-  //want to convert the timer formate to seconds a milliseconds so it can be read by the chart.
-  //will keep milliseconds the same but will have to convert the minutes into seconds
-}
 
-function deletetime(){
+
+export const deletetime = () =>{
   //delete a time the user accidentally put in
   //make a button that can be pressed to delete the last solve
   //possibly allow them to delete more than just the last time
   //add a are you sure prompt so they dont delete on accident
   //will have to later ad a way to delete any time in the list
+  if(del===true){
+    convertedTimes.pop();
+  }
+  del=false;
+  
+  console.log(convertedTimes)
+  return (convertedTimes);
+  
 }
 
 function addtime(){
   //give the abilty to add a time 
 }
 
+function convert(){
+  times()
+  console.log(convertedTimes)
+  return (convertedTimes);
+}
 
 function testtimes(){
   let stattimes=[3,8,9,4,1,7,9,0,8,10];
@@ -109,6 +187,7 @@ console.log('--------------')
 
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
+  
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
 
@@ -146,17 +225,25 @@ const App = ({navigation}) => {
             </Text>
             
             
+            {/* <Text style={styles.ScrambleText}>
             
+            Session:{}
+
+            </Text> */}
+
             <Text style={styles.ScrambleText}>
             
             {!isStopwatchStart ? k() : ''}
-            {!isStopwatchStart ? times() : ''}
-            
-            
+
             </Text>
-            <Text style={styles.resetbuttonText}>
+
+            <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
+            {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
+
+
+            {/* <Text style={styles.resetbuttonText}>
             {'Previous Time:\n   '+finaltime}	
-            </Text>	          
+            </Text>	           */}
             
             
           </TouchableOpacity>
@@ -182,7 +269,7 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
-            onPress={() => navigation.navigate('Statistics')}
+            onPress={() => {navigation.navigate('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics   </Text>
           </Icon.Button>
@@ -190,25 +277,30 @@ const App = ({navigation}) => {
           
           <Icon.Button
             
-            name='home'
+            name='home' 
             flexDirection='column'
             backgroundColor='black'
             color='white'
             size={30}
-            onPress={() => navigation.navigate('Gradient')}
+            onPress={() => {navigation.navigate('Gradient')}}
           >
           <Text style={styles.BottomTabText}>Home   </Text>
           </Icon.Button>
           <Icon.Button
             
-            name='camera'
+            name='delete'
             flexDirection='column'
             backgroundColor='black'
             color='white'
             size={30}
-            onPress={() => navigation.navigate('ViewImageScreen')}
+            
+            onPress={() => {del=true,deletetime()}}
+            
           >
-          <Text style={styles.BottomTabText}>Solver   </Text>
+          
+          
+          
+          <Text style={styles.BottomTabText}>Delete   </Text>
           </Icon.Button>
           <Icon.Button
             
