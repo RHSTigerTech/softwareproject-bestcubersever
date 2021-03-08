@@ -44,6 +44,7 @@ const getData = async () => {
     // error reading value
   }
 }
+getData()
 
 export const times = () =>{
   
