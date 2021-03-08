@@ -47,6 +47,10 @@ const chartConfigs = [
     
     
     render() {
+      // console.log('before')
+      // console.log(times())
+      // console.log(deletetime())
+      // console.log('end')
       //times()
       try{
       
@@ -55,21 +59,43 @@ const chartConfigs = [
     let width;
     //let data=[0];k
     let data;
+    // console.log(deletetime()[deletetime().length-1]+'----------------')
+    // console.log(times()[times().length-1]+'----------------')
 
-    if(times()[0]===0 && times().length>1){
-      times().shift();
-    }
+    // if(times()[0]===0 && times().length>1){
+    //   times().shift();
+    // }
     
 
-    data=times();
+    
+    //console.log(data+'-------------------------')
+    // if(data[data.length-1]===data[data.length-2]){
+    //   data.pop();
+    // }
+    //console.log(data+'-------------------------')
+    
+    if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
+      
 
-    data.pop();
+      data=deletetime();
+      data.pop();
+      data.pop();
 
-    if(times().length!==deletetime().length && deletetime().length>0){
-      data=deletetime()
+        if(data[0]===0 && data.length>1){
+        data.shift();
+        }
+
       
     }
+    else{
+      data=times();
+      data.pop();
 
+      if(data[0]===0 && data.length>1){
+        data.shift();
+        }
+    }
+    //console.log(data+'-------------------------')
     
 
     // if(deletetime[deletetime().length-1]!==deletetime()[deletetime().length-2]){
@@ -93,9 +119,9 @@ const chartConfigs = [
     
     
     //console.log(data.length)
-    console.log(times())
-    console.log(deletetime())
-    console.log(data)
+    // console.log(times())
+    // console.log(deletetime())
+    // console.log(data)
     
     //add more if else statements to male scroll look good no matter how many data points
     if (data.length>10){

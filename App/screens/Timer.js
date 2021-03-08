@@ -109,6 +109,7 @@ export const deletetime = () =>{
   if(del===true){
     convertedTimes.pop();
   }
+  del=false;
   
   console.log(convertedTimes)
   return (convertedTimes);
@@ -237,7 +238,7 @@ const App = ({navigation}) => {
             </Text>
 
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
-            <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text>
+            {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
 
 
             {/* <Text style={styles.resetbuttonText}>
@@ -268,7 +269,7 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
-            onPress={() => navigation.navigate('Statistics')}
+            onPress={() => {navigation.navigate('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics   </Text>
           </Icon.Button>
@@ -281,7 +282,7 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
-            onPress={() => navigation.navigate('Gradient')}
+            onPress={() => {navigation.navigate('Gradient')}}
           >
           <Text style={styles.BottomTabText}>Home   </Text>
           </Icon.Button>
@@ -294,8 +295,9 @@ const App = ({navigation}) => {
             size={30}
             
             onPress={() => {del=true,deletetime()}}
+            
           >
-          {del=false}
+          
           
           
           <Text style={styles.BottomTabText}>Delete   </Text>
