@@ -7,6 +7,7 @@ import BeginnerLearn from './App/screens/BeginnerLearn';
 import IntermediateLearn from './App/screens/IntermediateLearn';
 import HowToReadAlg from './App/screens/HowToReadAlg';
 import AdvancedLearn from './App/screens/AdvancedLearn';
+import AlgList from './App/screens/AlgList';
 //import Video from './App/screens/video.js';
 import * as React from 'react';
 import Timer from './App/screens/Timer.js';
@@ -28,6 +29,7 @@ const App = () => {
     <NavigationContainer>
       
       <Stack.Navigator>
+        {/*   Home Screens   */}
 
         <Stack.Screen 
           name="Gradient" 
@@ -35,7 +37,6 @@ const App = () => {
           options={{headerShown:false}}
         />
 
-        {/*   Home Screens   */}
         <Stack.Screen 
           name="Learn" 
           component={Learn}
@@ -101,11 +102,15 @@ const App = () => {
           component={IntermediateLearn}
         />
 
-        <Stack.Screen
-          name="AdvancedLearn"
+        <Stack.Screen 
+          name="AdvancedLearn" 
           component={AdvancedLearn}
         />
         
+        <Stack.Screen
+          name="AlgList"
+          component={AlgList}
+        />
       </Stack.Navigator>
 
       
@@ -114,7 +119,6 @@ const App = () => {
     </NavigationContainer>
     
   );
-    
 };
 
 export default App;

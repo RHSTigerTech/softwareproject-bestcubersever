@@ -8,7 +8,6 @@ function ViewImageScreen({navigation}) {
             source={require('../Assets/MobileRubiksCubeBackground.jpg')}
         >
             <GradientButton
-                
                 style={styles.Button}
                 text="Home Screen"
                 textStyle={{ fontSize: 20 }}
@@ -24,7 +23,6 @@ function ViewImageScreen({navigation}) {
 
                 
             />
-            
         </ImageBackground>        
     );
 }
@@ -38,11 +36,6 @@ const styles = StyleSheet.create({
     Button:{
         top:'20%',
     },
-    
-    
-    
-    
-
 })
 
 export default ViewImageScreen;

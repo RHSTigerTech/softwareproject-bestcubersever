@@ -1,18 +1,37 @@
-//Will hold the components for a rubiks cube timer including:
-//The timer itself
-//A customizable cube inspect timer
-//A Random Scrambler
-//Statists
 
-// import React in our code
 import React, { useState, Component } from 'react';
-import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar} from 'react-native';
+import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Pressable} from 'react-native';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//y
+import ActionButton from 'react-native-action-button';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+
+
+
+const storeData = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value) 
+    await AsyncStorage.setItem('@storage_Key', jsonValue)
+  } catch (e) {
+  }
+}
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@storage_Key')
+    console.log(jsonValue)
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+
+    //return (jsonValue)
+  } catch(e) {
+    // error reading value
+  }
+}
+getData()
+
+
 
 let finaltime='00:00:000';
 
@@ -20,31 +39,13 @@ let storedTimes=[];
 
 let convertedTimes=[0];
 
+let storedData;
+
 let minutes;
 
 let del;
 
 let lastItem='00:00:000';
-
-const storeData = async (value) => {
-  try {
-    const jsonValue = JSON.stringify(value)
-    console.log(jsonValue)
-    await AsyncStorage.setItem('@storage_Key', jsonValue)
-  } catch (e) {
-    // saving error
-  }
-}
-const getData = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('@storage_Key')
-    //console.log(jsonValue)
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch(e) {
-    // error reading value
-  }
-}
-getData()
 
 export const times = () =>{
   
@@ -55,19 +56,13 @@ export const times = () =>{
     convertedTimes.pop();
   }
   storedTimes.push(finaltime)
-  //convertedTimes.push(finaltime)
-  //console.log(storedTimes)
   
   
   if(storedTimes.length>1){
   lastItem= storedTimes[storedTimes.length-1]
-  //lastItem=lastItem.replace("00:"," ");
   lastItem=lastItem.replace(":",".");
   lastItem=lastItem.replace(":",".");
-  
-
-    // if(lastItem.substring(0,1)||lastItem.substring(1,2)!==0)
-    
+      
     console.log(lastItem.substring(0,2))
     minutes= lastItem.substring(0,2)
     minutes=parseInt(minutes)
@@ -87,58 +82,29 @@ export const times = () =>{
       
     }
     
-    // console.log(convertedTimes)
-    // if(lastItem.substring(0,1)==='0'){
-    //   lastItem=lastItem.replace('0','')
-    // }
-    // console.log(convertedTimes)
-    // if(lastItem.substring(0,1)==='0'){
-    //   lastItem=lastItem.replace('0','')
-    // }
-    
     lastItem=parseFloat(lastItem)
     lastItem=lastItem+(60*minutes)
     convertedTimes.push(lastItem)
-    // if(convertedTimes!=='undefined' && convertedTimes[0]===0){
-    //   convertedTimes.replace(0,1);
-    // }
-    
     
     console.log(convertedTimes)
   }
-  //console.log(storeData(convertedTimes))
-  //console.log(getData(convertedTimes))
-  //console.log(getData())
+  
   storeData(convertedTimes)
+  getData()
 
+  storedData=convertedTimes;
   return (convertedTimes);
   
-  //console.log(lastItem)
-  
-  
-  //r
-  //return(storedTimes)
 }
 
-// storeData(times());
-
-// getData();
-
-//console.log(getData()+'------------')
-
 export const deletetime = () =>{
-  //delete a time the user accidentally put in
-  //make a button that can be pressed to delete the last solve
-  //possibly allow them to delete more than just the last time
-  //add a are you sure prompt so they dont delete on accident
-  //will have to later ad a way to delete any time in the list
+  
   if(del===true){
     convertedTimes.pop();
+    
   }
   del=false;
   
-  //console.log(convertedTimes)
-  //console.log(storeData(convertedTimes))
   return (convertedTimes);
   
 }
@@ -153,6 +119,8 @@ function convert(){
   return (convertedTimes);
 }
 
+let storagetest=getData()+storeData(convertedTimes)
+console.log(storagetest)
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
@@ -209,13 +177,16 @@ console.log('--------------')
 
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  
+  const [modalVisible, setModalVisible] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
 
   return (
+
+    
     
     <SafeAreaView style={styles.container}>
+      
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
         
@@ -246,12 +217,6 @@ const App = ({navigation}) => {
             
             </Text>
             
-            
-            {/* <Text style={styles.ScrambleText}>
-            
-            Session:{}
-
-            </Text> */}
 
             <Text style={styles.ScrambleText}>
             
@@ -260,17 +225,18 @@ const App = ({navigation}) => {
             </Text>
 
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
-            {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
-
-
-            {/* <Text style={styles.resetbuttonText}>
-            {'Previous Time:\n   '+finaltime}	
-            </Text>	           */}
             
             
           </TouchableOpacity>
           
+          
+          
+
+            
+
           <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+
+          
           <Icon.Button
             
             name='cube-outline'
@@ -335,6 +301,19 @@ const App = ({navigation}) => {
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
+          <View style={{flex:1,flexDirection:'column',bottom:25, backgroundColor: 'black'}}>
+        {/* Rest of the app comes ABOVE the action button component !*/}
+        <ActionButton buttonColor="rgba(231,76,60,1)"
+        size={45}>
+          
+          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+            <Icon name="delete" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      </View>
           </View>
         </View>
       </View>
@@ -397,6 +376,15 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
 
+
+  
+    actionButtonIcon: {
+      fontSize: 20,
+      height: 22,
+      color: 'white',
+    },
+  
+
 });
 
 const options = {
@@ -416,4 +404,3 @@ const options = {
     top:-150,
   },
 };
-

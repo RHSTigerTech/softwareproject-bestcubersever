@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import { WebView } from 'react-native-webview';
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return <WebView source={{uri:'https://rhstigertech.github.io/softwareproject-bestcubersever/cuber/'}} />;
   }
