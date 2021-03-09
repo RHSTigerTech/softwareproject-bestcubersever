@@ -46,15 +46,13 @@ function IntermediateLearn({navigation}) {
                             <Text style={styles.textHeader}>
                                 Special Cases
                             </Text>
-                            <View style={{flexDirection: 'row',}}>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textDescrip}>All edges in the white layer, but one is oriented wrong.{'\n'}F U' R U</Text>
-                            </View>
-                            <View style={{flexDirection: 'row',}}>
+                                <Text style={styles.textDescrip}></Text>
+
                                 <Text style={styles.placeHolder}>(image here)</Text>
                                 <Text style={styles.textDescrip}>
-                                    Last edge is on the correct side, but it is oriented wrong so that you can not simply move it to the top
-                                    {'\n'}R' D' R F2
+                                    
                                 </Text>
                             </View>
                         </Card>
@@ -68,22 +66,112 @@ function IntermediateLearn({navigation}) {
                                 spot they are supposed to be in.  This can be done intuitively or with algorithms.  
                             </Text>
                             <Card.Divider/>
-                            <Text style={styles.textHeader}>Cases</Text>
-                            <View style={{flexDirection: 'row'}}>
-                                
+                            <Text style={styles.textHeader}>Basic Algorithms</Text>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <Text style={styles.textDescripWide}>
+                                    Inserting Algorithms:
+                                    {'\n'}Inserts the top left corner and the top middle edge into the bottom right corner
+                                    {'\n'}R U' R'
+                                    {'\n'}Inserts the top right corner and the top middle edge into the bottom left corner
+                                    {'\n'}L' U L
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    Removing Algorithm: 
+                                    {'\n'}Removes the bottom right corner and the middle right edge and moves them to the top layer
+                                    {'\n'}R U R'
+                                    {'\n'}Removes the bottom left corner and the middle left edge and moves them to the top layer.
+                                    {'\n'}L' U' L
+                                </Text>
+                            </View>
+                            <Text style={styles.textHeader}>Instructions and Cases</Text>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <Text style={styles.textDescripWide}>
+                                    First, you want to get the corner and its matching edge into the yellow layer.  If you find the corner in 
+                                    the first layer, use one of the removing algorithms.  If you find the edge in the second layer, use one of 
+                                    the removing algorithms.  Be sure to remove them in a way that the edge and corner aren't touching in the 
+                                    wrong orientation. 
+                                    {'\n'}
+                                    {'\n'}Next, you need to position them so that you can insert them.  The position depends on how the corner 
+                                    and edge pieces are oriented.  In order to position them, hold the cube so that the spot that the pair needs 
+                                    to be inserted into is in the front right corner.  Then, move the corner so that it is in the back right 
+                                    corner of the top layer.  Then, you can do (R) and then (U) or (U') until the edge is in the correct 
+                                    position.
+                                </Text>
+
+                                <Text style={styles.textWideCenter}>Top of the edge and top of the corner are the same</Text>
+                                <Text style={styles.placeHolder}>(image here)</Text>
+                                <Text style={styles.textDescrip}>
+                                    If the colored side of the corner is matched with its corresponding center and the white side of the corner 
+                                    is facing right, position them like this and insert using:
+                                    {'\n'}L' U L
+                                </Text>
+                                <Text style={styles.placeHolder}>(image here)</Text>
+                                <Text style={styles.textDescrip}>
+                                    If the colored side of the corner is matched with its corresponding center and the white side of the corner 
+                                    is facing left, position them like this and insert using:
+                                    {'\n'}R U' R'
+                                </Text>
+
+                                <Text style={styles.textWideCenter}>Top of the edge and top of the corner are different</Text>
+                                <Text style={styles.placeHolder}>(image here)</Text>
+                                <Text style={styles.textDescrip}>
+                                    If the colored side of the corner is matched with its corresponing center and the white side of the corner 
+                                    is facing right, position them like this and insert using:
+                                    {'\n'}R U R'
+                                </Text>
+                                <Text style={styles.placeHolder}>(image here)</Text>
+                                <Text style={styles.textDescrip}>
+                                    If the colored side of the corner is matched with its corresponing center and the white side of the corner 
+                                    is facing left, position them like this and insert using:
+                                    {'\n'}L' U' L
+                                </Text>
+
+                                <Text style={styles.textWideCenter}>Top of the corner is white</Text>
+                                <Text style={styles.textDescripWide}>
+                                    Position the edge so that it is on the side that corresponds with the color on the top of the edge.
+                                </Text>
+                                <Text style={styles.placeHolder}>(image here)</Text>
+                                <Text style={styles.textDescrip}>
+                                    If the edge is on the right, insert using this:
+                                    {'\n'}R (U until the corner is in the top back right corner) R2 F R F'
+                                </Text>
+{/*
+                                <Text style={styles.placeHolder}>(image here)</Text>
+                                <Text style={styles.textDescrip}>
+                                    If the color on the top of the corner is white, use the inserting and removing algorithms to position them 
+                                    like this.  Insert using:
+                                    {'\n'}
+                                </Text>
+            */}
                             </View>
                         </Card>
 
                         <Card containerStyle={{backgroundColor: 'black'}}>
                             <Card.Title style={styles.textTitle}>3: Orient Last Layer (OLL)</Card.Title>
                             <Card.Divider/>
-                            <Text style={styles.textSummary}>Instructions for 1 look</Text>
+                            <Text style={styles.textSummary}>
+                                In order to orient the last layer in this method, you use one algorithms to orient both the yellow edges and 
+                                corners with one algorithm.
+                            </Text>
+                            <Card.Divider/>
+                            <Text style={styles.textHeader}>Cases</Text>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+
+                            </View>
                         </Card>
 
                         <Card containerStyle={{backgroundColor: 'black'}}>
                             <Card.Title style={styles.textTitle}>4: Permute Last Layer (PLL)</Card.Title>
                             <Card.Divider/>
-                            <Text style={styles.textSummary}>Instructions for 1 look</Text>
+                            <Text style={styles.textSummary}>
+                                In order to permute the last layer in this method, you use one algorithm to permute both the yellow edges and 
+                                corners with one algorithm.
+                            </Text>
+                            <Card.Divider/>
+                            <Text style={styles.textHeader}>Cases</Text>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                
+                            </View>
                         </Card>
                     </ScrollView>
                 </View>
@@ -152,6 +240,17 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         color: 'white',
         fontSize: 13,
+        width: '100%'
+    },
+
+    textWideCenter:{
+        // Text thats a description but full width and centered
+        paddingTop: 10,
+        color: 'white',
+        fontSize: 13,
+        fontWeight: 'bold',
+        width: '100%',
+        textAlign: 'center'
     },
 
     textSubHeader: {
