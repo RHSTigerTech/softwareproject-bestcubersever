@@ -234,7 +234,7 @@ const App = ({navigation}) => {
 
             
 
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:30}}>
 
           
           <Icon.Button
@@ -301,15 +301,17 @@ const App = ({navigation}) => {
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
-          <View style={{flex:1,flexDirection:'column',bottom:25, backgroundColor: 'black'}}>
+          <View style={{flex:1,flexDirection:'column',bottom:-20, right:40,backgroundColor: 'transparent'}}>
         {/* Rest of the app comes ABOVE the action button component !*/}
+        
         <ActionButton buttonColor="rgba(231,76,60,1)"
-        size={45}>
+        size={45}
+        fontSize={80}>
           
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={() => {}}>
             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
