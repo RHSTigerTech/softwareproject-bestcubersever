@@ -233,7 +233,7 @@ const App = ({navigation}) => {
 
             
 
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:10}}>
 
           
           <Icon.Button
@@ -300,16 +300,47 @@ const App = ({navigation}) => {
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
-          <View style={{flex:1,flexDirection:'column',bottom:25, backgroundColor: 'black'}}>
+          <View style={{flex:1,flexDirection:'column',bottom:25, backgroundColor: 'black', left:5}}>
         {/* Rest of the app comes ABOVE the action button component !*/}
         <ActionButton buttonColor="rgba(231,76,60,1)"
         size={45}>
           
           <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+          <Icon.Button
+            
+            name='delete'
+            flexDirection='column'
+            backgroundColor='transparent'
+            color='white'
+            size={22}
+            left={3}
+            alignItems='center'
+            
+            onPress={() => {del=true,deletetime()}}
+            
+          >
+          
+          </Icon.Button>
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
-            <Icon name="delete" style={styles.actionButtonIcon} />
+          <Icon.Button
+            
+            name='delete'
+            flexDirection='column'
+            backgroundColor='transparent'
+            color='white'
+            size={22}
+            left={3}
+            alignItems='center'
+            
+            onPress={() => {del=true,deletetime()}}
+            
+          >
+          
+          
+          
+          
+          </Icon.Button>
           </ActionButton.Item>
         </ActionButton>
       </View>
