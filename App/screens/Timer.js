@@ -1,11 +1,13 @@
 
 import React, { useState, Component } from 'react';
-import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar} from 'react-native';
+import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Pressable} from 'react-native';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ActionButton from 'react-native-action-button';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 
 
@@ -98,6 +100,7 @@ export const deletetime = () =>{
   
   if(del===true){
     convertedTimes.pop();
+    
   }
   del=false;
   
@@ -173,13 +176,16 @@ console.log('--------------')
 
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  
+  const [modalVisible, setModalVisible] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
 
   return (
+
+    
     
     <SafeAreaView style={styles.container}>
+      
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
         
@@ -222,7 +228,14 @@ const App = ({navigation}) => {
             
           </TouchableOpacity>
           
+          
+          
+
+            
+
           <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+
+          
           <Icon.Button
             
             name='cube-outline'
@@ -287,6 +300,19 @@ const App = ({navigation}) => {
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
+          <View style={{flex:1,flexDirection:'column',bottom:25, backgroundColor: 'black'}}>
+        {/* Rest of the app comes ABOVE the action button component !*/}
+        <ActionButton buttonColor="rgba(231,76,60,1)"
+        size={45}>
+          
+          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+            <Icon name="delete" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      </View>
           </View>
         </View>
       </View>
@@ -348,6 +374,15 @@ const styles = StyleSheet.create({
     height: '87%',
     alignItems:'center',
   },
+
+
+  
+    actionButtonIcon: {
+      fontSize: 20,
+      height: 22,
+      color: 'white',
+    },
+  
 
 });
 
