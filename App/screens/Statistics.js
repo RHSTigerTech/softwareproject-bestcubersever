@@ -52,7 +52,7 @@ const chartConfigs = [
       // console.log(deletetime())
       // console.log('end')
       //times()
-      try{
+      //try{
       
       //console.log(times())
      ///
@@ -214,12 +214,12 @@ const chartConfigs = [
 
     
     
-    }
-    catch(err){
-      return(
-        <Text style={{color:'black', position:'center'}}>yo</Text>
-        )
-  }
+  //   }
+  //   catch(err){
+  //     return(
+  //       <Text style={{color:'black', position:'center'}}>yo</Text>
+  //       )
+  // }
   
 }
   }
