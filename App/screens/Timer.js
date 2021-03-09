@@ -1,10 +1,4 @@
-//Will hold the components for a rubiks cube timer including:
-//The timer itself
-//A customizable cube inspect timer
-//A Random Scrambler
-//Statists
 
-// import React in our code
 import React, { useState, Component } from 'react';
 import PropTypes from 'prop-types';
 // import all the components we are going to use
@@ -22,30 +16,172 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-//y
-
-let finaltime='';
-const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
-let l=null;
-let j=100;
-let s=[];
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-  for(let i=0; i<20;i++){
-    
-    console.log('--')
-    l =Math.floor(Math.random()*possiblemoves.length)
-    console.log(l)
-    console.log(j)
-    //add more conditions to scrmabler so there aren't any uneccessary notations given
-    if(j===l){ 
-      s.pop();
-      i--
-    }
-    j=l;
-    s.push(possiblemoves[l])
+
+const storeData = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value) 
+    await AsyncStorage.setItem('@storage_Key', jsonValue)
+  } catch (e) {
   }
-  s=s.join(' ')
+}
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@storage_Key')
+    console.log(jsonValue)
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+
+    //return (jsonValue)
+  } catch(e) {
+    // error reading value
+  }
+}
+
+
+
+
+let finaltime='00:00:000';
+
+let storedTimes=[];
+
+let convertedTimes=[0];
+
+let storedData;
+
+let minutes;
+
+let del;
+
+let lastItem='00:00:000';
+
+export const times = () =>{
+  
+  convertedTimes=convertedTimes.filter(function(element){
+    return element !== undefined;
+  });
+  if(convertedTimes[convertedTimes.length-1]===convertedTimes[convertedTimes.length-2]){
+    convertedTimes.pop();
+  }
+  storedTimes.push(finaltime)
+  
+  
+  if(storedTimes.length>1){
+  lastItem= storedTimes[storedTimes.length-1]
+  lastItem=lastItem.replace(":",".");
+  lastItem=lastItem.replace(":",".");
+      
+    console.log(lastItem.substring(0,2))
+    minutes= lastItem.substring(0,2)
+    minutes=parseInt(minutes)
+    console.log(minutes)
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0','')
+    }
+    
+    if(lastItem.substring(0,1)==='0'){
+      lastItem=lastItem.replace('0.','')
+    }
+
+    if(minutes>=1){
+      lastItem=lastItem.replace('.','')
+      console.log(lastItem.substring(1))
+      lastItem=lastItem.substring(1)
+      
+    }
+    
+    lastItem=parseFloat(lastItem)
+    lastItem=lastItem+(60*minutes)
+    convertedTimes.push(lastItem)
+    
+    console.log(convertedTimes)
+  }
+  
+  storeData(convertedTimes)
+  getData()
+
+  storedData=convertedTimes;
+  return (convertedTimes);
+  
+}
+
+export const deletetime = () =>{
+  
+  if(del===true){
+    convertedTimes.pop();
+  }
+  del=false;
+  
+  return (convertedTimes);
+  
+}
+
+function addtime(){
+  //give the abilty to add a time 
+}
+
+function convert(){
+  times()
+  console.log(convertedTimes)
+  return (convertedTimes);
+}
+
+let storagetest=getData()+storeData(convertedTimes)
+console.log(storagetest)
+
+const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
+//                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
+function k(){
+  let l=null;
+  let j=100;
+  let s=[];
+
+
+    for(let i=0; i<20;i++){
+      
+      console.log('--')
+      l =Math.floor(Math.random()*possiblemoves.length)
+      console.log(l)
+      console.log(j)
+      if(j===l){ 
+        s.pop();
+        i--
+      }
+      else if ((l===0 || l===6 || l===12)&&(j===0 || j===6 || j===12)) {
+        s.pop();
+        i--
+      } 
+      else if ((l===1 || l===7 || l===13)&&(j===1 || j===7 || j===13)) {
+        s.pop();
+        i--
+      }
+      else if ((l===2 || l===8 || l===14)&&(j===2 || j===8 || j===14)) {
+        s.pop();
+        i--
+      }
+      else if ((l===3 || l===9 || l===15)&&(j===3 || j===9 || j===15)) {
+        s.pop();
+        i--
+      }
+      else if ((l===4 || l===10 || l===16)&&(j===4 || j===10 || j===16)) {
+        s.pop();
+        i--
+      }
+      else if ((l===5 || l===11 || l===17)&&(j===5 || j===11 || j===17)) {
+        s.pop();
+        i--
+      }    
+      else {}
+      j=l;
+      s.push(possiblemoves[l])
+    }
+    s=s.join(' ')
+    console.log(s)
+    return(s)
+}
+
+
 
 console.log('--------------')
 const App = () => {
@@ -88,12 +224,14 @@ const App = () => {
             
             </Text>
             
-            <Text style={styles.resetbuttonText}>
-            {'Previous Time:\n   '+finaltime}
-            </Text>
+
             <Text style={styles.ScrambleText}>
             {s}
             </Text>
+
+
+            <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
+
             
             
           </TouchableOpacity>
