@@ -1,18 +1,7 @@
 
 import React, { useState, Component } from 'react';
-import PropTypes from 'prop-types';
-// import all the components we are going to use
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-
-//importing library to use Stopwatch and Timer
+import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar} from 'react-native';
+import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -38,7 +27,6 @@ const getData = async () => {
     // error reading value
   }
 }
-
 
 
 
@@ -181,16 +169,14 @@ function k(){
     return(s)
 }
 
-
-
 console.log('--------------')
-const App = () => {
-  const [isTimerStart, setIsTimerStart] = useState(false);
+
+const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
-  
+
   return (
     
     <SafeAreaView style={styles.container}>
@@ -226,12 +212,12 @@ const App = () => {
             
 
             <Text style={styles.ScrambleText}>
-            {s}
+            
+            {!isStopwatchStart ? k() : ''}
+
             </Text>
 
-
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
-
             
             
           </TouchableOpacity>
@@ -350,22 +336,11 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
-  ScrambleText: {
-    
-    fontSize: 30,
-    //width: '70%',
-    width:'60%',
-    
-    //marginTop: 10,
-    color:'#FFF',
-    position:'absolute',
-    top:0,
-    textAlign:'center'
-  },
-  resetbuttonSize:{
-      alignSelf:'stretch',
-      height: '10%',
-      alignItems:'center'
+
+  BottomTabText:{
+    fontSize:10,
+    color:'white',
+    justifyContent:'center'
   },
 
   startbuttonSize:{
