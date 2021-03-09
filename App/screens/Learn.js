@@ -1,15 +1,12 @@
 import React from 'react';
 import { StyleSheet, View,
  Platform, StatusBar, Image, SafeAreaView, } from 'react-native';
-import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
-import AwesomeButton from "react-native-really-awesome-button";
-import LinearGradient from "react-native-linear-gradient";
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import colors from '../config/colors'
+const ButtonHeight=65;
+const ButtonWidth=320;
+const ButtonRadius=30; // effects how circular the buttons look
+const ButtonGradientDirection='vertical';
 
 function Learn({navigation}) {
     return (
@@ -20,29 +17,19 @@ function Learn({navigation}) {
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
 
-               {/* <Header
-                            
-                    containerStyle={styles.viewStyle}
-                    centerContainerStyle={{flex:10}}
-                    centerComponent={{ text: 'Learn', style: { color: 'white', fontSize:40,}}}
-                    // ViewComponent={LinearGradient} // Don't forget this!        
-                                    
-               /> */}
-
-                <View style={{justifyContent: 'space-evenly', flex: 1, marginTop: 0}}>
+                <View style={{justifyContent: 'space-evenly', flex: 1, opacity:0.9}}>
                     <GradientButton
                         style={{marginVertical: 8}}
 
                         text="How to Read Algorithms"
-                        textStyle={{ fontSize: 20 }}
+                        textStyle={{fontSize: 27, color: 'black', opacity: 0.9}}
 
                         gradientBegin="#FE0944" //change color
                         gradientEnd="#FF4E00" //change color
-                        gradientDirection="vertical"
-
-                        height={60}
-                        width={300}
-                        radius={15}
+                        gradientDirection={ButtonGradientDirection}
+                        height={ButtonHeight}
+                        width={ButtonWidth}
+                        radius={ButtonRadius}
 
                         impact
                         impactStyle='Light'
@@ -53,15 +40,14 @@ function Learn({navigation}) {
                         style={{marginVertical: 8}}
 
                         text="Beginner's Method"
-                        textStyle={{ fontSize: 20 }}
+                        textStyle={styles.textStyle}
 
                         gradientBegin="#FF4E00" //change color
                         gradientEnd="#EC9F05" //change color
-                        gradientDirection="vertical"
-
-                        height={60}
-                        width={300}
-                        radius={15}
+                        gradientDirection={ButtonGradientDirection}
+                        height={ButtonHeight}
+                        width={ButtonWidth}
+                        radius={ButtonRadius}
 
                         impact
                         impactStyle='Light'
@@ -72,15 +58,14 @@ function Learn({navigation}) {
                         style={{marginVertical: 8}}
 
                         text="Intermediate Method"
-                        textStyle={{ fontSize: 20 }}
+                        textStyle={styles.textStyle}
 
                         gradientBegin="#EC9F05" //change color
                         gradientEnd="#64e764" //change color
-                        gradientDirection="vertical"
-
-                        height={60}
-                        width={300}
-                        radius={15}
+                        gradientDirection={ButtonGradientDirection}
+                        height={ButtonHeight}
+                        width={ButtonWidth}
+                        radius={ButtonRadius}
 
                         impact
                         impactStyle='Light'
@@ -91,15 +76,14 @@ function Learn({navigation}) {
                         style={{marginVertical: 8}}
 
                         text="Advanced Method"
-                        textStyle={{ fontSize: 20 }}
+                        textStyle={styles.textStyle}
 
                         gradientBegin="#64e764" //change color
                         gradientEnd="#009FFD" //change color
-                        gradientDirection="vertical"
-
-                        height={60}
-                        width={300}
-                        radius={15}
+                        gradientDirection={ButtonGradientDirection}
+                        height={ButtonHeight}
+                        width={ButtonWidth}
+                        radius={ButtonRadius}
 
                         impact
                         impactStyle='Light'
@@ -110,19 +94,18 @@ function Learn({navigation}) {
                         style={{marginVertical: 8}}
 
                         text="List of Algorithms"
-                        textStyle={{ fontSize: 20 }}
+                        textStyle={styles.textStyle}
 
                         gradientBegin="#009FFD" //change color
                         gradientEnd="#add8e6" //change color
-                        gradientDirection="vertical"
-
-                        height={60}
-                        width={300}
-                        radius={15}
+                        gradientDirection={ButtonGradientDirection}
+                        height={ButtonHeight}
+                        width={ButtonWidth}
+                        radius={ButtonRadius}
 
                         impact
                         impactStyle='Light'
-                        //navigate to the algorithm list screen
+                        onPressAction={() => navigation.navigate('AlgList')} //navigate to the algorithm list screen
                     />
                 </View>
             </View>
@@ -157,6 +140,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
 
+    textStyle: {
+        color: 'black',
+        fontSize:30,    
+        opacity:0.9,
+    }
 })
 
 export default Learn;

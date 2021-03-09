@@ -3,16 +3,9 @@ import { StyleSheet, View,
  Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
-import AwesomeButton from "react-native-really-awesome-button";
-import LinearGradient from "react-native-linear-gradient";
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import colors from '../config/colors'
-
-function AdvancedLearn({navigation}) {
-    return(
+function AlgList({navigation}) {
+    return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer}>
                 {/*
@@ -22,10 +15,15 @@ function AdvancedLearn({navigation}) {
                 />
                 */}
                 <View style={{height: '90%'}}>
-                    <ScrollView style={styles.scroll}> 
+                    <ScrollView style={styles.scroll}>
                         <Card containerStyle={{backgroundColor: 'black'}}>
-                            <Card.Title style={styles.textTitle}>advanced method</Card.Title>
+                            <Card.Title style={styles.textTitle}>list of algs</Card.Title>
                         </Card>
+                        {
+                            //two cards wide, clockwise and counter clockwise for each side, also add wide turns (f and Fw)
+                            //also add color scheme (which colors are always opposite on most cubes)
+                            //
+                        }
                     </ScrollView>
                 </View>
             </View>
@@ -119,4 +117,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AdvancedLearn;
+export default AlgList;

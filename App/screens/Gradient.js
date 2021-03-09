@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { StyleSheet, SafeAreaView, Text, View, 
   Image, Alert, TouchableWithoutFeedback, 
   TouchableOpacity, TouchableHighlight, 
  Platform, Dimensions, StatusBar, Pressable, SafeAreView} from 'react-native';
-
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import LightVideo from '../Assets/RotatingCube.mp4';
@@ -22,7 +20,6 @@ function Gradient({navigation}) {
     
     return (
         <View style={styles.ViewContainer}>
-
             <Video
                 source={LightVideo}
                 rate={1.0}
@@ -32,17 +29,14 @@ function Gradient({navigation}) {
                 shouldPlay
                 isLooping
                 style={styles.image}
-                
-                /> 
+            /> 
             
-                <Header                       
-                    containerStyle={styles.viewStyle}
-                    centerContainerStyle={{flex:14}}
-                    centerComponent={{ text: 'Rubiks Cube App', style: { color: 'black', fontSize:39, fontWeight:'bold'}}} 
-                    />
-                
+            <Header                       
+                containerStyle={styles.viewStyle}
+                centerContainerStyle={{flex:14}}
+                centerComponent={{ text: 'Rubiks Cube App', style: { color: 'black', fontSize:39, fontWeight:'bold'}}} 
+            />
                     <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.9}}>
-                        
                         <GradientButton
                             text="Learn"                        
                             textStyle={styles.textStyle}
@@ -114,7 +108,6 @@ function Gradient({navigation}) {
                         </GradientButton>
                     </View>            
         </View>
-
     );
 }
 
@@ -128,12 +121,8 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-
-    
     },
 
-        
-    
     image:{        
         width:'140%',
         height:'125%',
@@ -141,11 +130,13 @@ const styles = StyleSheet.create({
         top:-80,
         right:-69
     },
+
     viewStyle: {
         borderBottomColor: 'transparent',
         marginTop:0,
         backgroundColor:'transparent'        
     },
+
     textStyle:{
         color:'black',
         fontSize:30,    
