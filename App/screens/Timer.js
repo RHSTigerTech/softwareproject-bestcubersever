@@ -29,6 +29,7 @@ const getData = async () => {
     // error reading value
   }
 }
+getData()
 
 
 
@@ -233,7 +234,7 @@ const App = ({navigation}) => {
 
             
 
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:10}}>
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:30}}>
 
           
           <Icon.Button
@@ -300,47 +301,18 @@ const App = ({navigation}) => {
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
-          <View style={{flex:1,flexDirection:'column',bottom:25, backgroundColor: 'black', left:5}}>
+          <View style={{flex:1,flexDirection:'column',bottom:-20, right:40,backgroundColor: 'transparent'}}>
         {/* Rest of the app comes ABOVE the action button component !*/}
+        
         <ActionButton buttonColor="rgba(231,76,60,1)"
-        size={45}>
+        size={45}
+        fontSize={80}>
           
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-          <Icon.Button
-            
-            name='delete'
-            flexDirection='column'
-            backgroundColor='transparent'
-            color='white'
-            size={22}
-            left={3}
-            alignItems='center'
-            
-            onPress={() => {del=true,deletetime()}}
-            
-          >
-          
-          </Icon.Button>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={() => {}}>
+            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
-          <Icon.Button
-            
-            name='delete'
-            flexDirection='column'
-            backgroundColor='transparent'
-            color='white'
-            size={22}
-            left={3}
-            alignItems='center'
-            
-            onPress={() => {del=true,deletetime()}}
-            
-          >
-          
-          
-          
-          
-          </Icon.Button>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {}}>
+            <Icon name="delete" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
       </View>
