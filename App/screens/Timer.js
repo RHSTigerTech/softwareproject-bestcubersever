@@ -20,6 +20,9 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 //importing library to use Stopwatch and Timer
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+//y
 
 let finaltime='';
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
@@ -48,39 +51,41 @@ console.log('--------------')
 const App = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  const [timerDuration, setTimerDuration] = useState(9000);
-  const [resetTimer, setResetTimer] = useState(false);
+  
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
   
   return (
+    
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
-          <Stopwatch
-            
+        
+          <Stopwatch            
             msecs
             start={isStopwatchStart}
                 
-            //To start
-            reset={resetStopwatch}
-            //To reset
             options={options}
-            //options for the styling
+
             getTime={(time) => {
-              //console.log(time);
               finaltime=time;
             }}
             
+            
           />
+         
           <TouchableOpacity style={styles.startbuttonSize}
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
+              
+              
+              
             }}>
             <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'READY' : 'STOP'}
-              
+                
+            
             </Text>
             
             <Text style={styles.resetbuttonText}>
@@ -93,44 +98,91 @@ const App = () => {
             
           </TouchableOpacity>
           
-          {/* <TouchableHighlight style={styles.resetbuttonSize}
-            onPress={() => {
-              setIsStopwatchStart(false);
-              setResetStopwatch(true);
-              
-            }}>
-            <Text style={styles.resetbuttonText}>previous time</Text>
-          </TouchableHighlight> */}
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+          <Icon.Button
+            
+            name='cube-outline'
+            flexDirection='column'
+            backgroundColor='black'
+            alignItems='center'
+            color='white'
+            size={30}
+            onPress={() => navigation.navigate('VirtualCube')}
+          >
+          <Text style={styles.BottomTabText}>3DCube   </Text>
+          </Icon.Button>
+          <Icon.Button
+            
+            name='chart-line'
+            alignItems='center'
+            flexDirection='column'
+            backgroundColor='black'
+            color='white'
+            size={30}
+            onPress={() => {navigation.navigate('Statistics')}}
+          >
+          <Text style={styles.BottomTabText}>Statistics   </Text>
+          </Icon.Button>
+
+          
+          <Icon.Button
+            
+            name='home' 
+            flexDirection='column'
+            backgroundColor='black'
+            color='white'
+            size={30}
+            onPress={() => {navigation.navigate('Gradient')}}
+          >
+          <Text style={styles.BottomTabText}>Home   </Text>
+          </Icon.Button>
+          <Icon.Button
+            
+            name='delete'
+            flexDirection='column'
+            backgroundColor='black'
+            color='white'
+            size={30}
+            
+            onPress={() => {del=true,deletetime()}}
+            
+          >
+          
+          
+          
+          <Text style={styles.BottomTabText}>Delete   </Text>
+          </Icon.Button>
+          <Icon.Button
+            
+            name='school'
+            flexDirection='column'
+            backgroundColor='black'
+            color='white'
+            size={30}
+            onPress={() => navigation.navigate('Learn')}
+          >
+          <Text style={styles.BottomTabText}>Learn   </Text>
+          </Icon.Button>
+          </View>
         </View>
       </View>
     </SafeAreaView>
+    
   );
-};
+}
 
 export default App;
 
+  
+
 const styles = StyleSheet.create({
+
+  
   container: {
     flex: 1,
-    //padding: 10,
-    
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'black'
-  },
-  
-  sectionStyle: {
-    flex: 1,
-    //marginTop: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  startbuttonText: {
-    fontSize: 80,
-    //marginTop: 10,
-    color:'#FFF',
-    top:320,
-    
   },
   resetbuttonText: {
     fontSize: 40,
@@ -138,6 +190,27 @@ const styles = StyleSheet.create({
     color:'#FFF',
     position:'absolute',
     bottom:0,
+  },
+  sectionStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  startbuttonText: {
+    fontSize: 80,
+    color:'#FFF',
+    top:320, 
+  },
+
+  ScrambleText: {
+    fontSize: 25,
+    width:'60%',
+    color:'#FFF',
+    position:'absolute',
+    top:10,
+    textAlign:'center',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
   ScrambleText: {
     
@@ -156,30 +229,26 @@ const styles = StyleSheet.create({
       height: '10%',
       alignItems:'center'
   },
-  startbuttonSize:{
-    //position:'absolute',
-    width: 500,
-    height: '100%',
-    alignItems:'center',
-        
-    
 
-}
+  startbuttonSize:{
+    width: 500,
+    height: '87%',
+    alignItems:'center',
+  },
+
 });
 
 const options = {
   container: {
-    //flex: 1,
-    //padding: 10,
     position:'absolute',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'black',
     height:70
   },
+  
   text: {
     fontSize: 70,
-    //fontFamily:'Helvetica Neue',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
     color: '#FFF',
     marginLeft: 0,
