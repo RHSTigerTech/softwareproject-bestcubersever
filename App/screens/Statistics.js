@@ -30,8 +30,10 @@ const chartConfigs = [
     
     {
       backgroundColor: "black",
-      backgroundGradientFrom: "#0091EA",
-      backgroundGradientTo: "#0091EA",
+      fillShadowGradient:'white',
+      fillShadowGradientOpacity:.4,
+      backgroundGradientFrom: "black",
+      backgroundGradientTo: "black",
       color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
     },
     
@@ -135,11 +137,11 @@ const chartConfigs = [
       //const { width } = Dimensions.get("window");
     //const {height} = Dimensions.get('window');
       return (
-        <View style={{flex: 1, backgroundColor: '#0091EA'}} >
+        <View style={{flex: 1, backgroundColor: 'black'}} >
         <Header                       
-                    containerStyle={styles}
+                    containerStyle={styles,{backgroundColor:'black', borderBottomColor:'black'}}
                     centerContainerStyle={{flex:14}}
-                    centerComponent={{ text: 'Session Statistics', style: { color: 'black', fontSize:30, fontWeight:'bold', bottom:-5}}} 
+                    centerComponent={{ text: 'Session Statistics', style: { color: 'white', fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
                     //shadowColor={'transparent'}
                     />
         <ScrollView directionalLockEnabled='vertical' vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
@@ -173,7 +175,7 @@ const chartConfigs = [
             
               <LineChart
                 
-                //bezier
+                bezier
                 data={{
                   labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                   datasets: [
