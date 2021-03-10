@@ -8,6 +8,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import { IconButton } from 'react-native-paper';
+import { RGBA_ASTC_5x5_Format } from 'three';
 
 
 
@@ -234,7 +236,7 @@ const App = ({navigation}) => {
 
             
 
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:30}}>
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.3%':'1.5%'}}>
 
           
           <Icon.Button
@@ -245,6 +247,7 @@ const App = ({navigation}) => {
             alignItems='center'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
             onPress={() => navigation.navigate('VirtualCube')}
           >
           <Text style={styles.BottomTabText}>3DCube   </Text>
@@ -257,6 +260,7 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
             onPress={() => {navigation.navigate('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics   </Text>
@@ -270,11 +274,12 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
             onPress={() => {navigation.navigate('Gradient')}}
           >
           <Text style={styles.BottomTabText}>Home   </Text>
           </Icon.Button>
-          <Icon.Button
+          {/* <Icon.Button
             
             name='delete'
             flexDirection='column'
@@ -289,7 +294,7 @@ const App = ({navigation}) => {
           
           
           <Text style={styles.BottomTabText}>Delete   </Text>
-          </Icon.Button>
+          </Icon.Button> */}
           <Icon.Button
             
             name='school'
@@ -297,24 +302,34 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
             onPress={() => navigation.navigate('Learn')}
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
-          <View style={{flex:1,flexDirection:'column',bottom:-20, right:40,backgroundColor: 'transparent'}}>
+          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '8.2%': '-4.1%', right:Platform.OS === 'ios' ? '40%':'22%',backgroundColor: 'transparent'}}>
         {/* Rest of the app comes ABOVE the action button component !*/}
         
-        <ActionButton buttonColor="rgba(231,76,60,1)"
+        <ActionButton
+        buttonColor="transparent"
         size={45}
-        fontSize={80}>
+        spacing={0}
+        
+        buttonText="+"
+        >
+        
           
           <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={() => {}}>
-            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+            <Icon name="plus" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {}}>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {del=true,deletetime()}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
           </ActionButton.Item>
+          
         </ActionButton>
+        <Text style={{fontSize:10, left:Platform.OS === 'android' ? '24%':'30%', bottom:Platform.OS === 'android' ?'-37%':'-120%',
+    color:'white',
+    justifyContent:'center'}}>Options</Text> 
       </View>
           </View>
         </View>
@@ -361,7 +376,7 @@ const styles = StyleSheet.create({
     width:'60%',
     color:'#FFF',
     position:'absolute',
-    top:10,
+    top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
