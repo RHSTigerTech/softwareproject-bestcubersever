@@ -1,11 +1,15 @@
 
 import React, { useState, Component } from 'react';
-import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar} from 'react-native';
+import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Pressable} from 'react-native';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ActionButton from 'react-native-action-button';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import { IconButton } from 'react-native-paper';
+import { RGBA_ASTC_5x5_Format } from 'three';
 
 
 
@@ -27,6 +31,7 @@ const getData = async () => {
     // error reading value
   }
 }
+getData()
 
 
 
@@ -98,6 +103,7 @@ export const deletetime = () =>{
   
   if(del===true){
     convertedTimes.pop();
+    
   }
   del=false;
   
@@ -173,13 +179,16 @@ console.log('--------------')
 
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  
+  const [modalVisible, setModalVisible] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
 
   return (
+
+    
     
     <SafeAreaView style={styles.container}>
+      
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
         
@@ -222,7 +231,14 @@ const App = ({navigation}) => {
             
           </TouchableOpacity>
           
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%'}}>
+          
+          
+
+            
+
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
+
+          
           <Icon.Button
             
             name='cube-outline'
@@ -231,6 +247,7 @@ const App = ({navigation}) => {
             alignItems='center'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => navigation.navigate('VirtualCube')}
           >
           <Text style={styles.BottomTabText}>3DCube   </Text>
@@ -243,6 +260,7 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics   </Text>
@@ -256,11 +274,12 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Gradient')}}
           >
           <Text style={styles.BottomTabText}>Home   </Text>
           </Icon.Button>
-          <Icon.Button
+          {/* <Icon.Button
             
             name='delete'
             flexDirection='column'
@@ -275,7 +294,7 @@ const App = ({navigation}) => {
           
           
           <Text style={styles.BottomTabText}>Delete   </Text>
-          </Icon.Button>
+          </Icon.Button> */}
           <Icon.Button
             
             name='school'
@@ -283,10 +302,37 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => navigation.navigate('Learn')}
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
+          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '90%':'55%',backgroundColor: 'transparent'}}>
+        {/* Rest of the app comes ABOVE the action button component !*/}
+        
+        <ActionButton
+        buttonColor="transparent"
+        size={45}
+        spacing={0}
+        offsetX={0}
+        offsetY={0}
+        //position='center'
+        buttonText="+"
+        >
+        
+          
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={() => {}}>
+            <Icon name="plus" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {del=true,deletetime()}}>
+            <Icon name="delete" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          
+        </ActionButton>
+        <Text style={{fontSize:10, left:Platform.OS === 'android' ? '54%':'58%', bottom:Platform.OS === 'android' ?'-92%':'-96%',
+    color:'white',
+    justifyContent:'center'}}>Options</Text> 
+      </View>
           </View>
         </View>
       </View>
@@ -332,7 +378,7 @@ const styles = StyleSheet.create({
     width:'60%',
     color:'#FFF',
     position:'absolute',
-    top:10,
+    top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
@@ -348,6 +394,17 @@ const styles = StyleSheet.create({
     height: '87%',
     alignItems:'center',
   },
+
+
+  
+    actionButtonIcon: {
+      fontSize: 30,
+      height: 33,
+      color: 'white',
+      
+      
+    },
+  
 
 });
 
