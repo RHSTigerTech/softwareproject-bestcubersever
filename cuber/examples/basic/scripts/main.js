@@ -110,7 +110,8 @@ $(document).ready( function(){
 
 	shuffleButton.addEventListener('click', (e) => {
 		
-		cube.shuffle(15);
+		cube.shuffle(30);
+		
 	});
 
 	playSolutionButton.addEventListener('click', (e) => {
