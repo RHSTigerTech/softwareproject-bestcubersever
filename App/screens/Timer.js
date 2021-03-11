@@ -236,7 +236,7 @@ const App = ({navigation}) => {
 
             
 
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.3%':'1.5%'}}>
+          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
 
           
           <Icon.Button
@@ -247,7 +247,7 @@ const App = ({navigation}) => {
             alignItems='center'
             color='white'
             size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => navigation.navigate('VirtualCube')}
           >
           <Text style={styles.BottomTabText}>3DCube   </Text>
@@ -260,7 +260,7 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics   </Text>
@@ -274,7 +274,7 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Gradient')}}
           >
           <Text style={styles.BottomTabText}>Home   </Text>
@@ -302,19 +302,21 @@ const App = ({navigation}) => {
             backgroundColor='black'
             color='white'
             size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4%'}
+            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => navigation.navigate('Learn')}
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
-          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '8.2%': '-4.1%', right:Platform.OS === 'ios' ? '40%':'22%',backgroundColor: 'transparent'}}>
+          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '90%':'55%',backgroundColor: 'transparent'}}>
         {/* Rest of the app comes ABOVE the action button component !*/}
         
         <ActionButton
         buttonColor="transparent"
         size={45}
         spacing={0}
-        
+        offsetX={0}
+        offsetY={0}
+        //position='center'
         buttonText="+"
         >
         
@@ -327,7 +329,7 @@ const App = ({navigation}) => {
           </ActionButton.Item>
           
         </ActionButton>
-        <Text style={{fontSize:10, left:Platform.OS === 'android' ? '24%':'30%', bottom:Platform.OS === 'android' ?'-37%':'-120%',
+        <Text style={{fontSize:10, left:Platform.OS === 'android' ? '54%':'58%', bottom:Platform.OS === 'android' ?'-92%':'-96%',
     color:'white',
     justifyContent:'center'}}>Options</Text> 
       </View>
@@ -396,9 +398,11 @@ const styles = StyleSheet.create({
 
   
     actionButtonIcon: {
-      fontSize: 20,
-      height: 22,
+      fontSize: 30,
+      height: 33,
       color: 'white',
+      
+      
     },
   
 
