@@ -97,15 +97,36 @@ $(document).ready( function(){
 	var container = document.getElementById( 'container' );
 	container.appendChild( cube.domElement );
 
+	var shuffleButton = document.getElementById('shuffle-btn');
 
 
 	if( controls === ERNO.Locked ){
-		var fixedOrientation = new THREE.Euler(  Math.PI * 0.12, Math.PI * -0.12, 0 );
+		var fixedOrientation = new THREE.Euler(  Math.PI * 0.12, Math.PI * -0.14, 0 );
 		cube.object3D.lookAt( cube.camera.position );
 		cube.rotation.x += fixedOrientation.x;
 		cube.rotation.y += fixedOrientation.y;
 		cube.rotation.z += fixedOrientation.z;
 	}
+
+	shuffleButton.addEventListener('click', (e) => {
+		
+		cube.shuffle(15);
+	});
+
+	playSolutionButton.addEventListener('click', (e) => {
+		playSolution(1);
+	});
+
+	cube.domElement.addEventListener('click', (e) => {
+
+		if(e.target.getAttribute('sticker')) {
+			let stickerId = e.target.getAttribute('sticker');
+
+			
+		}
+	});
+
+	
 
 
 	// The deviceMotion function provide some subtle mouse based motion

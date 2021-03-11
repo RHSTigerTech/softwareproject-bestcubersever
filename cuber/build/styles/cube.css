@@ -1,26 +1,21 @@
-    /************/
-   /*          */
-  /*   Cube   */
- /*          */
+/************/
+/*          */
+/*   Cube   */
+/*          */
 /************/
 
-
 .cube {
-	width:  100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
-
 
 @font-face {
-
-	font-family: "RubikExtended";
-	src:
-		url( "../media/RubikExtended.ttf"  ) format( "truetype" ),
-		url( "../media/RubikExtended.otf"  ) format( "otf" );
-	font-weight: normal;
-	font-style: normal;
+  font-family: "RubikExtended";
+  src: url("../media/RubikExtended.ttf") format("truetype"),
+    url("../media/RubikExtended.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
 }
-
 
 /*
 
@@ -28,46 +23,33 @@
 
 */
 .faceLabel {
-
-	display: none;
-	position: absolute;
-	font-size: 60px;
-	text-align: center;
-	font-family: "RubikExtended";
-	text-shadow: 0 0 24px rgba( 0, 0, 0, 0.3 );
-	color: #FFF;
+  display: none;
+  position: absolute;
+  font-size: 60px;
+  text-align: center;
+  font-family: "RubikExtended";
+  text-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+  color: #fff;
 }
 
-
-
-
-
-    /****************/
-   /*              */
-  /*   Cubelets   */
- /*              */
+/****************/
+/*              */
+/*   Cubelets   */
+/*              */
 /****************/
 
-
 .cube .cubelet {
-
-	width:  1em;
-	height: 1em;
-	position: absolute;
-	box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  box-sizing: border-box;
 }
 
-
-
-
-
-
-    /*********************/
-   /*                   */
-  /*   Cubelet Faces   */
- /*                   */
 /*********************/
-
+/*                   */
+/*   Cubelet Faces   */
+/*                   */
+/*********************/
 
 /*
 
@@ -76,30 +58,24 @@
 
 */
 .cube /*.cubelet >*/ .face {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background-color: rgb(7, 7, 7);
+  text-align: center;
 
-	position: absolute;
-	width:  1em;
-	height: 1em;
-	background-color: #000;
-	text-align: center;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
 
-
-	-webkit-backface-visibility: hidden;
-  	-moz-backface-visibility:    hidden;
-  	-o-backface-visibility:      hidden;
-  	backface-visibility:         hidden;
-
-
-  	padding: 0.05em;
-  	-moz-box-sizing: border-box;
-  	-webkit-box-sizing: border-box;
-  	-o-box-sizing: border-box;
-  	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-
+  padding: 0.05em;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
-
-
 
 /*
 
@@ -109,9 +85,9 @@
 	are momentarily visible as the cube twists.
 
 */
-.cube /*.cubelet >*/ .face.faceIntroverted { background-color: #000; }
-
-
+.cube /*.cubelet >*/ .face.faceIntroverted {
+  background-color: #000;
+}
 
 /*
 
@@ -121,22 +97,36 @@
 	Group.hidePlastics().
 
 */
-.cube /*.cubelet >*/ .face.faceTransparent { background-color: transparent; }
-
-
+.cube /*.cubelet >*/ .face.faceTransparent {
+  background-color: transparent;
+}
 
 /*
 
 	Awwww.... Look at da purty colors...
 
 */
-.purty .face { opacity: 0.5; }
-.purty .face.faceFront { background-color: #FFF; }
-.purty .face.faceUp    { background-color: #E87000; }
-.purty .face.faceRight { background-color: #3D81F6; }
-.purty .face.faceDown  { background-color: #DC422F; }
-.purty .face.faceLeft  { background-color: #009D54; }
-.purty .face.faceBack  { background-color: #F5B400; }
+.purty .face {
+  opacity: 0.5;
+}
+.purty .face.faceFront {
+  background-color: #fff;
+}
+.purty .face.faceUp {
+  background-color: #e87000;
+}
+.purty .face.faceRight {
+  background-color: #3d81f6;
+}
+.purty .face.faceDown {
+  background-color: #dc422f;
+}
+.purty .face.faceLeft {
+  background-color: #009d54;
+}
+.purty .face.faceBack {
+  background-color: #f5b400;
+}
 /*.purty .face.faceFront { background-color: #CCC; }
 .purty .face.faceUp    { background-color: #C30; }
 .purty .face.faceRight { background-color: #00A; }
@@ -144,17 +134,11 @@
 .purty .face.faceLeft  { background-color: #070; }
 .purty .face.faceBack  { background-color: #CB0; }*/
 
-
-
-
-
-
-    /****************************/
-   /*                          */
-  /*   Cubelet Face Content   */
- /*                          */
 /****************************/
-
+/*                          */
+/*   Cubelet Face Content   */
+/*                          */
+/****************************/
 
 /*
 
@@ -167,15 +151,13 @@
 
 */
 .cube /*.cubelet > */.face > .wireframe {
-
-	/*box-sizing: border-box;*/
-	display: none;
-	position: absolute;
-	width:  140px;
-	height: 140px;
-	background-color: rgba( 255, 255, 255, 0.05 );
+  /*box-sizing: border-box;*/
+  display: none;
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.05);
 }
-
 
 /*
 
@@ -188,34 +170,134 @@
 
 */
 .cube .sticker {
+  /*position: absolute;*/
 
-	/*position: absolute;*/
-
-	width:  100%;
-	height: 100%;
-	background-color: #F0F;
-	border-radius: 0.1em;
-	text-align: center;
-
+  width: 100%;
+  height: 100%;
+  background-color: #f0f;
+  border-radius: 0.1em;
+  text-align: center;
 }
 
-
-.cube .sticker.red 		{ background: #DC422F;	}
-.cube .sticker.white 	{ background: #F3F3F3;	}
-.cube .sticker.blue 	{ background: #3D81F6; 	}
-.cube .sticker.green 	{ background: #009D54;	}
-.cube .sticker.orange 	{ background: #E87000; 	}
-.cube .sticker.yellow 	{ background: #F5B400; 	}
-
-.cube .sticker.stickerLogo {
-
-	background: #F3F3F3 url( "../media/rubiksLogoClassic.png" );
-	background-size: 100% 100%;
-	background-repeat: none;
+.cube .sticker.red {
+  background: #dc422f;
+}
+.cube .sticker.white {
+  background: #f3f3f3;
+}
+.cube .sticker.blue {
+  background: #3d81f6;
+}
+.cube .sticker.green {
+  background: #009d54;
+}
+.cube .sticker.orange {
+  background: #e87000;
+}
+.cube .sticker.yellow {
+  background: #f5b400;
 }
 
+/* .cube .sticker.stickerLogo {
+  background: #f3f3f3 url("../media/rubiksLogoClassic.png");
+  background-size: 100% 100%;
+  background-repeat: none;
+} */
 
+[sticker~="10-1"] {
+  background: rgba(151, 207, 211, 0.9) !important;
+}
 
+[sticker~="16-3"] {
+  background: rgba(19, 66, 70, 0.9) !important;
+}
+
+/*  
+Front Face
+
+ ----------------------- 
+|                       |
+| 0-0     1-0     2-0   | 
+|                       |
+|                       |
+| 3-0     4-0     5-0   | 
+|                       | 
+|                       |
+| 6-0     7-0     8-0   |
+|                       |
+----------------------- *
+
+*/
+
+[sticker~="0-0"],
+[sticker~="1-0"],
+[sticker~="2-0"],
+[sticker~="3-0"],
+[sticker~="4-0"],
+[sticker~="5-0"],
+[sticker~="6-0"],
+[sticker~="7-0"],
+[sticker~="8-0"] {
+  background: rgba(190, 54, 54, 0.9) !important;
+}
+
+/* 
+Top Face 
+
+ ----------------------- 
+|                       |
+| 18-1    19-1    20-1  | 
+|                       |
+|                       |
+| 9-1     10-1    11-1  | 
+|                       | 
+|                       |
+| 0-1     1-1     2-1   |
+|                       |
+----------------------- *
+*/
+
+[sticker~="0-1"],
+[sticker~="1-1"],
+[sticker~="2-1"],
+[sticker~="9-1"],
+[sticker~="10-1"],
+[sticker~="11-1"],
+[sticker~="18-1"],
+[sticker~="19-1"],
+[sticker~="20-1"] {
+  background: rgba(1, 6, 10, 0.9) !important;
+}
+
+/* [sticker~="3-0"],
+[sticker~="4-0"],
+[sticker~="5-0"],
+[sticker~="5-2"],
+[sticker~="14-2"],
+[sticker~="23-2"],
+[sticker~="23-5"],
+[sticker~="22-5"],
+[sticker~="21-5"],
+[sticker~="21-4"],
+[sticker~="12-4"],
+[sticker~="3-4"] {
+  background: rgba(16, 168, 92, 0.9) !important;
+}
+
+[sticker~="6-0"],
+[sticker~="7-0"],
+[sticker~="8-0"],
+[sticker~="8-2"],
+[sticker~="17-2"],
+[sticker~="26-2"],
+[sticker~="26-5"],
+[sticker~="25-5"],
+[sticker~="24-5"],
+[sticker~="24-4"],
+[sticker~="15-4"],
+[sticker~="6-4"] {
+  background: rgba(45, 72, 192, 0.9) !important;
+} */
 
 /*
 
@@ -228,21 +310,18 @@
 
 */
 .cube /*.cubelet >*/ .face > .id {
-
-	display: none;
-	position: absolute;
-	z-index: 1000;
-	width:  90%;
-	height: 90%;
-	font-size:   1em;
-	line-height: 0.9em;
-	text-align: center;
-	color: #000;
-
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  width: 90%;
+  height: 90%;
+  font-size: 1em;
+  line-height: 0.9em;
+  text-align: center;
+  color: #000;
 }
 .cube /*.cubelet >*/ .face > .id > .underline {
-
-	border-bottom: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 /*
 
@@ -253,15 +332,11 @@
 
 */
 .cube /*.cubelet > */.face.faceIntroverted > .id {
-
-	color: #FEFEFE;
+  color: #fefefe;
 }
 .cube /*.cubelet >*/ .face.faceIntroverted > .id > .underline {
-
-	border-bottom: 1px solid #FEFEFE;
+  border-bottom: 1px solid #fefefe;
 }
-
-
 
 /*
 
@@ -272,21 +347,35 @@
 
 */
 .cube /*.cubelet >*/ .face > .text {
+  display: none;
+  position: absolute;
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  font-family: "RubikExtended", sans-serif;
+  font-size: 1em;
+  line-height: 1em;
 
-
-	display: none;
-	position: absolute;
-	z-index: 2000;
-	width:  100%;
-	height: 100%;
-	text-align: center;
-	color: #FFF;
-	font-family: "RubikExtended", sans-serif;
-	font-size:   1em;
-	line-height: 1em;
-
-	/*-webkit-backface-visibility: hidden;
+  /*-webkit-backface-visibility: hidden;
   	-moz-backface-visibility:    hidden;
   	-o-backface-visibility:      hidden;
   	backface-visibility:         hidden;*/
+}
+
+.buttons {
+  flex-direction: column;
+  font-size: 32px;
+  position: absolute;
+  bottom: 280px;
+  display: flex;
+  justify-content: center;
+  border-right: 5px solid black;
+  padding: 15px;
+}
+
+.buttons div {
+  margin-left: 16px;
+  margin-right: 16px;
 }
