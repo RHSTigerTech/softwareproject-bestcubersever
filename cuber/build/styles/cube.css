@@ -495,7 +495,7 @@ Bottom Face
   /* flex-direction: row; */
   font-size: 32px;
   position: absolute;
-  bottom: 800px;
+  bottom: 750px;
   display: flex;
   justify-content: center;
   right: 900px;
