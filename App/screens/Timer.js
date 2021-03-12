@@ -9,29 +9,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
-import { RGBA_ASTC_5x5_Format } from 'three';
+import {getData, storeData} from './storage'
 
 
 
-const storeData = async (value) => {
-  try {
-    const jsonValue = JSON.stringify(value) 
-    await AsyncStorage.setItem('@storage_Key', jsonValue)
-  } catch (e) {
-  }
-}
-const getData = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('@storage_Key')
-    console.log(jsonValue)
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
 
-    //return (jsonValue)
-  } catch(e) {
-    // error reading value
-  }
-}
-getData()
+//getData()
+
 
 
 
@@ -92,7 +76,7 @@ export const times = () =>{
   }
   
   storeData(convertedTimes)
-  getData()
+  //getData()
 
   storedData=convertedTimes;
   return (convertedTimes);
@@ -122,7 +106,7 @@ function convert(){
 }
 
 let storagetest=getData()+storeData(convertedTimes)
-console.log(storagetest)
+//console.log(storagetest)
 
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
@@ -134,10 +118,10 @@ function k(){
 
     for(let i=0; i<20;i++){
       
-      console.log('--')
+      // console.log('--')
       l =Math.floor(Math.random()*possiblemoves.length)
-      console.log(l)
-      console.log(j)
+      // console.log(l)
+      // console.log(j)
       if(j===l){ 
         s.pop();
         i--
