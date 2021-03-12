@@ -495,12 +495,12 @@ Bottom Face
   /* flex-direction: row; */
   font-size: 32px;
   position: absolute;
-  bottom: 600px;
+  bottom: 81%;
   display: flex;
   justify-content: center;
-  right: 120px;
+  right: 33%;
   /* border-right: 5px solid black; */
-  padding: 15px;
+  /* padding: 15px; */
 }
 
 .buttons div {
