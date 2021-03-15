@@ -64,7 +64,7 @@ const chartConfigs = [
         }
     }
     
-    //add more if else statements to male scroll look good no matter how many data points
+    //add more if else statements to make scroll look good no matter how many data points
     if (data.length>10){
         width = 800;
     }

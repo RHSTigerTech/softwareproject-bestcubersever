@@ -38,7 +38,7 @@ const storeData = async (value) => {
       try {
         let jsonValue = JSON.stringify(value) 
         await AsyncStorage.setItem('@storage_Key', jsonValue)
-        console.log(jsonValue)
+        //console.log(jsonValue)
       } catch (e) {
       }
     }
@@ -46,10 +46,28 @@ const storeData = async (value) => {
 const getData = async () => {
       try {
         let jsonValue = await AsyncStorage.getItem('@storage_Key')
-        console.log(jsonValue)
-        console.log(typeof jsonValue)
-        return jsonValue != null ? JSON.parse(jsonValue) : null;
-    
+        
+        convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
+        let i=0;
+        
+
+        console.log(convertedJson)
+        console.log(convertedJson.length)
+        // console.log(convertedJson.substring(0,1))
+        const propertyValues = Object.values(convertedJson);
+        console.log(propertyValues)
+        console.log(typeof propertyValues)
+        console.log(typeof convertedTimes)
+        //console.log(propertyValues.substring(0,1))
+
+        while (i<propertyValues.length){
+          convertedTimes.push(propertyValues)
+          //console.log(convertedJson.substring(i,i+1))
+          i++
+        }
+
+        return convertedJson;
+        
         //return (jsonValue)
       } catch(e) {
         // error reading value
