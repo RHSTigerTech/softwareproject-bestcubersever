@@ -10,7 +10,7 @@ import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
 //import {getData, storeData} from './storage'
-import { loadTextureAsync } from 'expo-three';
+//import { loadTextureAsync } from 'expo-three';
 
 
 
@@ -100,7 +100,10 @@ export const times = () =>{
     
     console.log(convertedTimes)
   }
-  
+  storeData(convertedTimes)
+  //getData()
+
+  storedData=convertedTimes;
   
   return (convertedTimes);
   
@@ -219,7 +222,7 @@ const App = ({navigation}) => {
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              storeData(convertedTimes);
+              storeData(convertedTimes)
               
               
               
