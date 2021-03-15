@@ -1,5 +1,5 @@
 
-import React, { useState, Component } from 'react';
+import React, { useState, Component, useEffect } from 'react';
 import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Pressable} from 'react-native';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
@@ -9,7 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
-import {getData, storeData} from './storage'
+//import {getData, storeData} from './storage'
+import { loadTextureAsync } from 'expo-three';
 
 
 
@@ -33,7 +34,32 @@ let del;
 
 let lastItem='00:00:000';
 
+const storeData = async (value) => {
+      try {
+        let jsonValue = JSON.stringify(value) 
+        await AsyncStorage.setItem('@storage_Key', jsonValue)
+        console.log(jsonValue)
+      } catch (e) {
+      }
+    }
+
+const getData = async () => {
+      try {
+        let jsonValue = await AsyncStorage.getItem('@storage_Key')
+        console.log(jsonValue)
+        console.log(typeof jsonValue)
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
+    
+        //return (jsonValue)
+      } catch(e) {
+        // error reading value
+      }
+    }
+
+
+
 export const times = () =>{
+  
   
   convertedTimes=convertedTimes.filter(function(element){
     return element !== undefined;
@@ -75,10 +101,7 @@ export const times = () =>{
     console.log(convertedTimes)
   }
   
-  storeData(convertedTimes)
-  //getData()
-
-  storedData=convertedTimes;
+  
   return (convertedTimes);
   
 }
@@ -165,7 +188,10 @@ const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
-  
+  useEffect(() =>
+{
+  getData();
+},[]);
 
   return (
 
@@ -193,6 +219,7 @@ const App = ({navigation}) => {
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
+              storeData(convertedTimes);
               
               
               
