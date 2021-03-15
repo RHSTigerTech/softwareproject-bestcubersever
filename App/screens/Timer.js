@@ -100,10 +100,10 @@ export const times = () =>{
     
     console.log(convertedTimes)
   }
-  storeData(convertedTimes)
+  //storeData(convertedTimes)
   //getData()
 
-  storedData=convertedTimes;
+  //storedData=convertedTimes;
   
   return (convertedTimes);
   
@@ -191,10 +191,10 @@ const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
-  useEffect(() =>
-{
-  getData();
-},[]);
+//   useEffect(() =>
+// {
+//   getData();
+// },[]);
 
   return (
 
