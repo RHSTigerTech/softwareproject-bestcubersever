@@ -63,6 +63,18 @@ const chartConfigs = [
         data.shift();
         }
     }
+
+    // for(let i=0;i<data.length;i++){
+    //   if(data[i,i+1]===0){
+    //     data[i,i+1]=5;
+    //   }
+    // }
+
+    let xcords=[]
+    for(let i=1;i<=data.length;i++){
+      xcords.push(i)
+    }
+
     
     //add more if else statements to make scroll look good no matter how many data points
     if (data.length>10){
@@ -109,7 +121,8 @@ const chartConfigs = [
                 
                 //bezier
                 data={{
-                  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                  labels:                     
+                      xcords,                  
                   datasets: [
                     {
                       data
