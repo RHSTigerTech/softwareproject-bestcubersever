@@ -51,7 +51,7 @@ const getData = async () => {
         let jsonstring=JSON.stringify(convertedJson)
         let i=0;
         
-        console.log(jsonstring+'yo')
+        console.log(jsonstring)
         let formattedjsonstring= jsonstring.split('[').join('')
         formattedjsonstring= formattedjsonstring.split(']').join('')
         
@@ -62,7 +62,9 @@ const getData = async () => {
         // timerarray=timerarray.split('/').join('')
         console.log(timerarray)
         array=timerarray.map(Number)
-        console.log(array+'yoyoyoyo')
+        console.log('-----------')
+        console.log(array)
+        console.log('-----------')
         // console.log(typeof timerarray)
         console.log(convertedJson)
         console.log(convertedJson.length)
@@ -108,6 +110,7 @@ export const times = () =>{
   lastItem= storedTimes[storedTimes.length-1]
   lastItem=lastItem.replace(":",".");
   lastItem=lastItem.replace(":",".");
+  //lastItem= lastItem.split('\\').join('')
       
     console.log(lastItem.substring(0,2))
     minutes= lastItem.substring(0,2)
@@ -276,7 +279,6 @@ const App = ({navigation}) => {
             </Text>
 
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
-            
             
           </TouchableOpacity>
           
