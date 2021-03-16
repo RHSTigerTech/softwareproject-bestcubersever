@@ -54,7 +54,9 @@ const getData = async () => {
         console.log(jsonstring)
         let formattedjsonstring= jsonstring.split('[').join('')
         formattedjsonstring= formattedjsonstring.split(']').join('')
-        
+        formattedjsonstring= formattedjsonstring.split('\\').join('')
+        formattedjsonstring= formattedjsonstring.split('"').join('')
+
         console.log(formattedjsonstring)
         timerarray=formattedjsonstring.split(',');
         
