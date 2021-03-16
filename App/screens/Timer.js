@@ -48,20 +48,31 @@ const getData = async () => {
         let jsonValue = await AsyncStorage.getItem('@storage_Key')
         
         convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
+        let jsonstring=JSON.stringify(convertedJson)
         let i=0;
         
-
+        console.log(jsonstring+'yo')
+        let formattedjsonstring= jsonstring.split('[').join('')
+        formattedjsonstring= formattedjsonstring.split(']').join('')
+        console.log(formattedjsonstring)
+        timerarray=formattedjsonstring.split(',');
+        console.log(timerarray)
+        array=timerarray.map(Number)
+        console.log(array)
+        // console.log(typeof timerarray)
         console.log(convertedJson)
         console.log(convertedJson.length)
         // console.log(convertedJson.substring(0,1))
         const propertyValues = Object.values(convertedJson);
         console.log(propertyValues)
-        console.log(typeof propertyValues)
-        console.log(typeof convertedTimes)
-        //console.log(propertyValues.substring(0,1))
+        // console.log(typeof propertyValues)
+        // console.log(typeof convertedTimes)
+        //console.log(propertyValues.slice(1,2))
 
-        while (i<propertyValues.length){
-          convertedTimes.push(propertyValues)
+        while (i<timerarray.length){
+          //timerarray=parseFloat(timerarray[i,i+1])
+          //timerrray.parseFloat[i,i+1]
+          convertedTimes.push(timerarray[i,i+1])
           //console.log(convertedJson.substring(i,i+1))
           i++
         }
