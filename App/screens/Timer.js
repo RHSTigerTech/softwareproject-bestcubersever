@@ -253,10 +253,10 @@ const App = ({navigation}) => {
          
           <TouchableOpacity style={styles.startbuttonSize}
             onPress={() => {  
-              storeData(convertedTimes)
+              
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              
+              storeData(convertedTimes)
               
               
               
@@ -273,6 +273,9 @@ const App = ({navigation}) => {
             {!isStopwatchStart ? k() : ''}
 
             </Text>
+            
+            {/* line added without testing */}
+            {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? storeData(convertedTimes) : ''}</Text> */}
 
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
             
