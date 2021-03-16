@@ -54,11 +54,15 @@ const getData = async () => {
         console.log(jsonstring+'yo')
         let formattedjsonstring= jsonstring.split('[').join('')
         formattedjsonstring= formattedjsonstring.split(']').join('')
+        
         console.log(formattedjsonstring)
         timerarray=formattedjsonstring.split(',');
+        
+        console.log(timerarray)
+        // timerarray=timerarray.split('/').join('')
         console.log(timerarray)
         array=timerarray.map(Number)
-        console.log(array)
+        console.log(array+'yoyoyoyo')
         // console.log(typeof timerarray)
         console.log(convertedJson)
         console.log(convertedJson.length)
@@ -249,9 +253,10 @@ const App = ({navigation}) => {
          
           <TouchableOpacity style={styles.startbuttonSize}
             onPress={() => {  
+              storeData(convertedTimes)
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              storeData(convertedTimes)
+              
               
               
               
