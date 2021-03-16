@@ -76,6 +76,7 @@ const getData = async () => {
         while (i<timerarray.length){
           //timerarray=parseFloat(timerarray[i,i+1])
           //timerrray.parseFloat[i,i+1]
+          //timerarray=timerarray.split('\\').join('')
           convertedTimes.push(timerarray[i,i+1])
           //console.log(convertedJson.substring(i,i+1))
           i++
@@ -126,7 +127,7 @@ export const times = () =>{
       lastItem=lastItem.substring(1)
       
     }
-    
+    //lastItem=lastitem.spit('\\').join('')
     lastItem=parseFloat(lastItem)
     lastItem=lastItem+(60*minutes)
     convertedTimes.push(lastItem)
@@ -253,10 +254,10 @@ const App = ({navigation}) => {
          
           <TouchableOpacity style={styles.startbuttonSize}
             onPress={() => {  
-              storeData(convertedTimes)
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              
+              storeData(convertedTimes)
+
               
               
               
