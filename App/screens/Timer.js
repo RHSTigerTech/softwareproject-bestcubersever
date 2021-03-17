@@ -1,7 +1,7 @@
 
 import React, { useState, Component, useEffect } from 'react';
-import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Button, Pressable} from 'react-native';
-import { TextInput } from 'react-native-paper';
+import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable} from 'react-native';
+import { TextInput,Modal, Portal, Text, Button, Provider } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -237,7 +237,10 @@ const App = ({navigation}) => {
     setModalVisible(!isModalVisible);
   };
   const [text, setText] = React.useState('');
-
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {backgroundColor: 'white', padding: 20};
 
 //   useEffect(() =>
 // {
@@ -385,10 +388,21 @@ const App = ({navigation}) => {
         buttonText="+"
         >
         
-          
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={toggleModal}>
+        
+      
+    
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={showModal}>
+          {/* <Provider>
+      <Portal>
+        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+          <Text>Example Modal.  Click outside this area to dismiss.</Text>
+        </Modal>
+      </Portal> */}
+
             <Icon name="plus" style={styles.actionButtonIcon} />
-            <Modal isVisible={isModalVisible}>
+            
+            
+            {/* <Modal isVisible={isModalVisible}>
               <View style={{flex:.5, position:'center',top:'50%',transparent:'true'}}>
                 <TextInput
                   label="Add Time"
@@ -400,8 +414,10 @@ const App = ({navigation}) => {
                 <Button title='cancel' onPress={toggleModal}/>
 
               </View>
-            </Modal>
+            </Modal> */}
+            {/* </Provider> */}
           </ActionButton.Item>
+          
           <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {del=true,deletetime()}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
           </ActionButton.Item>
