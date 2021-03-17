@@ -1,6 +1,7 @@
 
 import React, { useState, Component, useEffect } from 'react';
-import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Pressable} from 'react-native';
+import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Button, Pressable} from 'react-native';
+import { TextInput } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
+
 //import {getData, storeData} from './storage'
 //import { loadTextureAsync } from 'expo-three';
 
@@ -228,8 +230,15 @@ console.log('--------------')
 
 const App = ({navigation}) => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  
   const [resetStopwatch, setResetStopwatch] = useState(false);
+  const [isModalVisible, setModalVisible]= useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const [text, setText] = React.useState('');
+
+
 //   useEffect(() =>
 // {
 //   getData();
@@ -377,8 +386,21 @@ const App = ({navigation}) => {
         >
         
           
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={() => {}}>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={toggleModal}>
             <Icon name="plus" style={styles.actionButtonIcon} />
+            <Modal isVisible={isModalVisible}>
+              <View style={{flex:.5, position:'center',top:'50%',transparent:'true'}}>
+                <TextInput
+                  label="Add Time"
+                  value={text}
+                  onChangeText={text => setText(text)}
+                  numeric
+                  keyboardType={'decimal-pad'}
+                />
+                <Button title='cancel' onPress={toggleModal}/>
+
+              </View>
+            </Modal>
           </ActionButton.Item>
           <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {del=true,deletetime()}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
