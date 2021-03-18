@@ -12,20 +12,21 @@ function Learn({navigation}) {
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer}>
+                {/*
                 <Image 
                     resizeMode='cover'
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
-
+                */}
                 <View style={{justifyContent: 'space-evenly', flex: 1, opacity:0.9}}>
                     <GradientButton
                         style={{marginVertical: 8}}
 
                         text="How to Read Algorithms"
-                        textStyle={{fontSize: 27, color: 'black', opacity: 0.9}}
+                        textStyle={{fontSize: 27, color: 'black',}}
 
-                        gradientBegin="#FE0944" //change color
-                        gradientEnd="#FF4E00" //change color
+                        gradientBegin="#ffffff" //change color
+                        gradientEnd="#ffffff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -42,8 +43,8 @@ function Learn({navigation}) {
                         text="Beginner's Method"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#FF4E00" //change color
-                        gradientEnd="#EC9F05" //change color
+                        gradientBegin="#ffffff" //change color
+                        gradientEnd="#ffffff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -60,8 +61,8 @@ function Learn({navigation}) {
                         text="Intermediate Method"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#EC9F05" //change color
-                        gradientEnd="#64e764" //change color
+                        gradientBegin="#ffffff" //change color
+                        gradientEnd="#ffffff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -78,8 +79,8 @@ function Learn({navigation}) {
                         text="Advanced Method"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#64e764" //change color
-                        gradientEnd="#009FFD" //change color
+                        gradientBegin="#ffffff" //change color
+                        gradientEnd="#ffffff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -96,8 +97,8 @@ function Learn({navigation}) {
                         text="List of Algorithms"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#009FFD" //change color
-                        gradientEnd="#add8e6" //change color
+                        gradientBegin="#ffffff" //change color
+                        gradientEnd="#ffffff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    
+        backgroundColor: 'black'
     },
     image: {
         width:'100%',
@@ -142,8 +143,7 @@ const styles = StyleSheet.create({
 
     textStyle: {
         color: 'black',
-        fontSize:30,    
-        opacity:0.9,
+        fontSize:30, 
     }
 })
 
