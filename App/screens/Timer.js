@@ -11,16 +11,6 @@ import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
 
-//import {getData, storeData} from './storage'
-//import { loadTextureAsync } from 'expo-three';
-
-
-
-
-//getData()
-
-
-
 
 let finaltime='00:00:000';
 
@@ -40,7 +30,6 @@ const storeData = async (value) => {
       try {
         let jsonValue = JSON.stringify(value) 
         await AsyncStorage.setItem('@storage_Key', jsonValue)
-        //console.log(jsonValue)
       } catch (e) {
       }
     }
@@ -63,28 +52,18 @@ const getData = async () => {
         timerarray=formattedjsonstring.split(',');
         
         console.log(timerarray)
-        // timerarray=timerarray.split('/').join('')
         console.log(timerarray)
         array=timerarray.map(Number)
         console.log('-----------')
         console.log(array)
         console.log('-----------')
-        // console.log(typeof timerarray)
         console.log(convertedJson)
-        console.log(convertedJson.length)
-        // console.log(convertedJson.substring(0,1))
         const propertyValues = Object.values(convertedJson);
         console.log(propertyValues)
-        // console.log(typeof propertyValues)
-        // console.log(typeof convertedTimes)
-        //console.log(propertyValues.slice(1,2))
+
 
         while (i<timerarray.length){
-          //timerarray=parseFloat(timerarray[i,i+1])
-          //timerrray.parseFloat[i,i+1]
-          //timerarray=timerarray.split('\\').join('')
           convertedTimes.push(timerarray[i,i+1])
-          //console.log(convertedJson.substring(i,i+1))
           i++
         }
 
@@ -98,9 +77,10 @@ const getData = async () => {
 
 
 
+//Takes the times from the timer and pushes them into a list which is used by statistics
+//The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list
+
 export const times = () =>{
-  
-  
   convertedTimes=convertedTimes.filter(function(element){
     return element !== undefined;
   });
@@ -114,7 +94,6 @@ export const times = () =>{
   lastItem= storedTimes[storedTimes.length-1]
   lastItem=lastItem.replace(":",".");
   lastItem=lastItem.replace(":",".");
-  //lastItem= lastItem.split('\\').join('')
       
     console.log(lastItem.substring(0,2))
     minutes= lastItem.substring(0,2)
@@ -134,22 +113,20 @@ export const times = () =>{
       lastItem=lastItem.substring(1)
       
     }
-    //lastItem=lastitem.spit('\\').join('')
     lastItem=parseFloat(lastItem)
     lastItem=lastItem+(60*minutes)
     convertedTimes.push(lastItem)
     
     console.log(convertedTimes)
   }
-  //storeData(convertedTimes)
-  //getData()
 
-  //storedData=convertedTimes;
   
   return (convertedTimes);
   
 }
 
+
+//deletes the most recent time when the delete button is pressed
 export const deletetime = () =>{
   
   if(del===true){
@@ -159,25 +136,11 @@ export const deletetime = () =>{
   del=false;
   
   return (convertedTimes);
-  
-}
 
-function addtime(){
-  //give the abilty to add a time 
-}
-
-function convert(){
-  times()
-  console.log(convertedTimes)
-  return (convertedTimes);
 }
 
 
-
-
-let storagetest=getData()+storeData(convertedTimes)
-//console.log(storagetest)
-
+//a scrambler that gives 20 scramble nonredundant notations
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
 function k(){
@@ -188,10 +151,8 @@ function k(){
 
     for(let i=0; i<20;i++){
       
-      // console.log('--')
       l =Math.floor(Math.random()*possiblemoves.length)
-      // console.log(l)
-      // console.log(j)
+     
       if(j===l){ 
         s.pop();
         i--
@@ -232,24 +193,25 @@ function k(){
 console.log('--------------')
 
 const App = ({navigation}) => {
+//stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  
   const [resetStopwatch, setResetStopwatch] = useState(false);
-  const [isModalVisible, setModalVisible]= useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  
+//modal constants to set modal as either visible or invisible
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const [inputVal, setInputVal] = useState('');
   const [visible, setVisible] = React.useState(false);
+//sets the input value
+  const [inputVal, setInputVal] = useState('');
 
-
-  function add(){
+//function used when the add button is pressed on the modal
+function add(){
     convertedTimes.push(inputVal)
     console.log(inputVal)
     hideModal()
-  }
+}
+
+//modal function that allows user to enter a new time to put into statistics
   let value=inputVal;
   const addTimes = () => (
     <Provider>
@@ -277,78 +239,49 @@ const App = ({navigation}) => {
       
     
     );
-  
-
-//   useEffect(() =>
-// {
-//   getData();
-// },[]);
 
   return (
-    
-    
-    
-    <SafeAreaView style={styles.container}>
 
-    
+    <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
-        
+{/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
-            start={isStopwatchStart}
-                
+            start={isStopwatchStart}                
             options={options}
-
             getTime={(time) => {
               finaltime=time;
             }}
             
             
           />
-         
+         {/*starts and resets stopwatch using the same button  */}
           <TouchableOpacity style={styles.startbuttonSize}
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              storeData(convertedTimes);
-              
-
-              
-              
-              
+              storeData(convertedTimes);              
             }}>
             <Text style={styles.startbuttonText}>
               {!isStopwatchStart ? 'READY' : 'STOP'}
-                
-            
             </Text>
             
-
-            <Text style={styles.ScrambleText}>
-            
-            {!isStopwatchStart ? k() : ''}
-
-            </Text>
-            
-            {/* line added without testing */}
-            {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? storeData(convertedTimes) : ''}</Text> */}
-
+{/* where scramble text is called*/}
+            <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+          
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
             
           </TouchableOpacity>
-          
+          {/* where the modal is called */}
           {addTimes()}
-          {/* <Button onPress={showModal}>yo</Button> */}
+
           
          
             
-
+{/* bottom icon buttons */}
           <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
-
-          
           <Icon.Button
-            
             name='cube-outline'
             flexDirection='column'
             backgroundColor='black'
@@ -360,8 +293,7 @@ const App = ({navigation}) => {
           >
           <Text style={styles.BottomTabText}>3DCube   </Text>
           </Icon.Button>
-          <Icon.Button
-            
+          <Icon.Button            
             name='chart-line'
             alignItems='center'
             flexDirection='column'
@@ -533,18 +465,28 @@ const styles = StyleSheet.create({
 
 
   
-    actionButtonIcon: {
+  actionButtonIcon: {
       fontSize: 30,
       height: 33,
       color: 'white',
       
       
-    },
-    dialogContainer: {
+  },
+  dialogContainer: {
       backgroundColor: 'white', 
       paddingHorizontal:'7%',
       
-    },
+  },
+
+  IconButtonStyle:{
+    flexDirection:'column',
+    backgroundColor:'black',
+    alignItems:'center',
+    color:'white',
+    size:30,
+    paddingHorizontal:Platform.OS === 'ios' ? '3%':'4.5%',
+  },
+
   
 
 });
