@@ -1,0 +1,50 @@
+diff --git a/node_modules/react-native-action-button/ActionButton.js b/node_modules/react-native-action-button/ActionButton.js
+index b8306c2..610e24f 100644
+--- a/node_modules/react-native-action-button/ActionButton.js
++++ b/node_modules/react-native-action-button/ActionButton.js
+@@ -39,7 +39,7 @@ export default class ActionButton extends Component {
+     clearTimeout(this.timeout);
+   }
+ 
+-  componentWillReceiveProps(nextProps) {
++  UNSAFE_componentWillReceiveProps(nextProps) {
+     if (nextProps.resetToken !== this.state.resetToken) {
+       if (nextProps.active === false && this.state.active === true) {
+         if (this.props.onReset) this.props.onReset();
+@@ -316,7 +316,7 @@ export default class ActionButton extends Component {
+     if (this.state.active) return this.reset();
+ 
+     if (animate) {
+-      Animated.spring(this.anim, { toValue: 1 }).start();
++      Animated.spring(this.anim, { toValue: 1,useNativeDriver: false }).start();
+     } else {
+       this.anim.setValue(1);
+     }
+@@ -328,14 +328,14 @@ export default class ActionButton extends Component {
+     if (this.props.onReset) this.props.onReset();
+ 
+     if (animate) {
+-      Animated.spring(this.anim, { toValue: 0 }).start();
++      Animated.spring(this.anim, { toValue: 0,useNativeDriver: false }).start();
+     } else {
+       this.anim.setValue(0);
+     }
+ 
+     setTimeout(() => {
+       if (this.mounted) {
+-        this.setState({ active: false, resetToken: this.state.resetToken });  
++        this.setState({ active: false, useNativeDriver: false, resetToken: this.state.resetToken });  
+       }
+     }, 250);
+   }
+@@ -430,8 +430,8 @@ const styles = StyleSheet.create({
+     backgroundColor: "transparent"
+   },
+   btnText: {
+-    marginTop: -4,
+-    fontSize: 24,
++    marginTop: 0,
++    fontSize: 45,
+     backgroundColor: "transparent"
+   }
+ });
