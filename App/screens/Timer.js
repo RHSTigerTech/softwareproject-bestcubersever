@@ -205,18 +205,56 @@ const App = ({navigation}) => {
   const [inputVal, setInputVal] = useState('');
 
 //function used when the add button is pressed on the modal
+let check=false;
+function store(){
+  if(check===false){
+    return(
+      <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+    )
+  }
+  else if(check===true){
+    return(
+      <Text> none</Text>
+    )
+  }
+}
 function add(){
     convertedTimes.push(inputVal)
     console.log(inputVal)
     hideModal()
+    setInputVal('')
+    check=true;
+    console.log(check)
 }
+function cancel(){
+  hideModal()
+  setInputVal('')
+  check=true;
+  console.log(check)
+
+}
+function openAdd(){
+  check=true;
+  showModal()
+  console.log(check)
+
+}
+function dismissed(){
+  check=true;
+  hideModal()
+  console.log(check)
+
+}
+
+
+
 
 //modal function that allows user to enter a new time to put into statistics
   let value=inputVal;
   const addTimes = () => (
     <Provider>
       <Portal>
-        <Dialog visible={visible} onDismiss={hideModal} style={styles.dialogContainer}>
+        <Dialog visible={visible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
         <Dialog.Title>Add Time</Dialog.Title>
         <Dialog.Content>
           <TextInput
@@ -228,8 +266,8 @@ function add(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button onPress={() => {add()}}>Add</Button>
-              <Button onPress={hideModal}>Cancel</Button>
+                <Button color='black' onPress={() => {add()}}>Add</Button>
+              <Button color='black' onPress={() => {cancel()}}>Cancel</Button>
               
             </Dialog.Actions>
         </Dialog>
@@ -263,15 +301,14 @@ function add(){
               setResetStopwatch(false); 
               storeData(convertedTimes);              
             }}>
-            <Text style={styles.startbuttonText}>
-              {!isStopwatchStart ? 'READY' : 'STOP'}
-            </Text>
+            <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             
 {/* where scramble text is called*/}
-            <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+        
+            {store()}
           
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
-            
+        
           </TouchableOpacity>
           {/* where the modal is called */}
           {addTimes()}
@@ -364,7 +401,7 @@ function add(){
         
     
           <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" 
-          onPress={showModal}>
+          onPress={()=>{openAdd()}}>
           
           {/* <Provider>
       <Portal>
@@ -475,17 +512,18 @@ const styles = StyleSheet.create({
   dialogContainer: {
       backgroundColor: 'white', 
       paddingHorizontal:'7%',
+      opacity:1
       
   },
 
-  IconButtonStyle:{
-    flexDirection:'column',
-    backgroundColor:'black',
-    alignItems:'center',
-    color:'white',
-    size:30,
-    paddingHorizontal:Platform.OS === 'ios' ? '3%':'4.5%',
-  },
+  // IconButtonStyle:{
+  //   flexDirection:'column',
+  //   backgroundColor:'black',
+  //   alignItems:'center',
+  //   color:'white',
+  //   size:30,
+  //   paddingHorizontal:Platform.OS === 'ios' ? '3%':'4.5%',
+  // },
 
   
 
