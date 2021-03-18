@@ -1,7 +1,7 @@
 
 import React, { useState, Component, useEffect } from 'react';
 import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable} from 'react-native';
-import { TextInput,Modal, Portal, Text, Button, Provider } from 'react-native-paper';
+import { TextInput,Modal, Portal, Text, Button, Provider, Dialog } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -172,6 +172,9 @@ function convert(){
   return (convertedTimes);
 }
 
+
+
+
 let storagetest=getData()+storeData(convertedTimes)
 //console.log(storagetest)
 
@@ -236,11 +239,45 @@ const App = ({navigation}) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  const [text, setText] = React.useState('');
-  const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
+  const [inputVal, setInputVal] = useState('');
+  const [visible, setVisible] = React.useState(false);
+
+
+  function add(){
+    convertedTimes.push(inputVal)
+    console.log(inputVal)
+    hideModal()
+  }
+  let value=inputVal;
+  const addTimes = () => (
+    <Provider>
+      <Portal>
+        <Dialog visible={visible} onDismiss={hideModal} style={styles.dialogContainer}>
+        <Dialog.Title>Add Time</Dialog.Title>
+        <Dialog.Content>
+          <TextInput
+                  label="Add A Time (In Seconds)"
+                  value={value}
+                  onChangeText={text => setInputVal(text)}
+                  numeric
+                  keyboardType={'decimal-pad'}
+                />
+                </Dialog.Content>
+                <Dialog.Actions>
+                <Button onPress={() => {add()}}>Add</Button>
+              <Button onPress={hideModal}>Cancel</Button>
+              
+            </Dialog.Actions>
+        </Dialog>
+      </Portal>
+      
+      </Provider>
+      
+    
+    );
+  
 
 //   useEffect(() =>
 // {
@@ -248,11 +285,12 @@ const App = ({navigation}) => {
 // },[]);
 
   return (
-
+    
     
     
     <SafeAreaView style={styles.container}>
-      
+
+    
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
         
@@ -273,7 +311,8 @@ const App = ({navigation}) => {
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              storeData(convertedTimes)
+              storeData(convertedTimes);
+              
 
               
               
@@ -299,9 +338,10 @@ const App = ({navigation}) => {
             
           </TouchableOpacity>
           
+          {addTimes()}
+          {/* <Button onPress={showModal}>yo</Button> */}
           
-          
-
+         
             
 
           <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
@@ -371,7 +411,7 @@ const App = ({navigation}) => {
             color='white'
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => navigation.navigate('Learn')}
+            onPress={() => {navigation.navigate('Gradient')}}
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
@@ -389,9 +429,11 @@ const App = ({navigation}) => {
         >
         
         
-      
+        
     
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={showModal}>
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" 
+          onPress={showModal}>
+          
           {/* <Provider>
       <Portal>
         <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
@@ -496,6 +538,11 @@ const styles = StyleSheet.create({
       height: 33,
       color: 'white',
       
+      
+    },
+    dialogContainer: {
+      backgroundColor: 'white', 
+      paddingHorizontal:'7%',
       
     },
   
