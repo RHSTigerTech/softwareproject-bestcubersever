@@ -7,9 +7,10 @@ import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import LightVideo from '../Assets/RotatingCube.mp4';
 import { Video } from 'expo-av';
+import {getData, storeData} from './Timer'
 
-
-
+storeData()
+getData()
 
 function Gradient({navigation}) { 
 

@@ -16,6 +16,11 @@ import {
 import { View } from "react-native";
 import { TabRouter } from "@react-navigation/routers";
 
+import {getData, storeData} from './Timer'
+
+storeData()
+getData()
+
 const chartConfigs = [
     
     {
