@@ -9,7 +9,7 @@ import LightVideo from '../Assets/RotatingCube.mp4';
 import { Video } from 'expo-av';
 import {getData, storeData} from './Timer'
 
-storeData()
+//storeData()
 getData()
 
 function Gradient({navigation}) { 
