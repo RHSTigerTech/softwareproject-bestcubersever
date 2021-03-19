@@ -1,22 +1,37 @@
 import time
 import flask
+from werkzeug.utils import secure_filename
 import os
 
 app = flask.Flask(__name__)
 UPLOAD_FOLDER = 'static/upload'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/time')
 def getCurrentTime():
     return {'time': time.time()}
 
 
-@app.route('/upload', methods=['PUT'])
+@app.route('/upload', methods=['POST'])
 def upload():
-    if flask.request.method == "PUT":
-        files = flask.request.getlist("file")
-        for file in files:
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+    if flask.request.method == "POST":
+        if 'file' not in flask.request.files:
+            flask.flash('No file part')
+            return flask.redirect(flask.request.url)
+        file = flask.request.files['file']
+        if file.filename == "":
+            flask.flash('No selected file')
+            return flask.redirect(flask.request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return flask.redirect(flask.url_for('uploaded_file', filename=filename))
 
 
 def rgb_to_hsv(r, g, b):
