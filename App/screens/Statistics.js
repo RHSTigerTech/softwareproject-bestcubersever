@@ -154,7 +154,7 @@ const chartConfigs = [
     </ScrollView>
     </View>
     );
-       
+       //changes
   //   }
   //   catch(err){
   //     return(
