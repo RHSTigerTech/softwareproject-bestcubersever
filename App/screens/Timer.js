@@ -75,7 +75,7 @@ export const getData = async () => {
       }
     }
 
-
+//storeData(convertedTimes); 
 
 //Takes the times from the timer and pushes them into a list which is used by statistics
 //The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list
@@ -139,7 +139,7 @@ export const deletetime = () =>{
 
 }
 
-let storagetest=getData()+storeData(convertedTimes)
+//let storagetest=getData()+storeData(convertedTimes)
 //a scrambler that gives 20 scramble nonredundant notations
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
