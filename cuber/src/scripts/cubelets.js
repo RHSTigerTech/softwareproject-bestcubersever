@@ -76,6 +76,7 @@ ERNO.Cubelet = function( cube, id, colors ){
 
 	this.id = id || 0;
 
+	this.originalPos = this.originalPos || 0;
 
 	//  Our Cubelet's address is its current location on the Cube.
 	//  When the Cubelet is initialized its ID and address are the same.
@@ -158,7 +159,7 @@ ERNO.Cubelet = function( cube, id, colors ){
 		this.faces[ i ] = {};
 		this.faces[ i ].id = i;
 		this.faces[ i ].color = color;
-		
+		this.faces[ i ].originalPos = i;
 
 		//  We're going to keep track of what face was what at the moment of initialization,
 		//  mostly for solving purposes.

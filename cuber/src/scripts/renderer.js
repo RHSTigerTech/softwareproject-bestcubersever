@@ -280,6 +280,7 @@ ERNO.renderers.CSS3DCubelet = (function(){
 				stickerElement.classList.add( face.color.name );		
 				face.element.appendChild( stickerElement );
 
+				stickerElement.setAttribute('sticker', `${cubelet.id}-${face.id}`);
 
 
 				//  If this happens to be our logo-bearing Cubelet

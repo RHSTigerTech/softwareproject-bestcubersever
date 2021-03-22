@@ -1,6 +1,7 @@
 
-import React, { useState, Component } from 'react';
-import {SafeAreaView,StyleSheet,Text,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Modal, Pressable} from 'react-native';
+import React, { useState, Component, useEffect } from 'react';
+import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable} from 'react-native';
+import { TextInput,Modal, Portal, Text, Button, Provider, Dialog } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,30 +10,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
-import { RGBA_ASTC_5x5_Format } from 'three';
-
-
-
-const storeData = async (value) => {
-  try {
-    const jsonValue = JSON.stringify(value) 
-    await AsyncStorage.setItem('@storage_Key', jsonValue)
-  } catch (e) {
-  }
-}
-const getData = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('@storage_Key')
-    console.log(jsonValue)
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-
-    //return (jsonValue)
-  } catch(e) {
-    // error reading value
-  }
-}
-getData()
-
 
 
 let finaltime='00:00:000';
@@ -49,8 +26,61 @@ let del;
 
 let lastItem='00:00:000';
 
+export const storeData = async (value) => {
+      try {
+        let jsonValue = JSON.stringify(value) 
+        await AsyncStorage.setItem('@storage_Key', jsonValue)
+      } catch (e) {
+      }
+    }
+
+export const getData = async () => {
+      try {
+        let jsonValue = await AsyncStorage.getItem('@storage_Key')
+        
+        convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
+        let jsonstring=JSON.stringify(convertedJson)
+        let i=0;
+        
+        console.log(jsonstring)
+        let formattedjsonstring= jsonstring.split('[').join('')
+        formattedjsonstring= formattedjsonstring.split(']').join('')
+        formattedjsonstring= formattedjsonstring.split('\\').join('')
+        formattedjsonstring= formattedjsonstring.split('"').join('')
+
+        console.log(formattedjsonstring)
+        timerarray=formattedjsonstring.split(',');
+        
+        console.log(timerarray)
+        console.log(timerarray)
+        array=timerarray.map(Number)
+        console.log('-----------')
+        console.log(array)
+        console.log('-----------')
+        console.log(convertedJson)
+        const propertyValues = Object.values(convertedJson);
+        console.log(propertyValues)
+
+
+        while (i<timerarray.length){
+          convertedTimes.push(timerarray[i,i+1])
+          i++
+        }
+
+        return convertedJson;
+        
+        //return (jsonValue)
+      } catch(e) {
+        // error reading value
+      }
+    }
+
+//storeData(convertedTimes); 
+
+//Takes the times from the timer and pushes them into a list which is used by statistics
+//The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list
+
 export const times = () =>{
-  
   convertedTimes=convertedTimes.filter(function(element){
     return element !== undefined;
   });
@@ -83,22 +113,20 @@ export const times = () =>{
       lastItem=lastItem.substring(1)
       
     }
-    
     lastItem=parseFloat(lastItem)
     lastItem=lastItem+(60*minutes)
     convertedTimes.push(lastItem)
     
     console.log(convertedTimes)
   }
-  
-  storeData(convertedTimes)
-  getData()
 
-  storedData=convertedTimes;
+  
   return (convertedTimes);
   
 }
 
+
+//deletes the most recent time when the delete button is pressed
 export const deletetime = () =>{
   
   if(del===true){
@@ -108,22 +136,11 @@ export const deletetime = () =>{
   del=false;
   
   return (convertedTimes);
-  
+
 }
 
-function addtime(){
-  //give the abilty to add a time 
-}
-
-function convert(){
-  times()
-  console.log(convertedTimes)
-  return (convertedTimes);
-}
-
-let storagetest=getData()+storeData(convertedTimes)
-console.log(storagetest)
-
+//let storagetest=getData()+storeData(convertedTimes)
+//a scrambler that gives 20 scramble nonredundant notations
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
 //                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
 function k(){
@@ -134,10 +151,8 @@ function k(){
 
     for(let i=0; i<20;i++){
       
-      console.log('--')
       l =Math.floor(Math.random()*possiblemoves.length)
-      console.log(l)
-      console.log(j)
+     
       if(j===l){ 
         s.pop();
         i--
@@ -178,69 +193,132 @@ function k(){
 console.log('--------------')
 
 const App = ({navigation}) => {
+//stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
+//modal constants to set modal as either visible or invisible
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const [visible, setVisible] = React.useState(false);
+//sets the input value
+  const [inputVal, setInputVal] = useState('');
+
+//function used when the add button is pressed on the modal
+let check=false;
+function store(){
+  if(check===false){
+    return(
+      <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+    )
+  }
+  else if(check===true){
+    return(
+      <Text> none</Text>
+    )
+  }
+}
+function add(){
+    convertedTimes.push(inputVal)
+    console.log(inputVal)
+    hideModal()
+    setInputVal('')
+    check=true;
+    console.log(check)
+}
+function cancel(){
+  hideModal()
+  setInputVal('')
+  check=true;
+  console.log(check)
+
+}
+function openAdd(){
+  check=true;
+  showModal()
+  console.log(check)
+
+}
+function dismissed(){
+  check=true;
+  hideModal()
+  console.log(check)
+
+}
+
+
+
+
+//modal function that allows user to enter a new time to put into statistics
+  let value=inputVal;
+  const addTimes = () => (
+    <Provider>
+      <Portal>
+        <Dialog visible={visible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
+        <Dialog.Title>Add Time</Dialog.Title>
+        <Dialog.Content>
+          <TextInput
+                  label="Add A Time (In Seconds)"
+                  value={value}
+                  onChangeText={text => setInputVal(text)}
+                  numeric
+                  keyboardType={'decimal-pad'}
+                />
+                </Dialog.Content>
+                <Dialog.Actions>
+                <Button color='black' onPress={() => {add()}}>Add</Button>
+              <Button color='black' onPress={() => {cancel()}}>Cancel</Button>
+              
+            </Dialog.Actions>
+        </Dialog>
+      </Portal>
+      
+      </Provider>
+      
+    
+    );
 
   return (
 
-    
-    
     <SafeAreaView style={styles.container}>
-      
       <View style={styles.container}>
         <View style={styles.sectionStyle}>
-        
+{/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
-            start={isStopwatchStart}
-                
+            start={isStopwatchStart}                
             options={options}
-
             getTime={(time) => {
               finaltime=time;
             }}
             
             
           />
-         
+         {/*starts and resets stopwatch using the same button  */}
           <TouchableOpacity style={styles.startbuttonSize}
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              
-              
-              
+              storeData(convertedTimes);              
             }}>
-            <Text style={styles.startbuttonText}>
-              {!isStopwatchStart ? 'READY' : 'STOP'}
-                
+            <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             
-            </Text>
-            
-
-            <Text style={styles.ScrambleText}>
-            
-            {!isStopwatchStart ? k() : ''}
-
-            </Text>
-
+{/* where scramble text is called*/}
+        
+            {store()}
+          
             <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
-            
-            
+        
           </TouchableOpacity>
-          
-          
-          
+          {/* where the modal is called */}
+          {addTimes()}
 
+          
+         
             
-
+{/* bottom icon buttons */}
           <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
-
-          
           <Icon.Button
-            
             name='cube-outline'
             flexDirection='column'
             backgroundColor='black'
@@ -252,8 +330,7 @@ const App = ({navigation}) => {
           >
           <Text style={styles.BottomTabText}>3DCube   </Text>
           </Icon.Button>
-          <Icon.Button
-            
+          <Icon.Button            
             name='chart-line'
             alignItems='center'
             flexDirection='column'
@@ -303,7 +380,7 @@ const App = ({navigation}) => {
             color='white'
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => navigation.navigate('Learn')}
+            onPress={() => {navigation.navigate('Gradient')}}
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
@@ -320,10 +397,38 @@ const App = ({navigation}) => {
         buttonText="+"
         >
         
+        
+        
+    
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" 
+          onPress={()=>{openAdd()}}>
           
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" onPress={() => {}}>
+          {/* <Provider>
+      <Portal>
+        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+          <Text>Example Modal.  Click outside this area to dismiss.</Text>
+        </Modal>
+      </Portal> */}
+
             <Icon name="plus" style={styles.actionButtonIcon} />
+            
+            
+            {/* <Modal isVisible={isModalVisible}>
+              <View style={{flex:.5, position:'center',top:'50%',transparent:'true'}}>
+                <TextInput
+                  label="Add Time"
+                  value={text}
+                  onChangeText={text => setText(text)}
+                  numeric
+                  keyboardType={'decimal-pad'}
+                />
+                <Button title='cancel' onPress={toggleModal}/>
+
+              </View>
+            </Modal> */}
+            {/* </Provider> */}
           </ActionButton.Item>
+          
           <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {del=true,deletetime()}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
           </ActionButton.Item>
@@ -397,13 +502,29 @@ const styles = StyleSheet.create({
 
 
   
-    actionButtonIcon: {
+  actionButtonIcon: {
       fontSize: 30,
       height: 33,
       color: 'white',
       
       
-    },
+  },
+  dialogContainer: {
+      backgroundColor: 'white', 
+      paddingHorizontal:'7%',
+      opacity:1
+      
+  },
+
+  // IconButtonStyle:{
+  //   flexDirection:'column',
+  //   backgroundColor:'black',
+  //   alignItems:'center',
+  //   color:'white',
+  //   size:30,
+  //   paddingHorizontal:Platform.OS === 'ios' ? '3%':'4.5%',
+  // },
+
   
 
 });
