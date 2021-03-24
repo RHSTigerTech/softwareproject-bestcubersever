@@ -51,7 +51,7 @@ const chartConfigs = [
 
     let floatnum;
 
-    let reset=[1,1.5]
+    let reset=[]
     
     
     if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
@@ -75,6 +75,7 @@ const chartConfigs = [
         data.shift();
         }
     }
+
     //data=reset;
 
     for(let i=0;i<data.length;i++){
@@ -84,6 +85,13 @@ const chartConfigs = [
     average=average/data.length
     console.log(average)
     console.log(data.length)
+
+    for(let j=0;j<data.length-10;j++){
+      data.pop()
+      reset=data;
+    }
+    data=reset;
+
 
 
     // for(let i=0;i<data.length;i++){
@@ -107,7 +115,7 @@ const chartConfigs = [
     }
 
       return (
-        <View style={{flex: 1, backgroundColor: 'white'}} >
+        <View style={{flex: 1, backgroundColor: 'black'}} >
         <Header                       
                     containerStyle={styles,{backgroundColor:'black', borderBottomColor:'black'}}
                     centerContainerStyle={{flex:14}}
@@ -122,7 +130,7 @@ const chartConfigs = [
               fontSize: 16
             };
             const graphStyle = {
-            strokeWidth:2,
+            strokeWidth:2,           
             bottom: 0,
 
               ...chartConfig.style
@@ -162,20 +170,26 @@ const chartConfigs = [
                 onDataPointClick={({ value, getColor }) =>
                   showMessage({
                     //position:'bottom',
-                    message: `Times: ${value}`,
+                    message: `${value} seconds`,
+                    type:'info',
                     //description: "You selected this value",
-                    backgroundColor: 'black'
+                    backgroundColor: 'black',
+                    
                   })
                 }
                 
               />
-              <FlashMessage duration={1000} floating={true} />
+              
               
         </ScrollView>
+        
             );
+            
           })}
+          
     </ScrollView>
-    <Text style={styles.AverageTime}>yosjsjsjsjsjsjsjsjsjsjsjsjsjsj</Text>
+    <FlashMessage duration={1000} floating={true}/>
+    <Text style={styles.AverageTime}>Average Time: {average.toFixed(3)}</Text>
     </View>
     );
        //changes
@@ -196,6 +210,11 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },  
     AverageTime:{
-      color:'white'
+      color:'white',
+      top:'-35%',
+      //right:'-10%',
+      textAlign:'center',
+      fontSize:30
+      //position:'absolute'
     }
 })
