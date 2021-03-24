@@ -25,6 +25,7 @@ const chartConfigs = [
     
     {
       backgroundColor: "black",
+      
       fillShadowGradient:'white',
       fillShadowGradientOpacity:.4,
       backgroundGradientFrom: "black",
@@ -45,6 +46,12 @@ const chartConfigs = [
     let width;
     
     let data;
+
+    let average=0.0;
+
+    let floatnum;
+
+    let reset=[1,1.5]
     
     
     if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
@@ -68,6 +75,16 @@ const chartConfigs = [
         data.shift();
         }
     }
+    //data=reset;
+
+    for(let i=0;i<data.length;i++){
+      floatnum=parseFloat(data[i])
+      average=floatnum+average
+    }
+    average=average/data.length
+    console.log(average)
+    console.log(data.length)
+
 
     // for(let i=0;i<data.length;i++){
     //   if(data[i,i+1]===0){
@@ -83,14 +100,14 @@ const chartConfigs = [
     
     //add more if else statements to make scroll look good no matter how many data points
     if (data.length>10){
-        width = 800;
+        width = data.length*50;
     }
     else{
         width = Dimensions.get("window").width;
     }
 
       return (
-        <View style={{flex: 1, backgroundColor: 'black'}} >
+        <View style={{flex: 1, backgroundColor: 'white'}} >
         <Header                       
                     containerStyle={styles,{backgroundColor:'black', borderBottomColor:'black'}}
                     centerContainerStyle={{flex:14}}
@@ -99,7 +116,7 @@ const chartConfigs = [
         <ScrollView directionalLockEnabled='vertical' vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
             const labelStyle = {
-              color: 'black',
+              color: 'white',
               marginVertical: 0,
               textAlign: "center",
               fontSize: 16
@@ -136,7 +153,7 @@ const chartConfigs = [
                 }}
                 
                 width={width}
-                height={400}
+                height={350}
                 yAxisLabel=""
                 chartConfig={chartConfig}
                 
@@ -153,10 +170,12 @@ const chartConfigs = [
                 
               />
               <FlashMessage duration={1000} floating={true} />
+              
         </ScrollView>
             );
           })}
     </ScrollView>
+    <Text style={styles.AverageTime}>yosjsjsjsjsjsjsjsjsjsjsjsjsjsj</Text>
     </View>
     );
        //changes
@@ -175,7 +194,8 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-
-    
     },  
+    AverageTime:{
+      color:'white'
+    }
 })
