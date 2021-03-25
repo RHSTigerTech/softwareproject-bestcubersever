@@ -57,20 +57,20 @@ if (hasPermission === null) {
           }}>
             <View style={{ 
                borderWidth: 2,
-               borderRadius:"50%",
+               borderRadius:50,
                borderColor: 'white',
-               height: 50,
-               width:50,
+               height: 70,
+               width:70,
                display: 'flex',
                justifyContent: 'center',
                alignItems: 'center'}}
             >
               <View style={{
                  borderWidth: 2,
-                 borderRadius:"50%",
+                 borderRadius:50,
                  borderColor: 'white',
-                 height: 40,
-                 width:40,
+                 height: 60,
+                 width:60,
                  backgroundColor: 'white'}} >
               </View>
             </View>
