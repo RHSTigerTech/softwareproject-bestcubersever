@@ -52,6 +52,10 @@ const chartConfigs = [
     let floatnum;
 
     let reset=[]
+
+    let besttime;
+
+    let worsttime;
     
     
     if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
@@ -76,8 +80,8 @@ const chartConfigs = [
         }
     }
 
-    //data=reset;
-
+    
+    //Average
     for(let i=0;i<data.length;i++){
       floatnum=parseFloat(data[i])
       average=floatnum+average
@@ -86,11 +90,34 @@ const chartConfigs = [
     console.log(average)
     console.log(data.length)
 
-    for(let j=0;j<data.length-10;j++){
-      data.pop()
-      reset=data;
+
+    //Best Time
+    for(let i=0;i<data.length;i++){
+      if(i===0){
+        besttime=parseFloat(data[i])
+      }
+      if(parseFloat(data[i])<besttime){
+        besttime=parseFloat(data[i])
+      }
     }
-    data=reset;
+    console.log(besttime)
+
+    //Worst Time
+    for(let i=0;i<data.length;i++){
+      if(i===0){
+        worsttime=parseFloat(data[i])
+      }
+      if(parseFloat(data[i])>worsttime){
+        worsttime=parseFloat(data[i])
+      }
+    }
+    console.log(worsttime)
+
+    // for(let j=0;j<data.length-10;j++){
+    //   data.pop()
+    //   reset=data;
+    // }
+    // data=reset;
 
 
 
@@ -121,7 +148,7 @@ const chartConfigs = [
                     centerContainerStyle={{flex:14}}
                     centerComponent={{ text: 'Session Statistics', style: { color: 'white', fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
                     />
-        <ScrollView directionalLockEnabled='vertical' vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        <ScrollView directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',
@@ -138,8 +165,10 @@ const chartConfigs = [
             <Text style={labelStyle}>Bezier Line Chart</Text>
             return (
               <ScrollView
-                
-                
+                directionalLockEnabled='vertical'
+                automaticallyAdjustContentInsets={false} 
+                vertical={false} 
+                horizontal={true}
                 style={{
                   backgroundColor: chartConfig.backgroundColor
                 }}
@@ -189,7 +218,15 @@ const chartConfigs = [
           
     </ScrollView>
     <FlashMessage duration={1000} floating={true}/>
-    <Text style={styles.AverageTime}>Average Time: {average.toFixed(3)}</Text>
+    <Text style={styles.AverageTime}>
+    Average: {average.toFixed(3)}{"\n"}
+    Best: {besttime.toFixed(3)}{"\n"}
+    Worst: {worsttime.toFixed(3)}{"\n"}
+    Avg 5: not added{"\n"}
+    Best 3 of 5: not added{"\n"}
+    Avg 12: not added{"\n"}
+    Best 10 of 12: not added
+    </Text>
     </View>
     );
        //changes
@@ -211,10 +248,17 @@ const styles = StyleSheet.create({
     },  
     AverageTime:{
       color:'white',
-      top:'-35%',
+      top:'-3%',
       //right:'-10%',
-      textAlign:'center',
-      fontSize:30
-      //position:'absolute'
+      textAlign:'left',
+      fontSize:30,
+      borderRadius:10,
+      borderWidth:.7,
+      margin:0,
+      marginLeft:"3.5%",
+      marginRight:"3.5%",
+      paddingLeft:10,
+      
+      borderColor:'white',
     }
 })
