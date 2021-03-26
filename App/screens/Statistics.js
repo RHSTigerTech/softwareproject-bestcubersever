@@ -12,22 +12,18 @@ import {getData, storeData} from './Timer'
 storeData()
 getData()
 
-const chartConfigs = [
-    
+const chartConfigs = [    
     {
-      backgroundColor: "black",
-      
+      backgroundColor: "black",      
       fillShadowGradient:'white',
       fillShadowGradientOpacity:.4,
       backgroundGradientFrom: "black",
       backgroundGradientTo: "black",
       color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
-    },
-    
+    },    
   ];
 
-  export default class App extends React.Component {
-  
+  export default class App extends React.Component {  
     renderTabBar() {
       return <StatusBar hidden />;
     }
@@ -45,21 +41,16 @@ const chartConfigs = [
     let besttime;
 
     let worsttime;
-    
-    
+        
     if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
-      
-
       data=deletetime();
       data.pop();
       data.pop();
-
         if(data[0]===0 && data.length>1){
         data.shift();
-        }
-
-      
+        }      
     }
+
     else{
       data=times();
       data.pop();
@@ -146,8 +137,7 @@ const chartConfigs = [
                 }}
               >
 
-              <LineChart
-                
+              <LineChart                
                 //bezier
                 data={{
                   labels: xcords,                  
@@ -163,25 +153,17 @@ const chartConfigs = [
                   showMessage({
                     message: `${value} seconds`,
                     type:'info',
-                    backgroundColor: 'black',
-                    
+                    backgroundColor: 'black',                    
                   })
-                }
-                
-              />
-              
-              
-        </ScrollView>
-        
-            );
-            
-          })}
-          
+                }                
+              />              
+        </ScrollView>        
+            );            
+          })}          
     </ScrollView>
+
     <FlashMessage duration={1000} floating={true}/>
-    
-    
-    
+
     <Card containerStyle={{backgroundColor: 'black',height:'38%', top:'-5%'}}>
       <ScrollView >
         <Card.Title style={styles.textTitle}>Stats</Card.Title>
@@ -201,7 +183,6 @@ const chartConfigs = [
         <Card.Divider/>
       </ScrollView>
     </Card>
-
     </View>
     );
     }

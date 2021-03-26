@@ -26,6 +26,7 @@ let del;
 
 let lastItem='00:00:000';
 
+//stores the converted times
 export const storeData = async (value) => {
       try {
         let jsonValue = JSON.stringify(value) 
@@ -34,6 +35,8 @@ export const storeData = async (value) => {
       }
     }
 
+//gets the converted times and converts them from a string array into usable float numbers (I think)
+//Then pushes the data to converted times list which is passed in the statistics screen
 export const getData = async () => {
       try {
         let jsonValue = await AsyncStorage.getItem('@storage_Key')
@@ -79,7 +82,6 @@ export const getData = async () => {
 
 //Takes the times from the timer and pushes them into a list which is used by statistics
 //The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list
-
 export const times = () =>{
   convertedTimes=convertedTimes.filter(function(element){
     return element !== undefined;
@@ -138,6 +140,9 @@ export const deletetime = () =>{
   return (convertedTimes);
 
 }
+
+// clears most of the times
+// probably won't be used in the actual app but is useful in resetting the times for testing purposes
 export const cleartimes =()=>{
   if(del===true){
     convertedTimes=[convertedTimes[0]];
@@ -225,6 +230,7 @@ function store(){
     )
   }
 }
+//adds the time to the stats when the add button is pressed
 function add(){
     convertedTimes.push(inputVal)
     console.log(inputVal)
@@ -233,19 +239,23 @@ function add(){
     check=true;
     console.log(check)
 }
+
+//removes anything written as input and closes out of the modalview
 function cancel(){
   hideModal()
   setInputVal('')
   check=true;
   console.log(check)
-
 }
+
+//opens the modalview when the add button is pressed
 function openAdd(){
   check=true;
   showModal()
   console.log(check)
-
 }
+
+//closes the modal when the user clicks anywhere else
 function dismissed(){
   check=true;
   hideModal()
@@ -324,7 +334,8 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
-          <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
+        <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
+{/* Virtual Cube */}
           <Icon.Button
             name='cube-outline'
             flexDirection='column'
@@ -337,6 +348,7 @@ function dismissed(){
           >
           <Text style={styles.BottomTabText}>3DCube   </Text>
           </Icon.Button>
+{/* Statistics */}
           <Icon.Button            
             name='chart-line'
             alignItems='center'
@@ -349,10 +361,8 @@ function dismissed(){
           >
           <Text style={styles.BottomTabText}>Statistics   </Text>
           </Icon.Button>
-
-          
+{/* Home Screen */}
           <Icon.Button
-            
             name='home' 
             flexDirection='column'
             backgroundColor='black'
@@ -363,72 +373,65 @@ function dismissed(){
           >
           <Text style={styles.BottomTabText}>Home   </Text>
           </Icon.Button>
-          {/* <Icon.Button
-            
-            name='delete'
-            flexDirection='column'
-            backgroundColor='black'
-            color='white'
-            size={30}
-            
-            onPress={() => {del=true,deletetime()}}
-            
-          >
-          
-          
-          
-          <Text style={styles.BottomTabText}>Delete   </Text>
-          </Icon.Button> */}
+{/* Learn */}
           <Icon.Button
-            
             name='school'
             flexDirection='column'
             backgroundColor='black'
             color='white'
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Gradient')}}
+            onPress={() => {navigation.navigate('Learn')}}
           >
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
-          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '90%':'55%',backgroundColor: 'transparent'}}>
-        {/* Rest of the app comes ABOVE the action button component !*/}
-        
-        <ActionButton
-        buttonColor="transparent"
-        size={45}
-        spacing={0}
-        offsetX={0}
-        offsetY={0}
-        //position='center'
-        buttonText="+"
-        >
-        
-        
-        
-    
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" 
-          onPress={()=>{openAdd()}}>
-            <Icon name="plus" style={styles.actionButtonIcon} />
 
-          </ActionButton.Item>
+          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '90%':'55%',backgroundColor: 'transparent'}}>
+
+        {/* Rest of the app comes ABOVE the action button component! */}
+{/* Options */}
+          <ActionButton
+          buttonColor="transparent"
+          size={45}
+          spacing={0}
+          offsetX={0}
+          offsetY={0}
+          buttonText="+"
+          >
           
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {del=true,deletetime()}}>
+        {/* Add */}
+          <ActionButton.Item 
+            spaceBetween={-5} 
+            buttonColor='transparent' 
+            title="Add" 
+            onPress={()=>{openAdd()}}>
+            <Icon name="plus" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+
+        {/* Delete  */}
+          <ActionButton.Item 
+            spaceBetween={-5} 
+            buttonColor='transparent' 
+            title="Delete" 
+            onPress={() => {del=true,deletetime()}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
           </ActionButton.Item>
 
-          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Clear" onPress={() => {del=true,cleartimes()}}>
+        {/* Clear */}
+          <ActionButton.Item 
+            spaceBetween={-5} 
+            buttonColor='transparent' 
+            title="Clear" 
+            onPress={() => {del=true,cleartimes()}}>
             <Icon name="school" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          
+          </ActionButton.Item>          
         </ActionButton>
-        <Text style={{fontSize:10, left:Platform.OS === 'android' ? '54%':'58%', bottom:Platform.OS === 'android' ?'-92%':'-96%',
-    color:'white',
-    justifyContent:'center'}}>Options</Text> 
+
+        <Text style={styles.OptionsButton}>Options</Text> 
       </View>
-          </View>
-        </View>
-      </View>
+    </View>
+  </View>
+</View>
     </SafeAreaView>
     
   );
@@ -436,31 +439,25 @@ function dismissed(){
 
 export default App;
 
-  
+const styles = StyleSheet.create({ 
 
-const styles = StyleSheet.create({
-
-  
   container: {
+    //basic container that encompases the screen
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'black'
   },
-  resetbuttonText: {
-    fontSize: 40,
-    //marginTop: 10,
-    color:'#FFF',
-    position:'absolute',
-    bottom:0,
-  },
+
   sectionStyle: {
+    //encompases the entire app
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   startbuttonText: {
+    //text used for the start and stop button
     fontSize: 80,
     color:'#FFF',
     top:320, 
@@ -477,6 +474,7 @@ const styles = StyleSheet.create({
   },
 
   BottomTabText:{
+    //text used for the bottom menu
     fontSize:10,
     color:'white',
     justifyContent:'center'
@@ -488,35 +486,31 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
 
-
-  
   actionButtonIcon: {
+    //size of the actionbutton icons. Icons only used in the action button
       fontSize: 30,
       height: 33,
-      color: 'white',
-      
-      
+      color: 'white',      
   },
+
   dialogContainer: {
+    //container used for the dialog modal
       backgroundColor: 'white', 
       paddingHorizontal:'7%',
-      opacity:1
-      
+      opacity:1      
   },
 
-  // IconButtonStyle:{
-  //   flexDirection:'column',
-  //   backgroundColor:'black',
-  //   alignItems:'center',
-  //   color:'white',
-  //   size:30,
-  //   paddingHorizontal:Platform.OS === 'ios' ? '3%':'4.5%',
-  // },
-
-  
-
+  OptionsButton:{
+    fontSize:10, 
+    left:Platform.OS === 'android' ? '54%':'58%', 
+    bottom:Platform.OS === 'android' ?'-92%':'-96%', 
+    color:'white',
+    justifyContent:'center'
+  },
 });
 
+
+//don't know if this is used. Might be able to be deleted
 const options = {
   container: {
     position:'absolute',
@@ -524,8 +518,7 @@ const options = {
     alignItems: 'center',
     backgroundColor:'black',
     height:70
-  },
-  
+  }, 
   text: {
     fontSize: 70,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
