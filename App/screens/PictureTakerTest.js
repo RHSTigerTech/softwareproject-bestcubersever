@@ -145,7 +145,7 @@ export default class App extends Component {
   };
 
  uploadImageAsync(pictureuri) {
-  let apiUrl = 'http://123.123.123.123/ABC';
+  let apiUrl = 'localhost:5000/upload';
 
 
 
