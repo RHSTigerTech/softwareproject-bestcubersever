@@ -1,10 +1,10 @@
-import { Dimensions, ScrollView, StatusBar, Text, Flex, SafeAreaView, StyleSheet } from "react-native";
+import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet } from "react-native";
 import React, { Component } from "react";
-import {Header} from 'react-native-elements';
+import {Header, Card} from 'react-native-elements';
 import { times,deletetime, convertedItem, convertedTimes, storedTimes } from './Timer';
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-
+import { Button, Menu, Divider, Provider, Text } from 'react-native-paper';
 import {
  LineChart,
   BarChart,
@@ -17,6 +17,7 @@ import { View } from "react-native";
 import { TabRouter } from "@react-navigation/routers";
 
 import {getData, storeData} from './Timer'
+
 
 storeData()
 getData()
@@ -142,11 +143,11 @@ const chartConfigs = [
     }
 
       return (
-        <View style={{flex: 1, backgroundColor: 'black'}} >
+        <View style={{backgroundColor: 'black'}} >
         <Header                       
                     containerStyle={styles,{backgroundColor:'black', borderBottomColor:'black'}}
                     centerContainerStyle={{flex:14}}
-                    centerComponent={{ text: 'Session Statistics', style: { color: 'white', fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
+                    centerComponent={{ text: 'Session 1', style: { color: 'white', fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
                     />
         <ScrollView directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
@@ -218,15 +219,34 @@ const chartConfigs = [
           
     </ScrollView>
     <FlashMessage duration={1000} floating={true}/>
-    <Text style={styles.AverageTime}>
-    Average: {average.toFixed(3)}{"\n"}
-    Best: {besttime.toFixed(3)}{"\n"}
-    Worst: {worsttime.toFixed(3)}{"\n"}
-    Avg 5: not added{"\n"}
-    Best 3 of 5: not added{"\n"}
-    Avg 12: not added{"\n"}
-    Best 10 of 12: not added
-    </Text>
+    
+    
+    
+    <Card containerStyle={{backgroundColor: 'black',height:'38%', top:'-5%'}}>
+    <ScrollView >
+      <Card.Title style={styles.textTitle}>Stats</Card.Title>
+      {/* <Card.Divider/> */}
+      <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
+      <Card.Divider/>
+      <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
+      <Card.Divider/>
+      <Text style={styles.textSummary}>Worst: {worsttime.toFixed(3)}</Text>
+      <Card.Divider/>
+      <Text style={styles.textSummary}>Avg 5: not added</Text>
+      <Card.Divider/>
+      <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
+      <Card.Divider/>
+      <Text style={styles.textSummary}>Avg 12: not added</Text>
+      <Card.Divider/>
+      <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
+      <Card.Divider/>
+
+</ScrollView>
+    </Card>
+    
+    {/* </ScrollView> */}
+
+    
     </View>
     );
        //changes
@@ -237,6 +257,13 @@ const chartConfigs = [
   //       )
   // }
   
+
+  {/* Best: {besttime.toFixed(3)}{"\n"}
+    Worst: {worsttime.toFixed(3)}{"\n"}
+    Avg 5: not added{"\n"}
+    Best 3 of 5: not added{"\n"}
+    Avg 12: not added{"\n"}
+    Best 10 of 12: not added */}
 }
   }
 
@@ -250,15 +277,35 @@ const styles = StyleSheet.create({
       color:'white',
       top:'-3%',
       //right:'-10%',
-      textAlign:'left',
+      textAlign:'center',
       fontSize:30,
-      borderRadius:10,
-      borderWidth:.7,
-      margin:0,
-      marginLeft:"3.5%",
-      marginRight:"3.5%",
-      paddingLeft:10,
+      // borderRadius:0,
+      // borderWidth:.7,
+      // margin:0,
+      // marginLeft:"3.5%",
+      // marginRight:"3.5%",
+      // paddingLeft:10,
       
       borderColor:'white',
-    }
+    },
+    
+    // DividerStyle:{
+    //   backgroundColor:'white',
+    //   top:'-3%',
+    // },
+    scroll:{
+      backgroundColor:'transparent'
+    },
+    textTitle: {
+        // Titles of the cards
+        color: 'white',
+        fontSize: 30
+    },
+    textSummary: {
+        // the summary of the step
+        color: 'white',
+        fontSize: 25,
+        textAlign:'center'
+    },
+
 })
