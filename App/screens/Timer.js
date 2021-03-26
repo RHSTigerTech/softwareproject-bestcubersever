@@ -138,6 +138,13 @@ export const deletetime = () =>{
   return (convertedTimes);
 
 }
+export const cleartimes =()=>{
+  if(del===true){
+    convertedTimes=[convertedTimes[0]];
+  }
+  del=false;
+  return(convertedTimes);
+}
 
 //let storagetest=getData()+storeData(convertedTimes)
 //a scrambler that gives 20 scramble nonredundant notations
@@ -402,35 +409,16 @@ function dismissed(){
     
           <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Add" 
           onPress={()=>{openAdd()}}>
-          
-          {/* <Provider>
-      <Portal>
-        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-          <Text>Example Modal.  Click outside this area to dismiss.</Text>
-        </Modal>
-      </Portal> */}
-
             <Icon name="plus" style={styles.actionButtonIcon} />
-            
-            
-            {/* <Modal isVisible={isModalVisible}>
-              <View style={{flex:.5, position:'center',top:'50%',transparent:'true'}}>
-                <TextInput
-                  label="Add Time"
-                  value={text}
-                  onChangeText={text => setText(text)}
-                  numeric
-                  keyboardType={'decimal-pad'}
-                />
-                <Button title='cancel' onPress={toggleModal}/>
 
-              </View>
-            </Modal> */}
-            {/* </Provider> */}
           </ActionButton.Item>
           
           <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Delete" onPress={() => {del=true,deletetime()}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+
+          <ActionButton.Item spaceBetween={-5} buttonColor='transparent' title="Clear" onPress={() => {del=true,cleartimes()}}>
+            <Icon name="school" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           
         </ActionButton>

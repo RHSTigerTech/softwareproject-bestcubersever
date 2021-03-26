@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     textStyle:{
         color:'black',
         fontSize:30,    
-        opacity:0.9,
+        opacity:1,
         
     }
     
