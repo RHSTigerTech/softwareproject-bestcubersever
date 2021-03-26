@@ -41,11 +41,21 @@ const chartConfigs = [
     let besttime;
 
     let worsttime;
+
+
+    
         
     if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
       data=deletetime();
       data.pop();
       data.pop();
+        for(let i=0;i<data.length;i++){
+          if(data[i]===0 || '0'){
+            console.log(data[i]+'yo')
+            data.slice(i,1)
+            console.log(data.slice(i,1))
+          }
+        }
         if(data[0]===0 && data.length>1){
         data.shift();
         }      
@@ -137,7 +147,7 @@ const chartConfigs = [
                 }}
               >
 
-              <LineChart                
+              <LineChart               
                 //bezier
                 data={{
                   labels: xcords,                  
