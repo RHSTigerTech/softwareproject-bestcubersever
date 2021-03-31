@@ -81,6 +81,8 @@ let del;
 
 let lastItem='00:00:000';
 
+let testdel=0;
+
 //stores the converted times
 
 // export const storeData = async (value) => {
@@ -162,7 +164,6 @@ export const times = () =>{
   }
   storedTimes.push(finaltime)
   
-  
   if(storedTimes.length>1){
   lastItem= storedTimes[storedTimes.length-1]
   lastItem=lastItem.replace(":",".");
@@ -189,17 +190,36 @@ export const times = () =>{
     lastItem=parseFloat(lastItem)
     lastItem=lastItem+(60*minutes)
     convertedTimes.push(lastItem)
+
+    convertedTimes=convertedTimes.filter(function(value){
+      return !Number.isNaN(value)
+    })
     // removeElement(convertedTimes,0)
     if(del===true){
+      if(convertedTimes[convertedTimes.length-2]==0||convertedTimes[convertedTimes.length-1]==0){
+        convertedTimes.splice(convertedTimes.length-3,3)
+      }
+      else{
       convertedTimes.pop();
       convertedTimes.pop();
-      
+      }
       //storeData(convertedTimes)
       console.log('del is true')
       del=false;
+      finaltime='0';
     }
+    
+    testdel=convertedTimes[convertedTimes.length-1]
+    
+    // if(testdel==finaltime){
+    //   convertedTimes.pop()
+    //   console.log('popping')
+    // }
+    
     storeData(convertedTimes)
     console.log(convertedTimes)
+    console.log(testdel)
+    console.log(finaltime)
   }
   
   return (convertedTimes);
