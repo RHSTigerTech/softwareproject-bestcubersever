@@ -1,16 +1,31 @@
 import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet } from "react-native";
 import React, { Component } from "react";
 import {Header, Card} from 'react-native-elements';
+import {storeData, getData} from './Timer';
 import { times,deletetime, convertedItem, convertedTimes, storedTimes } from './Timer';
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import { Button, Menu, Divider, Provider, Text } from 'react-native-paper';
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
-import {getData, storeData} from './Timer'
 
-storeData()
+
+// let timedel=deletetime()
+// console.log(timedel)
+// console.log('testingkabflabflab')
+
+storeData(convertedTimes)
 getData()
+
+// function removeElement(arrayName,arrayElement)
+//     {
+//       for(var i=0; i<arrayName.length;i++ )
+//         { 
+//           if(arrayName[i]==arrayElement)
+//               arrayName.splice(i,1); 
+//               console.log('removed zero')
+//         } 
+//     }
 
 const chartConfigs = [    
     {
@@ -22,6 +37,9 @@ const chartConfigs = [
       color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
     },    
   ];
+// let arrayName=times()
+// let arrayElement=0;
+  
 
   export default class App extends React.Component {  
     renderTabBar() {
@@ -43,33 +61,55 @@ const chartConfigs = [
     let worsttime;
 
 
+    // for(let i=0;i<times().length;i++){
+    //   if(times()[i]==0){
+    //     console.log(times()[i]+'--------------')
+    //     data=times().slice(i)
+    //     console.log(times().slice(i,1)+'------------------')
+        
+    //   }
+    // }
     
+    
+    // removeElement(deletetime(),0)
+    // console.log(times())
+    // console.log(times().length)
+    // console.log('..................................................')
+    // console.log(deletetime())
+    // console.log(deletetime().length)
         
     if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
+      // removeElement(deletetime(),0)
       data=deletetime();
       data.pop();
-      data.pop();
-        for(let i=0;i<data.length;i++){
-          if(data[i]===0 || '0'){
-            console.log(data[i]+'yo')
-            data.slice(i,1)
-            console.log(data.slice(i,1))
-          }
-        }
+      data.pop(); 
         if(data[0]===0 && data.length>1){
+          console.log(data[0])
+          console.log('ksadbjsadljblsjbvls')
         data.shift();
         }      
     }
 
     else{
+      // removeElement(times(),0)
       data=times();
       data.pop();
 
       if(data[0]===0 && data.length>1){
+        console.log(data[0])
+        console.log('ksadbjsadljblsjbvls')
+
         data.shift();
         }
     }
+    //removeElement(data,0)
 
+    
+
+    // console.log(convertedTimes)
+    // console.log('yoooooooooooooo')
+    // console.log(times())
+    // console.log('----------------------p')
     
     //Average
     for(let i=0;i<data.length;i++){
@@ -83,12 +123,16 @@ const chartConfigs = [
 
     //Best Time
     for(let i=0;i<data.length;i++){
+      if(data[i]==0){
+        data.splice(i,1);
+      }
       if(i===0){
         besttime=parseFloat(data[i])
       }
       if(parseFloat(data[i])<besttime){
         besttime=parseFloat(data[i])
       }
+      
     }
     console.log(besttime)
 

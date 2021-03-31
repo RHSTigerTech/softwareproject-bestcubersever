@@ -10,13 +10,68 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
+//import {storeData, getData} from './storage';
 
+export const storeData = async (value) => {
+  try {
+    let jsonValue = JSON.stringify(value) 
+    await AsyncStorage.setItem('@storage_Key', jsonValue)
+  } catch (e) {
+  }
+}
+export const getData = async () => {
+  try {
+    let jsonValue = await AsyncStorage.getItem('@storage_Key')
+    
+    convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
+    console.log(convertedJson)
+    let jsonstring=JSON.stringify(convertedJson)
+    let i=0;
+    
+    console.log(jsonstring)
+    let formattedjsonstring= jsonstring.split('[').join('')
+    formattedjsonstring= formattedjsonstring.split(']').join('')
+    formattedjsonstring= formattedjsonstring.split('\\').join('')
+    formattedjsonstring= formattedjsonstring.split('"').join('')
+
+    console.log(formattedjsonstring)
+    timerarray=formattedjsonstring.split(',');
+    
+    console.log(timerarray)
+    console.log('--------------------------------------------------')
+    
+    array=timerarray.map(Number)
+    console.log('-----------')
+    console.log(array)
+    console.log('-----------')
+    console.log(convertedJson)
+    const propertyValues = Object.values(convertedJson);
+    console.log(propertyValues)
+
+
+    while (i<timerarray.length){
+      if(timerarray[i]==0){
+        i++
+      }
+      else{
+      convertedTimes.push(timerarray[i])
+      i++
+      }
+    }
+
+    return convertedJson;
+    
+    //return (jsonValue)
+  } catch(e) {
+    // error reading value
+  }
+}
 
 let finaltime='00:00:000';
 
 let storedTimes=[];
 
-let convertedTimes=[0];
+let convertedTimes=[];
 
 let storedData;
 
@@ -27,58 +82,74 @@ let del;
 let lastItem='00:00:000';
 
 //stores the converted times
-export const storeData = async (value) => {
-      try {
-        let jsonValue = JSON.stringify(value) 
-        await AsyncStorage.setItem('@storage_Key', jsonValue)
-      } catch (e) {
-      }
-    }
+
+// export const storeData = async (value) => {
+//       try {
+//         let jsonValue = JSON.stringify(value) 
+//         await AsyncStorage.setItem('@storage_Key', jsonValue)
+//       } catch (e) {
+//       }
+//     }
 
 //gets the converted times and converts them from a string array into usable float numbers (I think)
 //Then pushes the data to converted times list which is passed in the statistics screen
-export const getData = async () => {
-      try {
-        let jsonValue = await AsyncStorage.getItem('@storage_Key')
-        
-        convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
-        let jsonstring=JSON.stringify(convertedJson)
-        let i=0;
-        
-        console.log(jsonstring)
-        let formattedjsonstring= jsonstring.split('[').join('')
-        formattedjsonstring= formattedjsonstring.split(']').join('')
-        formattedjsonstring= formattedjsonstring.split('\\').join('')
-        formattedjsonstring= formattedjsonstring.split('"').join('')
 
-        console.log(formattedjsonstring)
-        timerarray=formattedjsonstring.split(',');
+// export const getData = async () => {
+//       try {
+//         let jsonValue = await AsyncStorage.getItem('@storage_Key')
         
-        console.log(timerarray)
-        console.log(timerarray)
-        array=timerarray.map(Number)
-        console.log('-----------')
-        console.log(array)
-        console.log('-----------')
-        console.log(convertedJson)
-        const propertyValues = Object.values(convertedJson);
-        console.log(propertyValues)
-
-
-        while (i<timerarray.length){
-          convertedTimes.push(timerarray[i,i+1])
-          i++
-        }
-
-        return convertedJson;
+//         convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
+//         let jsonstring=JSON.stringify(convertedJson)
+//         let i=0;
         
-        //return (jsonValue)
-      } catch(e) {
-        // error reading value
-      }
-    }
+//         console.log(jsonstring)
+//         let formattedjsonstring= jsonstring.split('[').join('')
+//         formattedjsonstring= formattedjsonstring.split(']').join('')
+//         formattedjsonstring= formattedjsonstring.split('\\').join('')
+//         formattedjsonstring= formattedjsonstring.split('"').join('')
+
+//         console.log(formattedjsonstring)
+//         timerarray=formattedjsonstring.split(',');
+        
+//         console.log(timerarray)
+//         console.log(timerarray)
+//         array=timerarray.map(Number)
+//         console.log('-----------')
+//         console.log(array)
+//         console.log('-----------')
+//         console.log(convertedJson)
+//         const propertyValues = Object.values(convertedJson);
+//         console.log(propertyValues)
+
+
+//         while (i<timerarray.length){
+//           convertedTimes.push(timerarray[i,i+1])
+//           i++
+//         }
+
+//         return convertedJson;
+        
+//         //return (jsonValue)
+//       } catch(e) {
+//         // error reading value
+//       }
+//     }
+
+
+    //storeData(data)
+    //getData()
 
 //storeData(convertedTimes); 
+
+// function removeElement(arrayName,arrayElement)
+//     {
+//       for(var i=0; i<arrayName.length;i++ )
+//         { 
+//           if(arrayName[i]==arrayElement)
+//               arrayName.splice(i,1); 
+//               console.log('removed zero')
+//         } 
+//     }
 
 //Takes the times from the timer and pushes them into a list which is used by statistics
 //The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list
@@ -118,10 +189,18 @@ export const times = () =>{
     lastItem=parseFloat(lastItem)
     lastItem=lastItem+(60*minutes)
     convertedTimes.push(lastItem)
-    
+    // removeElement(convertedTimes,0)
+    if(del===true){
+      convertedTimes.pop();
+      convertedTimes.pop();
+      
+      //storeData(convertedTimes)
+      console.log('del is true')
+      del=false;
+    }
+    storeData(convertedTimes)
     console.log(convertedTimes)
   }
-
   
   return (convertedTimes);
   
@@ -132,11 +211,14 @@ export const times = () =>{
 export const deletetime = () =>{
   
   if(del===true){
-    convertedTimes.pop();
+    convertedTimes.pop(); 
+    storeData(convertedTimes);
     
+    // console.log(convertedTimes)
   }
+  //times();
   del=false;
-  
+  console.log(convertedTimes)
   return (convertedTimes);
 
 }
@@ -152,9 +234,10 @@ export const cleartimes =()=>{
 }
 
 //let storagetest=getData()+storeData(convertedTimes)
+
 //a scrambler that gives 20 scramble nonredundant notations
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
-//                      0    1    2   3     4     5   6     7   8     9   10    11  12    13    14    15    16    17
+//                      0    1    2    3    4    5    6    7    8    9    10   11   12    13    14    15    16    17
 function k(){
   let l=null;
   let j=100;
@@ -205,6 +288,7 @@ function k(){
 console.log('--------------')
 
 const App = ({navigation}) => {
+  
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
@@ -319,6 +403,7 @@ function dismissed(){
               storeData(convertedTimes);              
             }}>
             <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
+            {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
             
 {/* where scramble text is called*/}
         
@@ -334,7 +419,52 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
-        <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '2.8%':'.7%'}}>
+    <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%'}}>
+
+        <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
+            {/* Options */}
+              <ActionButton
+              buttonColor="transparent"
+              size={45}
+              spacing={0}
+              offsetX={0}
+              offsetY={0}
+              buttonText="+"
+              >
+              
+            {/* Add */}
+              <ActionButton.Item 
+                spaceBetween={-5} 
+                buttonColor='transparent'
+               
+                title="Add" 
+                onPress={()=>{openAdd()}}>
+                <Icon name="plus" style={styles.actionButtonIcon} />
+              </ActionButton.Item>
+
+            {/* Delete  */}
+              <ActionButton.Item 
+                spaceBetween={-5} 
+                buttonColor='transparent' 
+                title="Delete" 
+                onPress={() => {del=true, times()}}>
+                <Icon name="delete" style={styles.actionButtonIcon} />
+              </ActionButton.Item>
+
+            {/* Clear */}
+              <ActionButton.Item 
+                spaceBetween={-5} 
+                buttonColor='transparent' 
+                title="Clear" 
+                onPress={() => {del=true, cleartimes()}}>
+                <Icon name="school" style={styles.actionButtonIcon} />
+              </ActionButton.Item>          
+            </ActionButton>
+            <Text style={styles.OptionsButton}>Options</Text> 
+            </View>
+
+
+
 {/* Virtual Cube */}
           <Icon.Button
             name='cube-outline'
@@ -369,16 +499,18 @@ function dismissed(){
             color='white'
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Gradient')}}
+            onPress={() => {navigation.navigate('Gradient'), storeData(convertedTimes)}}
           >
           <Text style={styles.BottomTabText}>Home   </Text>
           </Icon.Button>
 {/* Learn */}
           <Icon.Button
             name='school'
+            backgroundColor='transparent'
             flexDirection='column'
-            backgroundColor='black'
             color='white'
+            zIndex={3}
+            //position='absolute'
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Learn')}}
@@ -386,49 +518,7 @@ function dismissed(){
           <Text style={styles.BottomTabText}>Learn   </Text>
           </Icon.Button>
 
-          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '90%':'55%',backgroundColor: 'transparent'}}>
 
-        {/* Rest of the app comes ABOVE the action button component! */}
-{/* Options */}
-          <ActionButton
-          buttonColor="transparent"
-          size={45}
-          spacing={0}
-          offsetX={0}
-          offsetY={0}
-          buttonText="+"
-          >
-          
-        {/* Add */}
-          <ActionButton.Item 
-            spaceBetween={-5} 
-            buttonColor='transparent' 
-            title="Add" 
-            onPress={()=>{openAdd()}}>
-            <Icon name="plus" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-
-        {/* Delete  */}
-          <ActionButton.Item 
-            spaceBetween={-5} 
-            buttonColor='transparent' 
-            title="Delete" 
-            onPress={() => {del=true,deletetime()}}>
-            <Icon name="delete" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-
-        {/* Clear */}
-          <ActionButton.Item 
-            spaceBetween={-5} 
-            buttonColor='transparent' 
-            title="Clear" 
-            onPress={() => {del=true,cleartimes()}}>
-            <Icon name="school" style={styles.actionButtonIcon} />
-          </ActionButton.Item>          
-        </ActionButton>
-
-        <Text style={styles.OptionsButton}>Options</Text> 
-      </View>
     </View>
   </View>
 </View>
