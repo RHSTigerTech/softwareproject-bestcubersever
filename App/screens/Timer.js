@@ -12,6 +12,8 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
 //import {storeData, getData} from './storage';
 
+
+//stores the array of times
 export const storeData = async (value) => {
   try {
     let jsonValue = JSON.stringify(value) 
@@ -19,6 +21,7 @@ export const storeData = async (value) => {
   } catch (e) {
   }
 }
+//gets and uses the stored times
 export const getData = async () => {
   try {
     let jsonValue = await AsyncStorage.getItem('@storage_Key')
@@ -130,6 +133,7 @@ export const times = () =>{
       if(convertedTimes[convertedTimes.length-2]==0||convertedTimes[convertedTimes.length-1]==0){
         convertedTimes.splice(convertedTimes.length-3,3)
       }
+      //theres a third scenario where it should just .pop() once instead of twice
       else{
       convertedTimes.pop();
       convertedTimes.pop();
