@@ -150,9 +150,12 @@ export const times = () =>{
       finaltime='0';
     }
     if(checkadd===true){
+      console.log(convertedTimes)
+      console.log('before')
+      convertedTimes.splice(convertedTimes.length-3,1)
       convertedTimes.pop()
       //need to delete one more before the added time
-      convertedTimes.splice(convertedTimes-2,1)
+      //convertedTimes.splice(convertedTimes-2,1)
       console.log(convertedTimes)
       console.log('after check add')
       checkadd=false;
