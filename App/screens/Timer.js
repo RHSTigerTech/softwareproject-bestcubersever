@@ -86,6 +86,8 @@ let lastItem='00:00:000';
 
 let testdel=0;
 
+let checkadd=false;
+
 
 //Takes the times from the timer and pushes them into a list which is used by statistics
 //The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list
@@ -146,6 +148,15 @@ export const times = () =>{
       console.log('del is true')
       del=false;
       finaltime='0';
+    }
+    if(checkadd===true){
+      convertedTimes.pop()
+      //need to delete one more before the added time
+      convertedTimes.splice(convertedTimes-2,1)
+      console.log(convertedTimes)
+      console.log('after check add')
+      checkadd=false;
+      finaltime='0'
     }
     
     testdel=convertedTimes[convertedTimes.length-1]
@@ -276,11 +287,15 @@ function store(){
 //adds the time to the stats when the add button is pressed
 function add(){
     convertedTimes.push(inputVal)
+    checkadd=true;
     console.log(inputVal)
     hideModal()
     setInputVal('')
     check=true;
-    console.log(check)
+    console.log(check)    
+}
+function afteradd(){
+  convertedTimes.pop()
 }
 
 //removes anything written as input and closes out of the modalview
@@ -326,7 +341,7 @@ function dismissed(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='black' onPress={() => {add()}}>Add</Button>
+                <Button color='black' onPress={() => {add(),times()}}>Add</Button>
               <Button color='black' onPress={() => {cancel()}}>Cancel</Button>
               
             </Dialog.Actions>
