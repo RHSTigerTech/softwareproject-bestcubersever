@@ -130,12 +130,16 @@ export const times = () =>{
     })
     // removeElement(convertedTimes,0)
     if(del===true){
+      console.log(convertedTimes)
       if(convertedTimes[convertedTimes.length-2]==0||convertedTimes[convertedTimes.length-1]==0){
         convertedTimes.splice(convertedTimes.length-3,3)
       }
+      else if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
+        convertedTimes.pop();
+        convertedTimes.pop();
+      }
       //theres a third scenario where it should just .pop() once instead of twice
       else{
-      convertedTimes.pop();
       convertedTimes.pop();
       }
       //storeData(convertedTimes)
