@@ -82,11 +82,13 @@ let minutes;
 
 let del;
 
+let checkadd;
+
 let lastItem='00:00:000';
 
 let testdel=0;
 
-let checkadd=false;
+
 
 
 //Takes the times from the timer and pushes them into a list which is used by statistics
@@ -150,12 +152,14 @@ export const times = () =>{
       finaltime='0';
     }
     if(checkadd===true){
+      console.log(convertedTimes)
       convertedTimes.splice(convertedTimes.length-3,1)
       convertedTimes.pop()
+      finaltime='0';
       //need to delete one more before the added time
       //convertedTimes.splice(convertedTimes-2,1)
       checkadd=false;
-      finaltime='0'
+      
     }
     
     testdel=convertedTimes[convertedTimes.length-1]
@@ -182,14 +186,12 @@ export const deletetime = () =>{
   if(del===true){
     convertedTimes.pop(); 
     storeData(convertedTimes);
-    
     // console.log(convertedTimes)
   }
   //times();
   del=false;
   console.log(convertedTimes)
   return (convertedTimes);
-
 }
 
 // clears most of the times
@@ -286,7 +288,6 @@ function store(){
 //adds the time to the stats when the add button is pressed
 function add(){
     convertedTimes.push(inputVal)
-    checkadd=true;
     console.log(inputVal)
     hideModal()
     setInputVal('')
@@ -340,7 +341,7 @@ function dismissed(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='black' onPress={() => {add(),times()}}>Add</Button>
+                <Button color='black' onPress={() => {add(),checkadd=true,times()}}>Add</Button>
               <Button color='black' onPress={() => {cancel()}}>Cancel</Button>
               
             </Dialog.Actions>
@@ -364,6 +365,7 @@ function dismissed(){
             options={options}
             getTime={(time) => {
               finaltime=time;
+              
             }}
             
             
