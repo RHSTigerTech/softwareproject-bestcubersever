@@ -132,9 +132,27 @@ export const times = () =>{
     convertedTimes=convertedTimes.filter(function(value){
       return !Number.isNaN(value)
     })
+
+    if(checkadd===true){
+      console.log('ooooooooooooooooooooooo')
+      convertedTimes.splice(convertedTimes.length-3,1)
+      convertedTimes.pop()
+      
+      finaltime='0';
+      //need to delete one more before the added time
+      //convertedTimes.splice(convertedTimes-2,1)
+      checkadd=false;
+      console.log(convertedTimes)
+      //del=true;
+      
+    }
+
     // removeElement(convertedTimes,0)
     if(del===true){
       console.log(convertedTimes)
+      if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
+        convertedTimes.pop()
+      }
       if(convertedTimes[convertedTimes.length-2]==0||convertedTimes[convertedTimes.length-1]==0){
         convertedTimes.splice(convertedTimes.length-3,3)
       }
@@ -146,22 +164,16 @@ export const times = () =>{
       else{
       convertedTimes.pop();
       }
+      
       //storeData(convertedTimes)
       console.log('del is true')
       del=false;
       finaltime='0';
     }
-    if(checkadd===true){
-      console.log(convertedTimes)
-      convertedTimes.splice(convertedTimes.length-3,1)
-      convertedTimes.pop()
-      finaltime='0';
-      //need to delete one more before the added time
-      //convertedTimes.splice(convertedTimes-2,1)
-      checkadd=false;
-      
-    }
     
+    if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
+      convertedTimes.pop()
+    }
     testdel=convertedTimes[convertedTimes.length-1]
     
     // if(testdel==finaltime){
@@ -292,6 +304,7 @@ function add(){
     hideModal()
     setInputVal('')
     check=true;
+    checkadd=true;
     console.log(check)    
 }
 function afteradd(){
@@ -341,7 +354,8 @@ function dismissed(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='black' onPress={() => {add(),checkadd=true,times()}}>Add</Button>
+                <Button color='black' onPress={() => {add(),times()}}>Add</Button>
+                
               <Button color='black' onPress={() => {cancel()}}>Cancel</Button>
               
             </Dialog.Actions>
