@@ -188,6 +188,9 @@ export const times = () =>{
       convertedTimes.pop();
       }
       
+      if(amount>=1){
+        convertedTimes.pop()
+      }
       //storeData(convertedTimes)
       console.log('del is true')
       del=false;
@@ -486,7 +489,7 @@ function dismissed(){
                 spaceBetween={-5} 
                 buttonColor='transparent' 
                 title="Delete" 
-                onPress={() => {del=true, times()}}>
+                onPress={() => {del=true, times(),amount=0}}>
                 <Icon name="delete" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
