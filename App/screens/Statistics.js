@@ -93,10 +93,10 @@ const chartConfigs = [
     else{
       // removeElement(times(),0)
       data=times();
-      // if(data[data.length-1]==data[data.length-2]){
-      // data.pop();
-      // }
-      data.pop()
+      if(data[data.length-1]==data[data.length-2]){
+      data.pop();
+      }
+      //data.pop()
       if(data[0]===0 && data.length>1){
         console.log(data[0])
         console.log('ksadbjsadljblsjbvls')

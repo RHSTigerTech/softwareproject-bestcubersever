@@ -82,11 +82,17 @@ let minutes;
 
 let del;
 
+let gone;
+
+let noppush;
+
 let checkadd;
 
 let lastItem='00:00:000';
 
 let testdel=0;
+
+let amount =0;
 
 
 
@@ -100,8 +106,10 @@ export const times = () =>{
   if(convertedTimes[convertedTimes.length-1]===convertedTimes[convertedTimes.length-2]){
     convertedTimes.pop();
   }
+  
   storedTimes.push(finaltime)
   
+
   if(storedTimes.length>1){
   lastItem= storedTimes[storedTimes.length-1]
   lastItem=lastItem.replace(":",".");
@@ -134,27 +142,45 @@ export const times = () =>{
     })
 
     if(checkadd===true){
+      console.log(convertedTimes)
+      if(amount==0){
       console.log('ooooooooooooooooooooooo')
       convertedTimes.splice(convertedTimes.length-3,1)
       convertedTimes.pop()
-      
+      }
+      else if(amount >1 ){
+        console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
+      convertedTimes.splice(convertedTimes.length-4,2)
+      convertedTimes.pop()
+      nopush=true;
+      }
+      else{
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
+        convertedTimes.pop()
+      }
       finaltime='0';
+      console.log(amount)
+      
       //need to delete one more before the added time
       //convertedTimes.splice(convertedTimes-2,1)
       checkadd=false;
-      console.log(convertedTimes)
+      amount+=1;
+      //console.log(convertedTimes)
       //del=true;
       
     }
 
     // removeElement(convertedTimes,0)
     if(del===true){
-      console.log(convertedTimes)
-      if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
-        convertedTimes.pop()
-      }
-      if(convertedTimes[convertedTimes.length-2]==0||convertedTimes[convertedTimes.length-1]==0){
+      //console.log(convertedTimes)
+      // if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
+      //   convertedTimes.pop()
+      // }
+      if(convertedTimes[convertedTimes.length-2]==0){
         convertedTimes.splice(convertedTimes.length-3,3)
+      }
+      else if(convertedTimes[convertedTimes.length-1]==0){
+        convertedTimes.splice(convertedTimes.length-2,2)
       }
       else if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
         convertedTimes.pop();
@@ -170,10 +196,30 @@ export const times = () =>{
       del=false;
       finaltime='0';
     }
+    console.log(amount+'yoooooooooooo')
     
+
+    //first couple need to be changed
+    // if(amount<=1){
     if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
       convertedTimes.pop()
     }
+    // if(amount>2){
+    //   console.log(convertedTimes[convertedTimes.length-(amount)+2])
+    //   if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-(amount+2)]){
+    //     console.log('poppppppppppp')
+    //     convertedTimes.pop()
+    //     amount-=1;
+    //   }
+    // }
+    // if(amount>1){
+    //   convertedTimes.pop()
+    // }
+  // }
+  // else {
+  //   if(converted){}
+  // }
+  
     testdel=convertedTimes[convertedTimes.length-1]
     
     // if(testdel==finaltime){
@@ -389,7 +435,8 @@ function dismissed(){
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
-              storeData(convertedTimes);              
+              storeData(convertedTimes);  
+              amount=0;            
             }}>
             <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
