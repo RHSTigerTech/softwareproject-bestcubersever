@@ -1,43 +1,47 @@
 import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet } from "react-native";
 import React, { Component } from "react";
 import {Header, Card} from 'react-native-elements';
+import {storeData, getData} from './Timer';
 import { times,deletetime, convertedItem, convertedTimes, storedTimes } from './Timer';
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import { Button, Menu, Divider, Provider, Text } from 'react-native-paper';
-import {
- LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
-} from "react-native-chart-kit";
+import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
-import { TabRouter } from "@react-navigation/routers";
-
-import {getData, storeData} from './Timer'
 
 
-storeData()
+// let timedel=deletetime()
+// console.log(timedel)
+// console.log('testingkabflabflab')
+
+storeData(convertedTimes)
 getData()
 
-const chartConfigs = [
-    
+// function removeElement(arrayName,arrayElement)
+//     {
+//       for(var i=0; i<arrayName.length;i++ )
+//         { 
+//           if(arrayName[i]==arrayElement)
+//               arrayName.splice(i,1); 
+//               console.log('removed zero')
+//         } 
+//     }
+
+const chartConfigs = [    
     {
-      backgroundColor: "black",
-      
+      backgroundColor: "black",      
       fillShadowGradient:'white',
       fillShadowGradientOpacity:.4,
       backgroundGradientFrom: "black",
       backgroundGradientTo: "black",
       color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
-    },
-    
+    },    
   ];
-
-  export default class App extends React.Component {
+// let arrayName=times()
+// let arrayElement=0;
   
+
+  export default class App extends React.Component {  
     renderTabBar() {
       return <StatusBar hidden />;
     }
@@ -52,35 +56,62 @@ const chartConfigs = [
 
     let floatnum;
 
-    let reset=[]
-
     let besttime;
 
     let worsttime;
-    
-    
-    if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
-      
 
+
+    // for(let i=0;i<times().length;i++){
+    //   if(times()[i]==0){
+    //     console.log(times()[i]+'--------------')
+    //     data=times().slice(i)
+    //     console.log(times().slice(i,1)+'------------------')
+        
+    //   }
+    // }
+    
+    
+    // removeElement(deletetime(),0)
+    // console.log(times())
+    // console.log(times().length)
+    // console.log('..................................................')
+    // console.log(deletetime())
+    // console.log(deletetime().length)
+        
+    if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
+      // removeElement(deletetime(),0)
       data=deletetime();
       data.pop();
-      data.pop();
-
+      data.pop(); 
         if(data[0]===0 && data.length>1){
+          console.log(data[0])
+          console.log('ksadbjsadljblsjbvls')
         data.shift();
-        }
-
-      
+        }      
     }
+
     else{
+      // removeElement(times(),0)
       data=times();
+      if(data[data.length-1]==data[data.length-2]){
       data.pop();
-
+      }
+      //data.pop()
       if(data[0]===0 && data.length>1){
+        console.log(data[0])
+        console.log('ksadbjsadljblsjbvls')
+
         data.shift();
         }
     }
+    //removeElement(data,0)
 
+    
+
+    // console.log(convertedTimes)
+    // console.log('yoooooooooooooo')
+    // console.log(times())
+    // console.log('----------------------p')
     
     //Average
     for(let i=0;i<data.length;i++){
@@ -94,12 +125,16 @@ const chartConfigs = [
 
     //Best Time
     for(let i=0;i<data.length;i++){
+      if(data[i]==0){
+        data.splice(i,1);
+      }
       if(i===0){
         besttime=parseFloat(data[i])
       }
       if(parseFloat(data[i])<besttime){
         besttime=parseFloat(data[i])
       }
+      
     }
     console.log(besttime)
 
@@ -114,27 +149,11 @@ const chartConfigs = [
     }
     console.log(worsttime)
 
-    // for(let j=0;j<data.length-10;j++){
-    //   data.pop()
-    //   reset=data;
-    // }
-    // data=reset;
-
-
-
-    // for(let i=0;i<data.length;i++){
-    //   if(data[i,i+1]===0){
-    //     data[i,i+1]=5;
-    //   }
-    // }
-
     let xcords=[]
     for(let i=1;i<=data.length;i++){
       xcords.push(i)
     }
 
-    
-    //add more if else statements to make scroll look good no matter how many data points
     if (data.length>10){
         width = data.length*50;
     }
@@ -145,10 +164,10 @@ const chartConfigs = [
       return (
         <View style={{backgroundColor: 'black'}} >
         <Header                       
-                    containerStyle={styles,{backgroundColor:'black', borderBottomColor:'black'}}
-                    centerContainerStyle={{flex:14}}
-                    centerComponent={{ text: 'Session 1', style: { color: 'white', fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
-                    />
+          containerStyle={styles,{backgroundColor:'black', borderBottomColor:'black'}}
+          centerContainerStyle={{flex:14}}
+          centerComponent={{ text: 'Session 1', style: { color: 'white', fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
+        />
         <ScrollView directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
             const labelStyle = {
@@ -160,7 +179,6 @@ const chartConfigs = [
             const graphStyle = {
             strokeWidth:2,           
             bottom: 0,
-
               ...chartConfig.style
             };
             <Text style={labelStyle}>Bezier Line Chart</Text>
@@ -175,96 +193,55 @@ const chartConfigs = [
                 }}
               >
 
-
-            
-              <LineChart
-                
+              <LineChart               
                 //bezier
                 data={{
-                  labels:                     
-                      xcords,                  
-                  datasets: [
-                    {
-                      data
-                    }
-                  ]
-                }}
-                
+                  labels: xcords,                  
+                  datasets: [{data}]}
+                }
                 width={width}
                 height={350}
                 yAxisLabel=""
-                chartConfig={chartConfig}
-                
+                chartConfig={chartConfig}                
                 style={graphStyle}
                 verticalLabelRotation={0}
                 onDataPointClick={({ value, getColor }) =>
                   showMessage({
-                    //position:'bottom',
                     message: `${value} seconds`,
                     type:'info',
-                    //description: "You selected this value",
-                    backgroundColor: 'black',
-                    
+                    backgroundColor: 'black',                    
                   })
-                }
-                
-              />
-              
-              
-        </ScrollView>
-        
-            );
-            
-          })}
-          
+                }                
+              />              
+        </ScrollView>        
+            );            
+          })}          
     </ScrollView>
+
     <FlashMessage duration={1000} floating={true}/>
-    
-    
-    
+
     <Card containerStyle={{backgroundColor: 'black',height:'38%', top:'-5%'}}>
-    <ScrollView >
-      <Card.Title style={styles.textTitle}>Stats</Card.Title>
-      {/* <Card.Divider/> */}
-      <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
-      <Card.Divider/>
-      <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
-      <Card.Divider/>
-      <Text style={styles.textSummary}>Worst: {worsttime.toFixed(3)}</Text>
-      <Card.Divider/>
-      <Text style={styles.textSummary}>Avg 5: not added</Text>
-      <Card.Divider/>
-      <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
-      <Card.Divider/>
-      <Text style={styles.textSummary}>Avg 12: not added</Text>
-      <Card.Divider/>
-      <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
-      <Card.Divider/>
-
-</ScrollView>
+      <ScrollView >
+        <Card.Title style={styles.textTitle}>Stats</Card.Title>
+        <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Worst: {worsttime.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Avg 5: not added</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Avg 12: not added</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
+        <Card.Divider/>
+      </ScrollView>
     </Card>
-    
-    {/* </ScrollView> */}
-
-    
     </View>
     );
-       //changes
-  //   }
-  //   catch(err){
-  //     return(
-  //       <Text style={{color:'black', position:'center'}}>yo</Text>
-  //       )
-  // }
-  
-
-  {/* Best: {besttime.toFixed(3)}{"\n"}
-    Worst: {worsttime.toFixed(3)}{"\n"}
-    Avg 5: not added{"\n"}
-    Best 3 of 5: not added{"\n"}
-    Avg 12: not added{"\n"}
-    Best 10 of 12: not added */}
-}
+    }
   }
 
 const styles = StyleSheet.create({
@@ -276,23 +253,10 @@ const styles = StyleSheet.create({
     AverageTime:{
       color:'white',
       top:'-3%',
-      //right:'-10%',
       textAlign:'center',
       fontSize:30,
-      // borderRadius:0,
-      // borderWidth:.7,
-      // margin:0,
-      // marginLeft:"3.5%",
-      // marginRight:"3.5%",
-      // paddingLeft:10,
-      
       borderColor:'white',
     },
-    
-    // DividerStyle:{
-    //   backgroundColor:'white',
-    //   top:'-3%',
-    // },
     scroll:{
       backgroundColor:'transparent'
     },
