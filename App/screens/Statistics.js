@@ -14,11 +14,11 @@ getData()
 
 const chartConfigs = [    
     {
-      backgroundColor: "black",      
+      backgroundColor: "#121212",      
       fillShadowGradient:'white',
-      fillShadowGradientOpacity:.4,
-      backgroundGradientFrom: "black",
-      backgroundGradientTo: "black",
+      fillShadowGradientOpacity:.3,
+      backgroundGradientFrom: "#121212",
+      backgroundGradientTo: "#121212",
       color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
     },    
   ];
@@ -116,16 +116,17 @@ const chartConfigs = [
     }
 
       return (
-        <View style={{backgroundColor: 'black'}} >
+        <View style={{backgroundColor: '#121212'}} >
         <Header                       
-          containerStyle={styles,{backgroundColor:'black', borderBottomColor:'black'}}
+          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212'}}
           centerContainerStyle={{flex:14}}
-          centerComponent={{ text: 'Session 1', style: { color: 'white', fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
+          centerComponent={{ text: 'Session 1', style: { color: 'white',opacity:.87, fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
         />
         <ScrollView directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',
+              opacity:.87,
               marginVertical: 0,
               textAlign: "center",
               fontSize: 16
@@ -163,7 +164,7 @@ const chartConfigs = [
                   showMessage({
                     message: `${value} seconds`,
                     type:'info',
-                    backgroundColor: 'black',                    
+                    backgroundColor: '#121212',                    
                   })
                 }                
               />              
@@ -174,7 +175,7 @@ const chartConfigs = [
 
     <FlashMessage duration={1000} floating={true}/>
 
-    <Card containerStyle={{backgroundColor: 'black',height:'38%', top:'-5%'}}>
+    <Card containerStyle={{backgroundColor: '#121212',height:'38%', top:'-5%'}}>
       <ScrollView >
         <Card.Title style={styles.textTitle}>Stats</Card.Title>
         <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
@@ -206,6 +207,7 @@ const styles = StyleSheet.create({
     },  
     AverageTime:{
       color:'white',
+      opacity:.87,
       top:'-3%',
       textAlign:'center',
       fontSize:30,
@@ -217,11 +219,13 @@ const styles = StyleSheet.create({
     textTitle: {
         // Titles of the cards
         color: 'white',
+        opacity:87,
         fontSize: 30
     },
     textSummary: {
         // the summary of the step
         color: 'white',
+        opacity:87,
         fontSize: 25,
         textAlign:'center'
     },

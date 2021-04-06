@@ -283,8 +283,8 @@ function dismissed(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='black' onPress={() => {add()}}>Add</Button>
-              <Button color='black' onPress={() => {cancel()}}>Cancel</Button>
+                <Button color='#121212' onPress={() => {add()}}>Add</Button>
+              <Button color='#121212' onPress={() => {cancel()}}>Cancel</Button>
               
             </Dialog.Actions>
         </Dialog>
@@ -339,9 +339,10 @@ function dismissed(){
           <Icon.Button
             name='cube-outline'
             flexDirection='column'
-            backgroundColor='black'
+            backgroundColor='#121212'
             alignItems='center'
             color='white'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => navigation.navigate('VirtualCube')}
@@ -353,8 +354,9 @@ function dismissed(){
             name='chart-line'
             alignItems='center'
             flexDirection='column'
-            backgroundColor='black'
+            backgroundColor='#121212'
             color='white'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Statistics')}}
@@ -365,8 +367,9 @@ function dismissed(){
           <Icon.Button
             name='home' 
             flexDirection='column'
-            backgroundColor='black'
+            backgroundColor='#121212'
             color='white'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Gradient')}}
@@ -377,8 +380,9 @@ function dismissed(){
           <Icon.Button
             name='school'
             flexDirection='column'
-            backgroundColor='black'
+            backgroundColor='#121212'
             color='white'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Learn')}}
@@ -397,12 +401,13 @@ function dismissed(){
           offsetX={0}
           offsetY={0}
           buttonText="+"
+        
           >
           
         {/* Add */}
           <ActionButton.Item 
             spaceBetween={-5} 
-            buttonColor='transparent' 
+            buttonColor='#121212' 
             title="Add" 
             onPress={()=>{openAdd()}}>
             <Icon name="plus" style={styles.actionButtonIcon} />
@@ -411,7 +416,7 @@ function dismissed(){
         {/* Delete  */}
           <ActionButton.Item 
             spaceBetween={-5} 
-            buttonColor='transparent' 
+            buttonColor='#121212' 
             title="Delete" 
             onPress={() => {del=true,deletetime()}}>
             <Icon name="delete" style={styles.actionButtonIcon} />
@@ -420,7 +425,7 @@ function dismissed(){
         {/* Clear */}
           <ActionButton.Item 
             spaceBetween={-5} 
-            buttonColor='transparent' 
+            buttonColor='#121212' 
             title="Clear" 
             onPress={() => {del=true,cleartimes()}}>
             <Icon name="school" style={styles.actionButtonIcon} />
@@ -446,7 +451,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'black'
+    backgroundColor:'#121212'
   },
 
   sectionStyle: {
@@ -460,6 +465,7 @@ const styles = StyleSheet.create({
     //text used for the start and stop button
     fontSize: 80,
     color:'#FFF',
+    opacity:.87,
     top:320, 
   },
 
@@ -467,6 +473,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     width:'60%',
     color:'#FFF',
+    opacity:.87,
     position:'absolute',
     top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
     textAlign:'center',
@@ -477,6 +484,7 @@ const styles = StyleSheet.create({
     //text used for the bottom menu
     fontSize:10,
     color:'white',
+    opacity:1,
     justifyContent:'center'
   },
 
@@ -490,14 +498,15 @@ const styles = StyleSheet.create({
     //size of the actionbutton icons. Icons only used in the action button
       fontSize: 30,
       height: 33,
-      color: 'white',      
+      color: 'white', 
+      opacity:1     
   },
 
   dialogContainer: {
     //container used for the dialog modal
       backgroundColor: 'white', 
       paddingHorizontal:'7%',
-      opacity:1      
+      opacity:.87      
   },
 
   OptionsButton:{
@@ -505,24 +514,26 @@ const styles = StyleSheet.create({
     left:Platform.OS === 'android' ? '54%':'58%', 
     bottom:Platform.OS === 'android' ?'-92%':'-96%', 
     color:'white',
+    opacity:1,      
     justifyContent:'center'
   },
 });
 
 
-//don't know if this is used. Might be able to be deleted
+
 const options = {
   container: {
     position:'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'black',
+    backgroundColor:'#121212',
     height:70
   }, 
   text: {
     fontSize: 70,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
     color: '#FFF',
+    opacity:.87,
     marginLeft: 0,
     top:-150,
   },
