@@ -84,8 +84,6 @@ let del;
 
 let gone;
 
-let noppush;
-
 let checkadd;
 
 let lastItem='00:00:000';
@@ -152,7 +150,6 @@ export const times = () =>{
         console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
       convertedTimes.splice(convertedTimes.length-4,2)
       convertedTimes.pop()
-      nopush=true;
       }
       else{
         console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
@@ -315,8 +312,14 @@ function k(){
 }
 
 console.log('--------------')
+let effect=0;
 
 const App = ({navigation}) => {
+  useEffect(()=>{
+    if(amount>1){
+      convertedTimes.pop()  
+    } 
+  },[]);
   
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
