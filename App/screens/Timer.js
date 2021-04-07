@@ -82,6 +82,10 @@ let minutes;
 
 let del;
 
+let getrid;
+
+let stopadd;
+
 let gone;
 
 let checkadd;
@@ -104,9 +108,9 @@ export const times = () =>{
   if(convertedTimes[convertedTimes.length-1]===convertedTimes[convertedTimes.length-2]){
     convertedTimes.pop();
   }
-  
-  storedTimes.push(finaltime)
-  
+  if(stopadd!=true){
+    storedTimes.push(finaltime)
+  }
 
   if(storedTimes.length>1){
   lastItem= storedTimes[storedTimes.length-1]
@@ -320,18 +324,38 @@ let effect=0;
 const App = ({navigation}) => {
   useEffect(()=>{
     if(amount>1){
-      convertedTimes.pop()  
+      convertedTimes.pop()
+      console.log(convertedTimes)  
+    }
+    if(getrid==true){
+      convertedTimes.pop()
+      console.log(convertedTimes)
+      console.log('showing delete screen')
+      getrid=false;
     } 
   },[]);
+  // useEffect(()=>{
+  //   if(stopadd==true){
+  //     console.log(convertedTimes)
+  //     console.log('poooooooooooooooooooooooooop')
+  //     convertedTimes.pop()
+  //     console.log(convertedTimes)
+      
+  //     console.log('showing delete screen')
+  //   } 
+  // });
   
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
 //modal constants to set modal as either visible or invisible
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const [visible, setVisible] = React.useState(false);
+  const showAddModal = () => setAddVisible(true);
+  const showDelModal = () => setDelVisible(true);
+  const hideAddModal = () => setAddVisible(false);
+  const hideDelModal = () => setDelVisible(false);
+  const [Addvisible, setAddVisible] = React.useState(false);
+  const [Delvisible, setDelVisible] = React.useState(false);
 //sets the input value
   const [inputVal, setInputVal] = useState('');
 
@@ -353,7 +377,7 @@ function store(){
 function add(){
     convertedTimes.push(inputVal)
     console.log(inputVal)
-    hideModal()
+    hideAddModal()
     setInputVal('')
     check=true;
     checkadd=true;
@@ -365,23 +389,30 @@ function afteradd(){
 
 //removes anything written as input and closes out of the modalview
 function cancel(){
-  hideModal()
+  hideAddModal()
+  hideDelModal()
   setInputVal('')
   check=true;
   console.log(check)
+  stopadd=false;
 }
 
 //opens the modalview when the add button is pressed
 function openAdd(){
   check=true;
-  showModal()
+  showAddModal()
   console.log(check)
 }
+
+
+
 
 //closes the modal when the user clicks anywhere else
 function dismissed(){
   check=true;
-  hideModal()
+  hideDelModal()
+  hideAddModal()
+  stopadd=false;
   console.log(check)
 
 }
@@ -394,8 +425,8 @@ function dismissed(){
   const addTimes = () => (
     <Provider>
       <Portal>
-        <Dialog visible={visible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
-        <Dialog.Title>Add Time</Dialog.Title>
+        <Dialog visible={Addvisible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
+        <Dialog.Title>Add A Time</Dialog.Title>
         <Dialog.Content>
           <TextInput
                   label="Add A Time (In Seconds)"
@@ -415,9 +446,22 @@ function dismissed(){
       </Portal>
       
       </Provider>
-      
-    
+
     );
+
+    const delperm = () => (
+      <Provider>
+        <Portal>
+          <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
+          <Dialog.Title>Would you like to delete: {convertedTimes[convertedTimes.length-1]}</Dialog.Title>
+            <Dialog.Actions>
+                <Button color='#121212' onPress={() => {hideDelModal(),del=true, times(),amount=0,stopadd=false,getrid=true;}}>Delete</Button>                
+                <Button color='#121212' onPress={() => {cancel()}}>Cancel</Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+      </Provider>
+    )
 
   return (
 
@@ -456,6 +500,7 @@ function dismissed(){
           </TouchableOpacity>
           {/* where the modal is called */}
           {addTimes()}
+          {delperm()}
 
           
          
@@ -489,7 +534,7 @@ function dismissed(){
                 spaceBetween={-5} 
                 buttonColor='transparent' 
                 title="Delete" 
-                onPress={() => {del=true, times(),amount=0}}>
+                onPress={() => {showDelModal(),stopadd=true}}>
                 <Icon name="delete" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
@@ -499,6 +544,7 @@ function dismissed(){
                 buttonColor='transparent' 
                 title="Clear" 
                 onPress={() => {del=true, cleartimes()}}>
+                
                 <Icon name="school" style={styles.actionButtonIcon} />
               </ActionButton.Item>          
             </ActionButton>
@@ -519,7 +565,7 @@ function dismissed(){
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => navigation.navigate('VirtualCube')}
           >
-          <Text style={styles.BottomTabText}>3DCube   </Text>
+          <Text style={styles.BottomTabText}>3DCube</Text>
           </Icon.Button>
 {/* Statistics */}
           <Icon.Button            
@@ -533,7 +579,7 @@ function dismissed(){
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Statistics')}}
           >
-          <Text style={styles.BottomTabText}>Statistics   </Text>
+          <Text style={styles.BottomTabText}>Statistics</Text>
           </Icon.Button>
 {/* Home Screen */}
           <Icon.Button
@@ -546,21 +592,21 @@ function dismissed(){
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Gradient'), storeData(convertedTimes)}}
           >
-          <Text style={styles.BottomTabText}>Home   </Text>
+          <Text style={styles.BottomTabText}>Home</Text>
           </Icon.Button>
 {/* Learn */}
           <Icon.Button
             name='school'
             backgroundColor='transparent'
             flexDirection='column'
-            backgroundColor='#121212'
+            //backgroundColor='#121212'
             color='white'
             opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Learn')}}
           >
-          <Text style={styles.BottomTabText}>Learn   </Text>
+          <Text style={styles.BottomTabText}>Learn</Text>
           </Icon.Button>
 
     </View>
@@ -614,7 +660,9 @@ const styles = StyleSheet.create({
     fontSize:10,
     color:'white',
     opacity:1,
-    justifyContent:'center'
+    justifyContent:'center',
+    left:'-7%',
+    paddingHorizontal:'1%'
   },
 
   startbuttonSize:{
@@ -633,9 +681,9 @@ const styles = StyleSheet.create({
 
   dialogContainer: {
     //container used for the dialog modal
-      backgroundColor: 'white', 
+      backgroundColor: '#FBFAF5', 
       paddingHorizontal:'7%',
-      opacity:.87      
+      opacity:1      
   },
 
   OptionsButton:{
