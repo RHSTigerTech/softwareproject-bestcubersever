@@ -146,37 +146,23 @@ export const times = () =>{
     if(checkadd===true){
       console.log(convertedTimes)
       if(amount==0){
-      console.log('ooooooooooooooooooooooo')
       convertedTimes.splice(convertedTimes.length-3,1)
       convertedTimes.pop()
       }
       else if(amount >1 ){
-        console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
       convertedTimes.splice(convertedTimes.length-4,2)
       convertedTimes.pop()
       }
       else{
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
         convertedTimes.pop()
       }
       finaltime='0';
-      console.log(amount)
-      
-      //need to delete one more before the added time
-      //convertedTimes.splice(convertedTimes-2,1)
+      console.log(amount)      
       checkadd=false;
-      amount+=1;
-      //console.log(convertedTimes)
-      //del=true;
-      
+      amount+=1;      
     }
 
-    // removeElement(convertedTimes,0)
     if(del===true){
-      //console.log(convertedTimes)
-      // if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
-      //   convertedTimes.pop()
-      // }
       if(convertedTimes[convertedTimes.length-2]==0){
         convertedTimes.splice(convertedTimes.length-3,3)
       }
@@ -187,49 +173,23 @@ export const times = () =>{
         convertedTimes.pop();
         convertedTimes.pop();
       }
-      //theres a third scenario where it should just .pop() once instead of twice
       else{
       convertedTimes.pop();
       }
-      
       if(amount>=1){
         convertedTimes.pop()
       }
-      //storeData(convertedTimes)
       console.log('del is true')
       del=false;
       finaltime='0';
     }
-    console.log(amount+'yoooooooooooo')
-    
-
-    //first couple need to be changed
-    // if(amount<=1){
     if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
       convertedTimes.pop()
     }
-    // if(amount>2){
-    //   console.log(convertedTimes[convertedTimes.length-(amount)+2])
-    //   if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-(amount+2)]){
-    //     console.log('poppppppppppp')
-    //     convertedTimes.pop()
-    //     amount-=1;
-    //   }
-    // }
-    // if(amount>1){
-    //   convertedTimes.pop()
-    // }
-  // }
-  // else {
-  //   if(converted){}
-  // }
+    
   
     testdel=convertedTimes[convertedTimes.length-1]
     
-    // if(testdel==finaltime){
-    //   convertedTimes.pop()
-    //   console.log('popping')
-    // }
     
     storeData(convertedTimes)
     console.log(convertedTimes)
@@ -265,8 +225,6 @@ export const cleartimes =()=>{
   del=false;
   return(convertedTimes);
 }
-
-//let storagetest=getData()+storeData(convertedTimes)
 
 //a scrambler that gives 20 scramble nonredundant notations
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
@@ -334,16 +292,6 @@ const App = ({navigation}) => {
       getrid=false;
     } 
   },[]);
-  // useEffect(()=>{
-  //   if(stopadd==true){
-  //     console.log(convertedTimes)
-  //     console.log('poooooooooooooooooooooooooop')
-  //     convertedTimes.pop()
-  //     console.log(convertedTimes)
-      
-  //     console.log('showing delete screen')
-  //   } 
-  // });
   
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
@@ -508,6 +456,7 @@ function dismissed(){
           />
          {/*starts and resets stopwatch using the same button  */}
           <TouchableOpacity style={styles.startbuttonSize}
+          
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
@@ -534,31 +483,35 @@ function dismissed(){
 {/* bottom icon buttons */}
     <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%'}}>
 
-        <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
+        <View style={{flex:1,  flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
             {/* Options */}
               <ActionButton
               buttonColor="#121212"
+              zIndex={100}
               size={45}
               spacing={0}
               offsetX={0}
               offsetY={0}
+              
               buttonText="+"
               >
               
             {/* Add */}
               <ActionButton.Item 
                 spaceBetween={-5} 
-                buttonColor='#121212'
+                //buttonColor='transparent'
                
                 title="Add" 
+                
                 onPress={()=>{openAdd()}}>
                 <Icon name="plus" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
             {/* Delete  */}
               <ActionButton.Item 
+              // zIndex={100}
                 spaceBetween={-5} 
-                buttonColor='#121212' 
+                //buttonColor='#121212' 
                 title="Delete" 
                 onPress={() => {showDelModal(),stopadd=true}}>
                 <Icon name="delete" style={styles.actionButtonIcon} />
@@ -567,7 +520,8 @@ function dismissed(){
             {/* Clear */}
               <ActionButton.Item 
                 spaceBetween={-5} 
-                buttonColor='#121212' 
+                //buttonColor='#121212' 
+                
                 title="Clear" 
                 onPress={() => {del=true, cleartimes()}}>
                 
@@ -660,6 +614,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    //backgroundColor:'transparent'
   },
 
   startbuttonText: {
@@ -692,10 +647,11 @@ const styles = StyleSheet.create({
   },
 
   startbuttonSize:{
+    
     width: 500,
     height: '87%',
     alignItems:'center',
-    zIndex:1,
+    //zIndex:1,
   },
 
   actionButtonIcon: {
@@ -704,8 +660,8 @@ const styles = StyleSheet.create({
       height: 33,
       color: 'white', 
       opacity:1, 
-      zIndex:5,
-      position:'absolute'
+      
+      
 
   },
 
