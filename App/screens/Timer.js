@@ -537,7 +537,7 @@ function dismissed(){
         <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
             {/* Options */}
               <ActionButton
-              buttonColor="transparent"
+              buttonColor="#121212"
               size={45}
               spacing={0}
               offsetX={0}
@@ -548,7 +548,7 @@ function dismissed(){
             {/* Add */}
               <ActionButton.Item 
                 spaceBetween={-5} 
-                buttonColor='transparent'
+                buttonColor='#121212'
                
                 title="Add" 
                 onPress={()=>{openAdd()}}>
@@ -558,7 +558,7 @@ function dismissed(){
             {/* Delete  */}
               <ActionButton.Item 
                 spaceBetween={-5} 
-                buttonColor='transparent' 
+                buttonColor='#121212' 
                 title="Delete" 
                 onPress={() => {showDelModal(),stopadd=true}}>
                 <Icon name="delete" style={styles.actionButtonIcon} />
@@ -567,7 +567,7 @@ function dismissed(){
             {/* Clear */}
               <ActionButton.Item 
                 spaceBetween={-5} 
-                buttonColor='transparent' 
+                buttonColor='#121212' 
                 title="Clear" 
                 onPress={() => {del=true, cleartimes()}}>
                 
@@ -695,6 +695,7 @@ const styles = StyleSheet.create({
     width: 500,
     height: '87%',
     alignItems:'center',
+    zIndex:1,
   },
 
   actionButtonIcon: {
@@ -702,7 +703,10 @@ const styles = StyleSheet.create({
       fontSize: 30,
       height: 33,
       color: 'white', 
-      opacity:1     
+      opacity:1, 
+      zIndex:5,
+      position:'absolute'
+
   },
 
   dialogContainer: {
