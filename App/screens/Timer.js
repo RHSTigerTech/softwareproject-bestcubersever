@@ -373,10 +373,24 @@ function store(){
     )
   }
 }
+
+function fixnum(input){
+  var index = input.indexOf( '.' );
+
+    if ( index > -1 ) {
+        input = input.substr( 0, index + 1 ) + 
+                input.slice( index ).replace( /\./g, '' );
+    }
+    console.log(input)
+    console.log('is this working')
+    return input;
+}
+let value=inputVal;
 //adds the time to the stats when the add button is pressed
 function add(){
-    convertedTimes.push(inputVal)
-    console.log(inputVal)
+    value=fixnum(value)
+    convertedTimes.push(value)
+    console.log(value)
     hideAddModal()
     setInputVal('')
     check=true;
@@ -420,8 +434,12 @@ function dismissed(){
 
 
 
+
+
+
+
 //modal function that allows user to enter a new time to put into statistics
-  let value=inputVal;
+  
   const addTimes = () => (
     <Provider>
       <Portal>
@@ -434,6 +452,7 @@ function dismissed(){
                   onChangeText={text => setInputVal(text)}
                   numeric
                   keyboardType={'decimal-pad'}
+                  
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
@@ -448,12 +467,19 @@ function dismissed(){
       </Provider>
 
     );
+    let convertedtimestext=convertedTimes[convertedTimes.length-1];
+    if(convertedTimes[convertedTimes.length-1]==0){
+      convertedtimestext=convertedTimes[convertedTimes.length-2]
+      if(convertedTimes[convertedTimes.length-2]==0){
+        convertedtimestext=convertedTimes[convertedTimes.length-3]
+      }
+    }
 
     const delperm = () => (
       <Provider>
         <Portal>
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
-          <Dialog.Title>Would you like to delete: {convertedTimes[convertedTimes.length-1]}</Dialog.Title>
+          <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
             <Dialog.Actions>
                 <Button color='#121212' onPress={() => {hideDelModal(),del=true, times(),amount=0,stopadd=false,getrid=true;}}>Delete</Button>                
                 <Button color='#121212' onPress={() => {cancel()}}>Cancel</Button>
