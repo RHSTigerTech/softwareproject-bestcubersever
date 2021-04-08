@@ -30,11 +30,11 @@ getData()
 const chartConfigs = [    
     {
       backgroundColor: "#121212",      
-      fillShadowGradient:'white',
+      fillShadowGradient:'#764abc',
       fillShadowGradientOpacity:.3,
       backgroundGradientFrom: "#121212",
       backgroundGradientTo: "#121212",
-      color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
+      color: (opacity = 1) => `rgba(${170}, ${119}, ${252}, ${opacity})`
     },    
   ];
 // let arrayName=times()
@@ -59,6 +59,8 @@ const chartConfigs = [
     let besttime;
 
     let worsttime;
+
+    const height=360;
 
 
     // for(let i=0;i<times().length;i++){
@@ -85,7 +87,6 @@ const chartConfigs = [
       data.pop(); 
         if(data[0]===0 && data.length>1){
           console.log(data[0])
-          console.log('ksadbjsadljblsjbvls')
         data.shift();
         }      
     }
@@ -99,19 +100,9 @@ const chartConfigs = [
       //data.pop()
       if(data[0]===0 && data.length>1){
         console.log(data[0])
-        console.log('ksadbjsadljblsjbvls')
-
         data.shift();
         }
     }
-    //removeElement(data,0)
-
-    
-
-    // console.log(convertedTimes)
-    // console.log('yoooooooooooooo')
-    // console.log(times())
-    // console.log('----------------------p')
     
     //Average
     for(let i=0;i<data.length;i++){
@@ -154,7 +145,7 @@ const chartConfigs = [
       xcords.push(i)
     }
 
-    if (data.length>10){
+    if (data.length>8){
         width = data.length*50;
     }
     else{
@@ -162,13 +153,32 @@ const chartConfigs = [
     }
 
       return (
-        <View style={{backgroundColor: '#121212'}} >
-        <Header                       
+        <View style={{backgroundColor: '#121212',height:'100%'}} >
+        {/* <Header                       
           containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212'}}
           centerContainerStyle={{flex:14}}
           centerComponent={{ text: 'Session 1', style: { color: 'white',opacity:.87, fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
-        />
-        <ScrollView directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        /> */}
+        <Card containerStyle={{backgroundColor: '#121212',height:'40%', top:'3%',zIndex:5}}>
+      <ScrollView >
+        <Card.Title style={styles.textTitle}>Stats</Card.Title>
+        <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Worst: {worsttime.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Avg 5: not added</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Avg 12: not added</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
+        <Card.Divider/>
+      </ScrollView>
+    </Card>
+        <ScrollView bottom={'-13%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',
@@ -179,7 +189,7 @@ const chartConfigs = [
             };
             const graphStyle = {
             strokeWidth:2,           
-            bottom: 0,
+            bottom:0,
               ...chartConfig.style
             };
             <Text style={labelStyle}>Bezier Line Chart</Text>
@@ -201,7 +211,7 @@ const chartConfigs = [
                   datasets: [{data}]}
                 }
                 width={width}
-                height={350}
+                height={height}
                 yAxisLabel=""
                 chartConfig={chartConfig}                
                 style={graphStyle}
@@ -221,25 +231,7 @@ const chartConfigs = [
 
     <FlashMessage duration={1000} floating={true}/>
 
-    <Card containerStyle={{backgroundColor: '#121212',height:'38%', top:'-5%'}}>
-      <ScrollView >
-        <Card.Title style={styles.textTitle}>Stats</Card.Title>
-        <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
-        <Card.Divider/>
-        <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
-        <Card.Divider/>
-        <Text style={styles.textSummary}>Worst: {worsttime.toFixed(3)}</Text>
-        <Card.Divider/>
-        <Text style={styles.textSummary}>Avg 5: not added</Text>
-        <Card.Divider/>
-        <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
-        <Card.Divider/>
-        <Text style={styles.textSummary}>Avg 12: not added</Text>
-        <Card.Divider/>
-        <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
-        <Card.Divider/>
-      </ScrollView>
-    </Card>
+    
     </View>
     );
     }

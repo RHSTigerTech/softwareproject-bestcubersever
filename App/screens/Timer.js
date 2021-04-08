@@ -1,7 +1,7 @@
 
 import React, { useState, Component, useEffect } from 'react';
 import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable} from 'react-native';
-import { TextInput,Modal, Portal, Text, Button, Provider, Dialog } from 'react-native-paper';
+import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -201,7 +201,17 @@ export const times = () =>{
   
 }
 
-
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#1c1c1c',
+    text: '#BB86FC',
+    primary:'#BB86FC',
+    
+    placeholder:'#BB86FC'
+  },
+};
 //deletes the most recent time when the delete button is pressed
 export const deletetime = () =>{
   
@@ -389,13 +399,16 @@ function dismissed(){
 //modal function that allows user to enter a new time to put into statistics
   
   const addTimes = () => (
-    <Provider>
+    <Provider theme={theme}>
       <Portal>
         <Dialog visible={Addvisible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
-        <Dialog.Title>Add A Time</Dialog.Title>
-        <Dialog.Content>
+        <Dialog.Title style={{color:'#BB86FC'}}>Add</Dialog.Title>
+        <Dialog.Content style={{color:'#BB86FC'}}>
           <TextInput
+                  
                   label="Add A Time (In Seconds)"
+                  keyboardAppearance='dark'
+                  //backgroundColor='black'
                   value={value}
                   onChangeText={text => setInputVal(text)}
                   numeric
@@ -404,9 +417,9 @@ function dismissed(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='#121212' onPress={() => {add(),times()}}>Add</Button>
+                <Button color='#BB86FC' onPress={() => {add(),times()}}>Add</Button>
                 
-              <Button color='#121212' onPress={() => {cancel()}}>Cancel</Button>
+              <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
               
             </Dialog.Actions>
         </Dialog>
@@ -424,13 +437,13 @@ function dismissed(){
     }
 
     const delperm = () => (
-      <Provider>
+      <Provider theme={theme}>
         <Portal>
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#121212' onPress={() => {hideDelModal(),del=true, times(),amount=0,stopadd=false,getrid=true;}}>Delete</Button>                
-                <Button color='#121212' onPress={() => {cancel()}}>Cancel</Button>
+                <Button color='#BB86FC' onPress={() => {hideDelModal(),del=true, times(),amount=0,stopadd=false,getrid=true;}}>Delete</Button>                
+                <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
         </Portal>
@@ -440,7 +453,7 @@ function dismissed(){
   return (
 
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
+      {/* <View style={styles.container}> */}
         <View style={styles.sectionStyle}>
 {/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
@@ -483,11 +496,11 @@ function dismissed(){
 {/* bottom icon buttons */}
     <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%'}}>
 
-        <View style={{flex:1,  flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
+        <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
             {/* Options */}
               <ActionButton
               buttonColor="#121212"
-              zIndex={100}
+              //zIndex={100}
               size={45}
               spacing={0}
               offsetX={0}
@@ -500,7 +513,8 @@ function dismissed(){
               <ActionButton.Item 
                 spaceBetween={-5} 
                 //buttonColor='transparent'
-               
+                zIndex={999}
+                
                 title="Add" 
                 
                 onPress={()=>{openAdd()}}>
@@ -508,7 +522,7 @@ function dismissed(){
               </ActionButton.Item>
 
             {/* Delete  */}
-              <ActionButton.Item 
+            <ActionButton.Item 
               // zIndex={100}
                 spaceBetween={-5} 
                 //buttonColor='#121212' 
@@ -591,7 +605,7 @@ function dismissed(){
 
     </View>
   </View>
-</View>
+{/*</View> */}
     </SafeAreaView>
     
   );
@@ -603,7 +617,9 @@ const styles = StyleSheet.create({
 
   container: {
     //basic container that encompases the screen
+    zIndex:1,
     flex: 1,
+    position:'relative',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:'#121212'
@@ -611,7 +627,9 @@ const styles = StyleSheet.create({
 
   sectionStyle: {
     //encompases the entire app
+    zIndex:1,
     flex: 1,
+    position:'relative',
     alignItems: 'center',
     justifyContent: 'center',
     //backgroundColor:'transparent'
@@ -656,18 +674,22 @@ const styles = StyleSheet.create({
 
   actionButtonIcon: {
     //size of the actionbutton icons. Icons only used in the action button
+      zIndex:999,
+      position:'relative',
       fontSize: 30,
       height: 33,
       color: 'white', 
       opacity:1, 
-      
-      
-
   },
+
+  textInputStyle: {
+    color: 'white',
+    },
+
 
   dialogContainer: {
     //container used for the dialog modal
-      backgroundColor: '#FBFAF5', 
+      backgroundColor: '#121212', 
       paddingHorizontal:'7%',
       opacity:1      
   },
