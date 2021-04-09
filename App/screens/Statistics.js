@@ -154,14 +154,15 @@ const chartConfigs = [
 
       return (
         <View style={{backgroundColor: '#121212',height:'100%'}} >
-        {/* <Header                       
-          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212'}}
+        <Header                       
+          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:-30}}
           centerContainerStyle={{flex:14}}
-          centerComponent={{ text: 'Session 1', style: { color: 'white',opacity:.87, fontSize:30, fontWeight:'bold', bottom:-5,backgroundColor:'transparent'}}} 
-        /> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:'40%', top:'3%',zIndex:5}}>
+          centerComponent={{ text: 'Statistics', style: { color: 'white',opacity:.87, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
+        />
+        {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
+        <Card containerStyle={{backgroundColor: '#121212',height:'40%', top:'2%',zIndex:5}}>
       <ScrollView >
-        <Card.Title style={styles.textTitle}>Stats</Card.Title>
+        {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
         <Card.Divider/>
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
