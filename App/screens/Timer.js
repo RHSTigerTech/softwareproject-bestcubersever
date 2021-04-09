@@ -361,6 +361,15 @@ function afteradd(){
 
 //removes anything written as input and closes out of the modalview
 function cancel(){
+  console.log(convertedTimes)
+  console.log('amount'+amount)
+  // if(amount>1){
+  //   convertedTimes.pop()
+  //   convertedTimes.pop()
+    
+  //   console.log(convertedTimes)
+  // }
+  
   hideAddModal()
   hideDelModal()
   setInputVal('')
@@ -442,7 +451,7 @@ function dismissed(){
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {hideDelModal(),del=true, times(),amount=0,stopadd=false,getrid=true;}}>Delete</Button>                
+                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),stopadd=false,getrid=true;}}>Delete</Button>                
                 <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
@@ -452,9 +461,9 @@ function dismissed(){
 
   return (
 
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container} pointerEvents='box-none' >
       {/* <View style={styles.container}> */}
-        <View style={styles.sectionStyle}>
+        <View style={styles.sectionStyle} pointerEvents='box-none'>
 {/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
@@ -468,8 +477,7 @@ function dismissed(){
             
           />
          {/*starts and resets stopwatch using the same button  */}
-          <TouchableOpacity style={styles.startbuttonSize}
-          
+          <TouchableOpacity style={styles.startbuttonSize} 
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
@@ -494,17 +502,23 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
-    <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%'}}>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
+{/*
+<View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}> */}
+        {/* <View style={{flexDirection:'row', bottom:'-17%', justifyContent:'space-evenly' , width:'100%',backgroundColor:'blue', left:Platform.OS === 'ios' ? '-13.2%':'-9.5%'}} pointerEvents='box-none'> */}
 
-        <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
+          <View style={{flex:1,flexDirection:'column',height:180,bottom:Platform.OS === 'ios' ? '37%': '32.5%', right:Platform.OS === 'ios' ? '-178%':'-207%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
             {/* Options */}
               <ActionButton
               buttonColor="#121212"
+              hideShadow={true}
               //zIndex={100}
+              //paddingHorizontal={50}
               size={45}
               spacing={0}
               offsetX={0}
               offsetY={0}
+              
               
               buttonText="+"
               >
@@ -551,7 +565,8 @@ function dismissed(){
           <Icon.Button
             name='cube-outline'
             flexDirection='column'
-            backgroundColor='#121212'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
             alignItems='center'
             color='white'
             opacity={1}
@@ -566,7 +581,8 @@ function dismissed(){
             name='chart-line'
             alignItems='center'
             flexDirection='column'
-            backgroundColor='#121212'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
             color='white'
             opacity={1}
             size={30}
@@ -579,7 +595,8 @@ function dismissed(){
           <Icon.Button
             name='home' 
             flexDirection='column'
-            backgroundColor='#121212'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
             color='white'
             opacity={1}
             size={30}
@@ -604,9 +621,12 @@ function dismissed(){
           </Icon.Button>
 
     </View>
+    {/* <View style={{backgroundColor:'yellow', width:50,flexDirection:'column',height:100}}>
+
+    </View> */}
   </View>
 {/*</View> */}
-    </SafeAreaView>
+    </View>
     
   );
 }
@@ -617,6 +637,7 @@ const styles = StyleSheet.create({
 
   container: {
     //basic container that encompases the screen
+    
     zIndex:1,
     flex: 1,
     position:'relative',
@@ -667,8 +688,11 @@ const styles = StyleSheet.create({
   startbuttonSize:{
     
     width: 500,
-    height: '87%',
+    height: '89%',
+    bottom:-70,
+    
     alignItems:'center',
+    //backgroundColor:'#FFF',
     //zIndex:1,
   },
 
@@ -696,11 +720,11 @@ const styles = StyleSheet.create({
 
   OptionsButton:{
     fontSize:10, 
-    left:Platform.OS === 'android' ? '54%':'58%', 
-    bottom:Platform.OS === 'android' ?'-92%':'-96%', 
+    left:Platform.OS === 'android' ? '54%':'60%', 
+    bottom:Platform.OS === 'android' ?'-96%':'-99%', 
     color:'white',
     opacity:1,      
-    justifyContent:'center'
+    //justifyContent:'center'
   },
 });
 
