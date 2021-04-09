@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, View,
- Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
-import GradientButton from 'react-native-gradient-buttons';
 
 function IntermediateLearn({navigation}) {
     return (
@@ -11,8 +9,8 @@ function IntermediateLearn({navigation}) {
                 <View style={{height: '90%'}}>
                     <ScrollView style={styles.scroll}>
                         <View style={styles.pageHeader}>
-                            <Text style={styles.textHeader}>Intermediate Method</Text>
-                            <Text style={styles.textSubHeader}>
+                            <Text style={styles.textHeader}>Intermediate Method {/* Page Title */}</Text>
+                            <Text style={styles.textSubHeader}> 
                                 All of these steps correspond to steps in the Beginner's Method, they are just more advanced and in turn faster 
                                 ways to complete them.  In order to have a smoother transition into this method, you can learn one step at a 
                                 time and continue using the Beginner's Method steps for the others.
@@ -21,39 +19,55 @@ function IntermediateLearn({navigation}) {
                                 {'\n'}Intermediate Step 3 = Beginner's Step 4 and 5
                                 {'\n'}Intermediate Step 4 = Beginner's Step 6 and 7
                                 {'\n'}Always hold the cube so that white is on the bottom, unless algorithms have a cube rotation in them.
+                                {/* Sub Header: Transition between Beginner and Intermediate */}
                             </Text>
                         </View>
 
-                        {/* White Cross */}
+                        {/* STEP 1: WHITE CROSS */}
                         <Card containerStyle={{backgroundColor: 'black'}}>
-                            <Card.Title style={styles.textTitle}>1: White Cross</Card.Title>
+                            <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
                                 Get the white edges into place next to the white center and the center with the other color.  This Is the same 
-                                as the first step of the Beginner's Method, just a faster/more advanced way to do it.
+                                as the first step of the Beginner's Method, just a faster/more advanced way to do it. {/* Summary of Step */}
                             </Text>
                             <Card.Divider/>
-                            <Text style={styles.textHeader}>Instructions</Text>
+                            <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
+                            <Text style={styles.textSubHeader}>
+                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                            </Text>
                             <Text style={styles.textDescripWide}>
-                                1: Find an edge with white and another color on it.{'\n'}2: Line the other color up with the matching center.
+                                1: Find an edge with white and another color on it.
+                                {'\n'}2: Line the other color up with the matching center.
                                 {'\n'}3: Rotate the side with that color until the edge is 
-                                {'\n'}    inserted into the white layer.{'\n'}
+                                {'\n'}    inserted into the white layer.{'\n'} {/* Steps */}
                             </Text>
-                            <Text style={styles.textHeader}>
-                                Special Cases
-                            </Text>
+                            <Text style={styles.textHeader}>Special Cases {/* Header: Special Cases */}</Text>
+                            {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textDescrip}></Text>
-
-                                <Text style={styles.placeHolder}>(image here)</Text>
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_wlayer.jpg')}/>
                                 <Text style={styles.textDescrip}>
-                                    
+                                    All edges are in the white layer, but one is oriented wrong.
+                                    {'\n'}F' D R' D'
+                                </Text>
+                            
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_ylayer.jpg')}/>
+                                <Text style={styles.textDescrip}>
+                                    Last edge is on the correct side in the yellow layer, but it is oriented wrong so that you can not simply 
+                                    move it down
+                                    {'\n'}F D R' D'
+                                </Text>
+
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_2layer.jpg')}/>
+                                <Text style={styles.textDescrip}>
+                                    Last edge is on the correct side in the second layer, but it is oriented wrong so that you can not simply 
+                                    move it down
+                                    {'\n'}D R' D'
                                 </Text>
                             </View>
                         </Card>
                         
-                        {/* F2L */}
+                        {/* STEP 2: F2L */}
                         <Card containerStyle={{backgroundColor: 'black'}}>
                             <Card.Title style={styles.textTitle}>2: First Two Layers (F2L)</Card.Title>
                             <Card.Divider/>
@@ -90,66 +104,71 @@ function IntermediateLearn({navigation}) {
                                     {'\n'}
                                     {'\n'}Next, you need to position them so that you can insert them.  The position depends on how the corner 
                                     and edge pieces are oriented.  In order to position them, hold the cube so that the spot that the pair needs 
-                                    to be inserted into is in the front right corner.  Then, move the corner so that it is in the back right 
-                                    corner of the top layer.  Then, you can do (R) and then (U) or (U') until the edge is in the correct 
-                                    position.
+                                    to be inserted into is in the front right corner.  Then, move the corner to the back right corner in the top 
+                                    layer.  If the white part of the corner is facing to the right or up, keep the corner in that spot and do 
+                                    (R) then (U) or (U') until the edge piece is in the correct spot according to the diagrams below.  If it 
+                                    is facing the back, move it to the front left corner of the top layer and do (F) then (U) or (U') until the 
+                                    edge piece is in the correct spot according to the diagrams below.
                                 </Text>
 
                                 <Text style={styles.textWideCenter}>Top of the edge and top of the corner are the same</Text>
-                                <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textDescrip}> {/* sr */}
-                                    If the colored side of the corner is matched with its corresponding center and the white side of the corner 
-                                    is facing right, position them like this and insert using:
-                                    {'\n'}L' U L
-                                </Text>
-                                <Text style={styles.placeHolder}>(image here)</Text> {/* sl */}
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_sr.jpg')}/>
                                 <Text style={styles.textDescrip}>
-                                    If the colored side of the corner is matched with its corresponding center and the white side of the corner 
-                                    is facing left, position them like this and insert using:
-                                    {'\n'}R U' R'
+                                    If the color of the top of the corner is matches the center of the side the pair is on and the white side of 
+                                    the corner is facing right, position them like this and insert using:
+                                    {'\n'}L' U L {/* sr */}
+                                </Text>
+                                
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_sl.jpg')}/>
+                                <Text style={styles.textDescrip}>
+                                    If the color of the top of the corner is matches the center of the side the pair is on and the white side of 
+                                    the corner is facing left, position them like this and insert using:
+                                    {'\n'}R U' R' {/* sl */}
                                 </Text>
 
                                 <Text style={styles.textWideCenter}>Top of the edge and top of the corner are different</Text>
-                                <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textDescrip}> {/* dr */}
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_dr.jpg')}/>
+                                <Text style={styles.textDescrip}>
                                     If the colored side of the corner is matched with its corresponing center and the white side of the corner 
                                     is facing right, position them like this and insert using:
-                                    {'\n'}R U R'
+                                    {'\n'}R U R' {/* dr */}
                                 </Text>
-                                <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textDescrip}> {/* dl */}
+                                
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_dl.jpg')}/>
+                                <Text style={styles.textDescrip}>
                                     If the colored side of the corner is matched with its corresponing center and the white side of the corner 
                                     is facing left, position them like this and insert using:
-                                    {'\n'}L' U' L
+                                    {'\n'}L' U' L {/* dl */}
                                 </Text>
 
                                 <Text style={styles.textWideCenter}>Top of the corner is white</Text>
                                 <Text style={styles.textDescripWide}>
-                                    Position the edge so that it is on the side that corresponds with the color on the top of the edge.
+                                    Position the edge so that it is on the side that corresponds with the color on the side of the edge.
                                 </Text>
-                                <Text style={styles.placeHolder}>(image here)</Text>
-                                <Text style={styles.textDescrip}> {/* tr */}
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_tr.jpg')}/>
+                                <Text style={styles.textDescrip}>
                                     If the edge is on the right, insert using this:
-                                    {'\n'}R U R2 F R F'
+                                    {'\n'}R U R2 F R F' {/* tr */}
                                 </Text>
-                                <Text style={styles.placeHolder}>(image here)</Text>
+                                
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_tl.jpg')}/>
                                 <Text style={styles.textDescrip}>
                                     If the edge is on the left, insert using this:
-                                    {'\n'}L' U' L2 F' L' F
+                                    {'\n'}L' U' L2 F' L' F {/* tl */}
                                 </Text>
                             </View>
                         </Card>
 
-                        {/* OLL */}
+                        {/* STEP 3: OLL */}
                         <Card containerStyle={{backgroundColor: 'black'}}>
-                            <Card.Title style={styles.textTitle}>3: Orient Last Layer (OLL)</Card.Title>
+                            <Card.Title style={styles.textTitle}>3: Orient Last Layer (OLL) {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
-                                In order to orient the last layer in this method, you use one algorithms to orient both the yellow edges and 
-                                corners with one algorithm.
+                                In order to orient the last layer in this method, you use one algorithm to orient both the yellow edges and 
+                                corners. {/* Summary of Step */}
                             </Text>
                             <Card.Divider/>
-                            <Text style={styles.textHeader}>Cases</Text>
+                            <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textWideCenter}>All edges oriented</Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_0.png')}/>
@@ -189,25 +208,25 @@ function IntermediateLearn({navigation}) {
                                 <Text style={styles.textDescrip}>r U R' U' M2 (U R U' R') U' M'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_44.png')}/>
-                                <Text style={styles.textDescrip}>alg</Text>
+                                <Text style={styles.textDescrip}>(R U2)(R2 F R F' U2)(R' F R F')</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_45.png')}/>
-                                <Text style={styles.textDescrip}>alg</Text>
+                                <Text style={styles.textDescrip}>F (R U R' U') F' f (R U R' U') f'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_46.png')}/>
-                                <Text style={styles.textDescrip}>alg</Text>
+                                <Text style={styles.textDescrip}>f (R U R' U') f' U' F (R U R' U') F'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_47.png')}/>
-                                <Text style={styles.textDescrip}>alg</Text>
+                                <Text style={styles.textDescrip}>f (R U R' U') f' U F (R U R' U') F'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_48.png')}/>
-                                <Text style={styles.textDescrip}>alg</Text>
+                                <Text style={styles.textDescrip}>R U R' U (R' F R F') U2 (R' F R F')</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_49.png')}/>
-                                <Text style={styles.textDescrip}>alg</Text>
+                                <Text style={styles.textDescrip}>F R U R' d R' U2 R' F R F'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_50.png')}/>
-                                <Text style={styles.textDescrip}>alg</Text>
+                                <Text style={styles.textDescrip}>r' R U R U R' U' r R2 F R F'</Text>
 
                                 {/*----------------------------*/}
                                 <Text style={styles.textWideCenter}>P shapes</Text>
@@ -216,7 +235,7 @@ function IntermediateLearn({navigation}) {
                                 <Text style={styles.textDescrip}>R' E' F (U R U' R') F' R</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_2.png')}/>
-                                <Text style={styles.textDescrip}>F U R U' F' r U R' U' r</Text>
+                                <Text style={styles.textDescrip}>F U R U' F' r U R' U' r'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_3.png')}/>
                                 <Text style={styles.textDescrip}>F' U' L' U L F</Text>
@@ -243,13 +262,13 @@ function IntermediateLearn({navigation}) {
                                 <Text style={styles.textDescrip}>F (R U R' U')(R U R' U') F'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_9.png')}/>
-                                <Text style={styles.textDescrip}>r U (r2 U r2 U r2) U' r</Text>
+                                <Text style={styles.textDescrip}>r U' (r2 U r2 U r2) U' r</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_10.png')}/>
                                 <Text style={styles.textDescrip}>l' U (l2 U' l2 U' l2) U l'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_11.png')}/>
-                                <Text style={styles.textDescrip}>l' U' L U' L' U L U' L' U2 l</Text>
+                                <Text style={styles.textDescrip}>l' U' L U' L' U L U' L' U2 l</Text> 
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_12.png')}/>
                                 <Text style={styles.textDescrip}>r U R' U R U' R' U R U2 r'</Text>
@@ -291,7 +310,7 @@ function IntermediateLearn({navigation}) {
                                 <Text style={styles.textWideCenter}>Square shapes</Text>
                                 {/* pics  21-22 */}
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_21.png')}/>
-                                <Text style={styles.textDescrip}>r' U2 R U R' U' r</Text>
+                                <Text style={styles.textDescrip}>r' U2 R U R' U r</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_22.png')}/>
                                 <Text style={styles.textDescrip}>r U2 R' U' R U' r'</Text>
@@ -309,7 +328,7 @@ function IntermediateLearn({navigation}) {
                                 <Text style={styles.textWideCenter}>Small Lightning Bolt</Text>
                                 {/* pics  25-28 */}
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_25.png')}/>
-                                <Text style={styles.textDescrip}>r U R' U R R2 r'</Text>
+                                <Text style={styles.textDescrip}>r U R' U R U2 r'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_26.png')}/>
                                 <Text style={styles.textDescrip}>r' U' R U' R' U2 r</Text>
@@ -345,10 +364,10 @@ function IntermediateLearn({navigation}) {
                                 <Text style={styles.textDescrip}>R' F (R U R' F') R y' R U' R'</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_35.png')}/>
-                                <Text style={styles.textDescrip}>r U' r R' U' R r' U r</Text>
+                                <Text style={styles.textDescrip}>r' U' r R' U' R U r' U r</Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_36.png')}/>
-                                <Text style={styles.textDescrip}>r U r (R U R' U') r U' r'</Text>
+                                <Text style={styles.textDescrip}>r U r' (R U R' U') r U' r'</Text>
 
                                 {/*----------------------------*/}
                                 <Text style={styles.textWideCenter}>Awkward shapes</Text>
@@ -367,71 +386,85 @@ function IntermediateLearn({navigation}) {
                             </View>
                         </Card>
 
-                        {/* PLL */}
+                        {/* STEP 4: PLL */}
                         <Card containerStyle={{backgroundColor: 'black'}}>
-                            <Card.Title style={styles.textTitle}>4: Permute Last Layer (PLL)</Card.Title>
+                            <Card.Title style={styles.textTitle}>4: Permute Last Layer (PLL) {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
                                 In order to permute the last layer in this method, you use one algorithm to permute both the yellow edges and 
-                                corners with one algorithm.
+                                corners with one algorithm. {/* Summary of Steps */}
                             </Text>
                             <Card.Divider/>
-                            <Text style={styles.textHeader}>Cases</Text>
+                            <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 {/*----------------------------*/}
                                 <Text style={styles.textWideCenter}>Edges only</Text>
-                                {/*Ua*/}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_cc.png')}/>
+                                {/* Ua */}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_cc.png')}/>
                                 <Text style={styles.textDescrip}>(R U' R U)(R U R U') R' U' R2</Text>
                             
-                                {/*Ub*/}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_c.png')}/>
+                                {/* Ub */}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_c.png')}/>
                                 <Text style={styles.textDescrip}>R2 U (R U R' U') R' U' R' U R'</Text>
                             
-                                {/*H*/}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_opp.png')}/>
+                                {/* H */}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_opp.png')}/>
                                 <Text style={styles.textDescrip}>M2 U M2 U2 M2 U M2</Text>
                             
-                                {/*Z*/}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_adj.png')}/>
+                                {/* Z */}<Image style={styles.exImage} source={require('../Assets/beginners/b_pye_adj.png')}/>
                                 <Text style={styles.textDescrip}>M' U M2 U M2 U M' U2 M2 U'</Text>
 
                                 {/*----------------------------*/}
                                 <Text style={styles.textWideCenter}>Corners only</Text>
-                                {/*
-                                {/*Aa <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* Aa */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Aa.png')}/>
                                 <Text style={styles.textDescrip}>l' U R' D2 R U' R' D2 R2</Text>
                                 
-                                {/*Ab <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* Ab */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Ab.png')}/>
                                 <Text style={styles.textDescrip}>l U' R D2 R' U R D2 R2</Text>
 
-                                {/*E <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* E */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_E.png')}/>
                                 <Text style={styles.textDescrip}>x' R U' R' D R U R' D' R U R' D R U' R' D'</Text>
-                                */}
 
                                 {/*----------------------------*/}
                                 <Text style={styles.textWideCenter}>Corners and Edges</Text>
-                                {/* 
-                                {/*F <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* F */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_F.png')}/>
                                 <Text style={styles.textDescrip}>(R' U' F')(R U R' U') R' F R2 U' R' U' R U R' U R</Text>
 
-                                {/*Ja <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* Ja */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Ja.png')}/>
                                 <Text style={styles.textDescrip}>x R2 F R F' R U2 r' U r U2</Text>
 
-                                {/*Jb <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* Jb */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Jb.png')}/>
                                 <Text style={styles.textDescrip}>(R U R' F')(R U R' U') R' F R2 U' R'</Text>
 
-                                {/*Ra <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* Ra */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Ra.png')}/>
                                 <Text style={styles.textDescrip}>(R U' R' U')(R U R D)(R' U' R D') R' U2 R'</Text>
 
-                                {/*Rb <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* Rb */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Rb.png')}/>
                                 <Text style={styles.textDescrip}>R2 F (U R U' R') F' R U2 R' U2 R</Text>
 
-                                {/*T <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* T */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_T.png')}/>
                                 <Text style={styles.textDescrip}>(R U R' U') R' F R2 (U' R' U')(R U R' F')</Text>
 
-                                {/*Y <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
+                                {/* Y */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Y.png')}/>
                                 <Text style={styles.textDescrip}>F (R U' R' U')(R U R' F')(R U R' U')(R' F R F')</Text>
 
-                                {/*V <Image style={styles.exImage} source={require('../Assets/intermediate/  .png')}/>
-                                <Text style={styles.textDescrip}>(R' U R' U') y (R' F' R2 U')(R' U R' F) R FS</Text>
-                                */}
+                                {/* V */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_V.png')}/>
+                                <Text style={styles.textDescrip}>(R' U R' U') y (R' F' R2 U')(R' U R' F) R F</Text>
+                                
+                                {/* Na */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Na.png')}/>
+                                <Text style={styles.textDescrip}>R U R' U (R U R' F' R U R' U' R' F R2 U' R') U2 R U' R'</Text>
+
+                                {/* Nb */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Nb.png')}/>
+                                <Text style={styles.textDescrip}>(R' U R U')(R' F' U' F)(R U R' F) R' F' R U' R</Text>
+
+                                {/* Ga */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Ga.png')}/>
+                                <Text style={styles.textDescrip}>R2 U R' U R' U' R U' R2 (U' D) R' U R D'</Text>
+
+                                {/* Gb */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Gb.png')}/>
+                                <Text style={styles.textDescrip}>R' U' R (U D') R2 U R' U R U' R U' R2 D</Text>
+
+                                {/* Gc */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Gc.png')}/>
+                                <Text style={styles.textDescrip}>R2 U' R U' R U R' U R2 (U D') R U' R' D</Text>
+
+                                {/* Gd */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Gd.png')}/>
+                                <Text style={styles.textDescrip}>R U R' (U' D) R2 U' R U' R' U R' U R2 D'</Text>
                             </View>
                         </Card>
                     </ScrollView>
