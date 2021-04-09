@@ -143,7 +143,7 @@ var presets = {
 	},
 	presetTextAnimate: function(){//  Specifically for Monica!
 		var 
-		delay = 1,//1000 * 2,
+		delay = 0,
 		twistDurationScaled = [ (20+90).absolute().scale( 0, 90, 0, cube.twistDuration ), 250 ].maximum()
 		_this = this
 
@@ -157,17 +157,17 @@ var presets = {
 
 			_this.twist( 'd', 20 )
 			//$('body').css('background-color', '#000')
-		}, delay + 1000 )
+		}, delay + 0 )
 		setTimeout( function(){
 
 			_this.twist( 'D', 20 + 90 )		
 			_this.isRotating = true
-		}, delay + 1000 * 2 )
+		}, delay + 0 )
 		setTimeout( function(){
 
 			_this.twist( 'e', 20 + 90 )
 			_this.isShuffling = true
-		}, delay + 1000 * 2 + twistDurationScaled + 50 )
+		}, delay + 0 + twistDurationScaled + 0 )
 		//updateControls( this )
 	},
 	presetWireframe: function( included, excluded ){

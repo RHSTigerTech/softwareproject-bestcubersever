@@ -7,16 +7,24 @@ import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import LightVideo from '../Assets/RotatingCube.mp4';
 import { Video } from 'expo-av';
+import {convertedTimes,storeData, getData,times} from './Timer'
 
 
-const ButtonHeight=65;
-const ButtonWidth=320;
-const ButtonRadius=30; // effects how circular the buttons look
-const ButtonGradientDirection='vertical';
+// storeData(convertedTimes)
+// getData()
 
-function Gradient({navigation}) {  
+
+function Gradient({navigation}) { 
+    
+    const ButtonHeight=65;
+    const ButtonWidth=320;
+    const ButtonRadius=30; // effects how circular the buttons look
+    const ButtonGradientDirection='vertical';
+    
     return (
         <View style={styles.ViewContainer}>
+        {console.log(times())}
+    {console.log('------------------------')}
             <Video
                 source={LightVideo}
                 rate={1.0}
@@ -58,7 +66,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('Timer')}
+                            onPressAction={() => {storeData(convertedTimes),navigation.navigate('Timer')}}
                         >
                         </GradientButton>
 
@@ -72,7 +80,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('ViewImageScreen')}
+                            onPressAction={() => navigation.navigate('Scanner')}
                         >
                         </GradientButton>
 
@@ -100,7 +108,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('Statistics')}
+                            onPressAction={() => {navigation.navigate('Statistics'),storeData(convertedTimes)}}
                         >
                         </GradientButton>
                     </View>            
@@ -137,7 +145,7 @@ const styles = StyleSheet.create({
     textStyle:{
         color:'black',
         fontSize:30,    
-        opacity:0.9,
+        opacity:1,
         
     }
     
