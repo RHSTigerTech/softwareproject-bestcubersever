@@ -155,12 +155,12 @@ const chartConfigs = [
       return (
         <View style={{backgroundColor: '#121212',height:'100%'}} >
         <Header                       
-          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:-30}}
+          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
           centerContainerStyle={{flex:14}}
           centerComponent={{ text: 'Statistics', style: { color: 'white',opacity:.87, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
         />
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:'40%', top:'2%',zIndex:5}}>
+        <Card containerStyle={{backgroundColor: '#121212',height:'40%', top:'-1%',zIndex:5}}>
       <ScrollView >
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
@@ -179,7 +179,7 @@ const chartConfigs = [
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView bottom={'-13%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        <ScrollView bottom={'0%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',

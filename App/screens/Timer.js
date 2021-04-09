@@ -1,6 +1,6 @@
 
 import React, { useState, Component, useEffect } from 'react';
-import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable} from 'react-native';
+import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable, KeyboardAvoidingView} from 'react-native';
 import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
@@ -408,15 +408,18 @@ function dismissed(){
 //modal function that allows user to enter a new time to put into statistics
   
   const addTimes = () => (
+    
     <Provider theme={theme}>
       <Portal>
         <Dialog visible={Addvisible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
         <Dialog.Title style={{color:'#BB86FC'}}>Add</Dialog.Title>
         <Dialog.Content style={{color:'#BB86FC'}}>
+        
           <TextInput
                   
                   label="Add A Time (In Seconds)"
                   keyboardAppearance='dark'
+                  
                   //backgroundColor='black'
                   value={value}
                   onChangeText={text => setInputVal(text)}
@@ -424,6 +427,7 @@ function dismissed(){
                   keyboardType={'decimal-pad'}
                   
                 />
+                
                 </Dialog.Content>
                 <Dialog.Actions>
                 <Button color='#BB86FC' onPress={() => {add(),times()}}>Add</Button>
@@ -435,7 +439,7 @@ function dismissed(){
       </Portal>
       
       </Provider>
-
+      
     );
     let convertedtimestext=convertedTimes[convertedTimes.length-1];
     if(convertedTimes[convertedTimes.length-1]==0){
