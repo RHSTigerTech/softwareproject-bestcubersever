@@ -84,6 +84,8 @@ let del;
 
 let getrid;
 
+let mayberid =0;
+
 let stopadd;
 
 let gone;
@@ -213,18 +215,7 @@ const theme = {
   },
 };
 //deletes the most recent time when the delete button is pressed
-export const deletetime = () =>{
-  
-  if(del===true){
-    convertedTimes.pop(); 
-    storeData(convertedTimes);
-    // console.log(convertedTimes)
-  }
-  //times();
-  del=false;
-  console.log(convertedTimes)
-  return (convertedTimes);
-}
+
 
 // clears most of the times
 // probably won't be used in the actual app but is useful in resetting the times for testing purposes
@@ -233,6 +224,7 @@ export const cleartimes =()=>{
     convertedTimes=[convertedTimes[0]];
   }
   del=false;
+  storeData(convertedTimes)
   return(convertedTimes);
 }
 
@@ -243,7 +235,6 @@ function k(){
   let l=null;
   let j=100;
   let s=[];
-
 
     for(let i=0; i<20;i++){
       
@@ -294,14 +285,18 @@ const App = ({navigation}) => {
     if(amount>1){
       convertedTimes.pop()
       console.log(convertedTimes)  
+      storeData(convertedTimes)
     }
-    if(getrid==true){
+    if(getrid==true && mayberid<1){
       convertedTimes.pop()
       console.log(convertedTimes)
       console.log('showing delete screen')
       getrid=false;
+      storeData(convertedTimes)
     } 
   },[]);
+
+  console.log('maybe'+mayberid)
   
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
@@ -353,29 +348,30 @@ function add(){
     setInputVal('')
     check=true;
     checkadd=true;
-    console.log(check)    
-}
-function afteradd(){
-  convertedTimes.pop()
+    console.log(check)
+    //finaltime='0'    
 }
 
 //removes anything written as input and closes out of the modalview
 function cancel(){
   console.log(convertedTimes)
   console.log('amount'+amount)
-  // if(amount>1){
-  //   convertedTimes.pop()
-  //   convertedTimes.pop()
+  if(amount>1){
+    if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
+      convertedTimes.pop()
+    }
+    convertedTimes.pop()
+    console.log(convertedTimes)
     
-  //   console.log(convertedTimes)
-  // }
-  
+  }
+  finaltime='0'
   hideAddModal()
   hideDelModal()
   setInputVal('')
   check=true;
   console.log(check)
   stopadd=false;
+  storeData(convertedTimes)
 }
 
 //opens the modalview when the add button is pressed
@@ -430,7 +426,7 @@ function dismissed(){
                 
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {add(),times()}}>Add</Button>
+                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++}}>Add</Button>
                 
               <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
               
@@ -448,6 +444,7 @@ function dismissed(){
         convertedtimestext=convertedTimes[convertedTimes.length-3]
       }
     }
+    
 
     const delperm = () => (
       <Provider theme={theme}>
@@ -486,7 +483,8 @@ function dismissed(){
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
               storeData(convertedTimes);  
-              amount=0;            
+              amount=0;  
+              mayberid=0;          
             }}>
             <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}

@@ -36,12 +36,13 @@ function Gradient({navigation}) {
                 style={styles.image}
             /> 
             
-            <Header                       
+            <Header 
+                top={'-0%'}                      
                 containerStyle={styles.viewStyle}
                 centerContainerStyle={{flex:14}}
-                centerComponent={{ text: 'Rubiks Cube App', style: { color: 'black', fontSize:39, fontWeight:'bold'}}} 
+                centerComponent={{style: { color: '#121212', letterSpacing:1.5, fontSize:60, fontWeight:'bold', fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-medium'}, text:'Rubiks³'}} 
             />
-                    <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.9}}>
+                    <View style = {{justifyContent: 'space-evenly',flex:1, opacity:0.9,top:'-3%'}}>
                         <GradientButton
                             text="Learn"                        
                             textStyle={styles.textStyle}
@@ -141,13 +142,17 @@ const styles = StyleSheet.create({
         marginTop:0,
         backgroundColor:'transparent'        
     },
+    
 
     textStyle:{
-        color:'black',
+        color:'#121212',
         fontSize:30,    
         opacity:1,
+        fontWeight:'bold',
+        fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-medium'
         
-    }
+    },
+    
     
 })
 
