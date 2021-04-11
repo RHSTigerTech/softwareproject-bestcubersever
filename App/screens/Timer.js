@@ -82,6 +82,8 @@ let minutes;
 
 let del;
 
+let doubleDel; 
+
 let getrid;
 
 let mayberid =0;
@@ -215,13 +217,26 @@ const theme = {
   },
 };
 //deletes the most recent time when the delete button is pressed
+//DO NOT DELETE USED ON STATS SCREEN
+export const deletetime = () =>{
 
+  if(del===true){
+    convertedTimes.pop(); 
+    storeData(convertedTimes);
+    // console.log(convertedTimes)
+  }
+  //times();
+  del=false;
+  console.log(convertedTimes)
+  return (convertedTimes);
+}
 
 // clears most of the times
 // probably won't be used in the actual app but is useful in resetting the times for testing purposes
 export const cleartimes =()=>{
   if(del===true){
     convertedTimes=[convertedTimes[0]];
+    finaltime='0'
   }
   del=false;
   storeData(convertedTimes)
@@ -304,11 +319,18 @@ const App = ({navigation}) => {
   
 //modal constants to set modal as either visible or invisible
   const showAddModal = () => setAddVisible(true);
-  const showDelModal = () => setDelVisible(true);
   const hideAddModal = () => setAddVisible(false);
-  const hideDelModal = () => setDelVisible(false);
   const [Addvisible, setAddVisible] = React.useState(false);
+
+  const showDelModal = () => setDelVisible(true);
+  const hideDelModal = () => setDelVisible(false);
   const [Delvisible, setDelVisible] = React.useState(false);
+
+  const showClearModal = () => setClearVisible(true);
+  const hideClearModal = () => setClearVisible(false);
+  const [ClearVisible, setClearVisible] = React.useState(false);
+
+
 //sets the input value
   const [inputVal, setInputVal] = useState('');
 
@@ -359,6 +381,7 @@ function cancel(){
   if(amount>1){
     if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
       convertedTimes.pop()
+      doubleDel=true;
     }
     convertedTimes.pop()
     console.log(convertedTimes)
@@ -367,11 +390,19 @@ function cancel(){
   finaltime='0'
   hideAddModal()
   hideDelModal()
+  hideClearModal()
   setInputVal('')
   check=true;
   console.log(check)
   stopadd=false;
   storeData(convertedTimes)
+}
+
+function onCancel(){
+  if(amount>1 && doubleDel==true){
+    convertedTimes.pop()
+    storeData(convertedTimes)
+  }
 }
 
 //opens the modalview when the add button is pressed
@@ -389,6 +420,7 @@ function dismissed(){
   check=true;
   hideDelModal()
   hideAddModal()
+  hideClearModal()
   stopadd=false;
   console.log(check)
 
@@ -407,7 +439,7 @@ function dismissed(){
     
     <Provider theme={theme}>
       <Portal>
-        <Dialog visible={Addvisible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
+        <Dialog visible={Addvisible} onDismiss={() => {cancel(),onCancel()}} style={styles.dialogContainer}>
         <Dialog.Title style={{color:'#BB86FC'}}>Add</Dialog.Title>
         <Dialog.Content style={{color:'#BB86FC'}}>
         
@@ -460,6 +492,21 @@ function dismissed(){
       </Provider>
     )
 
+
+    const clearAll = () => (
+      <Provider theme={theme}>
+        <Portal>
+          <Dialog visible={ClearVisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
+          <Dialog.Title>Warning:{'\n'}This will delete all your times!</Dialog.Title>
+            <Dialog.Actions>
+                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes()}}>Confirm</Button>                
+                <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+      </Provider>
+    )
+
   return (
 
     <View style={styles.container} pointerEvents='box-none' >
@@ -499,6 +546,7 @@ function dismissed(){
           {/* where the modal is called */}
           {addTimes()}
           {delperm()}
+          {clearAll()}
 
           
          
@@ -553,7 +601,7 @@ function dismissed(){
                 //buttonColor='#121212' 
                 
                 title="Clear" 
-                onPress={() => {del=true, cleartimes()}}>
+                onPress={() => {showClearModal()}}>
                 
                 <Icon name="school" style={styles.actionButtonIcon} />
               </ActionButton.Item>          
