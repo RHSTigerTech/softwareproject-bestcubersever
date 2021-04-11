@@ -1,7 +1,7 @@
 
 import React, { useState, Component, useEffect } from 'react';
-import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable} from 'react-native';
-import { TextInput,Modal, Portal, Text, Button, Provider, Dialog } from 'react-native-paper';
+import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable, KeyboardAvoidingView} from 'react-native';
+import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -82,6 +82,14 @@ let minutes;
 
 let del;
 
+let doubleDel; 
+
+let getrid;
+
+let mayberid =0;
+
+let stopadd;
+
 let gone;
 
 let checkadd;
@@ -104,9 +112,9 @@ export const times = () =>{
   if(convertedTimes[convertedTimes.length-1]===convertedTimes[convertedTimes.length-2]){
     convertedTimes.pop();
   }
-  
-  storedTimes.push(finaltime)
-  
+  if(stopadd!=true){
+    storedTimes.push(finaltime)
+  }
 
   if(storedTimes.length>1){
   lastItem= storedTimes[storedTimes.length-1]
@@ -142,37 +150,23 @@ export const times = () =>{
     if(checkadd===true){
       console.log(convertedTimes)
       if(amount==0){
-      console.log('ooooooooooooooooooooooo')
       convertedTimes.splice(convertedTimes.length-3,1)
       convertedTimes.pop()
       }
       else if(amount >1 ){
-        console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
       convertedTimes.splice(convertedTimes.length-4,2)
       convertedTimes.pop()
       }
       else{
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
         convertedTimes.pop()
       }
       finaltime='0';
-      console.log(amount)
-      
-      //need to delete one more before the added time
-      //convertedTimes.splice(convertedTimes-2,1)
+      console.log(amount)      
       checkadd=false;
-      amount+=1;
-      //console.log(convertedTimes)
-      //del=true;
-      
+      amount+=1;      
     }
 
-    // removeElement(convertedTimes,0)
     if(del===true){
-      //console.log(convertedTimes)
-      // if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
-      //   convertedTimes.pop()
-      // }
       if(convertedTimes[convertedTimes.length-2]==0){
         convertedTimes.splice(convertedTimes.length-3,3)
       }
@@ -183,49 +177,23 @@ export const times = () =>{
         convertedTimes.pop();
         convertedTimes.pop();
       }
-      //theres a third scenario where it should just .pop() once instead of twice
       else{
       convertedTimes.pop();
       }
-      
       if(amount>=1){
         convertedTimes.pop()
       }
-      //storeData(convertedTimes)
       console.log('del is true')
       del=false;
       finaltime='0';
     }
-    console.log(amount+'yoooooooooooo')
-    
-
-    //first couple need to be changed
-    // if(amount<=1){
     if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
       convertedTimes.pop()
     }
-    // if(amount>2){
-    //   console.log(convertedTimes[convertedTimes.length-(amount)+2])
-    //   if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-(amount+2)]){
-    //     console.log('poppppppppppp')
-    //     convertedTimes.pop()
-    //     amount-=1;
-    //   }
-    // }
-    // if(amount>1){
-    //   convertedTimes.pop()
-    // }
-  // }
-  // else {
-  //   if(converted){}
-  // }
+    
   
     testdel=convertedTimes[convertedTimes.length-1]
     
-    // if(testdel==finaltime){
-    //   convertedTimes.pop()
-    //   console.log('popping')
-    // }
     
     storeData(convertedTimes)
     console.log(convertedTimes)
@@ -237,10 +205,21 @@ export const times = () =>{
   
 }
 
-
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#1c1c1c',
+    text: '#BB86FC',
+    primary:'#BB86FC',
+    
+    placeholder:'#BB86FC'
+  },
+};
 //deletes the most recent time when the delete button is pressed
+//DO NOT DELETE USED ON STATS SCREEN
 export const deletetime = () =>{
-  
+
   if(del===true){
     convertedTimes.pop(); 
     storeData(convertedTimes);
@@ -257,12 +236,12 @@ export const deletetime = () =>{
 export const cleartimes =()=>{
   if(del===true){
     convertedTimes=[convertedTimes[0]];
+    finaltime='0'
   }
   del=false;
+  storeData(convertedTimes)
   return(convertedTimes);
 }
-
-//let storagetest=getData()+storeData(convertedTimes)
 
 //a scrambler that gives 20 scramble nonredundant notations
 const possiblemoves = ["R", "L", "D", "U", "F", "B", "R'","L'","D'","U'","F'","B'","R2", "L2", "D2", "U2", "F2", "B2"]
@@ -271,7 +250,6 @@ function k(){
   let l=null;
   let j=100;
   let s=[];
-
 
     for(let i=0; i<20;i++){
       
@@ -320,18 +298,39 @@ let effect=0;
 const App = ({navigation}) => {
   useEffect(()=>{
     if(amount>1){
-      convertedTimes.pop()  
+      convertedTimes.pop()
+      console.log(convertedTimes)  
+      storeData(convertedTimes)
+    }
+    if(getrid==true && mayberid<1){
+      convertedTimes.pop()
+      console.log(convertedTimes)
+      console.log('showing delete screen')
+      getrid=false;
+      storeData(convertedTimes)
     } 
   },[]);
+
+  console.log('maybe'+mayberid)
   
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
   
 //modal constants to set modal as either visible or invisible
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const [visible, setVisible] = React.useState(false);
+  const showAddModal = () => setAddVisible(true);
+  const hideAddModal = () => setAddVisible(false);
+  const [Addvisible, setAddVisible] = React.useState(false);
+
+  const showDelModal = () => setDelVisible(true);
+  const hideDelModal = () => setDelVisible(false);
+  const [Delvisible, setDelVisible] = React.useState(false);
+
+  const showClearModal = () => setClearVisible(true);
+  const hideClearModal = () => setClearVisible(false);
+  const [ClearVisible, setClearVisible] = React.useState(false);
+
+
 //sets the input value
   const [inputVal, setInputVal] = useState('');
 
@@ -349,66 +348,119 @@ function store(){
     )
   }
 }
+
+function fixnum(input){
+  var index = input.indexOf( '.' );
+
+    if ( index > -1 ) {
+        input = input.substr( 0, index + 1 ) + 
+                input.slice( index ).replace( /\./g, '' );
+    }
+    console.log(input)
+    console.log('is this working')
+    return input;
+}
+let value=inputVal;
 //adds the time to the stats when the add button is pressed
 function add(){
-    convertedTimes.push(inputVal)
-    console.log(inputVal)
-    hideModal()
+    value=fixnum(value)
+    convertedTimes.push(value)
+    console.log(value)
+    hideAddModal()
     setInputVal('')
     check=true;
     checkadd=true;
-    console.log(check)    
-}
-function afteradd(){
-  convertedTimes.pop()
+    console.log(check)
+    //finaltime='0'    
 }
 
 //removes anything written as input and closes out of the modalview
 function cancel(){
-  hideModal()
+  console.log(convertedTimes)
+  console.log('amount'+amount)
+  if(amount>1){
+    if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
+      convertedTimes.pop()
+      doubleDel=true;
+    }
+    convertedTimes.pop()
+    console.log(convertedTimes)
+    
+  }
+  finaltime='0'
+  hideAddModal()
+  hideDelModal()
+  hideClearModal()
   setInputVal('')
   check=true;
   console.log(check)
+  stopadd=false;
+  storeData(convertedTimes)
+}
+
+function onCancel(){
+  if(amount>1 && doubleDel==true){
+    convertedTimes.pop()
+    storeData(convertedTimes)
+  }
 }
 
 //opens the modalview when the add button is pressed
 function openAdd(){
   check=true;
-  showModal()
+  showAddModal()
   console.log(check)
 }
+
+
+
 
 //closes the modal when the user clicks anywhere else
 function dismissed(){
   check=true;
-  hideModal()
+  hideDelModal()
+  hideAddModal()
+  hideClearModal()
+  stopadd=false;
   console.log(check)
 
 }
+
+
+
+
 
 
 
 
 //modal function that allows user to enter a new time to put into statistics
-  let value=inputVal;
+  
   const addTimes = () => (
-    <Provider>
+    
+    <Provider theme={theme}>
       <Portal>
-        <Dialog visible={visible} onDismiss={() => {dismissed()}} style={styles.dialogContainer}>
-        <Dialog.Title>Add Time</Dialog.Title>
-        <Dialog.Content>
+        <Dialog visible={Addvisible} onDismiss={() => {cancel(),onCancel()}} style={styles.dialogContainer}>
+        <Dialog.Title style={{color:'#BB86FC'}}>Add</Dialog.Title>
+        <Dialog.Content style={{color:'#BB86FC'}}>
+        
           <TextInput
+                  
                   label="Add A Time (In Seconds)"
+                  keyboardAppearance='dark'
+                  
+                  //backgroundColor='black'
                   value={value}
                   onChangeText={text => setInputVal(text)}
                   numeric
                   keyboardType={'decimal-pad'}
+                  
                 />
+                
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='black' onPress={() => {add(),times()}}>Add</Button>
+                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++}}>Add</Button>
                 
-              <Button color='black' onPress={() => {cancel()}}>Cancel</Button>
+              <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
               
             </Dialog.Actions>
         </Dialog>
@@ -416,14 +468,50 @@ function dismissed(){
       
       </Provider>
       
-    
     );
+    let convertedtimestext=convertedTimes[convertedTimes.length-1];
+    if(convertedTimes[convertedTimes.length-1]==0){
+      convertedtimestext=convertedTimes[convertedTimes.length-2]
+      if(convertedTimes[convertedTimes.length-2]==0){
+        convertedtimestext=convertedTimes[convertedTimes.length-3]
+      }
+    }
+    
+
+    const delperm = () => (
+      <Provider theme={theme}>
+        <Portal>
+          <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
+          <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
+            <Dialog.Actions>
+                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),stopadd=false,getrid=true;}}>Delete</Button>                
+                <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+      </Provider>
+    )
+
+
+    const clearAll = () => (
+      <Provider theme={theme}>
+        <Portal>
+          <Dialog visible={ClearVisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
+          <Dialog.Title>Warning:{'\n'}This will delete all your times!</Dialog.Title>
+            <Dialog.Actions>
+                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes()}}>Confirm</Button>                
+                <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+      </Provider>
+    )
 
   return (
 
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <View style={styles.sectionStyle}>
+    <View style={styles.container} pointerEvents='box-none' >
+      {/* <View style={styles.container}> */}
+        <View style={styles.sectionStyle} pointerEvents='box-none'>
 {/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
@@ -437,12 +525,13 @@ function dismissed(){
             
           />
          {/*starts and resets stopwatch using the same button  */}
-          <TouchableOpacity style={styles.startbuttonSize}
+          <TouchableOpacity style={styles.startbuttonSize} 
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
               storeData(convertedTimes);  
-              amount=0;            
+              amount=0;  
+              mayberid=0;          
             }}>
             <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
@@ -456,49 +545,64 @@ function dismissed(){
           </TouchableOpacity>
           {/* where the modal is called */}
           {addTimes()}
+          {delperm()}
+          {clearAll()}
 
           
          
             
 {/* bottom icon buttons */}
-    <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%'}}>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
+{/*
+<View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}> */}
+        {/* <View style={{flexDirection:'row', bottom:'-17%', justifyContent:'space-evenly' , width:'100%',backgroundColor:'blue', left:Platform.OS === 'ios' ? '-13.2%':'-9.5%'}} pointerEvents='box-none'> */}
 
-        <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}>
+          <View style={{flex:1,flexDirection:'column',height:180,bottom:Platform.OS === 'ios' ? '37%': '32.5%', right:Platform.OS === 'ios' ? '-178%':'-207%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
             {/* Options */}
               <ActionButton
-              buttonColor="transparent"
+              buttonColor="#121212"
+              hideShadow={true}
+              //zIndex={100}
+              //paddingHorizontal={50}
               size={45}
               spacing={0}
               offsetX={0}
               offsetY={0}
+              
+              
               buttonText="+"
               >
               
             {/* Add */}
               <ActionButton.Item 
                 spaceBetween={-5} 
-                buttonColor='transparent'
-               
+                //buttonColor='transparent'
+                zIndex={999}
+                
                 title="Add" 
+                
                 onPress={()=>{openAdd()}}>
                 <Icon name="plus" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
             {/* Delete  */}
-              <ActionButton.Item 
+            <ActionButton.Item 
+              // zIndex={100}
                 spaceBetween={-5} 
-                buttonColor='transparent' 
+                //buttonColor='#121212' 
                 title="Delete" 
-                onPress={() => {del=true, times(),amount=0}}>
+                onPress={() => {showDelModal(),stopadd=true}}>
                 <Icon name="delete" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
             {/* Clear */}
               <ActionButton.Item 
                 spaceBetween={-5} 
-                buttonColor='transparent' 
+                //buttonColor='#121212' 
+                
                 title="Clear" 
-                onPress={() => {del=true, cleartimes()}}>
+                onPress={() => {showClearModal()}}>
+                
                 <Icon name="school" style={styles.actionButtonIcon} />
               </ActionButton.Item>          
             </ActionButton>
@@ -511,60 +615,68 @@ function dismissed(){
           <Icon.Button
             name='cube-outline'
             flexDirection='column'
-            backgroundColor='black'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
             alignItems='center'
             color='white'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => navigation.navigate('VirtualCube')}
           >
-          <Text style={styles.BottomTabText}>3DCube   </Text>
+          <Text style={styles.BottomTabText}>3DCube</Text>
           </Icon.Button>
 {/* Statistics */}
           <Icon.Button            
             name='chart-line'
             alignItems='center'
             flexDirection='column'
-            backgroundColor='black'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
             color='white'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Statistics')}}
           >
-          <Text style={styles.BottomTabText}>Statistics   </Text>
+          <Text style={styles.BottomTabText}>Statistics</Text>
           </Icon.Button>
 {/* Home Screen */}
           <Icon.Button
             name='home' 
             flexDirection='column'
-            backgroundColor='black'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
             color='white'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Gradient'), storeData(convertedTimes)}}
           >
-          <Text style={styles.BottomTabText}>Home   </Text>
+          <Text style={styles.BottomTabText}>Home</Text>
           </Icon.Button>
 {/* Learn */}
           <Icon.Button
             name='school'
             backgroundColor='transparent'
             flexDirection='column'
+            //backgroundColor='#121212'
             color='white'
-            zIndex={3}
-            //position='absolute'
+            opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Learn')}}
           >
-          <Text style={styles.BottomTabText}>Learn   </Text>
+          <Text style={styles.BottomTabText}>Learn</Text>
           </Icon.Button>
 
-
     </View>
+    {/* <View style={{backgroundColor:'yellow', width:50,flexDirection:'column',height:100}}>
+
+    </View> */}
   </View>
-</View>
-    </SafeAreaView>
+{/*</View> */}
+    </View>
     
   );
 }
@@ -575,23 +687,30 @@ const styles = StyleSheet.create({
 
   container: {
     //basic container that encompases the screen
+    
+    zIndex:1,
     flex: 1,
+    position:'relative',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'black'
+    backgroundColor:'#121212'
   },
 
   sectionStyle: {
     //encompases the entire app
+    zIndex:1,
     flex: 1,
+    position:'relative',
     alignItems: 'center',
     justifyContent: 'center',
+    //backgroundColor:'transparent'
   },
 
   startbuttonText: {
     //text used for the start and stop button
     fontSize: 80,
     color:'#FFF',
+    opacity:.87,
     top:320, 
   },
 
@@ -599,6 +718,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     width:'60%',
     color:'#FFF',
+    opacity:.87,
     position:'absolute',
     top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
     textAlign:'center',
@@ -609,52 +729,70 @@ const styles = StyleSheet.create({
     //text used for the bottom menu
     fontSize:10,
     color:'white',
-    justifyContent:'center'
+    opacity:1,
+    justifyContent:'center',
+    left:'-7%',
+    paddingHorizontal:'1%'
   },
 
   startbuttonSize:{
+    
     width: 500,
-    height: '87%',
+    height: '89%',
+    bottom:-70,
+    
     alignItems:'center',
+    //backgroundColor:'#FFF',
+    //zIndex:1,
   },
 
   actionButtonIcon: {
     //size of the actionbutton icons. Icons only used in the action button
+      zIndex:999,
+      position:'relative',
       fontSize: 30,
       height: 33,
-      color: 'white',      
+      color: 'white', 
+      opacity:1, 
   },
+
+  textInputStyle: {
+    color: 'white',
+    },
+
 
   dialogContainer: {
     //container used for the dialog modal
-      backgroundColor: 'white', 
+      backgroundColor: '#121212', 
       paddingHorizontal:'7%',
       opacity:1      
   },
 
   OptionsButton:{
     fontSize:10, 
-    left:Platform.OS === 'android' ? '54%':'58%', 
-    bottom:Platform.OS === 'android' ?'-92%':'-96%', 
+    left:Platform.OS === 'android' ? '54%':'60%', 
+    bottom:Platform.OS === 'android' ?'-96%':'-99%', 
     color:'white',
-    justifyContent:'center'
+    opacity:1,      
+    //justifyContent:'center'
   },
 });
 
 
-//don't know if this is used. Might be able to be deleted
+
 const options = {
   container: {
     position:'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'black',
+    backgroundColor:'#121212',
     height:70
   }, 
   text: {
     fontSize: 70,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
     color: '#FFF',
+    opacity:.87,
     marginLeft: 0,
     top:-150,
   },
