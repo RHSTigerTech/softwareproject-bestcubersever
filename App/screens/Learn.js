@@ -23,7 +23,7 @@ function Learn({navigation}) {
                         style={{marginVertical: 8}}
 
                         text="How to Read Algorithms"
-                        textStyle={{fontSize: 27, color: 'black',}}
+                        textStyle={{fontSize: 27, color: '#121212',}}
 
                         gradientBegin="#ffffff" //change color
                         gradientEnd="#ffffff" //change color
@@ -117,7 +117,7 @@ function Learn({navigation}) {
 const styles = StyleSheet.create({
    
     background:{
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         flex:1
     },
     ViewContainer:{
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-        backgroundColor: 'black'
+        backgroundColor: '#121212'
     },
     image: {
         width:'100%',
@@ -135,14 +135,14 @@ const styles = StyleSheet.create({
         //top: 24,
     },
     viewStyle: {
-        borderBottomColor: 'black',
+        borderBottomColor: '#121212',
         //marginBottom:10,
         marginTop: 0,
         backgroundColor: 'transparent'
     },
 
     textStyle: {
-        color: 'black',
+        color: '#121212',
         fontSize:30, 
     }
 })

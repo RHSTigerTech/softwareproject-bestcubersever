@@ -11,7 +11,7 @@ function BeginnerLearn({navigation}) {
                 <View style={{height: '90%'}}>
                     <ScrollView style={styles.scroll}>
                         {/* STEP 1 */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title*/}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -57,7 +57,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 2 */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>2: White Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -101,7 +101,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 3 */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>3: Second Layer {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -140,7 +140,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 4 */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>4: Orient Yellow Edges {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -167,7 +167,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 5 */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>5: Orient Yellow Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -204,7 +204,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 6 */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>6: Permute Yellow Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -229,7 +229,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 7 */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>7: Permute Yellow Edges {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -269,7 +269,7 @@ function BeginnerLearn({navigation}) {
 
 const styles = StyleSheet.create({
     background:{
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         flex:1
     },
 
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 })
