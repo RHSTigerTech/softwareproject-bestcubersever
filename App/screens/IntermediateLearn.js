@@ -24,7 +24,7 @@ function IntermediateLearn({navigation}) {
                         </View>
 
                         {/* STEP 1: WHITE CROSS */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -68,7 +68,7 @@ function IntermediateLearn({navigation}) {
                         </Card>
                         
                         {/* STEP 2: F2L */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>2: First Two Layers (F2L)</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -160,7 +160,7 @@ function IntermediateLearn({navigation}) {
                         </Card>
 
                         {/* STEP 3: OLL */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>3: Orient Last Layer (OLL) {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -387,7 +387,7 @@ function IntermediateLearn({navigation}) {
                         </Card>
 
                         {/* STEP 4: PLL */}
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>4: Permute Last Layer (PLL) {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -476,7 +476,7 @@ function IntermediateLearn({navigation}) {
 
 const styles = StyleSheet.create({
     background:{
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         flex:1
     },
 
@@ -498,7 +498,7 @@ const styles = StyleSheet.create({
 
     pageHeader:{
         // Header
-        backgroundColor: 'black',
+        backgroundColor: '#121212',
     },
 
     placeHolder: {
@@ -571,7 +571,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 })
