@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
+import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {Header, Card} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function IntermediateLearn({navigation}) {
     return (
@@ -11,8 +13,8 @@ function IntermediateLearn({navigation}) {
                         <View style={styles.pageHeader}>
                             <Text style={styles.textHeader}>Intermediate Method {/* Page Title */}</Text>
                             <Text style={styles.textSubHeader}> 
-                                All of these steps correspond to steps in the Beginner's Method, they are just more advanced and in turn faster 
-                                ways to complete them.  In order to have a smoother transition into this method, you can learn one step at a 
+                                All of these steps correspond to steps in the Beginner's Method, they are just more advanced and in 
+                                turn, faster. In order to have a smoother transition into this method, you can learn one step at a 
                                 time and continue using the Beginner's Method steps for the others.
                                 {'\n'}Intermediate Step 1 = Beginner's Step 1
                                 {'\n'}Intermediate Step 2 = Beginner's Step 2 and 3
@@ -469,6 +471,79 @@ function IntermediateLearn({navigation}) {
                         </Card>
                     </ScrollView>
                 </View>
+                <View style={{flexDirection:'row'}}>
+                    <Icon.Button
+                        name='cube-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
+                    </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignItems='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => {navigation.navigate('Statistics')}}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                    {/* Home Screen */}
+                    <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => {navigation.navigate('Gradient')}}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='school'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => {navigation.navigate('Learn')}}
+                    >
+                    <Text style={styles.BottomTabText}>Learn</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -520,6 +595,16 @@ const styles = StyleSheet.create({
         fontSize: 17.5,
         textAlign: 'center',
     },
+    
+    BottomTabText:{
+        //Text used for the bottom menu
+        fontSize:10,
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
+      },
 
     textDescrip:{
         // Text thats a description

@@ -40,7 +40,7 @@ const App = () => {
         <Stack.Screen 
           name="Learn" 
           component={Learn}
-          // options={{headerShown:false}}
+          options={{headerShown:false}}
         />
 
         <Stack.Screen 
@@ -90,11 +90,13 @@ const App = () => {
         <Stack.Screen
           name="HowToReadAlg"
           component={HowToReadAlg}
+          options={{headerShown:false}}
         />
 
         <Stack.Screen
           name="BeginnerLearn"
           component={BeginnerLearn}
+          options={{headerShown:false}}
         />
         
         <Stack.Screen 

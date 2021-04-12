@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
@@ -262,6 +263,79 @@ function BeginnerLearn({navigation}) {
                         </Card>
                     </ScrollView>
                 </View>
+                <View style={{flexDirection:'row'}}>
+                    <Icon.Button
+                        name='cube-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
+                    </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignItems='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => {navigation.navigate('Statistics')}}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                    {/* Home Screen */}
+                    <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => {navigation.navigate('Gradient')}}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='school'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => {navigation.navigate('Learn')}}
+                    >
+                    <Text style={styles.BottomTabText}>Learn</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -293,6 +367,16 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         width: '40%',
     },
+
+    BottomTabText:{
+        //Text used for the bottom menu
+        fontSize:10,
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
+      },
 
     scroll: {
         // Scroll view
