@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View,
  Platform, StatusBar, Image, SafeAreaView, } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
+import AwesomeButton from "react-native-really-awesome-button";
 
 const ButtonHeight=65;
 const ButtonWidth=320;
@@ -19,14 +20,14 @@ function Learn({navigation}) {
                 />
                 */}
                 <View style={{justifyContent: 'space-evenly', flex: 1, opacity:0.9}}>
-                    <GradientButton
+                    {/* <GradientButton
                         style={{marginVertical: 8}}
 
                         text="How to Read Algorithms"
-                        textStyle={{fontSize: 27, color: '#121212',}}
+                        textStyle={{fontSize: 27, color: 'white',}}
 
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
+                        gradientBegin="#7701ff" //change color
+                        gradientEnd="#7701ff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -35,7 +36,11 @@ function Learn({navigation}) {
                         impact
                         impactStyle='Light'
                         onPressAction={() => navigation.navigate('HowToReadAlg')} //navigate to the how to read screen
-                    />
+                    /> */}
+                    <AwesomeButton>
+                        
+                    </AwesomeButton>
+                    
 
                     <GradientButton
                         style={{marginVertical: 8}}
@@ -43,8 +48,8 @@ function Learn({navigation}) {
                         text="Beginner's Method"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
+                        gradientBegin="#7701ff" //change color
+                        gradientEnd="#7701ff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -61,8 +66,8 @@ function Learn({navigation}) {
                         text="Intermediate Method"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
+                        gradientBegin="#7701ff" //change color
+                        gradientEnd="#7701ff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -79,8 +84,8 @@ function Learn({navigation}) {
                         text="Advanced Method"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
+                        gradientBegin="#7701ff" //change color
+                        gradientEnd="#7701ff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -97,8 +102,8 @@ function Learn({navigation}) {
                         text="List of Algorithms"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
+                        gradientBegin="#7701ff" //change color
+                        gradientEnd="#7701ff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -142,7 +147,7 @@ const styles = StyleSheet.create({
     },
 
     textStyle: {
-        color: '#121212',
+        color: 'white',
         fontSize:30, 
     }
 })
