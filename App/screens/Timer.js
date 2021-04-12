@@ -236,6 +236,7 @@ export const deletetime = () =>{
 export const cleartimes =()=>{
   if(del===true){
     convertedTimes=[convertedTimes[0]];
+    convertedTimes.pop()
     finaltime='0'
   }
   del=false;
@@ -313,6 +314,10 @@ const App = ({navigation}) => {
 
   console.log('maybe'+mayberid)
   
+  
+
+ 
+
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
@@ -356,6 +361,8 @@ function fixnum(input){
         input = input.substr( 0, index + 1 ) + 
                 input.slice( index ).replace( /\./g, '' );
     }
+    input=input.replace(/[- #*;,<>\{\}\[\]\\\/]/gi, '');
+                                            
     console.log(input)
     console.log('is this working')
     return input;
@@ -364,6 +371,9 @@ let value=inputVal;
 //adds the time to the stats when the add button is pressed
 function add(){
     value=fixnum(value)
+    if (value=='.'){
+      value=0
+    }
     convertedTimes.push(value)
     console.log(value)
     hideAddModal()
@@ -402,6 +412,7 @@ function onCancel(){
   if(amount>1 && doubleDel==true){
     convertedTimes.pop()
     storeData(convertedTimes)
+    doubleDel=false;
   }
 }
 
@@ -441,31 +452,23 @@ function dismissed(){
       <Portal>
         <Dialog visible={Addvisible} onDismiss={() => {cancel(),onCancel()}} style={styles.dialogContainer}>
         <Dialog.Title style={{color:'#BB86FC'}}>Add</Dialog.Title>
-        <Dialog.Content style={{color:'#BB86FC'}}>
-        
+        <Dialog.Content style={{color:'#BB86FC'}}>    
           <TextInput
-                  
                   label="Add A Time (In Seconds)"
-                  keyboardAppearance='dark'
-                  
+                  keyboardAppearance='dark'  
                   //backgroundColor='black'
                   value={value}
                   onChangeText={text => setInputVal(text)}
                   numeric
                   keyboardType={'decimal-pad'}
-                  
                 />
-                
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++}}>Add</Button>
-                
-              <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
-              
+                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++}}>Add</Button>  
+              <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button> 
             </Dialog.Actions>
         </Dialog>
-      </Portal>
-      
+      </Portal>      
       </Provider>
       
     );
