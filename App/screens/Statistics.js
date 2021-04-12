@@ -42,12 +42,13 @@ const chartConfigs = [
   
 
   export default class App extends React.Component {  
+    
     renderTabBar() {
       return <StatusBar hidden />;
     }
     
     render() {
-     
+      try{
     let width;
     
     let data;
@@ -235,8 +236,20 @@ const chartConfigs = [
     
     </View>
     );
-    }
   }
+  catch(err){
+    return(
+    <View style={styles.ErrorContainer}>
+      <Text style={styles.textSummary}>
+          No Data Has Been Entered
+      </Text>
+    </View>
+    )
+  }
+    }
+  
+  }
+
 
 const styles = StyleSheet.create({
     ViewContainer:{
@@ -244,6 +257,15 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },  
+    ErrorContainer:{
+      flex: 1, 
+      alignItems: 'center', 
+      justifyContent:'center',
+      paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+      backgroundColor:'#121212'
+
+
+    },
     AverageTime:{
       color:'white',
       opacity:.87,
