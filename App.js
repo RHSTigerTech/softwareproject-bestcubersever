@@ -102,6 +102,7 @@ const App = () => {
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
+          options={{headerShown:false}}
         />
 
         <Stack.Screen 
