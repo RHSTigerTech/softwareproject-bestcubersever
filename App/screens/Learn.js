@@ -4,9 +4,10 @@ import { StyleSheet, View,
 import GradientButton from 'react-native-gradient-buttons';
 import AwesomeButton from "react-native-really-awesome-button";
 
+
 const ButtonHeight=65;
 const ButtonWidth=320;
-const ButtonRadius=30; // effects how circular the buttons look
+const ButtonRadius=10; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
 
 function Learn({navigation}) {
@@ -19,7 +20,7 @@ function Learn({navigation}) {
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
                 */}
-                <View style={{justifyContent: 'space-evenly', flex: 1, opacity:0.9}}>
+                <View style={{justifyContent: 'space-evenly', flex: 1, opacity:1}}>
                     {/* <GradientButton
                         style={{marginVertical: 8}}
 
@@ -37,82 +38,91 @@ function Learn({navigation}) {
                         impactStyle='Light'
                         onPressAction={() => navigation.navigate('HowToReadAlg')} //navigate to the how to read screen
                     /> */}
-                    <AwesomeButton>
+                    <AwesomeButton 
+                        width={ButtonWidth} 
+                        height={ButtonHeight}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('HowToReadAlg')}
                         
+                        
+                    >
+                        How to Read Algorithms
                     </AwesomeButton>
                     
 
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="Beginner's Method"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#7701ff" //change color
-                        gradientEnd="#7701ff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('BeginnerLearn')}
+                        
+                        
+                    >
+                        Beginner's Method
+                    </AwesomeButton>
 
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('BeginnerLearn')} //navigate to the beginner's screen
-                    />
-
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="Intermediate Method"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#7701ff" //change color
-                        gradientEnd="#7701ff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('IntermediateLearn')}
+                        
+                        
+                    >
+                        Intermediate Method
+                    </AwesomeButton>
 
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('IntermediateLearn')}//navigate to the intermediate screen
-                    />
-
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="Advanced Method"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#7701ff" //change color
-                        gradientEnd="#7701ff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('AdvancedLearn')}
+                        
+                        
+                    >
+                        Advanced Method
+                    </AwesomeButton>
 
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('AdvancedLearn')} //navigate to the advanced screen
-                    />
-
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="List of Algorithms"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#7701ff" //change color
-                        gradientEnd="#7701ff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
-
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('AlgList')} //navigate to the algorithm list screen
-                    />
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('AlgList')}
+                        
+                        
+                    >
+                        List of Algorithms
+                    </AwesomeButton>
                 </View>
             </View>
         </SafeAreaView>
