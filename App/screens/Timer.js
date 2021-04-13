@@ -82,6 +82,8 @@ let minutes;
 
 let del;
 
+let confirmClear;
+
 let doubleDel; 
 
 let getrid;
@@ -310,6 +312,12 @@ const App = ({navigation}) => {
       getrid=false;
       storeData(convertedTimes)
     } 
+    if(confirmClear==true){
+      console.log('cleared time')
+      convertedTimes.pop()
+      storeData(convertedTimes)
+      confirmClear=false;
+    }
   },[]);
 
   console.log('maybe'+mayberid)
@@ -464,7 +472,7 @@ function dismissed(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++}}>Add</Button>  
+                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++,confirmClear=false}}>Add</Button>  
               <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button> 
             </Dialog.Actions>
         </Dialog>
@@ -487,7 +495,7 @@ function dismissed(){
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),stopadd=false,getrid=true;}}>Delete</Button>                
+                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),stopadd=false,getrid=true,confirmClear=false}}>Delete</Button>                
                 <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
@@ -502,7 +510,7 @@ function dismissed(){
           <Dialog visible={ClearVisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Warning:{'\n'}This will delete all your times!</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes()}}>Confirm</Button>                
+                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes(), confirmClear=true}}>Confirm</Button>                
                 <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
@@ -534,7 +542,8 @@ function dismissed(){
               setResetStopwatch(false); 
               storeData(convertedTimes);  
               amount=0;  
-              mayberid=0;          
+              mayberid=0; 
+              confirmClear=false;         
             }}>
             <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
