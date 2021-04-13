@@ -18,7 +18,7 @@ function Gradient({navigation}) {
     
     const ButtonHeight=65;
     const ButtonWidth=320;
-    const ButtonRadius=30; // effects how circular the buttons look
+    const ButtonRadius=10; // effects how circular the buttons look
     const ButtonGradientDirection='vertical';
     
     return (
