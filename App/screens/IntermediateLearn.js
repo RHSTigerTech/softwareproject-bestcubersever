@@ -11,7 +11,7 @@ function IntermediateLearn({navigation}) {
                 <View style={{height: '90%'}}>
                     <ScrollView style={styles.scroll}>
                         <View style={styles.pageHeader}>
-                            <Text style={styles.textHeader}>Intermediate Method {/* Page Title */}</Text>
+                            <Text style={styles.firsttextHeader} >Intermediate Method {/* Page Title */}</Text>
                             <Text style={styles.textSubHeader}> 
                                 All of these steps correspond to steps in the Beginner's Method, they are just more advanced and in 
                                 turn, faster. In order to have a smoother transition into this method, you can learn one step at a 
@@ -586,6 +586,7 @@ const styles = StyleSheet.create({
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
+        
     },
 
     textHeader: {
@@ -593,7 +594,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 17.5,
-        textAlign: 'center',
+        textAlign: 'center', 
+    },
+
+    firsttextHeader: {
+        //headers
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 17.5,
+        textAlign: 'center', 
+        paddingTop: '3%'
     },
     
     BottomTabText:{
@@ -636,7 +646,8 @@ const styles = StyleSheet.create({
         //Text that goes under headers
         color: 'white',
         fontSize: 13,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginHorizontal:'3%'
     },
 
     textSummary: {
@@ -658,6 +669,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         backgroundColor:'#121212',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        
     },
 })
 
