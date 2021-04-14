@@ -3,18 +3,53 @@ import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAre
 import {Header, Card} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import AwesomeButton from "react-native-really-awesome-button";
 
 
+const ButtonHeight=65;
+const ButtonWidth=320;
+const ButtonRadius=10; // effects how circular the buttons look
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:15}}>{props.children}</Text>
+//this.myRef=React.createRef();
+
+
+    const aref = useAnimatedRef();
+    const scroll = useSharedValue(0);
+  
+    useDerivedValue(() => {
+      scrollTo(aref, 0, scroll.value * 100, true);
+    });
+
+const items = Array.from(Array(10).keys());
 
 function BeginnerLearn({navigation}) {
     return (
         <SafeAreaView style={styles.background}>
-            <View style={styles.ViewContainer}>
+            <View style={styles.ViewContainer} >
                 <View style={{height: '90%'}}>
+                <AwesomeButton 
+                        width={ButtonWidth} 
+                        height={ButtonHeight}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => {
+                            scroll.value = scroll.value + 1;
+                            if (scroll.value >= 10) scroll.value = 0;
+                          }}
+                        
+                        
+                    >
+                        How to Read Algorithms
+                    </AwesomeButton>
                     <ScrollView style={styles.scroll}>
                         {/* STEP 1 */}
                         <Card containerStyle={{backgroundColor: '#121212'}}>
+                        
                             <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title*/}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
