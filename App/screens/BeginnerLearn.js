@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
+const B = (props) => <Text style={{fontWeight: 'bold',fontSize:15}}>{props.children}</Text>
 
 function BeginnerLearn({navigation}) {
     return (
@@ -31,16 +33,16 @@ function BeginnerLearn({navigation}) {
                                     {'\n'}
                                 </Text>
                                 <Text style={styles.textDescrip}>
-                                              2: Insert the edge into the yellow 
-                                    {'\n'}    layer so that the white part is 
-                                    {'\n'}    facing up.  You can do this by 
-                                    {'\n'}    rotating the side that the 
-                                    {'\n'}    colored part of the edge is on 
-                                    {'\n'}    until the white part of the edge 
-                                    {'\n'}    is in the yellow layer.  Repeat 
-                                    {'\n'}    this until all white edges are in 
-                                    {'\n'}    the yellow layer and you have 
-                                    {'\n'}    this "daisy" pattern.
+                                              <B>2:</B> Insert the edge into the yellow 
+                                    layer so that the white part is 
+                                    facing up.  You can do this by 
+                                    rotating the side that the 
+                                    colored part of the edge is on 
+                                    until the white part of the edge 
+                                    is in the yellow layer.  Repeat 
+                                    this until all white edges are in 
+                                    the yellow layer and you have 
+                                    this "daisy" pattern.
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
                                 <Text style={styles.textDescripWide}>
@@ -397,6 +399,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 13,
         width: '60%',
+        
     },
 
     textDescripWide:{
