@@ -90,10 +90,6 @@ export default class App extends Component {
                     >
                     <Text style={styles.contentButtons}>7: Permute Yellow Edges</Text>
                     </TouchableOpacity>
-
-
-                    
-
                     </Card>
                         {/* STEP 1 */}
                         <Text onLayout={event =>(this.WhiteCross = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
@@ -113,7 +109,7 @@ export default class App extends Component {
                             </Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    1: Find an edge with white and another color on it.
+                                    <B>1:</B> Find an edge with white and another color on it.
                                     {'\n'}
                                 </Text>
                                 <Text style={styles.textDescrip}>
@@ -127,18 +123,21 @@ export default class App extends Component {
                                     this until all white edges are in 
                                     the yellow layer and you have 
                                     this "daisy" pattern.
+                                    {'\n'}
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
                                 <Text style={styles.textDescripWide}>
-                                    {'\n'}3: Once all edges are in the yellow layer, choose one and 
-                                    {'\n'}    align it with the center that matches the color it has  
-                                    {'\n'}    on it using U moves.  Rotate that side twice so that 
-                                    {'\n'}    the white part of the edge is now in the white layer.  
-                                    {'\n'}    Repeat this until all edges are in the white layer and 
-                                    {'\n'}    you have a white cross. {/* Steps */}
+                                    <B>3:</B> Once all edges are in the yellow layer, choose one and 
+                                        align it with the center that matches the color it has  
+                                        on it using U moves.  Rotate that side twice so that 
+                                        the white part of the edge is now in the white layer.  
+                                        Repeat this until all edges are in the white layer and 
+                                        you have a white cross. {/* Steps */}
+                                        {'\n'}
+                                        
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_aligned.jpg')}/>
-                                <Text style={{color: 'white', fontSize: 13, width: '20%', textAlign: 'center', textAlignVertical: 'center'}}>(R2)     </Text>
+                                <Text style={{color: 'white', fontSize: 13, width: '20%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'-2%', textAlignVertical: 'center'}}>(R2)     </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
                             </View>
                         </Card>
