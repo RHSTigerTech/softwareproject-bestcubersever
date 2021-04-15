@@ -1,13 +1,15 @@
 import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet } from "react-native";
-import React, { Component } from "react";
+import React, { useState, Component, useEffect } from 'react';
 import {Header, Card} from 'react-native-elements';
 import {storeData, getData} from './Timer';
 import { times,deletetime, convertedItem, convertedTimes, storedTimes } from './Timer';
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import FlashMessage, { showMessage } from "react-native-flash-message";
-import { Button, Menu, Divider, Provider, Text } from 'react-native-paper';
+import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-native-paper';
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
+
+
 
 
 // let timedel=deletetime()
@@ -27,6 +29,10 @@ getData()
 //         } 
 //     }
 
+
+
+
+
 const chartConfigs = [    
     {
       backgroundColor: "#121212",      
@@ -39,15 +45,20 @@ const chartConfigs = [
   ];
 // let arrayName=times()
 // let arrayElement=0;
+
+    
   
 
   export default class App extends React.Component {  
     
     renderTabBar() {
       return <StatusBar hidden />;
+      
     }
     
     render() {
+    
+      
       try{
     let width;
     
@@ -55,15 +66,21 @@ const chartConfigs = [
 
     let average=0.0;
 
+    let Avg5=0.0;
+
+    let notEnough5='Not enough data'
+
     let floatnum;
 
     let besttime;
 
     let worsttime;
 
+    let deletepoint;
+
     const height=360;
 
-
+    
     // for(let i=0;i<times().length;i++){
     //   if(times()[i]==0){
     //     console.log(times()[i]+'--------------')
@@ -141,6 +158,20 @@ const chartConfigs = [
     }
     console.log(worsttime)
 
+    //Avg 5
+    if(data.length>=5){
+    for(let i=data.length-1;i>data.length-6;i--){
+        floatnum=parseFloat(data[i])
+        Avg5=floatnum+Avg5
+    }
+    Avg5=Avg5/5
+    console.log(Avg5)
+    }
+    
+    // else{
+    //   Avg5='Not Enough Data'
+    // }
+
     let xcords=[]
     for(let i=1;i<=data.length;i++){
       xcords.push(i)
@@ -154,12 +185,15 @@ const chartConfigs = [
     }
 
       return (
+        
         <View style={{backgroundColor: '#121212',height:'100%'}} >
+          
         <Header                       
           containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
           centerContainerStyle={{flex:14}}
           centerComponent={{ text: 'Statistics', style: { color: 'white',opacity:.87, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
         />
+        
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
         <Card containerStyle={{backgroundColor: '#121212',height:'40%', top:'-1%',zIndex:5}}>
       <ScrollView >
@@ -170,7 +204,7 @@ const chartConfigs = [
         <Card.Divider/>
         <Text style={styles.textSummary}>Worst: {worsttime.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Avg 5: not added</Text>
+        <Text style={styles.textSummary}>Avg 5: {Avg5.toFixed(3)}</Text>
         <Card.Divider/>
         <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
         <Card.Divider/>
@@ -219,13 +253,26 @@ const chartConfigs = [
                 style={graphStyle}
                 verticalLabelRotation={0}
                 onDataPointClick={({ value, getColor }) =>
+                  
                   showMessage({
                     message: `${value} seconds`,
                     type:'info',
                     backgroundColor: '#121212',                    
                   })
-                }                
-              />              
+                  
+                }       
+                // onDataPointClick={({value})=>
+                  
+                  
+                //   data=data.splice(data[data.indexOf(value)])
+                //   //console.log(data[data.indexOf(value)]),
+                //   //deletepoint=true
+                //   //pointDelete()
+                
+                // }   
+                        
+              />   
+                        
         </ScrollView>        
             );            
           })}          
@@ -237,6 +284,7 @@ const chartConfigs = [
     </View>
     );
   }
+  
   catch(err){
     return(
     <View style={styles.ErrorContainer}>
@@ -246,7 +294,7 @@ const chartConfigs = [
     </View>
     )
   }
-    }
+   }
   
   }
 
