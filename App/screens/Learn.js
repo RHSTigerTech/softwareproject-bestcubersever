@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View,
- Platform, StatusBar, Image, SafeAreaView, } from 'react-native';
+import { StyleSheet, View,Platform, StatusBar, Image, SafeAreaView } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
 import AwesomeButton from "react-native-really-awesome-button";
+import {Header} from 'react-native-elements'
 
 
 const ButtonHeight=65;
@@ -12,15 +12,26 @@ const ButtonGradientDirection='vertical';
 
 function Learn({navigation}) {
     return (
+        
         <SafeAreaView style={styles.background}>
+        {/* <Header                       
+          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
+          centerContainerStyle={{flex:14}}
+          centerComponent={{ text: 'Learn', style: { color: 'white',opacity:1, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
+        /> */}
+        
+        
             <View style={styles.ViewContainer}>
+            
                 {/*
                 <Image 
                     resizeMode='cover'
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
                 */}
+                
                 <View style={{justifyContent: 'space-evenly', flex: 1, opacity:1}}>
+                
                     {/* <GradientButton
                         style={{marginVertical: 8}}
 
