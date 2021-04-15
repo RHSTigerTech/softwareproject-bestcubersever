@@ -1,53 +1,102 @@
-import React from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
+import React, { useState, Component, useEffect } from 'react';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AwesomeButton from "react-native-really-awesome-button";
-
+import {
+    ScrollIntoView, // enhanced View container
+    wrapScrollView, // simple wrapper, no config
+    wrapScrollViewConfigured, // complex wrapper, takes a config
+  } from 'react-native-scroll-into-view';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const ButtonHeight=65;
 const ButtonWidth=320;
 const ButtonRadius=10; // effects how circular the buttons look
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:15}}>{props.children}</Text>
-//this.myRef=React.createRef();
 
-
-    const aref = useAnimatedRef();
-    const scroll = useSharedValue(0);
   
-    useDerivedValue(() => {
-      scrollTo(aref, 0, scroll.value * 100, true);
-    });
-
-const items = Array.from(Array(10).keys());
-
-function BeginnerLearn({navigation}) {
+export default class App extends Component {
+    
+    render() {
+        const {navigate} = this.props.navigation;
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer} >
                 <View style={{height: '90%'}}>
-                <AwesomeButton 
-                        width={ButtonWidth} 
-                        height={ButtonHeight}
-                        backgroundColor='#6d00eb'
-                        textSize={27}
-                        borderRadius={ButtonRadius}
-                        activeOpacity={.8}	
-                        backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
-                        raiseLevel={5}
+                
+                    <ScrollView
+                    ref={ref => (this.scrollViewRef = ref)}
+                     style={styles.scroll}>
+
+                    
+                <Card containerStyle={{backgroundColor: '#121212'}}>
+                <Card.Title style={styles.ContentsTitle}>Beginner Steps{/* Card Title*/}</Card.Title>
+                <Card.Divider/>
+                    <TouchableOpacity
                         onPress={() => {
-                            scroll.value = scroll.value + 1;
-                            if (scroll.value >= 10) scroll.value = 0;
-                          }}
-                        
-                        
+                            this.scrollViewRef.scrollTo({y: this.WhiteCross.y,animated: true});
+                        }}
                     >
-                        How to Read Algorithms
-                    </AwesomeButton>
-                    <ScrollView style={styles.scroll}>
+                    <Text style={styles.contentButtons}>1: White Cross</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.WhiteCorners.y,animated: true});
+                        }}
+                    >
+                    <Text paddingTop='-3%' style={styles.contentButtons} >2: White Corners</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.SecondLayer.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>3: Second Layer</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.OrientYellowEdges.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>4: Orient Yellow Edges</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.OrientYellowCorners.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>5: Orient Yellow Corners</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.PermuteYellowCorners.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>6: Permute Yellow Corners</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.PermuteYellowEdges.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>7: Permute Yellow Edges</Text>
+                    </TouchableOpacity>
+
+
+                    
+
+                    </Card>
                         {/* STEP 1 */}
+                        <Text onLayout={event =>(this.WhiteCross = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                         
                             <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title*/}</Card.Title>
@@ -95,6 +144,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 2 */}
+                        <Text onLayout={event =>(this.WhiteCorners = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>2: White Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -116,11 +166,16 @@ function BeginnerLearn({navigation}) {
                                 </Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_left.jpg')}/>
+                                
+                                
                                 <Text style={styles.textDescrip}>
                                     When the corner is below the slot it needs to be inserted into, with white facing to the left and the 
                                     color on the right matches that side
                                     {'\n'}F D F'
                                 </Text>
+                                
+                                
+          
 
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_down.jpg')}/>
                                 <Text style={styles.textDescrip}>
@@ -139,6 +194,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 3 */}
+                        <Text onLayout={event =>(this.SecondLayer = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>3: Second Layer {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -148,7 +204,8 @@ function BeginnerLearn({navigation}) {
                             </Text>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
-                            <Text style={styles.textSubHeader}>
+                            <Text 
+                             style={styles.textSubHeader}>
                                 Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
                             </Text>
                             {/* This view holds all the cases for this step */}
@@ -178,6 +235,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 4 */}
+                        <Text onLayout={event =>(this.OrientYellowEdges = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>4: Orient Yellow Edges {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -205,6 +263,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 5 */}
+                        <Text onLayout={event =>(this.OrientYellowCorners = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>5: Orient Yellow Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -213,9 +272,13 @@ function BeginnerLearn({navigation}) {
                             </Text>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
+
+
+                            
                             <Text style={styles.textSubHeader}>
                                 Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
                             </Text>
+                            
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_0.png')}/>
@@ -240,8 +303,10 @@ function BeginnerLearn({navigation}) {
                                 <Text style={styles.textDescrip}>F (R U R' U') (R U R' U') (R U R' U') F'</Text>
                             </View>
                         </Card>
-
+                        
+                                
                         {/* STEP 6 */}
+                        <Text onLayout={event =>(this.PermuteYellowCorners = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>6: Permute Yellow Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -267,6 +332,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 7 */}
+                        <Text onLayout={event =>(this.PermuteYellowEdges = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>7: Permute Yellow Edges {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -300,7 +366,9 @@ function BeginnerLearn({navigation}) {
                         </Card>
                     </ScrollView>
                 </View>
+                
                 <View style={{flexDirection:'row'}}>
+                
                     <Icon.Button
                         name='cube-outline'
                         flexDirection='column'
@@ -311,7 +379,7 @@ function BeginnerLearn({navigation}) {
                         opacity={1}
                         size={30}
                         paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigation.navigate('VirtualCube')}
+                        onPress={({}) => navigate('VirtualCube')}
                         >
                         <Text style={styles.BottomTabText}>3DCube</Text>
                     </Icon.Button>
@@ -326,7 +394,7 @@ function BeginnerLearn({navigation}) {
                         opacity={1}
                         size={30}
                         paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => {navigation.navigate('Statistics')}}
+                        onPress={() => navigate('Statistics')}
                     >
                     <Text style={styles.BottomTabText}>Statistics</Text>
                     </Icon.Button>
@@ -340,7 +408,7 @@ function BeginnerLearn({navigation}) {
                         opacity={1}
                         size={30}
                         paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => {navigation.navigate('Gradient')}}
+                        onPress={() => navigate('Gradient')}
                     >
                     <Text style={styles.BottomTabText}>Home</Text>
                     </Icon.Button>
@@ -354,7 +422,7 @@ function BeginnerLearn({navigation}) {
                         opacity={1}
                         size={30}
                         paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => {navigation.navigate('Learn')}}
+                        onPress={() => navigate('Learn')}
                     >
                     <Text style={styles.BottomTabText}>Learn</Text>
                     </Icon.Button>
@@ -368,7 +436,7 @@ function BeginnerLearn({navigation}) {
                         opacity={1}
                         size={30}
                         paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigation.navigate('Timer')}
+                        onPress={() => navigate('Timer')}
                         >
                         <Text style={styles.BottomTabText}>Timer</Text>
                     </Icon.Button>
@@ -376,6 +444,7 @@ function BeginnerLearn({navigation}) {
             </View>
         </SafeAreaView>
     );
+        }
 }
 
 const styles = StyleSheet.create({
@@ -445,6 +514,22 @@ const styles = StyleSheet.create({
         width: '100%'
     },
 
+    contentLocal:{
+        fontSize:.1,
+        color:'transparent',
+        alignItems:'center'
+    },
+
+    contentButtons:{
+        color:'#7600ff',
+        textAlign:'center',
+        fontSize:20,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        paddingTop:'5%',
+        top:'-30%'
+    },
+
     textSubHeader: {
         //Text that goes under headers
         color: 'white',
@@ -461,7 +546,15 @@ const styles = StyleSheet.create({
     textTitle: {
         // Titles of the cards
         color: 'white',
-        fontSize: 20
+        fontSize: 20,
+        fontWeight:'bold'
+    },
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 23,
+        fontWeight:'bold',
+        
     },
 
     ViewContainer:{
@@ -474,4 +567,3 @@ const styles = StyleSheet.create({
     },
 })
 
-export default BeginnerLearn;
