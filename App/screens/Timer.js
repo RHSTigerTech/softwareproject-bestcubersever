@@ -565,9 +565,6 @@ function dismissed(){
             
 {/* bottom icon buttons */}
  <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
-{/*
-<View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}> */}
-        {/* <View style={{flexDirection:'row', bottom:'-17%', justifyContent:'space-evenly' , width:'100%',backgroundColor:'blue', left:Platform.OS === 'ios' ? '-13.2%':'-9.5%'}} pointerEvents='box-none'> */}
 
           <View style={{flex:1,flexDirection:'column',height:180,bottom:Platform.OS === 'ios' ? '37%': '32.5%', right:Platform.OS === 'ios' ? '-178%':'-207%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
             {/* Options */}

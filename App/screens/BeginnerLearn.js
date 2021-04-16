@@ -2,22 +2,9 @@ import React, { useState, Component, useEffect } from 'react';
 import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import AwesomeButton from "react-native-really-awesome-button";
-import {
-    ScrollIntoView, // enhanced View container
-    wrapScrollView, // simple wrapper, no config
-    wrapScrollViewConfigured, // complex wrapper, takes a config
-  } from 'react-native-scroll-into-view';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-const ButtonHeight=65;
-const ButtonWidth=320;
-const ButtonRadius=10; // effects how circular the buttons look
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:15}}>{props.children}</Text>
-
-  
+ 
 export default class App extends Component {
     
     render() {
@@ -28,8 +15,8 @@ export default class App extends Component {
                 <View style={{height: '90%'}}>
                 
                     <ScrollView
-                    ref={ref => (this.scrollViewRef = ref)}
-                     style={styles.scroll}>
+                        ref={ref => (this.scrollViewRef = ref)}
+                        style={styles.scroll}>
 
                     
                 <Card containerStyle={{backgroundColor: '#121212'}}>
@@ -521,7 +508,7 @@ const styles = StyleSheet.create({
 
     contentButtons:{
         color:'#7600ff',
-        textAlign:'center',
+        //textAlign:'center',
         fontSize:20,
         //textDecorationLine: 'underline',
         fontWeight:'bold',
