@@ -13,12 +13,14 @@ import * as React from 'react';
 import Timer from './App/screens/Timer.js';
 import Statistics from './App/screens/Statistics';
 import Scanner from './App/screens/PictureTaker';
-
+import NumberList from './App/screens/NumberList'
 import VirtualCube from './App/screens/VirtualCube.js';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,8 +76,8 @@ const App = () => {
         options={{headerShown:false}}/>
 
         <Stack.Screen 
-        name="Scanner" 
-        component={Scanner} 
+        name="NumberList" 
+        component={NumberList} 
         options={{headerShown:false}}/>
         
         
