@@ -8,6 +8,8 @@ import FlashMessage, { showMessage } from "react-native-flash-message";
 import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-native-paper';
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
+import AwesomeButton from "react-native-really-awesome-button";
+import {users} from './NumberList'
 
 
 
@@ -15,6 +17,7 @@ import { View } from "react-native";
 // let timedel=deletetime()
 // console.log(timedel)
 // console.log('testingkabflabflab')
+
 
 storeData(convertedTimes)
 getData()
@@ -45,24 +48,57 @@ const chartConfigs = [
   ];
 // let arrayName=times()
 // let arrayElement=0;
+let data=[4,8,9,3,5,7,9]
+export const timerthing = () => {
+  
 
+  if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
+    // removeElement(deletetime(),0)
+    data=deletetime();
+    data.pop();
+    data.pop(); 
+      if(data[0]===0 && data.length>1){
+        console.log(data[0])
+      data.shift();
+      }      
+  }
+
+  else{
+    // removeElement(times(),0)
+    data=times();
+    if(data[data.length-1]==data[data.length-2]){
+    data.pop();
+    }
+    //data.pop()
+    if(data[0]===0 && data.length>1){
+      console.log(data[0])
+      data.shift();
+      }
+  }
+  
+}
+export {data};
     
   
 
-  export default class App extends React.Component {  
+  export default class Stats extends React.Component {  
     
     renderTabBar() {
       return <StatusBar hidden />;
       
     }
     
+
     render() {
-    
+
       
-      try{
+
+      const {navigate} = this.props.navigation;
+      //this.setState()
+     try{
     let width;
     
-    let data;
+    //let data;
 
     let average=0.0;
 
@@ -98,29 +134,10 @@ const chartConfigs = [
     // console.log(deletetime())
     // console.log(deletetime().length)
         
-    if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
-      // removeElement(deletetime(),0)
-      data=deletetime();
-      data.pop();
-      data.pop(); 
-        if(data[0]===0 && data.length>1){
-          console.log(data[0])
-        data.shift();
-        }      
-    }
-
-    else{
-      // removeElement(times(),0)
-      data=times();
-      if(data[data.length-1]==data[data.length-2]){
-      data.pop();
-      }
-      //data.pop()
-      if(data[0]===0 && data.length>1){
-        console.log(data[0])
-        data.shift();
-        }
-    }
+    timerthing()
+    //data=[users]
+    
+    
     
     //Average
     for(let i=0;i<data.length;i++){
@@ -186,7 +203,7 @@ const chartConfigs = [
 
       return (
         
-        <View style={{backgroundColor: '#121212',height:'100%'}} >
+        <View style={{backgroundColor: '#121212',height:'90%'}} >
           
         <Header                       
           containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
@@ -195,7 +212,7 @@ const chartConfigs = [
         />
         
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:'40%', top:'-1%',zIndex:5}}>
+        <Card containerStyle={{backgroundColor: '#121212',height:'24%', top:'-1%',zIndex:5}}>
       <ScrollView >
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
@@ -277,6 +294,20 @@ const chartConfigs = [
             );            
           })}          
     </ScrollView>
+          <AwesomeButton 
+                        width={300} 
+                        height={40}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={10}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigate('NumberList')}
+                    >
+                        List View
+             </AwesomeButton>
 
     <FlashMessage duration={1000} floating={true}/>
 
@@ -297,7 +328,7 @@ const chartConfigs = [
    }
   
   }
-
+  
 
 const styles = StyleSheet.create({
     ViewContainer:{

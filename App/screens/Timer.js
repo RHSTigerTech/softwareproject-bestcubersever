@@ -612,7 +612,7 @@ function dismissed(){
                 title="Clear" 
                 onPress={() => {showClearModal()}}>
                 
-                <Icon name="school" style={styles.actionButtonIcon} />
+                <Icon name="broom" style={styles.actionButtonIcon} />
               </ActionButton.Item>          
             </ActionButton>
             <Text style={styles.OptionsButton}>Options</Text> 

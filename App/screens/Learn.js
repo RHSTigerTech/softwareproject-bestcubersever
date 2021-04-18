@@ -60,8 +60,6 @@ function Learn({navigation}) {
                         backgroundShadow='transparent'
                         raiseLevel={5}
                         onPress={() => navigation.navigate('HowToReadAlg')}
-                        
-                        
                     >
                         How to Read Algorithms
                     </AwesomeButton>
