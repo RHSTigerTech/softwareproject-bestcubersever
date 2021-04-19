@@ -81,7 +81,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('NumberList')}
+                            onPressAction={() => navigation.navigate('Scanner')}
                         >
                         </GradientButton>
 

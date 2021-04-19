@@ -9,9 +9,10 @@ import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-nat
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
 import AwesomeButton from "react-native-really-awesome-button";
-import {newList} from './NumberList'
+import {newList, randomthing} from './NumberList'
 import _ from 'lodash';
 import {isEqual} from 'lodash/isEqual'
+
 
 
 
@@ -40,6 +41,7 @@ getData()
 // console.log(newList)
 
 
+
 const chartConfigs = [    
     {
       backgroundColor: "#121212",      
@@ -52,7 +54,7 @@ const chartConfigs = [
   ];
 // let arrayName=times()
 // let arrayElement=0;
-let data=[4,8,9,3,5,7,9]
+let data=[]
 export const timerthing = () => {
   
 
@@ -84,9 +86,13 @@ export const timerthing = () => {
 }
 export {data};
     
-  
+
+
 
   export default class Stats extends React.Component { 
+    
+    
+  
     
     // UNSAFE_componentDidMount() {
     //   this.props.fetchData();
@@ -177,7 +183,6 @@ export {data};
     console.log(average)
     console.log(data.length)
 
-
     //Best Time
     for(let i=0;i<data.length;i++){
       if(data[i]==0){
@@ -232,8 +237,9 @@ export {data};
 
       return (
         
+        
         <View style={{backgroundColor: '#121212',height:'90%'}} >
-          
+         
         <Header                       
           containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
           centerContainerStyle={{flex:14}}

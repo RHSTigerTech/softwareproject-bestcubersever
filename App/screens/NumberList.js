@@ -3,7 +3,7 @@ import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button,
 import {storeData, getData, convertedTimes, times } from './Timer';
 import {data} from './Statistics'
 
-
+let randomthing=false;
 let newList;
 export default class App extends Component {
     constructor(props){
@@ -19,8 +19,7 @@ export default class App extends Component {
     UNSAFE_componentWillMount() {
         this.setState({ users: data });
         newList =this.state.users;
-        //viewlist=false;
-        
+        //viewlist=false;    
     }
     
     deleteAllItems(){
