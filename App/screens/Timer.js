@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
+//import {newList} from './NumberList'
+
 //import {storeData, getData} from './storage';
 
 
@@ -103,7 +105,9 @@ let testdel=0;
 let amount =0;
 
 
-
+// if(newList !== undefined){
+//   convertedTimes=newList;
+// }
 
 //Takes the times from the timer and pushes them into a list which is used by statistics
 //The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list

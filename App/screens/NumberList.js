@@ -3,8 +3,8 @@ import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button,
 import {storeData, getData, convertedTimes, times } from './Timer';
 import {data} from './Statistics'
 
-let viewlist=false;
 
+let newList;
 export default class App extends Component {
     constructor(props){
         super(props);
@@ -14,25 +14,32 @@ export default class App extends Component {
             allSelected: true,
         };
     }   
+
+    
     UNSAFE_componentWillMount() {
         this.setState({ users: data });
+        newList =this.state.users;
         //viewlist=false;
         
     }
     
     deleteAllItems(){
         this.setState({users:[]});
+        newList =this.state.users;
     }
 
     deleteItem(index){
         let helperArray=this.state.users;
         helperArray.splice(index, 1);
         this.setState({users:helperArray})
-        
+        newList =this.state.users;
     }
 
     selectAll(){}
 
+
+    
+    
     render() {
         const {navigate} = this.props.navigation;
         return(
@@ -40,7 +47,7 @@ export default class App extends Component {
             <Container>
                 <Header>
                     <Left>
-                        <Button transparent onPress={()=> {navigate('Timer'), storeData(this.state.users)}}>
+                        <Button transparent onPress={()=> {navigate('Timer'), storeData(newList), console.log(newList)}}>
                             <Icon name='menu'/>
                         </Button>
                     </Left>
@@ -82,7 +89,7 @@ export default class App extends Component {
     
 }
 
-export {viewlist}
+export{newList}
 
   
 

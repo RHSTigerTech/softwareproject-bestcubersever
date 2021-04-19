@@ -9,7 +9,10 @@ import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-nat
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
 import AwesomeButton from "react-native-really-awesome-button";
-import {users} from './NumberList'
+import {newList} from './NumberList'
+import _ from 'lodash';
+import {isEqual} from 'lodash/isEqual'
+
 
 
 
@@ -33,7 +36,8 @@ getData()
 //     }
 
 
-
+// console.log('newList')
+// console.log(newList)
 
 
 const chartConfigs = [    
@@ -76,12 +80,27 @@ export const timerthing = () => {
       }
   }
   
+  
 }
 export {data};
     
   
 
-  export default class Stats extends React.Component {  
+  export default class Stats extends React.Component { 
+    
+    // UNSAFE_componentDidMount() {
+    //   this.props.fetchData();
+    //   this.willFocusSubscription = this.props.navigation.addListener(
+    //     'willFocus',
+    //     () => {
+    //       this.props.fetchData();
+    //     }
+    //   );
+    // }
+    
+    // UNSAFE_componentWillUnmount() {
+    //   this.willFocusSubscription.remove();
+    // }
     
     renderTabBar() {
       return <StatusBar hidden />;
@@ -91,9 +110,8 @@ export {data};
 
     render() {
 
-      
-
       const {navigate} = this.props.navigation;
+      
       //this.setState()
      try{
     let width;
@@ -114,7 +132,14 @@ export {data};
 
     let deletepoint;
 
+    let changedList=[1];
+
     const height=360;
+
+    
+    
+
+
 
     
     // for(let i=0;i<times().length;i++){
@@ -136,7 +161,11 @@ export {data};
         
     timerthing()
     //data=[users]
-    
+    //console.log(newList)
+
+    // if(data.length!=newList.length){
+    //   data=newList;
+    // }
     
     
     //Average
@@ -325,6 +354,7 @@ export {data};
     </View>
     )
   }
+  
    }
   
   }

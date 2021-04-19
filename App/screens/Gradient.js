@@ -109,7 +109,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => {navigation.navigate('Statistics'),storeData(convertedTimes)}}
+                            onPressAction={() => {storeData(convertedTimes),navigation.navigate('Statistics')}}
                         >
                         </GradientButton>
                     </View>            
