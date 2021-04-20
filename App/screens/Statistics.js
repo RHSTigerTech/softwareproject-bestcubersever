@@ -12,6 +12,7 @@ import AwesomeButton from "react-native-really-awesome-button";
 import {newList, randomthing} from './NumberList'
 import _ from 'lodash';
 import {isEqual} from 'lodash/isEqual'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
@@ -117,6 +118,7 @@ export {data};
     render() {
 
       const {navigate} = this.props.navigation;
+      const {push} = this.props.navigation;
       
       //this.setState()
      try{
@@ -237,7 +239,7 @@ export {data};
 
       return (
         
-        
+      <View style={{backgroundColor:'#121212', height:'100%'}}>
         <View style={{backgroundColor: '#121212',height:'90%'}} >
          
         <Header                       
@@ -339,7 +341,7 @@ export {data};
                         backgroundDarker='#5c00c7'
                         backgroundShadow='transparent'
                         raiseLevel={5}
-                        onPress={() => navigate('NumberList')}
+                        onPress={() => push('NumberList')}
                     >
                         List View
              </AwesomeButton>
@@ -348,6 +350,81 @@ export {data};
 
     
     </View>
+      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
+                
+                <Icon.Button
+                    name='cube-outline'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    alignItems='center'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    onPress={({}) => navigate('VirtualCube')}
+                    >
+                    <Text style={styles.BottomTabText}>3DCube</Text>
+                </Icon.Button>
+                {/* Statistics */}
+                <Icon.Button            
+                    name='chart-line'
+                    alignItems='center'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    onPress={() => navigate('Statistics')}
+                >
+                <Text style={styles.BottomTabText}>Statistics</Text>
+                </Icon.Button>
+                {/* Home Screen */}
+                <Icon.Button
+                    name='home' 
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    onPress={() => navigate('Gradient')}
+                >
+                <Text style={styles.BottomTabText}>Home</Text>
+                </Icon.Button>
+                {/* Learn */}
+                <Icon.Button
+                    name='school'
+                    backgroundColor='transparent'
+                    flexDirection='column'
+                    //backgroundColor='#121212'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    onPress={() => navigate('Learn')}
+                >
+                <Text style={styles.BottomTabText}>Learn</Text>
+                </Icon.Button>
+                <Icon.Button
+                    name='timer-outline'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    alignItems='center'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    onPress={() => navigate('Timer')}
+                    >
+                    <Text style={styles.BottomTabText}>Timer</Text>
+                </Icon.Button>
+            </View>
+    </View>  
     );
   }
   
@@ -404,6 +481,15 @@ const styles = StyleSheet.create({
         opacity:87,
         fontSize: 25,
         textAlign:'center'
+    },
+    BottomTabText:{
+      //Text used for the bottom menu
+      fontSize:10,
+      color:'white',
+      opacity:1,
+      justifyContent:'center',
+      left:'-7%',
+      paddingHorizontal:'1%'
     },
 
 })

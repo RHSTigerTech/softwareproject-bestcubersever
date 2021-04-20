@@ -40,13 +40,13 @@ export default class App extends Component {
     
     
     render() {
-        const {navigate} = this.props.navigation;
+        const {push} = this.props.navigation;
         return(
             
             <Container>
                 <Header>
                     <Left>
-                        <Button transparent onPress={()=> {navigate('Timer'), storeData(newList), console.log(newList)}}>
+                        <Button transparent onPress={()=> {push('Statistics'), storeData(newList), console.log(newList)}}>
                             <Icon name='menu'/>
                         </Button>
                     </Left>
