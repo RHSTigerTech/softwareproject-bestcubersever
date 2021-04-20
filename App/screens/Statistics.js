@@ -15,33 +15,8 @@ import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-
-
-
-
-// let timedel=deletetime()
-// console.log(timedel)
-// console.log('testingkabflabflab')
-
-
 storeData(convertedTimes)
 getData()
-
-// function removeElement(arrayName,arrayElement)
-//     {
-//       for(var i=0; i<arrayName.length;i++ )
-//         { 
-//           if(arrayName[i]==arrayElement)
-//               arrayName.splice(i,1); 
-//               console.log('removed zero')
-//         } 
-//     }
-
-
-// console.log('newList')
-// console.log(newList)
-
-
 
 const chartConfigs = [    
     {
@@ -53,61 +28,36 @@ const chartConfigs = [
       color: (opacity = 1) => `rgba(${170}, ${119}, ${252}, ${opacity})`
     },    
   ];
-// let arrayName=times()
-// let arrayElement=0;
+
 let data=[]
 export const timerthing = () => {
   
 
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
-    // removeElement(deletetime(),0)
     data=deletetime();
     data.pop();
     data.pop(); 
       if(data[0]===0 && data.length>1){
-        console.log(data[0])
+        //console.log(data[0])
       data.shift();
       }      
   }
 
   else{
-    // removeElement(times(),0)
     data=times();
     if(data[data.length-1]==data[data.length-2]){
     data.pop();
     }
-    //data.pop()
     if(data[0]===0 && data.length>1){
-      console.log(data[0])
+      //console.log(data[0])
       data.shift();
       }
   }
-  
-  
 }
 export {data};
     
-
-
-
   export default class Stats extends React.Component { 
     
-    
-  
-    
-    // UNSAFE_componentDidMount() {
-    //   this.props.fetchData();
-    //   this.willFocusSubscription = this.props.navigation.addListener(
-    //     'willFocus',
-    //     () => {
-    //       this.props.fetchData();
-    //     }
-    //   );
-    // }
-    
-    // UNSAFE_componentWillUnmount() {
-    //   this.willFocusSubscription.remove();
-    // }
     
     renderTabBar() {
       return <StatusBar hidden />;
@@ -120,11 +70,9 @@ export {data};
       const {navigate} = this.props.navigation;
       const {push} = this.props.navigation;
       
-      //this.setState()
      try{
     let width;
     
-    //let data;
 
     let average=0.0;
 
@@ -144,36 +92,8 @@ export {data};
 
     const height=360;
 
-    
-    
-
-
-
-    
-    // for(let i=0;i<times().length;i++){
-    //   if(times()[i]==0){
-    //     console.log(times()[i]+'--------------')
-    //     data=times().slice(i)
-    //     console.log(times().slice(i,1)+'------------------')
-        
-    //   }
-    // }
-    
-    
-    // removeElement(deletetime(),0)
-    // console.log(times())
-    // console.log(times().length)
-    // console.log('..................................................')
-    // console.log(deletetime())
-    // console.log(deletetime().length)
         
     timerthing()
-    //data=[users]
-    //console.log(newList)
-
-    // if(data.length!=newList.length){
-    //   data=newList;
-    // }
     
     
     //Average
@@ -182,8 +102,8 @@ export {data};
       average=floatnum+average
     }
     average=average/data.length
-    console.log(average)
-    console.log(data.length)
+    // console.log(average)
+    // console.log(data.length)
 
     //Best Time
     for(let i=0;i<data.length;i++){
@@ -198,7 +118,7 @@ export {data};
       }
       
     }
-    console.log(besttime)
+    //console.log(besttime)
 
     //Worst Time
     for(let i=0;i<data.length;i++){
@@ -209,7 +129,7 @@ export {data};
         worsttime=parseFloat(data[i])
       }
     }
-    console.log(worsttime)
+    //console.log(worsttime)
 
     //Avg 5
     if(data.length>=5){
@@ -218,7 +138,7 @@ export {data};
         Avg5=floatnum+Avg5
     }
     Avg5=Avg5/5
-    console.log(Avg5)
+    //console.log(Avg5)
     }
     
     // else{
@@ -242,14 +162,25 @@ export {data};
       <View style={{backgroundColor:'#121212', height:'100%'}}>
         <View style={{backgroundColor: '#121212',height:'90%'}} >
          
-        <Header                       
-          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
-          centerContainerStyle={{flex:14}}
-          centerComponent={{ text: 'Statistics', style: { color: 'white',opacity:.87, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
-        />
-        
+        <View style={{top:'7%', alignItems:'center'}}>
+        <AwesomeButton 
+                        
+                        width={300} 
+                        height={40}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={10}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => push('NumberList')}
+                    >
+                        List View
+             </AwesomeButton>
+             </View>
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:'24%', top:'-1%',zIndex:5}}>
+        <Card containerStyle={{backgroundColor: '#121212',height:'28%', top:'7%',zIndex:5}}>
       <ScrollView >
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
@@ -268,7 +199,7 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView bottom={'0%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        <ScrollView bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           {chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',
@@ -315,15 +246,7 @@ export {data};
                   })
                   
                 }       
-                // onDataPointClick={({value})=>
-                  
-                  
-                //   data=data.splice(data[data.indexOf(value)])
-                //   //console.log(data[data.indexOf(value)]),
-                //   //deletepoint=true
-                //   //pointDelete()
-                
-                // }   
+ 
                         
               />   
                         
@@ -331,20 +254,6 @@ export {data};
             );            
           })}          
     </ScrollView>
-          <AwesomeButton 
-                        width={300} 
-                        height={40}
-                        backgroundColor='#6d00eb'
-                        textSize={27}
-                        borderRadius={10}
-                        activeOpacity={.8}	
-                        backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
-                        raiseLevel={5}
-                        onPress={() => push('NumberList')}
-                    >
-                        List View
-             </AwesomeButton>
 
     <FlashMessage duration={1000} floating={true}/>
 
@@ -368,7 +277,7 @@ export {data};
                 </Icon.Button>
                 {/* Statistics */}
                 <Icon.Button            
-                    name='chart-line'
+                    name='camera'
                     alignItems='center'
                     flexDirection='column'
                     backgroundColor='transparent'
@@ -377,9 +286,9 @@ export {data};
                     opacity={1}
                     size={30}
                     paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                    onPress={() => navigate('Statistics')}
+                    onPress={() => navigate('Scanner')}
                 >
-                <Text style={styles.BottomTabText}>Statistics</Text>
+                <Text style={styles.BottomTabText}>Solver</Text>
                 </Icon.Button>
                 {/* Home Screen */}
                 <Icon.Button
@@ -434,6 +343,20 @@ export {data};
       <Text style={styles.textSummary}>
           No Data Has Been Entered
       </Text>
+      <AwesomeButton 
+                        width={300} 
+                        height={40}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={10}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigate('Gradient')}
+                    >
+                        List View
+             </AwesomeButton>
     </View>
     )
   }

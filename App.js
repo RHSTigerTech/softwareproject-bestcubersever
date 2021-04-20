@@ -30,17 +30,7 @@ const Tab = createBottomTabNavigator();
 
 
 const App = () => {
-  const backAction = () => {
-    Alert.alert("Hold on!", "Are you sure you want to go back?", [
-      {
-        text: "Cancel",
-        onPress: () => null,
-        style: "cancel"
-      },
-      { text: "YES", onPress: () => navigation.navigate('Learn') }
-    ]);
-    return true;
-  }
+
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true)
     return () =>
