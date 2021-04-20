@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, Text, View, 
   Image, Alert, TouchableWithoutFeedback, 
   TouchableOpacity, TouchableHighlight, 
- Platform, Dimensions, StatusBar, Pressable, SafeAreView} from 'react-native';
+ Platform, Dimensions, StatusBar, Pressable, SafeAreView, BackHandler} from 'react-native';
 import {Header} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import LightVideo from '../Assets/RotatingCube.mp4';

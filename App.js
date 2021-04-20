@@ -9,7 +9,7 @@ import HowToReadAlg from './App/screens/HowToReadAlg';
 import AdvancedLearn from './App/screens/AdvancedLearn';
 import AlgList from './App/screens/AlgList';
 //import Video from './App/screens/video.js';
-import * as React from 'react';
+import React, { useState, Component, useEffect} from 'react';
 import Timer from './App/screens/Timer.js';
 import Statistics from './App/screens/Statistics';
 import Scanner from './App/screens/PictureTaker';
@@ -19,13 +19,21 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {BackHandler} from 'react-native';
 
 
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+
+
 const App = () => {
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', () => true)
+  }, [])
   return(
     
     <NavigationContainer>
@@ -48,7 +56,7 @@ const App = () => {
         <Stack.Screen 
         name='Timer' 
         component={Timer}
-        options={{headerShown:false}}
+        options={{headerShown:false,gestureEnabled: false }}
         />
 
         <Stack.Screen 
@@ -59,7 +67,7 @@ const App = () => {
         <Stack.Screen
           name='Statistics'
           component={Statistics}
-          options={{headerShown:false}}
+          options={{headerShown:false,gestureEnabled: false,}}
         />
 
         <Stack.Screen
@@ -84,7 +92,7 @@ const App = () => {
         <Stack.Screen 
         name="NumberList" 
         component={NumberList} 
-        options={{headerShown:false}}/>
+        options={{headerShown:false,gestureEnabled: false,}}/>
         
         
         {/* <Stack.Screen 
