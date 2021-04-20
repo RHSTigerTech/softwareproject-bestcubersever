@@ -74,6 +74,7 @@ const App = () => {
         <Stack.Screen 
           name='VirtualCube' 
           component={VirtualCube}
+          options={{gestureEnabled: false }}
         />
 
         <Stack.Screen
