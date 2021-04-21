@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions, } from 'react-native';
 import {Header, Card} from 'react-native-elements';
 
 function IntermediateLearn({navigation}) {

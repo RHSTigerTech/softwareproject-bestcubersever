@@ -22,8 +22,8 @@ function Learn({navigation}) {
                     <GradientButton
                         style={{marginVertical: 8}}
 
-                        text="How to Read Algorithms"
-                        textStyle={{fontSize: 27, color: '#121212',}}
+                        text="Cube Basics"
+                        textStyle={styles.textStyle}
 
                         gradientBegin="#ffffff" //change color
                         gradientEnd="#ffffff" //change color
