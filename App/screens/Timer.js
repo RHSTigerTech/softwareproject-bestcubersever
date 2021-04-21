@@ -80,9 +80,13 @@ let convertedTimes=[];
 
 let storedData;
 
+let delOnce;
+
 let minutes;
 
 let del;
+
+let delExtra;
 
 let confirmClear;
 
@@ -153,59 +157,68 @@ export const times = () =>{
       return !Number.isNaN(value)
     })
 
-    if(checkadd===true){
-      console.log(convertedTimes)
-      if(amount==0){
-      convertedTimes.splice(convertedTimes.length-3,1)
-      convertedTimes.pop()
-      }
-      else if(amount >1 ){
-      convertedTimes.splice(convertedTimes.length-4,2)
-      convertedTimes.pop()
-      }
-      else{
-        convertedTimes.pop()
-      }
-      finaltime='0';
-      console.log(amount)      
-      checkadd=false;
-      amount+=1;      
-    }
-
-    if(del===true){
-      if(convertedTimes[convertedTimes.length-2]==0){
-        convertedTimes.splice(convertedTimes.length-3,3)
-      }
-      else if(convertedTimes[convertedTimes.length-1]==0){
-        convertedTimes.splice(convertedTimes.length-2,2)
-      }
-      else if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
-        convertedTimes.pop();
-        convertedTimes.pop();
-      }
-      else{
-      convertedTimes.pop();
-      }
-      if(amount>=1){
-        convertedTimes.pop()
-      }
-      console.log('del is true')
-      del=false;
-      finaltime='0';
-    }
-    if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
-      convertedTimes.pop()
-    }
     
-  
-    testdel=convertedTimes[convertedTimes.length-1]
-    
-    
-    storeData(convertedTimes)
-    console.log(convertedTimes)
-    console.log(testdel)
-    console.log(finaltime)
   }
+  if(checkadd===true){
+    console.log(convertedTimes)
+    if(amount==0){
+    convertedTimes.splice(convertedTimes.length-3,1)
+    convertedTimes.pop()
+    }
+    else if(amount >1 ){
+    convertedTimes.splice(convertedTimes.length-4,2)
+    convertedTimes.pop()
+    
+    
+    }
+    else{
+      convertedTimes.pop()
+    }
+    finaltime='0';
+    console.log(amount)      
+    checkadd=false;
+    amount+=1;      
+  }
+
+  if(del===true){
+    if(convertedTimes[convertedTimes.length-2]==0){
+      convertedTimes.splice(convertedTimes.length-3,3)
+    }
+    else if(convertedTimes[convertedTimes.length-1]==0){
+      convertedTimes.splice(convertedTimes.length-2,2)
+    }
+    else if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
+      convertedTimes.pop();
+      convertedTimes.pop();
+    }
+    else{
+    convertedTimes.pop();
+    }
+    if(amount>=1){
+      convertedTimes.pop()
+    }
+    if(delExtra==true){
+      console.log(convertedTimes)
+      convertedTimes.pop()
+      console.log(convertedTimes)
+      console.log('------------------------')
+    }
+    console.log('del is true')
+    del=false;
+    finaltime='0';
+  }
+  if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
+    convertedTimes.pop()
+  }
+  
+
+  testdel=convertedTimes[convertedTimes.length-1]
+  
+  
+  storeData(convertedTimes)
+  console.log(convertedTimes)
+  console.log(testdel)
+  console.log(finaltime)
   
   return (convertedTimes);
   
@@ -309,7 +322,7 @@ const App = ({navigation}) => {
       console.log(convertedTimes)  
       storeData(convertedTimes)
     }
-    if(getrid==true && mayberid<1){
+    if(getrid==true && mayberid<1 && delOnce==false){
       convertedTimes.pop()
       console.log(convertedTimes)
       console.log('showing delete screen')
@@ -321,6 +334,10 @@ const App = ({navigation}) => {
       convertedTimes.pop()
       storeData(convertedTimes)
       confirmClear=false;
+      delOnce=false
+    }
+    if(delOnce==true){
+      delExtra=true;
     }
   },[]);
 
@@ -476,7 +493,7 @@ function dismissed(){
                 />
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++,confirmClear=false}}>Add</Button>  
+                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++,confirmClear=false,delOnce=false}}>Add</Button>  
               <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button> 
             </Dialog.Actions>
         </Dialog>
@@ -499,7 +516,7 @@ function dismissed(){
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),stopadd=false,getrid=true,confirmClear=false}}>Delete</Button>                
+                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),amount=2,stopadd=false,getrid=true,confirmClear=false, delOnce=true}}>Delete</Button>                
                 <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
@@ -514,7 +531,7 @@ function dismissed(){
           <Dialog visible={ClearVisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Warning:{'\n'}This will delete all your times!</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes(), confirmClear=true}}>Confirm</Button>                
+                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes(), confirmClear=true, delOnce=false}}>Confirm</Button>                
                 <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
@@ -547,7 +564,8 @@ function dismissed(){
               storeData(convertedTimes);  
               amount=0;  
               mayberid=0; 
-              confirmClear=false;         
+              confirmClear=false; 
+              delOnce=false        
             }}>
             <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
@@ -650,7 +668,7 @@ function dismissed(){
             opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Statistics')}}
+            onPress={() => {navigation.push('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics</Text>
           </Icon.Button>

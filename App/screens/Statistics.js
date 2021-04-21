@@ -96,6 +96,16 @@ export {data};
     timerthing()
     
     
+
+    let numData=[];
+    for(let i=0;i<data.length;i++){
+      if(data[1]!=0){
+        numData.push(parseFloat(data[i])) 
+      }            
+    }
+    console.log(numData)
+    
+
     //Average
     for(let i=0;i<data.length;i++){
       floatnum=parseFloat(data[i])
@@ -131,6 +141,19 @@ export {data};
     }
     //console.log(worsttime)
 
+    //Median
+    function sorter(a, b){
+      return a - b;
+    }
+    let len=numData.length;
+    let arrSort=numData.slice(0).sort(sorter);
+    console.log(arrSort)
+    let mid = Math.ceil(len/2);
+    console.log(arrSort[mid-1])
+    let Median= len % 2 == 0 ? (arrSort[mid] + arrSort[mid-1]) / 2 :arrSort[mid-1]
+    console.log(Median)
+ 
+
     //Avg 5
     if(data.length>=5){
     for(let i=data.length-1;i>data.length-6;i--){
@@ -141,6 +164,13 @@ export {data};
     //console.log(Avg5)
     }
     
+    //Best 3 of 5
+    // if(data.length>=5){
+    //   for(let i=data.length-1;i>data.length-6;i--){
+
+    //   }
+    // }
+
     // else{
     //   Avg5='Not Enough Data'
     // }
@@ -183,14 +213,22 @@ export {data};
         <Card containerStyle={{backgroundColor: '#121212',height:'28%', top:'7%',zIndex:5}}>
       <ScrollView >
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
-        <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
-        <Card.Divider/>
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
         <Card.Divider/>
         <Text style={styles.textSummary}>Worst: {worsttime.toFixed(3)}</Text>
         <Card.Divider/>
+        <Text style={styles.textSummary}>Average: {average.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Median: {Median.toFixed(3)} </Text>
+        <Card.Divider/>
         <Text style={styles.textSummary}>Avg 5: {Avg5.toFixed(3)}</Text>
         <Card.Divider/>
+        {/* start at the first 5 numbers and sort them.
+            remove the fastest and slowest times and take that average of the other 3
+            assign this average to best 3 of 5
+            then do the same for numbers 1-6 then 2-7 etc...
+            if one of these averages is lower than the assigned average replace it
+             */}
         <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
         <Card.Divider/>
         <Text style={styles.textSummary}>Avg 12: not added</Text>
