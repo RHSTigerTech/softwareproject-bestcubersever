@@ -18,6 +18,29 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 storeData(convertedTimes)
 getData()
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
+}
+
+
 const chartConfigs = [    
     {
       backgroundColor: "#121212",      
@@ -31,8 +54,6 @@ const chartConfigs = [
 
 let data=[]
 export const timerthing = () => {
-  
-
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
     data=deletetime();
     data.pop();
@@ -66,11 +87,14 @@ export {data};
     
 
     render() {
-
+      
       const {navigate} = this.props.navigation;
       const {push} = this.props.navigation;
-      
-     try{
+    if(times()!=null){
+
+    
+  try{ 
+     
     let width;
     
 
@@ -393,11 +417,35 @@ export {data};
                         raiseLevel={5}
                         onPress={() => navigate('Gradient')}
                     >
-                        List View
+                        Exit
              </AwesomeButton>
     </View>
     )
   }
+        }
+        else{
+          return(
+              <View style={styles.ErrorContainer}>
+                <Text style={styles.textSummary}>
+                    No Data Has Been Entered
+                </Text>
+                <AwesomeButton 
+                                  width={300} 
+                                  height={40}
+                                  backgroundColor='#6d00eb'
+                                  textSize={27}
+                                  borderRadius={10}
+                                  activeOpacity={.8}	
+                                  backgroundDarker='#5c00c7'
+                                  backgroundShadow='transparent'
+                                  raiseLevel={5}
+                                  onPress={() => navigate('Gradient')}
+                              >
+                                  Exit
+                       </AwesomeButton>
+              </View>
+              )
+        }
   
    }
   
