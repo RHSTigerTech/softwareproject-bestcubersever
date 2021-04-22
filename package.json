@@ -39,6 +39,7 @@
     "react-native-action-button": "^2.8.5",
     "react-native-chart-kit": "^6.11.0",
     "react-native-elements": "^3.3.2",
+    "react-native-exception-handler": "^2.10.10",
     "react-native-flash-message": "^0.1.23",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "~1.8.0",

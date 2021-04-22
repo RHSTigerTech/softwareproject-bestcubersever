@@ -13,7 +13,18 @@ import {newList, randomthing} from './NumberList'
 import _ from 'lodash';
 import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ErrorBoundary from "./ErrorBoundary";
+import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exception-handler'
 
+setJSExceptionHandler((error, isFatal) => {
+  console.log(error, isFatal)
+  alert(error.name)
+// return(
+//   <View>
+
+//   </View>
+// )
+}, true);
 
 storeData(convertedTimes)
 getData()
@@ -53,6 +64,16 @@ const chartConfigs = [
   ];
 
 let data=[]
+let removeZero=[]
+
+//removeZero=times()
+// for(let i=0;i<times().length;i++){
+//   if(times()[1]!=0){
+//     removeZero.push(parseFloat(times()[i])) 
+//   }            
+// }
+
+
 export const timerthing = () => {
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
     data=deletetime();
@@ -76,7 +97,8 @@ export const timerthing = () => {
   }
 }
 export {data};
-    
+// console.log(times().length)
+// console.log('whhhhhhhhhy isnt this woooooooooooooooorking')
   export default class Stats extends React.Component { 
     
     
@@ -90,7 +112,8 @@ export {data};
       
       const {navigate} = this.props.navigation;
       const {push} = this.props.navigation;
-    if(times()!=null || times().length<=1 || isNaN(times())){
+    //ZeroRemove()
+    // if(removeZero.length>=1){
 
     
   try{ 
@@ -212,7 +235,7 @@ export {data};
     }
 
       return (
-        
+       
       <View style={{backgroundColor:'#121212', height:'100%'}}>
         <View style={{backgroundColor: '#121212',height:'90%'}} >
          
@@ -395,7 +418,8 @@ export {data};
                     <Text style={styles.BottomTabText}>Timer</Text>
                 </Icon.Button>
             </View>
-    </View>  
+    </View> 
+    
     );
   }
   
@@ -422,34 +446,12 @@ export {data};
     </View>
     )
   }
-        }
-        else{
-          return(
-              <View style={styles.ErrorContainer}>
-                <Text style={styles.textSummary}>
-                    No Data Has Been Entered
-                </Text>
-                <AwesomeButton 
-                                  width={300} 
-                                  height={40}
-                                  backgroundColor='#6d00eb'
-                                  textSize={27}
-                                  borderRadius={10}
-                                  activeOpacity={.8}	
-                                  backgroundDarker='#5c00c7'
-                                  backgroundShadow='transparent'
-                                  raiseLevel={5}
-                                  onPress={() => navigate('Gradient')}
-                              >
-                                  Exit
-                       </AwesomeButton>
-              </View>
-              )
+        
         }
   
    }
   
-  }
+  
   
 
 const styles = StyleSheet.create({
