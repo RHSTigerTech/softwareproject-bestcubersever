@@ -84,7 +84,7 @@ console.log(typeof data)
     data=deletetime();
     data.pop();
     data.pop(); 
-      if(data[0]===0 && data.length>1){
+      if(data[0]==0){
         //console.log(data[0])
       data.shift();
       }      
@@ -95,12 +95,13 @@ console.log(typeof data)
     if(data[data.length-1]==data[data.length-2]){
     data.pop();
     }
-    if(data[0]===0 && data.length>1){
+    if(data[0]==0){
       //console.log(data[0])
       data.shift();
       }
   }
-  
+  console.log(data)
+  console.log('---------------------')
 }
 export {data};
 // console.log(times().length)
@@ -154,7 +155,7 @@ export {data};
 
     let numData=[];
     for(let i=0;i<data.length;i++){
-      if(data[1]!=0){
+      if(data[i]!=0){
         numData.push(parseFloat(data[i])) 
       }            
     }
