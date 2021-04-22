@@ -16,15 +16,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ErrorBoundary from "./ErrorBoundary";
 import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exception-handler'
 
-setJSExceptionHandler((error, isFatal) => {
-  console.log(error, isFatal)
-  alert(error.name)
-// return(
-//   <View>
+// setJSExceptionHandler((error, isFatal) => {
+//   console.log(error, isFatal)
+//   alert(error.name)
+// // return(
+// //   <View>
 
-//   </View>
-// )
-}, true);
+// //   </View>
+// // )
+// }, true);
 
 storeData(convertedTimes)
 getData()
@@ -65,7 +65,7 @@ const chartConfigs = [
 
 let data=[]
 let removeZero=[]
-
+let undef;
 //removeZero=times()
 // for(let i=0;i<times().length;i++){
 //   if(times()[1]!=0){
@@ -75,6 +75,11 @@ let removeZero=[]
 
 
 export const timerthing = () => {
+  if(typeof data== 'undefined'){
+    undef=true;
+    console.log('data is undefined')
+}
+console.log(typeof data)
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
     data=deletetime();
     data.pop();
@@ -95,13 +100,16 @@ export const timerthing = () => {
       data.shift();
       }
   }
+  
 }
 export {data};
 // console.log(times().length)
 // console.log('whhhhhhhhhy isnt this woooooooooooooooorking')
   export default class Stats extends React.Component { 
     
-    
+    UNSAFE_componentWillMount() {
+         
+  }
     renderTabBar() {
       return <StatusBar hidden />;
       
@@ -196,9 +204,9 @@ export {data};
     let arrSort=numData.slice(0).sort(sorter);
     console.log(arrSort)
     let mid = Math.ceil(len/2);
-    console.log(arrSort[mid-1])
+    //console.log(arrSort[mid-1])
     let Median= len % 2 == 0 ? (arrSort[mid] + arrSort[mid-1]) / 2 :arrSort[mid-1]
-    console.log(Median)
+    //console.log(Median)
  
 
     //Avg 5
