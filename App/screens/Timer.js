@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
+//import {newList} from './NumberList'
+
 //import {storeData, getData} from './storage';
 
 
@@ -78,9 +80,15 @@ let convertedTimes=[];
 
 let storedData;
 
+let delOnce;
+
 let minutes;
 
 let del;
+
+let delExtra;
+
+let confirmClear;
 
 let doubleDel; 
 
@@ -101,7 +109,9 @@ let testdel=0;
 let amount =0;
 
 
-
+// if(newList !== undefined){
+//   convertedTimes=newList;
+// }
 
 //Takes the times from the timer and pushes them into a list which is used by statistics
 //The function first converts the formatted time (ex: 1:28:489) into a float number which is then added to the convertedTimes list
@@ -147,59 +157,68 @@ export const times = () =>{
       return !Number.isNaN(value)
     })
 
-    if(checkadd===true){
-      console.log(convertedTimes)
-      if(amount==0){
-      convertedTimes.splice(convertedTimes.length-3,1)
-      convertedTimes.pop()
-      }
-      else if(amount >1 ){
-      convertedTimes.splice(convertedTimes.length-4,2)
-      convertedTimes.pop()
-      }
-      else{
-        convertedTimes.pop()
-      }
-      finaltime='0';
-      console.log(amount)      
-      checkadd=false;
-      amount+=1;      
-    }
-
-    if(del===true){
-      if(convertedTimes[convertedTimes.length-2]==0){
-        convertedTimes.splice(convertedTimes.length-3,3)
-      }
-      else if(convertedTimes[convertedTimes.length-1]==0){
-        convertedTimes.splice(convertedTimes.length-2,2)
-      }
-      else if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
-        convertedTimes.pop();
-        convertedTimes.pop();
-      }
-      else{
-      convertedTimes.pop();
-      }
-      if(amount>=1){
-        convertedTimes.pop()
-      }
-      console.log('del is true')
-      del=false;
-      finaltime='0';
-    }
-    if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
-      convertedTimes.pop()
-    }
     
-  
-    testdel=convertedTimes[convertedTimes.length-1]
-    
-    
-    storeData(convertedTimes)
-    console.log(convertedTimes)
-    console.log(testdel)
-    console.log(finaltime)
   }
+  if(checkadd===true){
+    console.log(convertedTimes)
+    if(amount==0){
+    convertedTimes.splice(convertedTimes.length-3,1)
+    convertedTimes.pop()
+    }
+    else if(amount >1 ){
+    convertedTimes.splice(convertedTimes.length-4,2)
+    convertedTimes.pop()
+    
+    
+    }
+    else{
+      convertedTimes.pop()
+    }
+    finaltime='0';
+    console.log(amount)      
+    checkadd=false;
+    amount+=1;      
+  }
+
+  if(del===true){
+    if(convertedTimes[convertedTimes.length-2]==0){
+      convertedTimes.splice(convertedTimes.length-3,3)
+    }
+    else if(convertedTimes[convertedTimes.length-1]==0){
+      convertedTimes.splice(convertedTimes.length-2,2)
+    }
+    else if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
+      convertedTimes.pop();
+      convertedTimes.pop();
+    }
+    else{
+    convertedTimes.pop();
+    }
+    if(amount>=1){
+      convertedTimes.pop()
+    }
+    if(delExtra==true){
+      console.log(convertedTimes)
+      convertedTimes.pop()
+      console.log(convertedTimes)
+      console.log('------------------------')
+    }
+    console.log('del is true')
+    del=false;
+    finaltime='0';
+  }
+  if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-3]){
+    convertedTimes.pop()
+  }
+  
+
+  testdel=convertedTimes[convertedTimes.length-1]
+  
+  
+  storeData(convertedTimes)
+  console.log(convertedTimes)
+  console.log(testdel)
+  console.log(finaltime)
   
   return (convertedTimes);
   
@@ -236,6 +255,7 @@ export const deletetime = () =>{
 export const cleartimes =()=>{
   if(del===true){
     convertedTimes=[convertedTimes[0]];
+    convertedTimes.pop()
     finaltime='0'
   }
   del=false;
@@ -302,17 +322,31 @@ const App = ({navigation}) => {
       console.log(convertedTimes)  
       storeData(convertedTimes)
     }
-    if(getrid==true && mayberid<1){
+    if(getrid==true && mayberid<1 && delOnce==false){
       convertedTimes.pop()
       console.log(convertedTimes)
       console.log('showing delete screen')
       getrid=false;
       storeData(convertedTimes)
     } 
+    if(confirmClear==true){
+      console.log('cleared time')
+      convertedTimes.pop()
+      storeData(convertedTimes)
+      confirmClear=false;
+      delOnce=false
+    }
+    if(delOnce==true){
+      delExtra=true;
+    }
   },[]);
 
   console.log('maybe'+mayberid)
   
+  
+
+ 
+
 //stopwatch constants. Sets stopwatch and resets stopwatch
   const [isStopwatchStart, setIsStopwatchStart] = useState(false);
   const [resetStopwatch, setResetStopwatch] = useState(false);
@@ -356,6 +390,8 @@ function fixnum(input){
         input = input.substr( 0, index + 1 ) + 
                 input.slice( index ).replace( /\./g, '' );
     }
+    input=input.replace(/[- #*;,<>\{\}\[\]\\\/]/gi, '');
+                                            
     console.log(input)
     console.log('is this working')
     return input;
@@ -364,6 +400,9 @@ let value=inputVal;
 //adds the time to the stats when the add button is pressed
 function add(){
     value=fixnum(value)
+    if (value=='.'){
+      value=0
+    }
     convertedTimes.push(value)
     console.log(value)
     hideAddModal()
@@ -402,6 +441,7 @@ function onCancel(){
   if(amount>1 && doubleDel==true){
     convertedTimes.pop()
     storeData(convertedTimes)
+    doubleDel=false;
   }
 }
 
@@ -441,31 +481,23 @@ function dismissed(){
       <Portal>
         <Dialog visible={Addvisible} onDismiss={() => {cancel(),onCancel()}} style={styles.dialogContainer}>
         <Dialog.Title style={{color:'#BB86FC'}}>Add</Dialog.Title>
-        <Dialog.Content style={{color:'#BB86FC'}}>
-        
+        <Dialog.Content style={{color:'#BB86FC'}}>    
           <TextInput
-                  
                   label="Add A Time (In Seconds)"
-                  keyboardAppearance='dark'
-                  
+                  keyboardAppearance='dark'  
                   //backgroundColor='black'
                   value={value}
                   onChangeText={text => setInputVal(text)}
                   numeric
                   keyboardType={'decimal-pad'}
-                  
                 />
-                
                 </Dialog.Content>
                 <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++}}>Add</Button>
-                
-              <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
-              
+                <Button color='#BB86FC' onPress={() => {add(),times(),mayberid++,confirmClear=false,delOnce=false}}>Add</Button>  
+              <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button> 
             </Dialog.Actions>
         </Dialog>
-      </Portal>
-      
+      </Portal>      
       </Provider>
       
     );
@@ -484,7 +516,7 @@ function dismissed(){
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),stopadd=false,getrid=true;}}>Delete</Button>                
+                <Button color='#BB86FC' onPress={() => {hideDelModal(),amount=0,del=true, times(),amount=2,stopadd=false,getrid=true,confirmClear=false, delOnce=true}}>Delete</Button>                
                 <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
@@ -499,7 +531,7 @@ function dismissed(){
           <Dialog visible={ClearVisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Warning:{'\n'}This will delete all your times!</Dialog.Title>
             <Dialog.Actions>
-                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes()}}>Confirm</Button>                
+                <Button color='#BB86FC' onPress={() => {hideClearModal(),del=true, cleartimes(), confirmClear=true, delOnce=false}}>Confirm</Button>                
                 <Button color='#BB86FC' onPress={() => {cancel()}}>Cancel</Button>
             </Dialog.Actions>
           </Dialog>
@@ -531,7 +563,9 @@ function dismissed(){
               setResetStopwatch(false); 
               storeData(convertedTimes);  
               amount=0;  
-              mayberid=0;          
+              mayberid=0; 
+              confirmClear=false; 
+              delOnce=false        
             }}>
             <Text style={styles.startbuttonText}>{!isStopwatchStart ? 'READY' : 'STOP'}</Text>
             {/* <Text style={{color:'transparent'}}>{!isStopwatchStart ? deletetime() : ''}</Text> */}
@@ -553,9 +587,6 @@ function dismissed(){
             
 {/* bottom icon buttons */}
  <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
-{/*
-<View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '4.5%': '3.9%', right:Platform.OS === 'ios' ? '-558%':'-625%',backgroundColor: 'transparent'}}> */}
-        {/* <View style={{flexDirection:'row', bottom:'-17%', justifyContent:'space-evenly' , width:'100%',backgroundColor:'blue', left:Platform.OS === 'ios' ? '-13.2%':'-9.5%'}} pointerEvents='box-none'> */}
 
           <View style={{flex:1,flexDirection:'column',height:180,bottom:Platform.OS === 'ios' ? '37%': '32.5%', right:Platform.OS === 'ios' ? '-178%':'-207%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
             {/* Options */}
@@ -603,7 +634,7 @@ function dismissed(){
                 title="Clear" 
                 onPress={() => {showClearModal()}}>
                 
-                <Icon name="school" style={styles.actionButtonIcon} />
+                <Icon name="broom" style={styles.actionButtonIcon} />
               </ActionButton.Item>          
             </ActionButton>
             <Text style={styles.OptionsButton}>Options</Text> 
@@ -637,7 +668,7 @@ function dismissed(){
             opacity={1}
             size={30}
             paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Statistics')}}
+            onPress={() => {navigation.push('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics</Text>
           </Icon.Button>

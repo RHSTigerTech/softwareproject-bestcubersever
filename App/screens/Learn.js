@@ -1,32 +1,47 @@
 import React from 'react';
-import { StyleSheet, View,
- Platform, StatusBar, Image, SafeAreaView, } from 'react-native';
+import { StyleSheet, View,Platform, StatusBar, Image, SafeAreaView, Text } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
+import AwesomeButton from "react-native-really-awesome-button";
+import {Header} from 'react-native-elements'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 const ButtonHeight=65;
 const ButtonWidth=320;
-const ButtonRadius=30; // effects how circular the buttons look
+const ButtonRadius=10; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
 
 function Learn({navigation}) {
     return (
+        
         <SafeAreaView style={styles.background}>
+        {/* <Header                       
+          containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
+          centerContainerStyle={{flex:14}}
+          centerComponent={{ text: 'Learn', style: { color: 'white',opacity:1, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
+        /> */}
+        
+        
             <View style={styles.ViewContainer}>
+            
                 {/*
                 <Image 
                     resizeMode='cover'
                     style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
                 />
                 */}
-                <View style={{justifyContent: 'space-evenly', flex: 1, opacity:0.9}}>
-                    <GradientButton
+                
+                <View style={{justifyContent: 'space-evenly', flex: 1, opacity:1}}>
+                
+                    {/* <GradientButton
                         style={{marginVertical: 8}}
 
                         text="Cube Basics"
                         textStyle={styles.textStyle}
 
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
+                        gradientBegin="#7701ff" //change color
+                        gradientEnd="#7701ff" //change color
                         gradientDirection={ButtonGradientDirection}
                         height={ButtonHeight}
                         width={ButtonWidth}
@@ -35,80 +50,167 @@ function Learn({navigation}) {
                         impact
                         impactStyle='Light'
                         onPressAction={() => navigation.navigate('HowToReadAlg')} //navigate to the how to read screen
-                    />
-
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="Beginner's Method"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    /> */}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('HowToReadAlg')}
+                    >
+                        How to Read Algorithms
+                    </AwesomeButton>
+                    
 
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('BeginnerLearn')} //navigate to the beginner's screen
-                    />
-
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="Intermediate Method"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('BeginnerLearn')}
+                        
+                        
+                    >
+                        Beginner's Method
+                    </AwesomeButton>
 
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('IntermediateLearn')}//navigate to the intermediate screen
-                    />
-
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="Advanced Method"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('IntermediateLearn')}
+                        
+                        
+                    >
+                        Intermediate Method
+                    </AwesomeButton>
 
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('AdvancedLearn')} //navigate to the advanced screen
-                    />
-
-                    <GradientButton
-                        style={{marginVertical: 8}}
-
-                        text="List of Algorithms"
-                        textStyle={styles.textStyle}
-
-                        gradientBegin="#ffffff" //change color
-                        gradientEnd="#ffffff" //change color
-                        gradientDirection={ButtonGradientDirection}
+                    <AwesomeButton 
+                        width={ButtonWidth} 
                         height={ButtonHeight}
-                        width={ButtonWidth}
-                        radius={ButtonRadius}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('AdvancedLearn')}
+                        
+                        
+                    >
+                        Advanced Method
+                    </AwesomeButton>
 
-                        impact
-                        impactStyle='Light'
-                        onPressAction={() => navigation.navigate('AlgList')} //navigate to the algorithm list screen
-                    />
+                    <AwesomeButton 
+                        width={ButtonWidth} 
+                        height={ButtonHeight}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigation.navigate('AlgList')}
+                        
+                        
+                    >
+                        List of Algorithms
+                    </AwesomeButton>
+                    
                 </View>
+                
+            </View>
+            <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
+                
+            <Icon.Button
+                        name='cube-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={({}) => navigation.navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
+                    </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignItems='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                    {/* Home Screen */}
+                    <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='camera'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('Scanner')}
+                    >
+                    <Text style={styles.BottomTabText}>Solver</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigation.navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
             </View>
         </SafeAreaView>
     );
@@ -142,9 +244,18 @@ const styles = StyleSheet.create({
     },
 
     textStyle: {
-        color: '#121212',
+        color: 'white',
         fontSize:30, 
-    }
+    },
+    BottomTabText:{
+        //Text used for the bottom menu
+        fontSize:10,
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
+      },
 })
 
 export default Learn;

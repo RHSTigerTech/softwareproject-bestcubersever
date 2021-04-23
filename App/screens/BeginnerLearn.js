@@ -1,17 +1,87 @@
-import React from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
+import React, { useState, Component, useEffect } from 'react';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-
-function BeginnerLearn({navigation}) {
+const B = (props) => <Text style={{fontWeight: 'bold',fontSize:15}}>{props.children}</Text>
+ 
+export default class App extends Component {
+    
+    render() {
+        const {navigate} = this.props.navigation;
     return (
         <SafeAreaView style={styles.background}>
-            <View style={styles.ViewContainer}>
+            <View style={styles.ViewContainer} >
                 <View style={{height: '90%'}}>
-                    <ScrollView style={styles.scroll}>
+                
+                    <ScrollView
+                        ref={ref => (this.scrollViewRef = ref)}
+                        style={styles.scroll}>
+
+                    
+                <Card containerStyle={{backgroundColor: '#121212'}}>
+                <Card.Title style={styles.ContentsTitle}>Beginner Steps{/* Card Title*/}</Card.Title>
+                <Card.Divider/>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.WhiteCross.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>1: White Cross</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.WhiteCorners.y,animated: true});
+                        }}
+                    >
+                    <Text paddingTop='-3%' style={styles.contentButtons} >2: White Corners</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.SecondLayer.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>3: Second Layer</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.OrientYellowEdges.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>4: Orient Yellow Edges</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.OrientYellowCorners.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>5: Orient Yellow Corners</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.PermuteYellowCorners.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>6: Permute Yellow Corners</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.PermuteYellowEdges.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>7: Permute Yellow Edges</Text>
+                    </TouchableOpacity>
+                    </Card>
                         {/* STEP 1 */}
+                        <Text onLayout={event =>(this.WhiteCross = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
+                        
                             <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title*/}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
@@ -26,37 +96,41 @@ function BeginnerLearn({navigation}) {
                             </Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    1: Find an edge with white and another color on it.
+                                    <B>1:</B> Find an edge with white and another color on it.
                                     {'\n'}
                                 </Text>
                                 <Text style={styles.textDescrip}>
-                                              2: Insert the edge into the yellow 
-                                    {'\n'}    layer so that the white part is 
-                                    {'\n'}    facing up.  You can do this by 
-                                    {'\n'}    rotating the side that the 
-                                    {'\n'}    colored part of the edge is on 
-                                    {'\n'}    until the white part of the edge 
-                                    {'\n'}    is in the yellow layer.  Repeat 
-                                    {'\n'}    this until all white edges are in 
-                                    {'\n'}    the yellow layer and you have 
-                                    {'\n'}    this "daisy" pattern.
+                                              <B>2:</B> Insert the edge into the yellow 
+                                    layer so that the white part is 
+                                    facing up.  You can do this by 
+                                    rotating the side that the 
+                                    colored part of the edge is on 
+                                    until the white part of the edge 
+                                    is in the yellow layer.  Repeat 
+                                    this until all white edges are in 
+                                    the yellow layer and you have 
+                                    this "daisy" pattern.
+                                    {'\n'}
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
                                 <Text style={styles.textDescripWide}>
-                                    {'\n'}3: Once all edges are in the yellow layer, choose one and 
-                                    {'\n'}    align it with the center that matches the color it has  
-                                    {'\n'}    on it using U moves.  Rotate that side twice so that 
-                                    {'\n'}    the white part of the edge is now in the white layer.  
-                                    {'\n'}    Repeat this until all edges are in the white layer and 
-                                    {'\n'}    you have a white cross. {/* Steps */}
+                                    <B>3:</B> Once all edges are in the yellow layer, choose one and 
+                                        align it with the center that matches the color it has  
+                                        on it using U moves.  Rotate that side twice so that 
+                                        the white part of the edge is now in the white layer.  
+                                        Repeat this until all edges are in the white layer and 
+                                        you have a white cross. {/* Steps */}
+                                        {'\n'}
+                                        
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_aligned.jpg')}/>
-                                <Text style={{color: 'white', fontSize: 13, width: '20%', textAlign: 'center', textAlignVertical: 'center'}}>(R2)     </Text>
+                                <Text style={{color: 'white', fontSize: 13, width: '20%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'-2%', textAlignVertical: 'center'}}>(R2)     </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
                             </View>
                         </Card>
 
                         {/* STEP 2 */}
+                        <Text onLayout={event =>(this.WhiteCorners = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>2: White Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -78,11 +152,16 @@ function BeginnerLearn({navigation}) {
                                 </Text>
 
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_left.jpg')}/>
+                                
+                                
                                 <Text style={styles.textDescrip}>
                                     When the corner is below the slot it needs to be inserted into, with white facing to the left and the 
                                     color on the right matches that side
                                     {'\n'}F D F'
                                 </Text>
+                                
+                                
+          
 
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_down.jpg')}/>
                                 <Text style={styles.textDescrip}>
@@ -101,6 +180,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 3 */}
+                        <Text onLayout={event =>(this.SecondLayer = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>3: Second Layer {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -110,7 +190,8 @@ function BeginnerLearn({navigation}) {
                             </Text>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
-                            <Text style={styles.textSubHeader}>
+                            <Text 
+                             style={styles.textSubHeader}>
                                 Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
                             </Text>
                             {/* This view holds all the cases for this step */}
@@ -140,6 +221,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 4 */}
+                        <Text onLayout={event =>(this.OrientYellowEdges = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>4: Orient Yellow Edges {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -167,6 +249,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 5 */}
+                        <Text onLayout={event =>(this.OrientYellowCorners = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>5: Orient Yellow Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -175,9 +258,13 @@ function BeginnerLearn({navigation}) {
                             </Text>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
+
+
+                            
                             <Text style={styles.textSubHeader}>
                                 Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
                             </Text>
+                            
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_0.png')}/>
@@ -202,8 +289,10 @@ function BeginnerLearn({navigation}) {
                                 <Text style={styles.textDescrip}>F (R U R' U') (R U R' U') (R U R' U') F'</Text>
                             </View>
                         </Card>
-
+                        
+                                
                         {/* STEP 6 */}
+                        <Text onLayout={event =>(this.PermuteYellowCorners = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>6: Permute Yellow Corners {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -229,6 +318,7 @@ function BeginnerLearn({navigation}) {
                         </Card>
 
                         {/* STEP 7 */}
+                        <Text onLayout={event =>(this.PermuteYellowEdges = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>7: Permute Yellow Edges {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -262,9 +352,85 @@ function BeginnerLearn({navigation}) {
                         </Card>
                     </ScrollView>
                 </View>
+                
+                <View style={{flexDirection:'row'}}>
+                
+                    <Icon.Button
+                        name='cube-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={({}) => navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
+                    </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignItems='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                    {/* Home Screen */}
+                    <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='school'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Learn')}
+                    >
+                    <Text style={styles.BottomTabText}>Learn</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
+                </View>
             </View>
         </SafeAreaView>
     );
+        }
 }
 
 const styles = StyleSheet.create({
@@ -294,6 +460,16 @@ const styles = StyleSheet.create({
         width: '40%',
     },
 
+    BottomTabText:{
+        //Text used for the bottom menu
+        fontSize:10,
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
+      },
+
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
@@ -313,6 +489,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 13,
         width: '60%',
+        
     },
 
     textDescripWide:{
@@ -321,6 +498,22 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 13,
         width: '100%'
+    },
+
+    contentLocal:{
+        fontSize:.1,
+        color:'transparent',
+        alignItems:'center'
+    },
+
+    contentButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:20,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        paddingTop:'5%',
+        top:'-30%'
     },
 
     textSubHeader: {
@@ -339,7 +532,15 @@ const styles = StyleSheet.create({
     textTitle: {
         // Titles of the cards
         color: 'white',
-        fontSize: 20
+        fontSize: 20,
+        fontWeight:'bold'
+    },
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 23,
+        fontWeight:'bold',
+        
     },
 
     ViewContainer:{
@@ -352,4 +553,3 @@ const styles = StyleSheet.create({
     },
 })
 
-export default BeginnerLearn;

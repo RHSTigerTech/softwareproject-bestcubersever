@@ -1,29 +1,82 @@
-import React from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions, } from 'react-native';
+import React, { useState, Component, useEffect } from 'react';
+import { StyleSheet, View, Platform, StatusBar, TouchableOpacity, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
+import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {Header, Card} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-function IntermediateLearn({navigation}) {
+const B = (props) => <Text style={{fontWeight: 'bold',fontSize:15}}>{props.children}</Text>
+
+export default class App extends Component {
+    render() {
+        const {navigate} = this.props.navigation;
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer}>
                 <View style={{height: '90%'}}>
-                    <ScrollView style={styles.scroll}>
+                    <ScrollView style={styles.scroll}
+                    ref={ref => (this.scrollViewRef = ref)}
+                    style={styles.scroll}>
+
+<Card containerStyle={{backgroundColor: '#121212'}}>
+                <Card.Title style={styles.ContentsTitle}>Intermediate Steps{/* Card Title*/}</Card.Title>
+                <Card.Divider/>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.WhiteCross.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>1. White Cross</Text>
+                    </TouchableOpacity>
+                    
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.FirstTwoLayers.y,animated: true});
+                        }}
+                    >
+                    <Text paddingTop='-3%' style={styles.contentButtons} >2. First Two Layers (F2L)</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.OrientLastLayer.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>3. Orient Last Layer (OLL)</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.PermuteLastLayer.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>4. Permute Last Layer (PLL)</Text>
+                    </TouchableOpacity>
+                    
+                    
+                    </Card>
+
                         <View style={styles.pageHeader}>
-                            <Text style={styles.textHeader}>Intermediate Method {/* Page Title */}</Text>
-                            <Text style={styles.textSubHeader}> 
-                                All of these steps correspond to steps in the Beginner's Method, they are just more advanced and in turn faster 
-                                ways to complete them.  In order to have a smoother transition into this method, you can learn one step at a 
+                            
+                            <Text style={styles.AboveSubHeader}> 
+                            {'\n'}
+                                All of these steps correspond to steps in the Beginner's Method, they are just more advanced and in 
+                                turn, faster. In order to have a smoother transition into this method, you can learn one step at a 
                                 time and continue using the Beginner's Method steps for the others.
+                                </Text>
+                                <Text style={styles.textSubHeader}>
                                 {'\n'}Intermediate Step 1 = Beginner's Step 1
                                 {'\n'}Intermediate Step 2 = Beginner's Step 2 and 3
                                 {'\n'}Intermediate Step 3 = Beginner's Step 4 and 5
                                 {'\n'}Intermediate Step 4 = Beginner's Step 6 and 7
-                                {'\n'}Always hold the cube so that white is on the bottom, unless algorithms have a cube rotation in them.
+                                {'\n'}
+                                {'\n'}<B>Always hold the cube so that white is on the bottom, unless algorithms have a cube rotation in them.</B>
                                 {/* Sub Header: Transition between Beginner and Intermediate */}
                             </Text>
                         </View>
 
                         {/* STEP 1: WHITE CROSS */}
+                        <Text onLayout={event =>(this.WhiteCross = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -33,13 +86,12 @@ function IntermediateLearn({navigation}) {
                             </Text>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
-                            <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                            <Text style={styles.AboveSubHeader}>Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
                             </Text>
                             <Text style={styles.textDescripWide}>
-                                1: Find an edge with white and another color on it.
-                                {'\n'}2: Line the other color up with the matching center.
-                                {'\n'}3: Rotate the side with that color until the edge is 
+                                <B>1:</B> Find an edge with white and another color on it.
+                                {'\n'}<B>2:</B> Line the other color up with the matching center.
+                                {'\n'}<B>3:</B> Rotate the side with that color until the edge is 
                                 {'\n'}    inserted into the white layer.{'\n'} {/* Steps */}
                             </Text>
                             <Text style={styles.textHeader}>Special Cases {/* Header: Special Cases */}</Text>
@@ -68,6 +120,7 @@ function IntermediateLearn({navigation}) {
                         </Card>
                         
                         {/* STEP 2: F2L */}
+                        <Text onLayout={event =>(this.FirstTwoLayers = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>2: First Two Layers (F2L)</Card.Title>
                             <Card.Divider/>
@@ -80,14 +133,15 @@ function IntermediateLearn({navigation}) {
                             <Text style={styles.textHeader}>Basic Algorithms</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    Inserting Algorithms:
+                                    <B>Inserting Algorithms:</B>
+                                    
                                     {'\n'}Inserts the top left corner and the top middle edge into the bottom right corner
                                     {'\n'}R U' R'
                                     {'\n'}Inserts the top right corner and the top middle edge into the bottom left corner
                                     {'\n'}L' U L
                                 </Text>
                                 <Text style={styles.textDescripWide}>
-                                    Removing Algorithm: 
+                                    <B>Removing Algorithm:</B>
                                     {'\n'}Removes the bottom right corner and the middle right edge and moves them to the top layer
                                     {'\n'}R U R'
                                     {'\n'}Removes the bottom left corner and the middle left edge and moves them to the top layer.
@@ -160,6 +214,7 @@ function IntermediateLearn({navigation}) {
                         </Card>
 
                         {/* STEP 3: OLL */}
+                        <Text onLayout={event =>(this.OrientLastLayer = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>3: Orient Last Layer (OLL) {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -387,6 +442,7 @@ function IntermediateLearn({navigation}) {
                         </Card>
 
                         {/* STEP 4: PLL */}
+                        <Text onLayout={event =>(this.PermuteLastLayer = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>4: Permute Last Layer (PLL) {/* Card Title */}</Card.Title>
                             <Card.Divider/>
@@ -469,11 +525,84 @@ function IntermediateLearn({navigation}) {
                         </Card>
                     </ScrollView>
                 </View>
+                <View style={{flexDirection:'row'}}>
+                    <Icon.Button
+                        name='cube-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
+                    </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignItems='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                    {/* Home Screen */}
+                    <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='school'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Learn')}
+                    >
+                    <Text style={styles.BottomTabText}>Learn</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
+                </View>
             </View>
         </SafeAreaView>
     );
 }
-
+}
 const styles = StyleSheet.create({
     background:{
         backgroundColor:'#121212',
@@ -511,6 +640,7 @@ const styles = StyleSheet.create({
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
+        
     },
 
     textHeader: {
@@ -518,8 +648,27 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 17.5,
-        textAlign: 'center',
+        textAlign: 'center', 
     },
+
+    firsttextHeader: {
+        //headers
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 17.5,
+        textAlign: 'center', 
+        paddingTop: '3%'
+    },
+    
+    BottomTabText:{
+        //Text used for the bottom menu
+        fontSize:10,
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
+      },
 
     textDescrip:{
         // Text thats a description
@@ -547,11 +696,42 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
 
+    AboveSubHeader: {
+        //same as text sub header but without text align center
+        color: 'white',
+        fontSize: 15,
+        //textAlign: 'center',
+        marginHorizontal:'3%'
+    },
+
     textSubHeader: {
         //Text that goes under headers
         color: 'white',
-        fontSize: 13,
-        textAlign: 'center'
+        fontSize: 15,
+        textAlign: 'center',
+        marginHorizontal:'3%'
+    },
+    contentLocal:{
+        fontSize:.1,
+        color:'transparent',
+        alignItems:'center'
+    },
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 23,
+        fontWeight:'bold',
+        
+    },
+
+    contentButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:20,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        paddingTop:'5%',
+        top:'-30%'
     },
 
     textSummary: {
@@ -573,7 +753,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         backgroundColor:'#121212',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        
     },
 })
 
-export default IntermediateLearn;
