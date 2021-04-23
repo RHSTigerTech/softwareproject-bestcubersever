@@ -114,15 +114,17 @@ export default class App extends Component {
                                     yellow center so that the edge piece's white 
                                     tile is facing up. You can accomplish this by 
                                     rotating the colored tile sides face until the white 
-                                    edge tile piece is adjacent to the yellow center.
+                                    edge tile piece is adjacent to the yellow center. Move
+                                    on to step 3 if you have not white edge pieces in your
+                                    middle layer.
                                     
                                     {'\n'}
                                 </Text>
                                 <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
                                 <Text style={styles.textDescripWideTip}>
                                     <B>Tip:</B> Be careful not to bump out the white
-                                    edge pieces you've already placed at the top of the cube 
-                                    while repeating the process. By rotating the top yellow layer you
+                                    edge pieces you've already placed at the top of the cube. 
+                                    By rotating the top yellow layer you
                                     can move edge pieces already at the top out of the way.
                                      
                                     {'\n'}
@@ -166,8 +168,13 @@ export default class App extends Component {
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the top {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white center is on the top {/* Sub header: Cube Orientation */}
                                 </Text>
+                            <Text style={styles.textDescripWideTip}>
+                                <B>Tip:</B> Make sure you're inserting the white corners into
+                                the right slot. The corner pieces color's should match with the 
+                                colors of the center pieces to the left and right of the corner piece.                                     
+                            </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_right.jpg')}/>
