@@ -100,34 +100,46 @@ export default class App extends Component {
                             </Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    <B>1:</B> Find any center edge piece that has a white tile.
+                                    <B>1:</B> Find any center edge piece that has a white tile. 
+                                    An edge piece is where two visible colors meet. 
+                                    There are four of these center edge pieces with white tiles 
+                                    located on the cube.
+                                     
                                     {'\n'}
                                 </Text>
                                 {/* maybe turn this into another step */}
                                 <Text style={styles.textDescrip}>
                                     <B>2:</B> Create a "daisy" pattern by
-                                    inserting the edge piece next to the 
+                                    inserting the white edge piece next to the 
                                     yellow center so that the edge piece's white 
                                     tile is facing up. You can accomplish this by 
                                     rotating the colored tile sides face until the white 
                                     edge tile piece is adjacent to the yellow center.
                                     
-                                    If one of the white edge pieces is located 
-                                    at the the bottom of the cube, or is located at
-                                    the top but facing the wrong way, rotate the face 
-                                    once so that the white edge piece is located
-                                    in the middle layer of the cube then use step 2. Repeat until all 
-                                    white edges are in the yellow layer and you have 
-                                    the "daisy" pattern. Be careful not to bump out the white
-                                    edge pieces you've already placed at the top of the cube 
-                                    while repeating the process. By rotating the top yellow layer you
-                                    can move edge pieces already at the top out of the way. 
                                     {'\n'}
                                 </Text>
                                 <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
-
+                                <Text style={styles.textDescripWideTip}>
+                                    <B>Tip:</B> Be careful not to bump out the white
+                                    edge pieces you've already placed at the top of the cube 
+                                    while repeating the process. By rotating the top yellow layer you
+                                    can move edge pieces already at the top out of the way.
+                                     
+                                    {'\n'}
+                                </Text>
                                 <Text style={styles.textDescripWide}>
-                                    <B>3:</B> Once all edges are in the yellow layer, choose one of the white 
+                                    <B>3:</B> If one of the white edge pieces is located 
+                                    at the the bottom of the cube, or is located at
+                                    the top but facing the wrong way, rotate the face 
+                                    once so that the white edge piece is located
+                                    in the middle layer of the cube then repeat step 2. Repeat until all 
+                                    white edges are in the yellow layer and you have 
+                                    the "daisy" pattern.
+                                     
+                                    {'\n'}
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    <B>4:</B> Once all edges are in the yellow layer, choose one of the white 
                                         edge pieces and 
                                         align it with the center that matches the edge tiles color by 
                                         rotating the top yellow layer. Now rotate that side twice so that 
@@ -549,6 +561,22 @@ const styles = StyleSheet.create({
         lineHeight:18,
         letterSpacing:.2
     },
+    textDescripWideTip:{
+        // Text thats a description but full width
+        paddingTop: 10,
+        color: 'white',
+        //opacity:.8,
+        //fontSize: RFPercentage(2.1), 
+        fontSize: 14,
+        width: '100%',
+        lineHeight:18,
+        letterSpacing:.2,
+        paddingLeft:'5%',
+        paddingRight:'5%',
+        textAlign:'center'
+        
+    },
+
 
     contentLocal:{
         fontSize:.1,
