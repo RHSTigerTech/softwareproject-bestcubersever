@@ -100,33 +100,38 @@ export default class App extends Component {
                             </Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    <B>1:</B> Find any edge piece that has a white tile.
+                                    <B>1:</B> Find any center edge piece that has a white tile.
                                     {'\n'}
                                 </Text>
                                 {/* maybe turn this into another step */}
                                 <Text style={styles.textDescrip}>
-                                    <B>2:</B> Insert the edge piece next to the 
+                                    <B>2:</B> Create a "daisy" pattern by
+                                    inserting the edge piece next to the 
                                     yellow center so that the edge piece's white 
                                     tile is facing up. You can accomplish this by 
-                                    rotating the colored tile side until the white 
-                                    edge tile piece is adjacent to the yellow center. If one of
-                                    the white edge tiles is located at either 
-                                    the bottom or top of the cube, rotate the face 
+                                    rotating the colored tile sides face until the white 
+                                    edge tile piece is adjacent to the yellow center.
+                                    
+                                    If one of the white edge pieces is located 
+                                    at the the bottom of the cube, or is located at
+                                    the top but facing the wrong way, rotate the face 
                                     once so that the white edge piece is located
-                                    in the middle layer of the cube. Repeat until all 
+                                    in the middle layer of the cube then use step 2. Repeat until all 
                                     white edges are in the yellow layer and you have 
-                                    a "daisy" pattern. Be careful not to bump out the white
-                                    edge pieces you've already placed at the top of the cube.
-
+                                    the "daisy" pattern. Be careful not to bump out the white
+                                    edge pieces you've already placed at the top of the cube 
+                                    while repeating the process. By rotating the top yellow layer you
+                                    can move edge pieces already at the top out of the way. 
                                     {'\n'}
                                 </Text>
                                 <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
 
                                 <Text style={styles.textDescripWide}>
-                                    <B>3:</B> Once all edges are in the yellow layer, choose one and 
-                                        align it with the center that matches the color it has  
-                                        on it using U moves. Rotate that side twice so that 
-                                        the white part of the edge is now in the white layer. 
+                                    <B>3:</B> Once all edges are in the yellow layer, choose one of the white 
+                                        edge pieces and 
+                                        align it with the center that matches the edge tiles color by 
+                                        rotating the top yellow layer. Now rotate that side twice so that 
+                                        the edge piece's white tile is now in the white layer. 
                                         Repeat this until all edges are in the white layer and 
                                         you have a white cross. {/* Steps */}
                                         {'\n'}
