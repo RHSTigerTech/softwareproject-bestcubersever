@@ -63,7 +63,7 @@ function Learn({navigation}) {
                         raiseLevel={5}
                         onPress={() => navigation.navigate('HowToReadAlg')}
                     >
-                        How to Read Algorithms
+                        Cube Basics
                     </AwesomeButton>
                     
 
