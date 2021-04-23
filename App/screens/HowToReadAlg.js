@@ -11,9 +11,9 @@ function HowToReadAlg({navigation}) {
                 <View style={{height: '90%'}}>
                     <ScrollView style={styles.scroll}>
                         <Card containerStyle={{backgroundColor: 'black'}}>
-                            <Card.Title style={styles.textTitle}>Basic Cube Knowledge</Card.Title>
+                            <Card.Title style={styles.textTitle}>Basic Cube Knowledge {/* Card Title */}</Card.Title>
                             <Card.Divider/>
-                            <Text style={styles.textHeader}>Color Scheme</Text>
+                            <Text style={styles.textHeader}>Color Scheme {/* Header: Color Scheme */}</Text>
                             <Text style={styles.textDescripWide}>
                                 Most cubes have the same color scheme, which is how the colors are oriented on the cube.  On odd number cubes 
                                 (3x3, 5x5, etc.), the centers stay in the same place all the time.  Even number cubes (2x2, 4x4, etc.) are a 

@@ -8,22 +8,32 @@ function AlgList({navigation}) {
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer}>
-                {/*
-                <Image 
-                    resizeMode='cover'
-                    style={styles.image} source={require('../Assets/MobileRubiksCubeBackground.jpg')} 
-                />
-                */}
                 <View style={{height: '90%'}}>
                     <ScrollView style={styles.scroll}>
                         <Card containerStyle={{backgroundColor: 'black'}}>
-                            <Card.Title style={styles.textTitle}>list of algs</Card.Title>
+                            <Card.Title style={styles.textTitle}>Beginner's Method</Card.Title>
+                            <Card.Divider/>
+                            <Text style={styles.textHeader}>Step 4: Orient Yellow Edges</Text>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <Image style={styles.exImage} source={require('../Assets/beginners/b_ye_L.png')}/>
+                                <Text style={styles.textDescrip}>L-shape{'\n'}U2 F (R' U' R U) F'</Text>
+                            </View>
                         </Card>
-                        {
-                            //two cards wide, clockwise and counter clockwise for each side, also add wide turns (f and Fw)
-                            //also add color scheme (which colors are always opposite on most cubes)
-                            //
-                        }
+                        <Card containerStyle={{backgroundColor: 'black'}}>
+                            <Card.Title style={styles.textTitle}>Intermediate Method</Card.Title>
+                            <Card.Divider/>
+                            <Text style={styles.textHeader}>3: Orient Last Layer (OLL)</Text>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <Text style={styles.textWideCenter}>All corners oriented</Text>
+                                <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_42.png')}/>
+                                <Text style={styles.textDescrip}>
+                                    (y2) F (R U R' U') F' U2 F (R U F' U') F'
+                                    {'\n'}M U' M2 U' M' U2 M U' M 
+                                    {'\n'}(y2) F (R U R' U') F2 (L' U' L U) F
+                                </Text>
+                                
+                            </View>
+                        </Card>
                     </ScrollView>
                 </View>
             </View>
@@ -33,7 +43,7 @@ function AlgList({navigation}) {
 
 const styles = StyleSheet.create({
     background:{
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         flex:1
     },
 
@@ -51,6 +61,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         //color: 'transparent',
         //top: 24,
+    },
+
+    pageHeader:{
+        // Header
+        backgroundColor: '#121212',
     },
 
     placeHolder: {
@@ -86,6 +101,17 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         color: 'white',
         fontSize: 13,
+        width: '100%'
+    },
+
+    textWideCenter:{
+        // Text thats a description but full width and centered
+        paddingTop: 10,
+        color: 'white',
+        fontSize: 13,
+        fontWeight: 'bold',
+        width: '100%',
+        textAlign: 'center'
     },
 
     textSubHeader: {
@@ -112,7 +138,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
-        backgroundColor:'gray',
+        backgroundColor:'#121212',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 })

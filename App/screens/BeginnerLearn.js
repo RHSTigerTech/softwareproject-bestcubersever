@@ -3,7 +3,6 @@ import { StyleSheet, View, Platform, StatusBar, Text, Image, ScrollView, SafeAre
 import {Header, Card} from 'react-native-elements';
 
 
-
 function BeginnerLearn({navigation}) {
     return (
         <SafeAreaView style={styles.background}>

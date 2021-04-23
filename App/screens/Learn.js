@@ -94,7 +94,7 @@ function Learn({navigation}) {
                     <GradientButton
                         style={{marginVertical: 8}}
 
-                        text="List of Algorithms"
+                        text="Alternate Algorithms"
                         textStyle={styles.textStyle}
 
                         gradientBegin="#ffffff" //change color
