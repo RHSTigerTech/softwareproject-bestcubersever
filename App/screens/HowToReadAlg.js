@@ -1,16 +1,53 @@
-import React from 'react';
+import React, { useState, Component, useEffect } from 'react';
 import { StyleSheet, View,
- Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
+ Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions, TouchableOpacity} from 'react-native';
 import {Header, Card} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-function HowToReadAlg({navigation}) {
+
+
+export default class App extends Component {
+    
+    render() {
+        const {navigate} = this.props.navigation;
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer}>
                 <View style={{height: '90%'}}>
-                    <ScrollView style={styles.scroll}>
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                    <ScrollView 
+                        ref={ref => (this.scrollViewRef = ref)}
+                        style={styles.scroll}>
+                            <Card containerStyle={{backgroundColor: '#121212'}}>
+                <Card.Title style={styles.ContentsTitle}>Cube Basics{/* Card Title*/}</Card.Title>
+                <Card.Divider/>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.SideMoves.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>1: Side Moves</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.MiddleMoves.y,animated: true});
+                        }}
+                    >
+                    <Text paddingTop='-3%' style={styles.contentButtons} >2: Middle Moves</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.OrientationMoves.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons}>3: Orientation Moves</Text>
+                    </TouchableOpacity>
+
+                    
+                    </Card>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>Basic Cube Knowledge</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Color Scheme</Text>
@@ -42,7 +79,7 @@ function HowToReadAlg({navigation}) {
                                 <Text style={styles.textDescrip}>Corner Pieces: These have three colors on them</Text>
                             </View>
                         </Card>
-                        <Card containerStyle={{backgroundColor: 'black'}}>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>Algorithm Notation</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textDescripWide}>
@@ -259,14 +296,89 @@ function HowToReadAlg({navigation}) {
                         </Card>
                     </ScrollView>
                 </View>
+                <View style={{flexDirection:'row'}}>
+                
+                    <Icon.Button
+                        name='cube-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={({}) => navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
+                    </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignItems='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                    {/* Home Screen */}
+                    <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='school'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Learn')}
+                    >
+                    <Text style={styles.BottomTabText}>Learn</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignItems='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        onPress={() => navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
+                </View>
             </View>
         </SafeAreaView>
     );
 }
+}
 
 const styles = StyleSheet.create({
     background:{
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         flex:1
     },
 
@@ -294,7 +406,7 @@ const styles = StyleSheet.create({
 
     pageHeader:{
         // Header
-        backgroundColor: 'black',
+        backgroundColor: '#121212',
     },
 
     placeHolder: {
@@ -308,6 +420,16 @@ const styles = StyleSheet.create({
         // Scroll view
         backgroundColor: "transparent",
     },
+
+    BottomTabText:{
+        //Text used for the bottom menu
+        fontSize:10,
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
+      },
 
     textHeader: {
         //headers
@@ -374,7 +496,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
-        backgroundColor:'black',
+        backgroundColor:'#121212',
         paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 
@@ -384,7 +506,29 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap', 
         width: '50%', 
         alignContent: 'center', 
-    }
+    },
+    contentLocal:{
+        fontSize:.1,
+        color:'transparent',
+        alignItems:'center'
+    },
+
+    contentButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:20,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        paddingTop:'5%',
+        top:'-30%'
+    },
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 25,
+        fontWeight:'bold',
+        
+    },
+
 })
 
-export default HowToReadAlg;
