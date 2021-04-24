@@ -96,11 +96,9 @@ export default class App extends Component {
                             <Card.Divider/>
                             <Text style={styles.textSubHeader}>
                             If this is your first time learning how to solve a rubiks cube,
-                             it's strongly recommended that you first view our<TouchableOpacity
-                                onPress={() => navigate('HowToReadAlg')}
-                            >
-                                <Text style={styles.NavigateScreenButtons}>Cube Basics  </Text>
-                            </TouchableOpacity>page so you have a basic understanding of the cube and its notations
+                             it's strongly recommended that you first view our
+                                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('HowToReadAlg')}> Cube Basics </Text>
+                            page so you have a basic understanding of the cube and its notations
                              </Text>
                             <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
                             <Text style={styles.textSubHeader}>
@@ -615,11 +613,12 @@ const styles = StyleSheet.create({
         //textDecorationLine: 'underline',
         fontWeight:'bold',
         textAlign: 'center',
-        lineHeight:18,
+        lineHeight:0,
         letterSpacing:.2,
         //paddingTop:2,
-        top:'33%',
-        textDecorationLine: 'underline',
+        top:'30%',
+        //bottom:-10,
+        //textDecorationLine: 'underline',
         //paddingBottom:5
         //paddingTop:'5%',
         //top:'-30%'
