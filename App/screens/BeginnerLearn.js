@@ -94,15 +94,23 @@ export default class App extends Component {
                                 to complete. {/* Summary of Step */}
                             </Text>
                             <Card.Divider/>
+                            <Text style={styles.textSubHeader}>
+                            If this is your first time learning how to solve a rubiks cube,
+                             it's strongly recommended that you first view our<TouchableOpacity
+                                onPress={() => navigate('HowToReadAlg')}
+                            >
+                                <Text style={styles.NavigateScreenButtons}>Cube Basics  </Text>
+                            </TouchableOpacity>page so you have a basic understanding of the cube and its notations
+                             </Text>
                             <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
                             <Text style={styles.textSubHeader}>
                                 Hold the cube so that the yellow center is on the top. {/* Sub header: Cube Orientation */}
                             </Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    <B>1:</B> Find any center edge piece that has a white tile. 
+                                    <B>1:</B> Find any edge piece that has a white tile. 
                                     An edge piece is where two visible colors meet. 
-                                    There are four of these center edge pieces with white tiles 
+                                    There are four of these edge pieces with white tiles 
                                     located on the cube.
                                      
                                     {'\n'}
@@ -152,8 +160,8 @@ export default class App extends Component {
                                         
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_aligned.jpg')}/>
-                                <Text style={{color: 'white', fontSize: 16, width: '20%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'-1.5%', textAlignVertical: 'center'}}><B>(R2)</B>     </Text>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
+                                <Text style={{color: 'white', fontSize: 16, width: '20%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'0%', textAlignVertical: 'center'}}><B>(R2)</B>     </Text>
+                                <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
                             </View>
                         </Card>
 
@@ -599,6 +607,22 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         paddingTop:'5%',
         top:'-30%'
+    },
+    NavigateScreenButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:18,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        textAlign: 'center',
+        lineHeight:18,
+        letterSpacing:.2,
+        //paddingTop:2,
+        top:'33%',
+        textDecorationLine: 'underline',
+        //paddingBottom:5
+        //paddingTop:'5%',
+        //top:'-30%'
     },
 
     textSubHeader: {
