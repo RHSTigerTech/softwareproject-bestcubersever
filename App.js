@@ -109,19 +109,20 @@ const App = () => {
         <Stack.Screen
           name="HowToReadAlg"
           component={HowToReadAlg}
-          options={{headerShown:false}}
+          //options={{headerShown:false}}
         />
 
         <Stack.Screen
           name="BeginnerLearn"
           component={BeginnerLearn}
-          options={{headerShown:false}}
+          options={{headerTitle:'Beginner Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          //mode='screen'
         />
         
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
-          options={{headerShown:false}}
+          //options={{headerShown:false}}
         />
 
         <Stack.Screen 
