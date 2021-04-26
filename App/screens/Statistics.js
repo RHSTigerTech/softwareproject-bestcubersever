@@ -136,7 +136,7 @@ export {data};
     // if(removeZero.length>=1){
 
     
-  //try{ 
+  try{ 
      
     let width;
     
@@ -469,31 +469,31 @@ export {data};
     </View> 
     
     );
-  // }
+  }
   
-  // catch(err){
-  //   return(
-  //   <View style={styles.ErrorContainer}>
-  //     <Text style={styles.textSummary}>
-  //         No Data Has Been Entered
-  //     </Text>
-  //     <AwesomeButton 
-  //                       width={300} 
-  //                       height={40}
-  //                       backgroundColor='#6d00eb'
-  //                       textSize={27}
-  //                       borderRadius={10}
-  //                       activeOpacity={.8}	
-  //                       backgroundDarker='#5c00c7'
-  //                       backgroundShadow='transparent'
-  //                       raiseLevel={5}
-  //                       onPress={() => navigate('Gradient')}
-  //                   >
-  //                       Exit
-  //            </AwesomeButton>
-  //   </View>
-  //   )
-  // }
+  catch(err){
+    return(
+    <View style={styles.ErrorContainer}>
+      <Text style={styles.textSummary}>
+          No Data Has Been Entered
+      </Text>
+      <AwesomeButton 
+                        width={300} 
+                        height={40}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={10}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={() => navigate('Gradient')}
+                    >
+                        Exit
+             </AwesomeButton>
+    </View>
+    )
+  }
         
         }
   
