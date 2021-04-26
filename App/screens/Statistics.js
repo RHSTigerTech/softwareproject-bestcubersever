@@ -75,6 +75,7 @@ let undef;
 // }
 
 
+
 export const timerthing = () => {
   if(typeof usedData== 'undefined'){
     undef=true;
@@ -103,25 +104,31 @@ export const timerthing = () => {
       usedData.shift();
       }
   }
+  
+        
+    
+  
   //console.log(data)
   //console.log('---------------------')
 }
 
 export {usedData};
+export {data};
 // console.log(times().length)
 // console.log('whhhhhhhhhy isnt this woooooooooooooooorking')
   export default class Stats extends React.PureComponent { 
     
-    UNSAFE_componentWillMount() {
-         
-  }
+    
     renderTabBar() {
       return <StatusBar hidden />;
       
     }
-    
+    UNSAFE_componentDidMount(){
+      this.scrollViewRef.scrollToEnd({ animated: true })
+    }
 
     render() {
+      
       
       const {navigate} = this.props.navigation;
       const {push} = this.props.navigation;
@@ -265,8 +272,8 @@ export {usedData};
       xcords.push(i)
     }
 
-    if (data.length>8){
-        width = data.length*50;
+    if (data.length>15){
+        width = data.length*25;
     }
     else{
         width = Dimensions.get("window").width;
@@ -322,8 +329,10 @@ export {usedData};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
-          {chartConfigs.map(chartConfig => {
+        <ScrollView ref={ref => (this.scrollViewRef = ref)} bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+          
+          {
+            chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',
               opacity:.87,
@@ -336,6 +345,7 @@ export {usedData};
             bottom:0,
               ...chartConfig.style
             };
+            
             <Text style={labelStyle}>Bezier Line Chart</Text>
             return (
               <ScrollView
@@ -349,7 +359,7 @@ export {usedData};
               >
 
               <LineChart            
-                //bezier
+                bezier
                 data={{
                   labels: xcords,                  
                   datasets: [{data}]}
