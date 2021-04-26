@@ -1,7 +1,7 @@
 
 import React, { useState, Component, useEffect } from 'react';
 import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable, KeyboardAvoidingView} from 'react-native';
-import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme } from 'react-native-paper';
+import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme, FAB } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
+import { Container, Fab } from 'native-base';
+
 //import {newList} from './NumberList'
 
 //import {storeData, getData} from './storage';
@@ -364,6 +366,9 @@ const App = ({navigation}) => {
   const hideClearModal = () => setClearVisible(false);
   const [ClearVisible, setClearVisible] = React.useState(false);
 
+  const [state, setState] = React.useState({ open: false });
+  const onStateChange = ({ open }) => setState({ open });
+  const { open } = state;
 
 //sets the input value
   const [inputVal, setInputVal] = useState('');
