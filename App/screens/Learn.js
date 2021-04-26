@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, View,Platform, StatusBar, Image, SafeAreaView, Text } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
 import AwesomeButton from "react-native-really-awesome-button";
-import {Header} from 'react-native-elements'
+//import {Header} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button, Left, Right, Body, Segment, ListItem, CheckBox, Thumbnail} from 'native-base';
 
 
 
@@ -13,14 +14,19 @@ const ButtonRadius=10; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
 
 function Learn({navigation}) {
+    
+
     return (
         
         <SafeAreaView style={styles.background}>
         {/* <Header                       
           containerStyle={styles,{backgroundColor:'#121212', borderBottomColor:'#121212', paddingBottom:'0%'}}
-          centerContainerStyle={{flex:14}}
-          centerComponent={{ text: 'Learn', style: { color: 'white',opacity:1, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
+          //centerContainerStyle={{flex:14}}
+          //centerComponent={{ text: 'Learn', style: { color: 'white',opacity:1, fontSize:30, fontWeight:'bold', bottom:'-2%',backgroundColor:'transparent'}}} 
+          leftComponent={{icon:'keyboard-backspace', color:'white', }}
         /> */}
+                
+        
         
         
             <View style={styles.ViewContainer}>

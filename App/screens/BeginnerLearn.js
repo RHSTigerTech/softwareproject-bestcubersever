@@ -13,6 +13,7 @@ export default class App extends Component {
     
     render() {
         const {navigate} = this.props.navigation;
+        const navi = (routeBack) => { navigation.popToTop(), navigate(routeBack) }
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer} >
@@ -613,13 +614,13 @@ const styles = StyleSheet.create({
         //textDecorationLine: 'underline',
         fontWeight:'bold',
         textAlign: 'center',
-        lineHeight:0,
+        lineHeight:20,
         letterSpacing:.2,
         //paddingTop:2,
-        top:'30%',
+        top:'20%',
         //bottom:-10,
-        //textDecorationLine: 'underline',
-        //paddingBottom:5
+        textDecorationLine: 'underline',
+        //paddingTop:5
         //paddingTop:'5%',
         //top:'-30%'
     },
@@ -629,7 +630,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
         textAlign: 'center',
-        lineHeight:18,
+        lineHeight:20,
         letterSpacing:.2,
         paddingTop:2,
         paddingBottom:5
