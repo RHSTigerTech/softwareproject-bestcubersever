@@ -1,7 +1,7 @@
 import React, { useState, Component, useEffect} from 'react';
 import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button, Left, Right, Body, Icon, Text, Segment, ListItem, CheckBox, Thumbnail} from 'native-base';
 import {storeData, getData, convertedTimes, times } from './Timer';
-import {data} from './Statistics'
+import {usedData} from './Statistics'
 
 let randomthing=false;
 let newList;
@@ -17,7 +17,7 @@ export default class App extends Component {
 
     
     UNSAFE_componentWillMount() {
-        this.setState({ users: data });
+        this.setState({ users: usedData });
         newList =this.state.users;
         //viewlist=false;    
     }
@@ -46,12 +46,12 @@ export default class App extends Component {
             <Container>
                 <Header>
                     <Left>
-                        <Button transparent onPress={()=> {push('Statistics'), storeData(newList), console.log(newList)}}>
+                        <Button transparent onPress={()=> {push('Statistics'), storeData(newList)}}>
                             <Icon name='menu'/>
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Total Users: {data.length}</Title>
+                        <Title>Total Users:</Title>
                         <Subtitle>Selected Users :20</Subtitle>
                     </Body>
                     <Right/>
@@ -81,6 +81,12 @@ export default class App extends Component {
                       </ListItem>  
                     ))}  
                 </Content>
+                <Footer>
+                <Segment>
+                <Button first onPress={()=> {push('Statistics'), storeData(newList)}}><Text>Confirm Deleted</Text></Button>
+                <Button second onPress={()=> {push('Statistics')}}><Text>Cancel</Text></Button>
+                </Segment>
+                </Footer>
             </Container>
 
         )

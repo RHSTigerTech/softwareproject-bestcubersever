@@ -29,29 +29,29 @@ export const getData = async () => {
     let jsonValue = await AsyncStorage.getItem('@storage_Key')
     
     convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
-    console.log(convertedJson)
+    //console.log(convertedJson)
     let jsonstring=JSON.stringify(convertedJson)
     let i=0;
     
-    console.log(jsonstring)
+    //console.log(jsonstring)
     let formattedjsonstring= jsonstring.split('[').join('')
     formattedjsonstring= formattedjsonstring.split(']').join('')
     formattedjsonstring= formattedjsonstring.split('\\').join('')
     formattedjsonstring= formattedjsonstring.split('"').join('')
 
-    console.log(formattedjsonstring)
+    //console.log(formattedjsonstring)
     timerarray=formattedjsonstring.split(',');
     
-    console.log(timerarray)
-    console.log('--------------------------------------------------')
+    //console.log(timerarray)
+    //console.log('--------------------------------------------------')
     
     array=timerarray.map(Number)
-    console.log('-----------')
-    console.log(array)
-    console.log('-----------')
-    console.log(convertedJson)
+    // console.log('-----------')
+    // console.log(array)
+    // console.log('-----------')
+    // console.log(convertedJson)
     const propertyValues = Object.values(convertedJson);
-    console.log(propertyValues)
+    //console.log(propertyValues)
 
 
     while (i<timerarray.length){
@@ -131,10 +131,10 @@ export const times = () =>{
   lastItem=lastItem.replace(":",".");
   lastItem=lastItem.replace(":",".");
       
-    console.log(lastItem.substring(0,2))
+    //console.log(lastItem.substring(0,2))
     minutes= lastItem.substring(0,2)
     minutes=parseInt(minutes)
-    console.log(minutes)
+    //console.log(minutes)
     if(lastItem.substring(0,1)==='0'){
       lastItem=lastItem.replace('0','')
     }
@@ -145,7 +145,7 @@ export const times = () =>{
 
     if(minutes>=1){
       lastItem=lastItem.replace('.','')
-      console.log(lastItem.substring(1))
+      //console.log(lastItem.substring(1))
       lastItem=lastItem.substring(1)
       
     }
@@ -160,7 +160,7 @@ export const times = () =>{
     
   }
   if(checkadd===true){
-    console.log(convertedTimes)
+    //console.log(convertedTimes)
     if(amount==0){
     convertedTimes.splice(convertedTimes.length-3,1)
     convertedTimes.pop()
@@ -175,7 +175,7 @@ export const times = () =>{
       convertedTimes.pop()
     }
     finaltime='0';
-    console.log(amount)      
+    //console.log(amount)      
     checkadd=false;
     amount+=1;      
   }
@@ -198,12 +198,12 @@ export const times = () =>{
       convertedTimes.pop()
     }
     if(delExtra==true){
-      console.log(convertedTimes)
+      //console.log(convertedTimes)
       convertedTimes.pop()
-      console.log(convertedTimes)
-      console.log('------------------------')
+      //console.log(convertedTimes)
+      //console.log('------------------------')
     }
-    console.log('del is true')
+    //console.log('del is true')
     del=false;
     finaltime='0';
   }
@@ -216,9 +216,9 @@ export const times = () =>{
   
   
   storeData(convertedTimes)
-  console.log(convertedTimes)
-  console.log(testdel)
-  console.log(finaltime)
+  //console.log(convertedTimes)
+  //console.log(testdel)
+  //console.log(finaltime)
   
   return (convertedTimes);
   
@@ -246,7 +246,7 @@ export const deletetime = () =>{
   }
   //times();
   del=false;
-  console.log(convertedTimes)
+  //console.log(convertedTimes)
   return (convertedTimes);
 }
 
@@ -308,29 +308,29 @@ function k(){
       s.push(possiblemoves[l])
     }
     s=s.join(' ')
-    console.log(s)
+    //console.log(s)
     return(s)
 }
 
-console.log('--------------')
+//console.log('--------------')
 let effect=0;
 
 const App = ({navigation}) => {
   useEffect(()=>{
     if(amount>1){
       convertedTimes.pop()
-      console.log(convertedTimes)  
+      //console.log(convertedTimes)  
       storeData(convertedTimes)
     }
     if(getrid==true && mayberid<1 && delOnce==false){
       convertedTimes.pop()
-      console.log(convertedTimes)
-      console.log('showing delete screen')
+      //console.log(convertedTimes)
+      //console.log('showing delete screen')
       getrid=false;
       storeData(convertedTimes)
     } 
     if(confirmClear==true){
-      console.log('cleared time')
+      //console.log('cleared time')
       convertedTimes.pop()
       storeData(convertedTimes)
       confirmClear=false;
@@ -341,7 +341,7 @@ const App = ({navigation}) => {
     }
   },[]);
 
-  console.log('maybe'+mayberid)
+  //console.log('maybe'+mayberid)
   
   
 
@@ -392,8 +392,8 @@ function fixnum(input){
     }
     input=input.replace(/[- #*;,<>\{\}\[\]\\\/]/gi, '');
                                             
-    console.log(input)
-    console.log('is this working')
+    //console.log(input)
+    //console.log('is this working')
     return input;
 }
 let value=inputVal;
@@ -404,26 +404,26 @@ function add(){
       value=0
     }
     convertedTimes.push(value)
-    console.log(value)
+    //console.log(value)
     hideAddModal()
     setInputVal('')
     check=true;
     checkadd=true;
-    console.log(check)
+    //console.log(check)
     //finaltime='0'    
 }
 
 //removes anything written as input and closes out of the modalview
 function cancel(){
-  console.log(convertedTimes)
-  console.log('amount'+amount)
+  //console.log(convertedTimes)
+  //console.log('amount'+amount)
   if(amount>1){
     if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
       convertedTimes.pop()
       doubleDel=true;
     }
     convertedTimes.pop()
-    console.log(convertedTimes)
+    //console.log(convertedTimes)
     
   }
   finaltime='0'
@@ -432,7 +432,7 @@ function cancel(){
   hideClearModal()
   setInputVal('')
   check=true;
-  console.log(check)
+  //console.log(check)
   stopadd=false;
   storeData(convertedTimes)
 }
@@ -449,7 +449,7 @@ function onCancel(){
 function openAdd(){
   check=true;
   showAddModal()
-  console.log(check)
+  //console.log(check)
 }
 
 
@@ -462,7 +462,7 @@ function dismissed(){
   hideAddModal()
   hideClearModal()
   stopadd=false;
-  console.log(check)
+  //console.log(check)
 
 }
 

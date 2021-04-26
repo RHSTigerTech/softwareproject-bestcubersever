@@ -1,4 +1,4 @@
-import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet } from "react-native";
+import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet, FlatList } from "react-native";
 import React, { useState, Component, useEffect } from 'react';
 import {Header, Card} from 'react-native-elements';
 import {storeData, getData} from './Timer';
@@ -63,7 +63,8 @@ const chartConfigs = [
     },    
   ];
 
-let data=[]
+let usedData=[]
+let data=[];
 let removeZero=[]
 let undef;
 //removeZero=times()
@@ -75,38 +76,41 @@ let undef;
 
 
 export const timerthing = () => {
-  if(typeof data== 'undefined'){
+  if(typeof usedData== 'undefined'){
     undef=true;
-    console.log('data is undefined')
+    //console.log('data is undefined')
 }
-console.log(typeof data)
+//console.log(typeof data)
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
-    data=deletetime();
-    data.pop();
-    data.pop(); 
-      if(data[0]==0){
+    usedData=deletetime();
+    
+    usedData.pop();
+    usedData.pop(); 
+      if(usedData[0]==0){
         //console.log(data[0])
-      data.shift();
+      usedData.shift();
       }      
   }
 
   else{
-    data=times();
-    if(data[data.length-1]==data[data.length-2]){
-    data.pop();
+    usedData=times();
+    
+    if(usedData[usedData.length-1]==usedData[usedData.length-2]){
+    usedData.pop();
     }
-    if(data[0]==0){
+    if(usedData[0]==0){
       //console.log(data[0])
-      data.shift();
+      usedData.shift();
       }
   }
-  console.log(data)
-  console.log('---------------------')
+  //console.log(data)
+  //console.log('---------------------')
 }
-export {data};
+
+export {usedData};
 // console.log(times().length)
 // console.log('whhhhhhhhhy isnt this woooooooooooooooorking')
-  export default class Stats extends React.Component { 
+  export default class Stats extends React.PureComponent { 
     
     UNSAFE_componentWillMount() {
          
@@ -125,7 +129,7 @@ export {data};
     // if(removeZero.length>=1){
 
     
-  try{ 
+  //try{ 
      
     let width;
     
@@ -148,53 +152,56 @@ export {data};
 
     const height=360;
 
+
+    
+
+    
+    
+
         
     timerthing()
     
     
 
     let numData=[];
-    for(let i=0;i<data.length;i++){
-      if(data[i]!=0){
-        numData.push(parseFloat(data[i])) 
-      }            
+    for(let i=0;i<usedData.length;i++){
+      if(usedData[i]!=0){
+        numData.push(parseFloat(usedData[i])) 
+      }    
+      floatnum=parseFloat(usedData[i])
+      average=floatnum+average 
+      
+      if(usedData[i]==0){
+        usedData.splice(i,1);
+      }
+      if(i===0){
+        besttime=parseFloat(usedData[i])
+      }
+      if(parseFloat(usedData[i])<besttime){
+        besttime=parseFloat(usedData[i])
+      }       
+      if(i===0){
+        worsttime=parseFloat(usedData[i])
+      }
+      if(parseFloat(usedData[i])>worsttime){
+        worsttime=parseFloat(usedData[i])
+      }
     }
-    console.log(numData)
+    //console.log(numData)
     
 
     //Average
-    for(let i=0;i<data.length;i++){
-      floatnum=parseFloat(data[i])
-      average=floatnum+average
-    }
-    average=average/data.length
+    
+    average=average/usedData.length
     // console.log(average)
     // console.log(data.length)
 
     //Best Time
-    for(let i=0;i<data.length;i++){
-      if(data[i]==0){
-        data.splice(i,1);
-      }
-      if(i===0){
-        besttime=parseFloat(data[i])
-      }
-      if(parseFloat(data[i])<besttime){
-        besttime=parseFloat(data[i])
-      }
-      
-    }
+
     //console.log(besttime)
 
     //Worst Time
-    for(let i=0;i<data.length;i++){
-      if(i===0){
-        worsttime=parseFloat(data[i])
-      }
-      if(parseFloat(data[i])>worsttime){
-        worsttime=parseFloat(data[i])
-      }
-    }
+    
     //console.log(worsttime)
 
     //Median
@@ -203,7 +210,7 @@ export {data};
     }
     let len=numData.length;
     let arrSort=numData.slice(0).sort(sorter);
-    console.log(arrSort)
+    //console.log(arrSort)
     let mid = Math.ceil(len/2);
     //console.log(arrSort[mid-1])
     let Median= len % 2 == 0 ? (arrSort[mid] + arrSort[mid-1]) / 2 :arrSort[mid-1]
@@ -211,9 +218,9 @@ export {data};
  
 
     //Avg 5
-    if(data.length>=5){
-    for(let i=data.length-1;i>data.length-6;i--){
-        floatnum=parseFloat(data[i])
+    if(usedData.length>=5){
+    for(let i=usedData.length-1;i>usedData.length-6;i--){
+        floatnum=parseFloat(usedData[i])
         Avg5=floatnum+Avg5
     }
     Avg5=Avg5/5
@@ -230,6 +237,28 @@ export {data};
     // else{
     //   Avg5='Not Enough Data'
     // }
+
+    console.log(usedData.length)
+    data = usedData.slice();
+    console.log(typeof usedData)
+    console.log(typeof data)
+    console.log(data)
+    console.log(usedData)
+
+
+
+    // overflowdata=data;
+    //console.log(newArray.length)
+
+    if(data.length>200){
+      //data=data.slice(Math.max(data.length-20,1))
+      data=usedData.slice(Math.max(data.length-200,1))
+      //data=data.slice(Math.max(data.length-20,1))
+    }
+    
+    console.log(usedData.length)
+    console.log(data.length)
+    
 
     let xcords=[]
     for(let i=1;i<=data.length;i++){
@@ -319,7 +348,7 @@ export {data};
                 }}
               >
 
-              <LineChart               
+              <LineChart            
                 //bezier
                 data={{
                   labels: xcords,                  
@@ -342,8 +371,8 @@ export {data};
                 }       
  
                         
-              />   
-                        
+              />  
+                                      
         </ScrollView>        
             );            
           })}          
@@ -430,31 +459,31 @@ export {data};
     </View> 
     
     );
-  }
+  // }
   
-  catch(err){
-    return(
-    <View style={styles.ErrorContainer}>
-      <Text style={styles.textSummary}>
-          No Data Has Been Entered
-      </Text>
-      <AwesomeButton 
-                        width={300} 
-                        height={40}
-                        backgroundColor='#6d00eb'
-                        textSize={27}
-                        borderRadius={10}
-                        activeOpacity={.8}	
-                        backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
-                        raiseLevel={5}
-                        onPress={() => navigate('Gradient')}
-                    >
-                        Exit
-             </AwesomeButton>
-    </View>
-    )
-  }
+  // catch(err){
+  //   return(
+  //   <View style={styles.ErrorContainer}>
+  //     <Text style={styles.textSummary}>
+  //         No Data Has Been Entered
+  //     </Text>
+  //     <AwesomeButton 
+  //                       width={300} 
+  //                       height={40}
+  //                       backgroundColor='#6d00eb'
+  //                       textSize={27}
+  //                       borderRadius={10}
+  //                       activeOpacity={.8}	
+  //                       backgroundDarker='#5c00c7'
+  //                       backgroundShadow='transparent'
+  //                       raiseLevel={5}
+  //                       onPress={() => navigate('Gradient')}
+  //                   >
+  //                       Exit
+  //            </AwesomeButton>
+  //   </View>
+  //   )
+  // }
         
         }
   
