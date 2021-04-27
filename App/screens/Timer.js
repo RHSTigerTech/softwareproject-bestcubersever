@@ -370,6 +370,8 @@ const App = ({navigation}) => {
   const [state, setState] = React.useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
+
+  const[disabled,setDisabled] = useState(false)
    
 
 //sets the input value
@@ -584,10 +586,10 @@ function dismissed(){
     // )
 
   return (
-
+<SafeAreaView style={styles.background}>
     <View style={styles.container} >
       {/* <View style={styles.container}> */}
-        <View style={styles.sectionStyle} pointerEvents= {pointerEventsChange}>
+        <View style={styles.sectionStyle}>
 {/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
@@ -602,6 +604,7 @@ function dismissed(){
           />
          {/*starts and resets stopwatch using the same button  */}
           <TouchableOpacity style={styles.startbuttonSize} 
+            disabled={disabled}
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
@@ -752,7 +755,8 @@ console.log('yo') */}
         <FAB.Group
           open={open}
           icon={open ? 'calendar-today' : 'plus'}
-          pointerEventsChange='none'
+          //pointerEventsChange='none'
+          pointerEvents='box-none'
           
           actions={[
             { icon: 'plus', onPress: () => console.log('Pressed add') },
@@ -764,6 +768,7 @@ console.log('yo') */}
             {
               icon: 'email',
               label: 'Email',
+              zIndex:5,
               onPress: () => console.log('Pressed email'),
             },
             {
@@ -780,15 +785,14 @@ console.log('yo') */}
               console.log('opened')
               // do something if the speed dial is open
             }
-            
-            
           }}
+          
         />
       </Portal>
     </Provider>
 </View>
    </View> 
-
+   </SafeAreaView>
   
 
     
@@ -803,23 +807,22 @@ const styles = StyleSheet.create({
   container: {
     //basic container that encompases the screen
     
-    
-      // Holds the whole screen
-      flex: 1, 
-      //justifyContent: 'space-evenly', 
-      alignItems: 'center', 
-      backgroundColor:'#121212',
-      paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+    flex: 1, 
+        //justifyContent: 'space-evenly', 
+    alignItems: 'center', 
+    backgroundColor:'#121212',
+    paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
   
   },
 
   sectionStyle: {
     //encompases the entire app
-    zIndex:1,
-    flex: 1,
-    position:'relative',
+    // zIndex:1,
+    // flex: 1,
+    // position:'relative',
     alignItems: 'center',
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    height:'90%'
     //backgroundColor:'transparent'
   },
 
@@ -828,16 +831,20 @@ const styles = StyleSheet.create({
     fontSize: 80,
     color:'#FFF',
     opacity:.87,
-    top:320, 
+    top:'55%', 
+    //backgroundColor:'white'
   },
 
   ScrambleText: {
     fontSize: 25,
+    //paddingBottom:'40%',
     width:'60%',
     color:'#FFF',
+    top:'-20%',
     opacity:.87,
-    position:'absolute',
-    top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
+    //backgroundColor:'white',
+    //position:'absolute',
+    //top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
@@ -848,30 +855,34 @@ const styles = StyleSheet.create({
     color:'white',
     opacity:1,
     justifyContent:'center',
-    left:'-7%',
-    paddingHorizontal:'1%'
+    left:'-6%',
+    paddingHorizontal:'3%'
   },
 
   startbuttonSize:{
-    
+    //flex:600,
     width: 500,
-    height: '89%',
-    bottom:-70,
+    height: '90%',
+    bottom:0,
     
     alignItems:'center',
     //backgroundColor:'#FFF',
     //zIndex:1,
   },
+  background:{
+    backgroundColor:'#121212',
+    flex:1
+},
 
-  actionButtonIcon: {
-    //size of the actionbutton icons. Icons only used in the action button
-      zIndex:999,
-      position:'relative',
-      fontSize: 30,
-      height: 33,
-      color: 'white', 
-      opacity:1, 
-  },
+  // actionButtonIcon: {
+  //   //size of the actionbutton icons. Icons only used in the action button
+  //     zIndex:999,
+  //     position:'relative',
+  //     fontSize: 30,
+  //     height: 33,
+  //     color: 'white', 
+  //     opacity:1, 
+  // },
 
   textInputStyle: {
     color: 'white',
@@ -888,7 +899,7 @@ const styles = StyleSheet.create({
   OptionsButton:{
     fontSize:10, 
     left:Platform.OS === 'android' ? '54%':'60%', 
-    bottom:Platform.OS === 'android' ?'-96%':'-99%', 
+    //bottom:Platform.OS === 'android' ?'-96%':'0%', 
     color:'white',
     opacity:1,      
     //justifyContent:'center'
@@ -898,19 +909,20 @@ const styles = StyleSheet.create({
 
 
 const options = {
-  container: {
-    position:'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'#121212',
-    height:70
-  }, 
+  // container: {
+  //   //position:'absolute',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   backgroundColor:'#121212',
+  //   height:70,
+  //   flex:1
+  // }, 
   text: {
     fontSize: 70,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
     color: '#FFF',
     opacity:.87,
     marginLeft: 0,
-    top:-150,
+    top:'275%',
   },
 };
