@@ -14,17 +14,21 @@ import {
 import { Constants } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+
+const val = Math.floor(100000 + Math.random() * 9999999);
+
 export default class App extends Component {
   state = {
     image: null,
     uploading: false,
   };
-
+  
   render() {
     let {
       image
     } = this.state;
-
+    
+    console.log(val);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="default" />
@@ -145,17 +149,18 @@ export default class App extends Component {
   };
 
  uploadImageAsync(pictureuri) {
-  let apiUrl = 'localhost:5000/upload';
+  let apiUrl = 'https://metal-density-310218.wl.r.appspot.com/endpoint';
 
-
+  
 
     var data = new FormData();  
     data.append('file', {  
       uri: pictureuri,
-      name: 'file',
-      type: 'image/jpg'
+      name: 'blue'+val+'.png',
+      type: 'image/png'
+      
     })
-
+    
     fetch(apiUrl, {  
       headers: {
         'Accept': 'application/json',
