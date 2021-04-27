@@ -546,51 +546,48 @@ function dismissed(){
       </Provider>
     )
 
-    const PopUpButton = () => (
-      <Provider>
-      <Portal>
-        <FAB.Group
-        zIndex={5}
-          open={open}
-          icon={open ? 'calendar-today' : 'plus'}
-          actions={[
-            { icon: 'plus', onPress: () => console.log('Pressed add') },
-            {
-              icon: 'star',
-              label: 'Star',
-              onPress: () => console.log('Pressed star'),
-            },
-            {
-              icon: 'email',
-              label: 'Email',
-              onPress: () => console.log('Pressed email'),
-            },
-            {
-              icon: 'bell',
-              label: 'Remind',
-              onPress: () => console.log('Pressed notifications'),
-              small: false,
-            },
-          ]}
-          onStateChange={onStateChange}
-          onPress={() => {
-            if (open) {
+    // const PopUpButton = () => (
+    //   <Provider>
+    //   <Portal>
+    //     <FAB.Group
+    //       open={open}
+    //       icon={open ? 'calendar-today' : 'plus'}
+    //       actions={[
+    //         { icon: 'plus', onPress: () => console.log('Pressed add') },
+    //         {
+    //           icon: 'star',
+    //           label: 'Star',
+    //           onPress: () => console.log('Pressed star'),
+    //         },
+    //         {
+    //           icon: 'email',
+    //           label: 'Email',
+    //           onPress: () => console.log('Pressed email'),
+    //         },
+    //         {
+    //           icon: 'bell',
+    //           label: 'Remind',
+    //           onPress: () => console.log('Pressed notifications'),
+    //           small: false,
+    //         },
+    //       ]}
+    //       onStateChange={onStateChange}
+    //       onPress={() => {
+    //         if (open) {
               
-              // do something if the speed dial is open
-            }
-          }}
-        />
-      </Portal>
-    </Provider>
-    )
+    //           // do something if the speed dial is open
+    //         }
+    //       }}
+    //     />
+    //   </Portal>
+    // </Provider>
+    // )
 
   return (
 
     <View style={styles.container} >
-    
       {/* <View style={styles.container}> */}
-        <View style={styles.sectionStyle}>
-        
+        <View style={styles.sectionStyle} pointerEvents= {pointerEventsChange}>
 {/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
@@ -688,10 +685,9 @@ function dismissed(){
             </View>
 </View>
 console.log('yo') */}
-
 </View>
-{PopUpButton()}
-<View style={{flexDirection:'row'}} pointerEvents='box-none'>
+
+<View style={{flexDirection:'row'}}>
 {/* <View> */}
 {/* Virtual Cube */}
           <Icon.Button
@@ -751,7 +747,7 @@ console.log('yo') */}
           >
           <Text style={styles.BottomTabText}>Learn</Text>
           </Icon.Button>
-          {/* <Provider>
+          <Provider>
       <Portal>
         <FAB.Group
           open={open}
@@ -780,7 +776,7 @@ console.log('yo') */}
           onStateChange={onStateChange}
           onPress={() => {
             if (open) {
-              pointerEventsChange='auto'
+              pointerEventsChange='none'
               console.log('opened')
               // do something if the speed dial is open
             }
@@ -789,7 +785,7 @@ console.log('yo') */}
           }}
         />
       </Portal>
-    </Provider> */}
+    </Provider>
 </View>
    </View> 
 
@@ -832,7 +828,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     color:'#FFF',
     opacity:.87,
-    top:'100%', 
+    top:320, 
   },
 
   ScrambleText: {
@@ -859,12 +855,12 @@ const styles = StyleSheet.create({
   startbuttonSize:{
     
     width: 500,
-    height: '150%',
+    height: '89%',
     bottom:-70,
     
     alignItems:'center',
-    backgroundColor:'#FFF',
-    zIndex:1,
+    //backgroundColor:'#FFF',
+    //zIndex:1,
   },
 
   actionButtonIcon: {
@@ -915,6 +911,6 @@ const options = {
     color: '#FFF',
     opacity:.87,
     marginLeft: 0,
-    top:'90%',
+    top:-150,
   },
 };
