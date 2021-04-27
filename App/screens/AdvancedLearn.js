@@ -4,7 +4,7 @@ import { StyleSheet, View,
 import {Header, Card} from 'react-native-elements';
 import GradientButton from 'react-native-gradient-buttons';
 import AwesomeButton from "react-native-really-awesome-button";
-import LinearGradient from "react-native-linear-gradient";
+
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';

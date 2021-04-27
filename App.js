@@ -9,21 +9,33 @@ import HowToReadAlg from './App/screens/HowToReadAlg';
 import AdvancedLearn from './App/screens/AdvancedLearn';
 import AlgList from './App/screens/AlgList';
 //import Video from './App/screens/video.js';
-import * as React from 'react';
+import React, { useState, Component, useEffect} from 'react';
 import Timer from './App/screens/Timer.js';
 import Statistics from './App/screens/Statistics';
-import Scanner from './App/screens/PictureTakerTest';
-
+import Scanner from './App/screens/PictureTaker';
+import NumberList from './App/screens/NumberList'
 import VirtualCube from './App/screens/VirtualCube.js';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {BackHandler, Alert} from 'react-native';
+
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+
+
+
 const App = () => {
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', () => true)
+  }, [])
   return(
     
     <NavigationContainer>
@@ -40,23 +52,30 @@ const App = () => {
         <Stack.Screen 
           name="Learn" 
           component={Learn}
-          // options={{headerShown:false}}
+          options={{headerShown:false}}
         />
 
         <Stack.Screen 
         name='Timer' 
         component={Timer}
-        options={{headerShown:false}}
+        options={{headerShown:false,gestureEnabled: false }}
         />
 
         <Stack.Screen 
           name='VirtualCube' 
           component={VirtualCube}
+          options={{gestureEnabled: false }}
         />
 
         <Stack.Screen
           name='Statistics'
           component={Statistics}
+          options={{headerShown:false,gestureEnabled: false,}}
+        />
+
+        <Stack.Screen
+          name='Scanner'
+          component={Scanner}
           options={{headerShown:false}}
         />
 
@@ -74,9 +93,9 @@ const App = () => {
         options={{headerShown:false}}/>
 
         <Stack.Screen 
-        name="Scanner" 
-        component={Scanner} 
-        options={{headerShown:false}}/>
+        name="NumberList" 
+        component={NumberList} 
+        options={{headerShown:false,gestureEnabled: false,}}/>
         
         
         {/* <Stack.Screen 
@@ -90,16 +109,19 @@ const App = () => {
         <Stack.Screen
           name="HowToReadAlg"
           component={HowToReadAlg}
+          options={{headerShown:false}}
         />
 
         <Stack.Screen
           name="BeginnerLearn"
           component={BeginnerLearn}
+          options={{headerShown:false}}
         />
         
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
+          options={{headerShown:false}}
         />
 
         <Stack.Screen 
