@@ -16,12 +16,17 @@ import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 
 const val = Math.floor(100000 + Math.random() * 9999999);
+let amount =0;
+let colorName='';
+    
+
 
 export default class App extends Component {
   state = {
     image: null,
     uploading: false,
   };
+  
   
   render() {
     let {
@@ -147,16 +152,41 @@ export default class App extends Component {
       this.uploadImageAsync(pickerResult.uri);
     }
   };
-
+  
  uploadImageAsync(pictureuri) {
   let apiUrl = 'https://metal-density-310218.wl.r.appspot.com/endpoint';
-
+   
   
+
+  if (amount==0){
+    colorName='white'
+  }
+  if (amount==1){
+    colorName='blue'
+  }
+  if (amount==2){
+    colorName='orange'
+  }
+  if (amount==3){
+    colorName='green'
+  }
+  if (amount==4){
+    colorName='red'
+  }
+  if (amount==5){
+    colorName='yellow'
+  }
+  amount++;
+  if(amount >5){
+    amount=0;
+  }
+  console.log(colorName)
+  console.log(''+colorName+val+'.png')
 
     var data = new FormData();  
     data.append('file', {  
       uri: pictureuri,
-      name: 'blue'+val+'.png',
+      name: ''+colorName+val+'.png',
       type: 'image/png'
       
     })
