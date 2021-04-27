@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
-import { Container, Fab } from 'native-base';
+//import { Container, Fab } from 'native-base';
 
 //import {newList} from './NumberList'
 
@@ -110,6 +110,7 @@ let testdel=0;
 
 let amount =0;
 
+let pointerEventsChange='auto';
 
 // if(newList !== undefined){
 //   convertedTimes=newList;
@@ -369,6 +370,7 @@ const App = ({navigation}) => {
   const [state, setState] = React.useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
+   
 
 //sets the input value
   const [inputVal, setInputVal] = useState('');
@@ -544,11 +546,51 @@ function dismissed(){
       </Provider>
     )
 
+    const PopUpButton = () => (
+      <Provider>
+      <Portal>
+        <FAB.Group
+        zIndex={5}
+          open={open}
+          icon={open ? 'calendar-today' : 'plus'}
+          actions={[
+            { icon: 'plus', onPress: () => console.log('Pressed add') },
+            {
+              icon: 'star',
+              label: 'Star',
+              onPress: () => console.log('Pressed star'),
+            },
+            {
+              icon: 'email',
+              label: 'Email',
+              onPress: () => console.log('Pressed email'),
+            },
+            {
+              icon: 'bell',
+              label: 'Remind',
+              onPress: () => console.log('Pressed notifications'),
+              small: false,
+            },
+          ]}
+          onStateChange={onStateChange}
+          onPress={() => {
+            if (open) {
+              
+              // do something if the speed dial is open
+            }
+          }}
+        />
+      </Portal>
+    </Provider>
+    )
+
   return (
 
-    <View style={styles.container} pointerEvents='box-none' >
+    <View style={styles.container} >
+    
       {/* <View style={styles.container}> */}
-        <View style={styles.sectionStyle} pointerEvents='box-none'>
+        <View style={styles.sectionStyle}>
+        
 {/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
@@ -591,10 +633,10 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
+ {/* <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
 
           <View style={{flex:1,flexDirection:'column',height:180,bottom:Platform.OS === 'ios' ? '37%': '32.5%', right:Platform.OS === 'ios' ? '-178%':'-207%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
-            {/* Options */}
+            
               <ActionButton
               buttonColor="#121212"
               hideShadow={true}
@@ -609,7 +651,7 @@ function dismissed(){
               buttonText="+"
               >
               
-            {/* Add */}
+            
               <ActionButton.Item 
                 spaceBetween={-5} 
                 //buttonColor='transparent'
@@ -621,7 +663,7 @@ function dismissed(){
                 <Icon name="plus" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
-            {/* Delete  */}
+            
             <ActionButton.Item 
               // zIndex={100}
                 spaceBetween={-5} 
@@ -631,7 +673,7 @@ function dismissed(){
                 <Icon name="delete" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
-            {/* Clear */}
+            
               <ActionButton.Item 
                 spaceBetween={-5} 
                 //buttonColor='#121212' 
@@ -644,9 +686,13 @@ function dismissed(){
             </ActionButton>
             <Text style={styles.OptionsButton}>Options</Text> 
             </View>
+</View>
+console.log('yo') */}
 
-
-
+</View>
+{PopUpButton()}
+<View style={{flexDirection:'row'}} pointerEvents='box-none'>
+{/* <View> */}
 {/* Virtual Cube */}
           <Icon.Button
             name='cube-outline'
@@ -705,14 +751,51 @@ function dismissed(){
           >
           <Text style={styles.BottomTabText}>Learn</Text>
           </Icon.Button>
+          {/* <Provider>
+      <Portal>
+        <FAB.Group
+          open={open}
+          icon={open ? 'calendar-today' : 'plus'}
+          pointerEventsChange='none'
+          
+          actions={[
+            { icon: 'plus', onPress: () => console.log('Pressed add') },
+            {
+              icon: 'star',
+              label: 'Star',
+              onPress: () => console.log('Pressed star'),
+            },
+            {
+              icon: 'email',
+              label: 'Email',
+              onPress: () => console.log('Pressed email'),
+            },
+            {
+              icon: 'bell',
+              label: 'Remind',
+              onPress: () => console.log('Pressed notifications'),
+              //small: false,
+            },
+          ]}
+          onStateChange={onStateChange}
+          onPress={() => {
+            if (open) {
+              pointerEventsChange='auto'
+              console.log('opened')
+              // do something if the speed dial is open
+            }
+            
+            
+          }}
+        />
+      </Portal>
+    </Provider> */}
+</View>
+   </View> 
 
-    </View>
-    {/* <View style={{backgroundColor:'yellow', width:50,flexDirection:'column',height:100}}>
+  
 
-    </View> */}
-  </View>
-{/*</View> */}
-    </View>
+    
     
   );
 }
@@ -724,12 +807,14 @@ const styles = StyleSheet.create({
   container: {
     //basic container that encompases the screen
     
-    zIndex:1,
-    flex: 1,
-    position:'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'#121212'
+    
+      // Holds the whole screen
+      flex: 1, 
+      //justifyContent: 'space-evenly', 
+      alignItems: 'center', 
+      backgroundColor:'#121212',
+      paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+  
   },
 
   sectionStyle: {
@@ -747,7 +832,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     color:'#FFF',
     opacity:.87,
-    top:320, 
+    top:'100%', 
   },
 
   ScrambleText: {
@@ -774,12 +859,12 @@ const styles = StyleSheet.create({
   startbuttonSize:{
     
     width: 500,
-    height: '89%',
+    height: '150%',
     bottom:-70,
     
     alignItems:'center',
-    //backgroundColor:'#FFF',
-    //zIndex:1,
+    backgroundColor:'#FFF',
+    zIndex:1,
   },
 
   actionButtonIcon: {
@@ -830,6 +915,6 @@ const options = {
     color: '#FFF',
     opacity:.87,
     marginLeft: 0,
-    top:-150,
+    top:'90%',
   },
 };
