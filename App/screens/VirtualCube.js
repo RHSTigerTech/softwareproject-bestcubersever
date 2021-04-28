@@ -8,9 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class App extends Component {
   
-  shouldComponentUpdate(nextProps, nextState){
-    return !equals(nextProps, this.props); // equals() is your implementation
- }
+  
 
   render() {
     const {navigate} = this.props.navigation;
