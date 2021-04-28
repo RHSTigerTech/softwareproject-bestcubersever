@@ -690,7 +690,7 @@ function dismissed(){
 console.log('yo') */}
 </View>
 
-<View style={{flexDirection:'row'}}>
+<View style={{flexDirection:'row', zIndex:5, elevation:6}}>
 {/* <View> */}
 {/* Virtual Cube */}
           <Icon.Button
@@ -750,13 +750,14 @@ console.log('yo') */}
           >
           <Text style={styles.BottomTabText}>Learn</Text>
           </Icon.Button>
-          <Provider>
-      <Portal>
+          <Provider style={{zIndex:8, elevation:9}}>
+      <Portal style={{zIndex:8, elevation:9}}>
         <FAB.Group
+        style={{zIndex:8, elevation:9}}
           open={open}
           icon={open ? 'calendar-today' : 'plus'}
           //pointerEventsChange='none'
-          pointerEvents='box-none'
+          //pointerEvents='box-none'
           
           actions={[
             { icon: 'plus', onPress: () => console.log('Pressed add') },
@@ -774,6 +775,8 @@ console.log('yo') */}
             {
               icon: 'bell',
               label: 'Remind',
+              zIndex:10,
+              elevation:11,
               onPress: () => console.log('Pressed notifications'),
               //small: false,
             },
@@ -812,6 +815,8 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     backgroundColor:'#121212',
     paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+    zIndex:1,
+    elevation:2
   
   },
 
@@ -867,7 +872,8 @@ const styles = StyleSheet.create({
     
     alignItems:'center',
     //backgroundColor:'#FFF',
-    //zIndex:1,
+    zIndex:1,
+    elevation:2,
   },
   background:{
     backgroundColor:'#121212',
