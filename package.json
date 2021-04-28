@@ -71,7 +71,8 @@
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "webpack": "^4.44.2",
-    "webpack-dev-server": "^3.11.1"
+    "webpack-dev-server": "^3.11.1",
+    "expo-image-manipulator": "~8.4.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

@@ -15,6 +15,7 @@ import { Constants } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 
+
 const val = Math.floor(100000 + Math.random() * 9999999);
 let amount =0;
 let colorName='';
@@ -141,7 +142,7 @@ export default class App extends Component {
       let pickerResult = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
         base64: true,
-        aspect: [4, 3],
+        aspect: [4, 4],
       });
 
 
