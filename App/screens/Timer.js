@@ -636,7 +636,7 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:'30%', right:Platform.OS === 'ios' ? '0%':'0%', backgroundColor:'green',bottom:'50%'}}pointerEvents='box-none'>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:180, right:Platform.OS === 'ios' ? '0%':'0%', backgroundColor:'green',bottom:'50%'}}pointerEvents='box-none'>
 
           <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '0%': '0%', left:Platform.OS === 'ios' ? '0%':'0%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
             
