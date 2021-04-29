@@ -10,7 +10,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 //import { Container, Fab } from 'native-base';
 
 //import {newList} from './NumberList'
@@ -368,13 +367,6 @@ const App = ({navigation}) => {
   const hideClearModal = () => setClearVisible(false);
   const [ClearVisible, setClearVisible] = React.useState(false);
 
-  const showPopupModal = () => setPopupVisible(true);
-  const hidePopupModal = () => setPopupVisible(false);
-  const [Popupvisible, setPopupVisible] = React.useState(false);
-
-
-
-
   const [state, setState] = React.useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
@@ -387,18 +379,18 @@ const App = ({navigation}) => {
 
 //function used when the add button is pressed on the modal
 let check=false;
-// function store(){
-//   if(check===false){
-//     return(
-//       <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
-//     )
-//   }
-//   else if(check===true){
-//     return(
-//       <Text> none</Text>
-//     )
-//   }
-// }
+function store(){
+  if(check===false){
+    return(
+      <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+    )
+  }
+  else if(check===true){
+    return(
+      <Text> none</Text>
+    )
+  }
+}
 
 function fixnum(input){
   var index = input.indexOf( '.' );
@@ -478,7 +470,6 @@ function dismissed(){
   hideDelModal()
   hideAddModal()
   hideClearModal()
-  hidePopupModal()
   stopadd=false;
   //console.log(check)
 
@@ -529,7 +520,7 @@ function dismissed(){
     
 
     const delperm = () => (
-      <Provider theme={theme}>
+      <Provider theme={theme} elevation={10} zIndex={9}>
         <Portal>
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
@@ -557,69 +548,48 @@ function dismissed(){
       </Provider>
     )
 
-    const Popup = () => (
-      <Provider theme={theme}>
-      <Portal>
-        <Dialog visible={Popupvisible} onDismiss={() =>{hidePopupModal()}} style={styles.dialogContainer}>
-        <Dialog.Title>Options:</Dialog.Title>
-        <Dialog.Content>
-          <Dialog.Actions>
-          <Button color='#BB86FC' onPress={()=>{hidePopupModal(), openAdd()}}>Add</Button> 
-          <Button color='#BB86FC' onPress={()=>{hidePopupModal(), showDelModal(),stopadd=true}}>Delete</Button> 
-          <Button color='#BB86FC' onPress={()=>{hidePopupModal(), showClearModal()}}>Clear</Button> 
-          </Dialog.Actions>
-        </Dialog.Content>
-        </Dialog>
-      </Portal>
-    </Provider>
-    )
-
-
-    const PopUpButton = () => (
-      <Provider>
-      <Portal>
-        <FAB.Group
-        //style={{backgroundColor:'white', top:50, bottom:-50}}
-          open={open}
-          icon={open ? 'calendar-today' : 'plus'}
-          actions={[
-            { icon: 'plus', onPress: () => console.log('Pressed add') },
-            {
-              icon: 'star',
-              label: 'Star',
-              onPress: () => console.log('Pressed star'),
-            },
-            {
-              icon: 'email',
-              label: 'Email',
-              onPress: () => console.log('Pressed email'),
-            },
-            {
-              icon: 'bell',
-              label: 'Remind',
-              onPress: () => console.log('Pressed notifications'),
-              small: false,
-            },
-          ]}
-          onStateChange={onStateChange}
-          onPress={() => {
-            if (open) {
+    // const PopUpButton = () => (
+    //   <Provider>
+    //   <Portal>
+    //     <FAB.Group
+    //       open={open}
+    //       icon={open ? 'calendar-today' : 'plus'}
+    //       actions={[
+    //         { icon: 'plus', onPress: () => console.log('Pressed add') },
+    //         {
+    //           icon: 'star',
+    //           label: 'Star',
+    //           onPress: () => console.log('Pressed star'),
+    //         },
+    //         {
+    //           icon: 'email',
+    //           label: 'Email',
+    //           onPress: () => console.log('Pressed email'),
+    //         },
+    //         {
+    //           icon: 'bell',
+    //           label: 'Remind',
+    //           onPress: () => console.log('Pressed notifications'),
+    //           small: false,
+    //         },
+    //       ]}
+    //       onStateChange={onStateChange}
+    //       onPress={() => {
+    //         if (open) {
               
-              // do something if the speed dial is open
-            }
-          }}
-        />
-      </Portal>
-    </Provider>
-    )
+    //           // do something if the speed dial is open
+    //         }
+    //       }}
+    //     />
+    //   </Portal>
+    // </Provider>
+    // )
 
   return (
-   
 <SafeAreaView style={styles.background}>
-    <View style={styles.container} >
+    <View style={styles.container} pointerEvents='box-none'>
       {/* <View style={styles.container}> */}
         <View style={styles.sectionStyle} pointerEvents='box-none'>
-        
 {/* calls certain parameters from the stopwatch library  */}
           <Stopwatch            
             msecs
@@ -633,10 +603,9 @@ function dismissed(){
             
           />
          {/*starts and resets stopwatch using the same button  */}
-          <Pressable style={styles.startbuttonSize} 
-            pressRetentionOffset={{ bottom: 400, left: 400, right: 400, top: 400 }}
-            hitSlop={{bottom: 400, left: 400, right: 400, top: 400, backgroundColor:'yellow' }}
-            onPressOut={() => {  
+          <TouchableOpacity style={styles.startbuttonSize} 
+            disabled={disabled}
+            onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
               storeData(convertedTimes);  
@@ -651,31 +620,30 @@ function dismissed(){
 {/* where scramble text is called*/}
         
             
-          
+                    <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+
             <Text style={{color:'transparent', fontSize:1}}>{!isStopwatchStart ? times() : ''}</Text>
-            {/* {PopUpButton()} */}
-          </Pressable>
-          <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+        
+          </TouchableOpacity>
+
+
           {/* where the modal is called */}
           {addTimes()}
           {delperm()}
           {clearAll()}
-          {Popup()}
-          
-          
+
           
          
             
 {/* bottom icon buttons */}
- {/* <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', right:Platform.OS === 'ios' ? '0%':'0%', backgroundColor:'green',bottom:'0%'}}>
 
-          <View style={{flex:1,flexDirection:'column',height:180,bottom:Platform.OS === 'ios' ? '37%': '32.5%', right:Platform.OS === 'ios' ? '-178%':'-207%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
+          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '0%': '0%', left:Platform.OS === 'ios' ? '0%':'0%',backgroundColor: 'white'}} pointerEvents='box-none'>
             
               <ActionButton
               buttonColor="#121212"
               hideShadow={true}
-              //zIndex={100}
-              //paddingHorizontal={50}
+              
               size={45}
               spacing={0}
               offsetX={0}
@@ -718,14 +686,13 @@ function dismissed(){
                 <Icon name="broom" style={styles.actionButtonIcon} />
               </ActionButton.Item>          
             </ActionButton>
-            <Text style={styles.OptionsButton}>Options</Text> 
+            
             </View>
 </View>
-console.log('yo') */}
 
 </View>
 
-<View style={{flexDirection:'row', zIndex:5, backgroundColor:'#121212'}} >
+<View style={{flexDirection:'row', zIndex:5, elevation:6}}>
 {/* <View> */}
 {/* Virtual Cube */}
           <Icon.Button
@@ -785,28 +752,10 @@ console.log('yo') */}
           >
           <Text style={styles.BottomTabText}>Learn</Text>
           </Icon.Button>
-          <Icon.Button
-            name='school'
-            backgroundColor='transparent'
-            flexDirection='column'
-            //backgroundColor='#121212'
-            color='white'
-            opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {showPopupModal()}}
-          >
-          <Text style={styles.BottomTabText}>Learn</Text>
-          </Icon.Button>
-
-
-
-          
-          {/* <Provider style={{zIndex:8, elevation:9, backgroundColor:'green'}} >
-      <Portal style={{zIndex:8, elevation:9,backgroundColor:'green'}}>
+          {/* <Provider style={{zIndex:8, elevation:9}}>
+      <Portal style={{zIndex:8, elevation:9}}>
         <FAB.Group
-        style={{zIndex:8, elevation:9,backgroundColor:'green'}}
-        hitSlop={{top:100, right:0, bottom:0, left:0}}
+        style={{zIndex:8, elevation:9}}
           open={open}
           icon={open ? 'calendar-today' : 'plus'}
           //pointerEventsChange='none'
@@ -846,12 +795,8 @@ console.log('yo') */}
         />
       </Portal>
     </Provider> */}
-
-    
 </View>
-
    </View> 
-   
    </SafeAreaView>
   
 
@@ -872,8 +817,8 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     backgroundColor:'#121212',
     paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    zIndex:1,
-    elevation:2
+    //zIndex:1,
+    //elevation:2
   
   },
 
@@ -884,8 +829,7 @@ const styles = StyleSheet.create({
     // position:'relative',
     alignItems: 'center',
     //justifyContent: 'center',
-    height:'90%',
-    
+    height:'90%'
     //backgroundColor:'transparent'
   },
 
@@ -901,15 +845,14 @@ const styles = StyleSheet.create({
   ScrambleText: {
     fontSize: 25,
     //paddingBottom:'40%',
-    //width:'10%',
+    //width:'60%',
     height:'40%',
     color:'#FFF',
-    bottom:'30%',
-    paddingLeft:25,
-    paddingRight:25,
+    bottom:'90%',
+    //paddingLeft:25,
+    //paddingRight:25,
     flexWrap:'wrap',
     opacity:.87,
-    
     //backgroundColor:'white',
     //position:'absolute',
     //top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
@@ -929,31 +872,29 @@ const styles = StyleSheet.create({
 
   startbuttonSize:{
     //flex:600,
-    //width: 500,
-    //height: '90%',
-    //bottom:0,
-    width:'60%',
-    height:'20%',
-    top:'40%',
+    width: '80%',
+    height: '90%',
+    top:'50%',
+    
     alignItems:'center',
-    backgroundColor:'blue',
+    //backgroundColor:'#FFF',
     //zIndex:1,
     //elevation:2,
   },
   background:{
-    backgroundColor:'transparent',
+    backgroundColor:'#121212',
     flex:1
 },
 
-  // actionButtonIcon: {
-  //   //size of the actionbutton icons. Icons only used in the action button
-  //     zIndex:999,
-  //     position:'relative',
-  //     fontSize: 30,
-  //     height: 33,
-  //     color: 'white', 
-  //     opacity:1, 
-  // },
+  actionButtonIcon: {
+    //size of the actionbutton icons. Icons only used in the action button
+      //zIndex:999,
+      position:'relative',
+      fontSize: 30,
+      height: 33,
+      color: 'white', 
+      opacity:1, 
+  },
 
   textInputStyle: {
     color: 'white',
@@ -971,7 +912,7 @@ const styles = StyleSheet.create({
     fontSize:10, 
     left:Platform.OS === 'android' ? '54%':'60%', 
     //bottom:Platform.OS === 'android' ?'-96%':'0%', 
-    //color:'white',
+    color:'white',
     opacity:1,      
     //justifyContent:'center'
   },
