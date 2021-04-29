@@ -636,9 +636,9 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', right:Platform.OS === 'ios' ? '0%':'0%', backgroundColor:'green',bottom:'0%'}}>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:'30%', right:Platform.OS === 'ios' ? '0%':'0%', backgroundColor:'green',bottom:'50%'}}pointerEvents='box-none'>
 
-          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '0%': '0%', left:Platform.OS === 'ios' ? '0%':'0%',backgroundColor: 'white'}} pointerEvents='box-none'>
+          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '0%': '0%', left:Platform.OS === 'ios' ? '0%':'0%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
             
               <ActionButton
               buttonColor="#121212"
@@ -838,7 +838,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     color:'#FFF',
     opacity:.87,
-    top:'0%', 
+    top:'70%', 
     //backgroundColor:'white'
   },
 
@@ -848,9 +848,9 @@ const styles = StyleSheet.create({
     //width:'60%',
     height:'40%',
     color:'#FFF',
-    bottom:'90%',
-    //paddingLeft:25,
-    //paddingRight:25,
+    bottom:'10%',
+    paddingLeft:25,
+    paddingRight:25,
     flexWrap:'wrap',
     opacity:.87,
     //backgroundColor:'white',
@@ -872,9 +872,9 @@ const styles = StyleSheet.create({
 
   startbuttonSize:{
     //flex:600,
-    width: '80%',
-    height: '90%',
-    top:'50%',
+    width: '100%',
+    height: '100%',
+    bottom:'20%',
     
     alignItems:'center',
     //backgroundColor:'#FFF',

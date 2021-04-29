@@ -76,7 +76,7 @@ const App = () => {
         <Stack.Screen
           name='Scanner'
           component={Scanner}
-          options={{headerShown:false}}
+          //options={{headerShown:false}}
         />
 
         
