@@ -4,6 +4,8 @@ import {StyleSheet, Text} from 'react-native'
 import {storeData, getData, convertedTimes, times } from './Timer';
 import {data} from './Statistics'
 import * as Font from 'expo-font';
+import AwesomeButton from "react-native-really-awesome-button";
+
 
 
 
@@ -27,7 +29,7 @@ export default class App extends Component {
 
     
     UNSAFE_componentWillMount() {
-        
+        console.log(data)
         this.setState({ users: data });
         newList =this.state.users;
         
@@ -63,30 +65,65 @@ export default class App extends Component {
         //   }
         return(
            
-            <Container style={{backgroundColor:'#121212'}}>
-                
+            <Container style={{backgroundColor:'#121212', paddingTop:'4%'}}>
+                {/* <Header>
+                    <Text>    </Text>
+                </Header> */}
                 
                 <Content>
                     {smallList.map((item,index, data) => (
                         
                       <ListItem key={index}>
-                      <CheckBox style={{marginRight:"3%"}} checked={this.state.deletionArray.includes(index)} />
+                     
                         <Body>
-                          <Text>{data[index]}</Text>
+                          <Text style={{color:'#8c29ff', fontSize:25, fontWeight:'bold' }}>{data[index]}</Text>
                         </Body>
                         <Right>
-                            <Button danger onPress={()=>this.deleteItem(index)}>
-                            <Icon name='trash'/>
+                            <Button style={{backgroundColor:'#121212'}} onPress={()=>this.deleteItem(index)}>
+                            <Icon style={{color: '#8c29ff'}} name='trash'/>
                             </Button>
                         </Right>
                       </ListItem>  
                     ))}  
                 </Content>
-                <Footer>
-                <Segment>
-                <Button style={{backgroundColor:'#121212'}} first onPress={()=> {push('Statistics'), storeData(newList)}}><Text style={{color:'#BB86FC'}}>Confirm Deleted</Text></Button>
-                <Button second onPress={()=> {push('Statistics')}}><Text>Cancel</Text></Button>
-                </Segment>
+                <Footer style={{backgroundColor:'#121212', paddingTop:'1%'}}>
+                
+                {/* <Button style={{backgroundColor:'#121212'}} onPress={()=> {push('Statistics'), storeData(newList)}}><Text style={{color:'#8c29ff'}}>Confirm Deleted</Text></Button>
+                <Button style={{backgroundColor:'#121212'}} onPress={()=> {push('Statistics')}}><Text style={{color:'#8c29ff'}}>Cancel</Text></Button> */}
+                <AwesomeButton 
+                        width={175} 
+                        height={30}
+                        backgroundColor='#6d00eb'
+                        textSize={15}
+                        borderRadius={5}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        paddingHorizontal={20}
+                        onPress={()=> {push('Statistics'), storeData(newList)}}
+                        
+                        
+                    >
+                        Confirm Deleted
+                    </AwesomeButton>
+                    <Text style={{color:'transparent'}}>....</Text>
+                    <AwesomeButton 
+                        width={175} 
+                        height={30}
+                        backgroundColor='#6d00eb'
+                        textSize={15}
+                        borderRadius={5}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={()=> {push('Statistics'), storeData(data)}}
+                        
+                        
+                    >
+                        Cancel
+                    </AwesomeButton>
                 </Footer>
             </Container>
             
