@@ -1,7 +1,13 @@
 import React, { useState, Component, useEffect} from 'react';
-import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button, Left, Right, Body, Icon, Text, Segment, ListItem, CheckBox, Thumbnail} from 'native-base';
+import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button, Left, Right, Body, Icon, Segment, ListItem, CheckBox, Thumbnail, StyleProvider} from 'native-base';
+import {StyleSheet, Text} from 'react-native'
 import {storeData, getData, convertedTimes, times } from './Timer';
-import {usedData, data} from './Statistics'
+import {data} from './Statistics'
+import * as Font from 'expo-font';
+
+
+
+
 
 let randomthing=false;
 let newList;
@@ -22,7 +28,7 @@ export default class App extends Component {
     
     UNSAFE_componentWillMount() {
         
-        this.setState({ users: usedData });
+        this.setState({ users: data });
         newList =this.state.users;
         
 
@@ -56,30 +62,10 @@ export default class App extends Component {
         //     //data=data.slice(Math.max(data.length-20,1))
         //   }
         return(
-            
-            <Container>
-                <Header>
-                    <Left>
-                        <Button transparent onPress={()=> {push('Statistics'), storeData(newList)}}>
-                            <Icon name='menu'/>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Total Users:</Title>
-                        <Subtitle>Selected Users :20</Subtitle>
-                    </Body>
-                    <Right/>
-                </Header>
-                <Segment>
-                    <Button first><Text>Delete Selected</Text></Button>
-                    <Button >
-                        <Text>
-                            {this.state.allSelected ? 'Unselected All' : 'Select All'}
-                        </Text>
-                    </Button>
-                    
-                    <Button last onPress={()=> this.deleteAllItems()}><Text>Delete All</Text></Button>
-                </Segment>
+           
+            <Container style={{backgroundColor:'#121212'}}>
+                
+                
                 <Content>
                     {smallList.map((item,index, data) => (
                         
@@ -98,16 +84,24 @@ export default class App extends Component {
                 </Content>
                 <Footer>
                 <Segment>
-                <Button first onPress={()=> {push('Statistics'), storeData(newList)}}><Text>Confirm Deleted</Text></Button>
+                <Button style={{backgroundColor:'#121212'}} first onPress={()=> {push('Statistics'), storeData(newList)}}><Text style={{color:'#BB86FC'}}>Confirm Deleted</Text></Button>
                 <Button second onPress={()=> {push('Statistics')}}><Text>Cancel</Text></Button>
                 </Segment>
                 </Footer>
             </Container>
+            
 
         )
     }
     
 }
+const styles = StyleSheet.create({ 
+    textStyle:{
+        fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
+        fontSize:20
+      },
+
+})
 
 export{newList}
 

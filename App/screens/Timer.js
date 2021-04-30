@@ -112,6 +112,8 @@ let amount =0;
 
 let pointerEventsChange='auto';
 
+
+
 // if(newList !== undefined){
 //   convertedTimes=newList;
 // }
@@ -225,6 +227,14 @@ export const times = () =>{
   
   return (convertedTimes);
   
+}
+
+export const LimitLength= (limit) =>{
+    if (convertedTimes.length>limit){
+      convertedTimes=convertedTimes.slice(Math.max(convertedTimes.length-limit,1))
+      console.log('converted times length shortened')
+      storeData(convertedTimes)
+    }
 }
 
 const theme = {
@@ -477,11 +487,6 @@ function dismissed(){
 
 
 
-
-
-
-
-
 //modal function that allows user to enter a new time to put into statistics
   
   const addTimes = () => (
@@ -631,7 +636,8 @@ function dismissed(){
           {addTimes()}
           {delperm()}
           {clearAll()}
-
+          {LimitLength(200)}
+            
           
          
             
@@ -883,7 +889,8 @@ const styles = StyleSheet.create({
   },
   background:{
     backgroundColor:'#121212',
-    flex:1
+    flex:1,
+    paddingTop: Platform.OS === 'android' ?'3%' : 0
 },
 
   actionButtonIcon: {
@@ -935,6 +942,6 @@ const options = {
     color: '#FFF',
     opacity:.87,
     marginLeft: 0,
-    top:'275%',
+    top:'200%',
   },
 };

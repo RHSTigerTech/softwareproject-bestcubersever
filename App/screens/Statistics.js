@@ -63,7 +63,7 @@ const chartConfigs = [
     },    
   ];
 
-let usedData=[]
+
 let data=[];
 let removeZero=[]
 let undef;
@@ -77,31 +77,31 @@ let undef;
 
 
 export const timerthing = () => {
-  if(typeof usedData== 'undefined'){
+  if(typeof data== 'undefined'){
     undef=true;
     //console.log('data is undefined')
 }
 //console.log(typeof data)
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
-    usedData=deletetime();
+    data=deletetime();
     
-    usedData.pop();
-    usedData.pop(); 
-      if(usedData[0]==0){
+    data.pop();
+    data.pop(); 
+      if(data[0]==0){
         //console.log(data[0])
-      usedData.shift();
+      data.shift();
       }      
   }
 
   else{
-    usedData=times();
+    data=times();
     
-    if(usedData[usedData.length-1]==usedData[usedData.length-2]){
-    usedData.pop();
+    if(data[data.length-1]==data[data.length-2]){
+    data.pop();
     }
-    if(usedData[0]==0){
+    if(data[0]==0){
       //console.log(data[0])
-      usedData.shift();
+      data.shift();
       }
   }
   
@@ -112,7 +112,7 @@ export const timerthing = () => {
   //console.log('---------------------')
 }
 
-export {usedData};
+
 export {data};
 // console.log(times().length)
 // console.log('whhhhhhhhhy isnt this woooooooooooooooorking')
@@ -171,27 +171,27 @@ export {data};
     
 
     let numData=[];
-    for(let i=0;i<usedData.length;i++){
-      if(usedData[i]!=0){
-        numData.push(parseFloat(usedData[i])) 
+    for(let i=0;i<data.length;i++){
+      if(data[i]!=0){
+        numData.push(parseFloat(data[i])) 
       }    
-      floatnum=parseFloat(usedData[i])
+      floatnum=parseFloat(data[i])
       average=floatnum+average 
       
-      if(usedData[i]==0){
-        usedData.splice(i,1);
+      if(data[i]==0){
+        data.splice(i,1);
       }
       if(i===0){
-        besttime=parseFloat(usedData[i])
+        besttime=parseFloat(data[i])
       }
-      if(parseFloat(usedData[i])<besttime){
-        besttime=parseFloat(usedData[i])
+      if(parseFloat(data[i])<besttime){
+        besttime=parseFloat(data[i])
       }       
       if(i===0){
-        worsttime=parseFloat(usedData[i])
+        worsttime=parseFloat(data[i])
       }
-      if(parseFloat(usedData[i])>worsttime){
-        worsttime=parseFloat(usedData[i])
+      if(parseFloat(data[i])>worsttime){
+        worsttime=parseFloat(data[i])
       }
     }
     //console.log(numData)
@@ -199,7 +199,7 @@ export {data};
 
     //Average
     
-    average=average/usedData.length
+    average=average/data.length
     // console.log(average)
     // console.log(data.length)
 
@@ -225,9 +225,9 @@ export {data};
  
 
     //Avg 5
-    if(usedData.length>=5){
-    for(let i=usedData.length-1;i>usedData.length-6;i--){
-        floatnum=parseFloat(usedData[i])
+    if(data.length>=5){
+    for(let i=data.length-1;i>data.length-6;i--){
+        floatnum=parseFloat(data[i])
         Avg5=floatnum+Avg5
     }
     Avg5=Avg5/5
@@ -245,26 +245,16 @@ export {data};
     //   Avg5='Not Enough Data'
     // }
 
-    console.log(usedData.length)
-    data = usedData.slice();
-    console.log(typeof usedData)
-    console.log(typeof data)
-    console.log(data)
-    console.log(usedData)
+    
 
 
 
     // overflowdata=data;
     //console.log(newArray.length)
 
-    if(data.length>200){
-      //data=data.slice(Math.max(data.length-20,1))
-      data=usedData.slice(Math.max(data.length-200,1))
-      //data=data.slice(Math.max(data.length-20,1))
-    }
     
-    console.log(usedData.length)
-    console.log(data.length)
+    
+    
     
 
     let xcords=[]
