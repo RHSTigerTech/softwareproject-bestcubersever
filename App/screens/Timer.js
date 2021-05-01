@@ -880,8 +880,10 @@ const styles = StyleSheet.create({
     color:'white',
     opacity:1,
     justifyContent:'center',
-    left:'-6%',
-    paddingHorizontal:'3%'
+    left:'-.5%',
+    paddingHorizontal:'3%',
+    bottom:0,
+    position:'absolute'
   },
 
   startbuttonSize:{
