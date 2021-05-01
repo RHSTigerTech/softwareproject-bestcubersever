@@ -76,7 +76,7 @@ export default class App extends Component {
                       <ListItem key={index}>
                      
                         <Body>
-                          <Text style={{color:'#8c29ff', fontSize:25, fontWeight:'bold' }}>{data[index]}</Text>
+                          <Text style={{color:'white', fontSize:25, fontWeight:'bold' }}>{data[index]}</Text>
                         </Body>
                         <Right>
                             <Button style={{backgroundColor:'#121212'}} onPress={()=>this.deleteItem(index)}>
@@ -101,7 +101,7 @@ export default class App extends Component {
                         backgroundShadow='transparent'
                         raiseLevel={5}
                         paddingHorizontal={20}
-                        onPress={()=> {push('Statistics'), storeData(newList)}}
+                        onPress={()=> {storeData(newList),push('Statistics')}}
                         
                         
                     >
@@ -132,13 +132,6 @@ export default class App extends Component {
     }
     
 }
-const styles = StyleSheet.create({ 
-    textStyle:{
-        fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
-        fontSize:20
-      },
-
-})
 
 export{newList}
 

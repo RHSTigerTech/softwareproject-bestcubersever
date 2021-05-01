@@ -1,6 +1,6 @@
 
 import React, { useState, Component, useEffect } from 'react';
-import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable, KeyboardAvoidingView} from 'react-native';
+import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable, KeyboardAvoidingView, Dimensions} from 'react-native';
 import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme, FAB } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
@@ -111,6 +111,10 @@ let testdel=0;
 let amount =0;
 
 let pointerEventsChange='auto';
+
+
+const iconSize=45;
+
 
 
 
@@ -387,6 +391,9 @@ const App = ({navigation}) => {
 //sets the input value
   const [inputVal, setInputVal] = useState('');
 
+
+
+
 //function used when the add button is pressed on the modal
 let check=false;
 function store(){
@@ -637,20 +644,21 @@ function dismissed(){
           {delperm()}
           {clearAll()}
           {LimitLength(200)}
+          {console.log(iconSize)}
             
           
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:180, right:Platform.OS === 'ios' ? '0%':'0%', backgroundColor:'transparent',bottom:'50%'}}pointerEvents='box-none'>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:iconSize*4, right:Platform.OS === 'ios' ? '0%':'0%', position:'absolute', bottom:'-7%', backgroundColor:'white'}} pointerEvents='box-none'>
 
-          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '0%': '0%', left:Platform.OS === 'ios' ? '0%':'0%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
+          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '0%': '0%', left:Platform.OS === 'ios' ? '0%':'0%',backgroundColor: 'blue'}} pointerEvents='box-none'>
             
               <ActionButton
               buttonColor="#121212"
               hideShadow={true}
               
-              size={45}
+              size={iconSize}
               spacing={0}
               offsetX={0}
               offsetY={0}
@@ -698,7 +706,7 @@ function dismissed(){
 
 </View>
 
-<View style={{flexDirection:'row', zIndex:5, elevation:6}}>
+<View style={{flexDirection:'row', zIndex:5, elevation:6, position:'absolute',bottom:'2%'}}>
 {/* <View> */}
 {/* Virtual Cube */}
           <Icon.Button
@@ -753,7 +761,7 @@ function dismissed(){
             color='white'
             opacity={1}
             size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+            //paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
             onPress={() => {navigation.navigate('Learn')}}
           >
           <Text style={styles.BottomTabText}>Learn</Text>
@@ -844,8 +852,8 @@ const styles = StyleSheet.create({
     fontSize: 80,
     color:'#FFF',
     opacity:.87,
-    top:'70%', 
-    //backgroundColor:'white'
+    top:(Dimensions.get('window').height)*.55, 
+    backgroundColor:'green'
   },
 
   ScrambleText: {
@@ -854,7 +862,7 @@ const styles = StyleSheet.create({
     //width:'60%',
     height:'40%',
     color:'#FFF',
-    bottom:'10%',
+    bottom:'8%',
     paddingLeft:25,
     paddingRight:25,
     flexWrap:'wrap',
@@ -878,19 +886,19 @@ const styles = StyleSheet.create({
 
   startbuttonSize:{
     //flex:600,
-    width: '100%',
-    height: '100%',
-    bottom:'20%',
+    width: (Dimensions.get('window').width),
+    height: (Dimensions.get('window').height),
+    bottom:'17.5%',
     
     alignItems:'center',
-    //backgroundColor:'#FFF',
+    //backgroundColor:'blue',
     //zIndex:1,
     //elevation:2,
   },
   background:{
     backgroundColor:'#121212',
     flex:1,
-    paddingTop: Platform.OS === 'android' ?'3%' : 0
+    paddingTop: Platform.OS === 'android' ?'0%' : 0
 },
 
   actionButtonIcon: {
