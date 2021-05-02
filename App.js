@@ -36,6 +36,9 @@ const App = () => {
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', () => true)
   }, [])
+  
+
+
   return(
     
     <NavigationContainer>
@@ -61,11 +64,7 @@ const App = () => {
         options={{headerShown:false,gestureEnabled: false }}
         />
 
-        <Stack.Screen 
-          name='VirtualCube' 
-          component={VirtualCube}
-          options={{gestureEnabled: false }}
-        />
+        
 
         <Stack.Screen
           name='Statistics'
@@ -133,6 +132,12 @@ const App = () => {
         <Stack.Screen
           name="AlgList"
           component={AlgList}
+        />
+
+        <Stack.Screen 
+          name='VirtualCube' 
+          component={VirtualCube}
+          options={{gestureEnabled: false }}
         />
       </Stack.Navigator>
 

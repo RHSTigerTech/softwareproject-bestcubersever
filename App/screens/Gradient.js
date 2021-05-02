@@ -27,8 +27,7 @@ export default class App extends Component {
     
     return (
         <View style={styles.ViewContainer}>
-        {console.log(times())}
-    {console.log('------------------------')}
+        
             <Video
                 source={LightVideo}
                 rate={1.0}
