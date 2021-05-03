@@ -112,8 +112,15 @@ let amount =0;
 
 let pointerEventsChange='auto';
 
+let bottomButtonPadding=(Dimensions.get('window').width)*.029;
+
+
+let icon=(Dimensions.get('window').width)*.08;
+console.log(icon)
 
 const iconSize=45;
+let dynamicFont=(Dimensions.get('window').width)*.024306;
+console.log(dynamicFont)
 
 
 
@@ -650,21 +657,23 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:iconSize*4, right:Platform.OS === 'ios' ? '0%':'0%', position:'absolute', bottom:'-7%', backgroundColor:'white'}} pointerEvents='box-none'>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:iconSize*4, position:'absolute', bottom:'-10%' }} pointerEvents='box-none'>
 
-          <View style={{flex:1,flexDirection:'column',bottom:Platform.OS === 'ios' ? '0%': '0%', left:Platform.OS === 'ios' ? '0%':'0%',backgroundColor: 'blue'}} pointerEvents='box-none'>
+          <View style={{flex:1,flexDirection:'column',right: bottomButtonPadding, bottom:'3.15%' }} pointerEvents='box-none'>
             
               <ActionButton
               buttonColor="#121212"
               hideShadow={true}
-              
-              size={iconSize}
+              right={15}
+              size={icon*1.5}
               spacing={0}
               offsetX={0}
               offsetY={0}
               
               
               buttonText="+"
+              
+              
               >
               
             
@@ -701,13 +710,58 @@ function dismissed(){
               </ActionButton.Item>          
             </ActionButton>
             
+
+            <Text style={{ bottom:'-6.3%', position:'absolute', fontSize:dynamicFont, color:'white', opacity:1, textAlign:'center',  right:bottomButtonPadding*.6}}>Options</Text>
+
             </View>
 </View>
 
 </View>
 
-<View style={{flexDirection:'row', zIndex:5, elevation:6, position:'absolute',bottom:'2%'}}>
+<View style={{flexDirection:'row', zIndex:5, elevation:6, position:'absolute', left:bottomButtonPadding,bottom:'0%',}}>
 {/* <View> */}
+{/* Home Screen */}
+<Icon.Button
+            name='home' 
+            flexDirection='column'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
+            color='white'
+            opacity={1}
+            size={icon}
+            paddingHorizontal={bottomButtonPadding}
+            onPress={() => {navigation.navigate('Gradient'), storeData(convertedTimes)}}
+          >
+          <Text style={styles.BottomTabText}>Home</Text>
+          </Icon.Button>
+{/* Learn */}
+          <Icon.Button
+            name='school'
+            backgroundColor='transparent'
+            flexDirection='column'
+            //backgroundColor='#121212'
+            color='white'
+            opacity={1}
+            size={icon}
+            paddingHorizontal={bottomButtonPadding}
+            onPress={() => {navigation.navigate('Learn')}}
+          >
+          <Text style={styles.BottomTabText}>Learn</Text>
+          </Icon.Button>
+
+          <Icon.Button
+              name='camera'
+              backgroundColor='transparent'
+              flexDirection='column'
+              //backgroundColor='#121212'
+              color='white'
+              opacity={1}
+              size={icon}
+              paddingHorizontal={bottomButtonPadding}
+              onPress={() => navigation.navigate('Scanner')}
+          >
+          <Text style={styles.BottomTabText}>Solver</Text>
+          </Icon.Button>
 {/* Virtual Cube */}
           <Icon.Button
             name='cube-outline'
@@ -717,8 +771,8 @@ function dismissed(){
             alignItems='center'
             color='white'
             opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+            size={icon}
+            paddingHorizontal= {bottomButtonPadding}
             onPress={() => navigation.navigate('VirtualCube')}
           >
           <Text style={styles.BottomTabText}>3DCube</Text>
@@ -732,40 +786,19 @@ function dismissed(){
             //backgroundColor='#121212'
             color='white'
             opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+            size={icon}
+            paddingHorizontal={bottomButtonPadding}
             onPress={() => {navigation.push('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics</Text>
           </Icon.Button>
-{/* Home Screen */}
-          <Icon.Button
-            name='home' 
-            flexDirection='column'
-            backgroundColor='transparent'
-            //backgroundColor='#121212'
-            color='white'
-            opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Gradient'), storeData(convertedTimes)}}
-          >
-          <Text style={styles.BottomTabText}>Home</Text>
-          </Icon.Button>
-{/* Learn */}
-          <Icon.Button
-            name='school'
-            backgroundColor='transparent'
-            flexDirection='column'
-            //backgroundColor='#121212'
-            color='white'
-            opacity={1}
-            size={30}
-            //paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Learn')}}
-          >
-          <Text style={styles.BottomTabText}>Learn</Text>
-          </Icon.Button>
+
+
+          
+          
+          
+
+          {/* <Text style={styles.BottomTabText}>Options</Text> */}
           {/* <Provider style={{zIndex:8, elevation:9}}>
       <Portal style={{zIndex:8, elevation:9}}>
         <FAB.Group
@@ -853,7 +886,7 @@ const styles = StyleSheet.create({
     color:'#FFF',
     opacity:.87,
     top:(Dimensions.get('window').height)*.55, 
-    backgroundColor:'green'
+    //backgroundColor:'green'
   },
 
   ScrambleText: {
@@ -880,10 +913,12 @@ const styles = StyleSheet.create({
     color:'white',
     opacity:1,
     justifyContent:'center',
-    left:'-.5%',
-    paddingHorizontal:'3%',
+    left:(Dimensions.get('window').width)*-.0125,
+    //paddingHorizontal:'3%',
     bottom:0,
-    position:'absolute'
+    justifyContent:'space-evenly',
+    textAlign:'center'
+    //position:'absolute'
   },
 
   startbuttonSize:{
@@ -926,7 +961,7 @@ const styles = StyleSheet.create({
   },
 
   OptionsButton:{
-    fontSize:10, 
+    fontSize:dynamicFont, 
     left:Platform.OS === 'android' ? '54%':'60%', 
     //bottom:Platform.OS === 'android' ?'-96%':'0%', 
     color:'white',
