@@ -14,17 +14,29 @@ import {
 import { Constants } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+
+
+const val = Math.floor(100000 + Math.random() * 9999999);
+let amount =0;
+let colorName='';
+
+let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
+
+
+
 export default class App extends Component {
   state = {
     image: null,
     uploading: false,
   };
-
+  
+  
   render() {
     let {
       image
     } = this.state;
-
+    
+    console.log(val);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="default" />
@@ -143,19 +155,45 @@ export default class App extends Component {
       this.uploadImageAsync(pickerResult.uri);
     }
   };
-
+  
  uploadImageAsync(pictureuri) {
-  let apiUrl = 'localhost:5000/upload';
+  let apiUrl = 'https://metal-density-310218.wl.r.appspot.com/endpoint';
+   
+  
 
-
+  if (amount==0){
+    colorName='white'
+  }
+  if (amount==1){
+    colorName='blue'
+  }
+  if (amount==2){
+    colorName='orange'
+  }
+  if (amount==3){
+    colorName='green'
+  }
+  if (amount==4){
+    colorName='red'
+  }
+  if (amount==5){
+    colorName='yellow'
+  }
+  amount++;
+  if(amount >5){
+    amount=0;
+  }
+  console.log(colorName)
+  console.log(''+colorName+val+'.'+fileType)
 
     var data = new FormData();  
     data.append('file', {  
       uri: pictureuri,
-      name: 'file',
-      type: 'image/jpg'
+      name: ''+colorName+val+'.'+fileType,
+      type: 'image/'+fileType
+      
     })
-
+    
     fetch(apiUrl, {  
       headers: {
         'Accept': 'application/json',
@@ -171,12 +209,75 @@ export default class App extends Component {
       ).catch(err => {
       console.log('err ')
       console.log(err)
+      amount--;
     } )
 
 
 
 
   }
+
+
+  // getImageAsync(pictureuri) {
+  //   let apiUrl = 'https://metal-density-310218.wl.r.appspot.com/sendColors?serial='+val+'&extension='+fileType;
+     
+    
+  
+  //   if (amount==0){
+  //     colorName='white'
+  //   }
+  //   if (amount==1){
+  //     colorName='blue'
+  //   }
+  //   if (amount==2){
+  //     colorName='orange'
+  //   }
+  //   if (amount==3){
+  //     colorName='green'
+  //   }
+  //   if (amount==4){
+  //     colorName='red'
+  //   }
+  //   if (amount==5){
+  //     colorName='yellow'
+  //   }
+  //   amount++;
+  //   if(amount >5){
+  //     amount=0;
+  //   }
+  //   console.log(colorName)
+  //   console.log(''+colorName+val+fileType)
+  
+  //     var data = new FormData();  
+  //     data.append('file', {  
+  //       uri: pictureuri,
+  //       name: ''+colorName+val+'.png',
+  //       type: 'image/png'
+        
+  //     })
+      
+  //     fetch(apiUrl, {  
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'multipart/form-data'
+  //       },
+  //       method: 'POST',
+  //       body: data
+  //     }).then(
+  //       response => {
+  //         console.log('succ ')
+  //         console.log(response)
+  //       }
+  //       ).catch(err => {
+  //       console.log('err ')
+  //       console.log(err)
+  //       amount--;
+  //     } )
+  
+  
+  
+  
+  //   }
 
 }
 

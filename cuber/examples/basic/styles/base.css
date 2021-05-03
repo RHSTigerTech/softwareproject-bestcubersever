@@ -84,8 +84,8 @@ tr {
   ); /* IE10+ */
   background: radial-gradient(
     ellipse at center,
-    #d83b55 0%,
-    #4f76e2 90%
+    #d6d4d5 0%,
+    #121212 90%
   ); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e768', endColorstr='#d79050',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }

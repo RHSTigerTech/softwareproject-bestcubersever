@@ -1,4 +1,4 @@
-import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet } from "react-native";
+import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet, FlatList } from "react-native";
 import React, { useState, Component, useEffect } from 'react';
 import {Header, Card} from 'react-native-elements';
 import {storeData, getData} from './Timer';
@@ -63,7 +63,8 @@ const chartConfigs = [
     },    
   ];
 
-let data=[]
+
+let data=[];
 let removeZero=[]
 let undef;
 //removeZero=times()
@@ -74,14 +75,16 @@ let undef;
 // }
 
 
+
 export const timerthing = () => {
   if(typeof data== 'undefined'){
     undef=true;
-    console.log('data is undefined')
+    //console.log('data is undefined')
 }
-console.log(typeof data)
+//console.log(typeof data)
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
     data=deletetime();
+    
     data.pop();
     data.pop(); 
       if(data[0]==0){
@@ -92,6 +95,7 @@ console.log(typeof data)
 
   else{
     data=times();
+    
     if(data[data.length-1]==data[data.length-2]){
     data.pop();
     }
@@ -100,24 +104,31 @@ console.log(typeof data)
       data.shift();
       }
   }
-  console.log(data)
-  console.log('---------------------')
+  
+        
+    
+  
+  //console.log(data)
+  //console.log('---------------------')
 }
+
+
 export {data};
 // console.log(times().length)
 // console.log('whhhhhhhhhy isnt this woooooooooooooooorking')
-  export default class Stats extends React.Component { 
+  export default class Stats extends React.PureComponent { 
     
-    UNSAFE_componentWillMount() {
-         
-  }
+    
     renderTabBar() {
       return <StatusBar hidden />;
       
     }
-    
+    UNSAFE_componentDidMount(){
+      this.scrollViewRef.scrollToEnd({ animated: true })
+    }
 
     render() {
+      
       
       const {navigate} = this.props.navigation;
       const {push} = this.props.navigation;
@@ -148,6 +159,12 @@ export {data};
 
     const height=360;
 
+
+    
+
+    
+    
+
         
     timerthing()
     
@@ -157,22 +174,10 @@ export {data};
     for(let i=0;i<data.length;i++){
       if(data[i]!=0){
         numData.push(parseFloat(data[i])) 
-      }            
-    }
-    console.log(numData)
-    
-
-    //Average
-    for(let i=0;i<data.length;i++){
+      }    
       floatnum=parseFloat(data[i])
-      average=floatnum+average
-    }
-    average=average/data.length
-    // console.log(average)
-    // console.log(data.length)
-
-    //Best Time
-    for(let i=0;i<data.length;i++){
+      average=floatnum+average 
+      
       if(data[i]==0){
         data.splice(i,1);
       }
@@ -181,13 +186,7 @@ export {data};
       }
       if(parseFloat(data[i])<besttime){
         besttime=parseFloat(data[i])
-      }
-      
-    }
-    //console.log(besttime)
-
-    //Worst Time
-    for(let i=0;i<data.length;i++){
+      }       
       if(i===0){
         worsttime=parseFloat(data[i])
       }
@@ -195,6 +194,21 @@ export {data};
         worsttime=parseFloat(data[i])
       }
     }
+    //console.log(numData)
+    
+
+    //Average
+    
+    average=average/data.length
+    // console.log(average)
+    // console.log(data.length)
+
+    //Best Time
+
+    //console.log(besttime)
+
+    //Worst Time
+    
     //console.log(worsttime)
 
     //Median
@@ -203,7 +217,7 @@ export {data};
     }
     let len=numData.length;
     let arrSort=numData.slice(0).sort(sorter);
-    console.log(arrSort)
+    //console.log(arrSort)
     let mid = Math.ceil(len/2);
     //console.log(arrSort[mid-1])
     let Median= len % 2 == 0 ? (arrSort[mid] + arrSort[mid-1]) / 2 :arrSort[mid-1]
@@ -231,13 +245,25 @@ export {data};
     //   Avg5='Not Enough Data'
     // }
 
+    
+
+
+
+    // overflowdata=data;
+    //console.log(newArray.length)
+
+    
+    
+    
+    
+
     let xcords=[]
     for(let i=1;i<=data.length;i++){
       xcords.push(i)
     }
 
-    if (data.length>8){
-        width = data.length*50;
+    if (data.length>15){
+        width = data.length*25;
     }
     else{
         width = Dimensions.get("window").width;
@@ -293,8 +319,10 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
-          {chartConfigs.map(chartConfig => {
+        <ScrollView ref={ref => (this.scrollViewRef = ref)} bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+          
+          {
+            chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',
               opacity:.87,
@@ -307,6 +335,7 @@ export {data};
             bottom:0,
               ...chartConfig.style
             };
+            
             <Text style={labelStyle}>Bezier Line Chart</Text>
             return (
               <ScrollView
@@ -319,8 +348,8 @@ export {data};
                 }}
               >
 
-              <LineChart               
-                //bezier
+              <LineChart            
+                bezier
                 data={{
                   labels: xcords,                  
                   datasets: [{data}]}
@@ -342,8 +371,8 @@ export {data};
                 }       
  
                         
-              />   
-                        
+              />  
+                                      
         </ScrollView>        
             );            
           })}          

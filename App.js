@@ -36,6 +36,9 @@ const App = () => {
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', () => true)
   }, [])
+  
+
+
   return(
     
     <NavigationContainer>
@@ -61,11 +64,7 @@ const App = () => {
         options={{headerShown:false,gestureEnabled: false }}
         />
 
-        <Stack.Screen 
-          name='VirtualCube' 
-          component={VirtualCube}
-          options={{gestureEnabled: false }}
-        />
+        
 
         <Stack.Screen
           name='Statistics'
@@ -76,7 +75,7 @@ const App = () => {
         <Stack.Screen
           name='Scanner'
           component={Scanner}
-          options={{headerShown:false}}
+          //options={{headerShown:false}}
         />
 
         
@@ -109,19 +108,20 @@ const App = () => {
         <Stack.Screen
           name="HowToReadAlg"
           component={HowToReadAlg}
-          options={{headerShown:false}}
+          //options={{headerShown:false}}
         />
 
         <Stack.Screen
           name="BeginnerLearn"
           component={BeginnerLearn}
-          options={{headerShown:false}}
+          options={{headerTitle:'Beginner Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          //mode='screen'
         />
         
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
-          options={{headerShown:false}}
+          //options={{headerShown:false}}
         />
 
         <Stack.Screen 
@@ -132,6 +132,12 @@ const App = () => {
         <Stack.Screen
           name="AlgList"
           component={AlgList}
+        />
+
+        <Stack.Screen 
+          name='VirtualCube' 
+          component={VirtualCube}
+          options={{gestureEnabled: false }}
         />
       </Stack.Navigator>
 
