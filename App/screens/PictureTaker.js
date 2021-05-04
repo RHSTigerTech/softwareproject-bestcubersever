@@ -14,6 +14,8 @@ import {
 import { Constants } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+import AwesomeButton from "react-native-really-awesome-button";
+
 
 
 const val = Math.floor(100000 + Math.random() * 9999999);
@@ -41,11 +43,24 @@ export default class App extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="default" />
 
-        <Text
+        {/* <Text
           style={styles.exampleText}>
           Example: Upload ImagePicker result
-        </Text>
-
+        </Text> */}
+        <AwesomeButton 
+            width={300} 
+            height={65}
+            backgroundColor='#6d00eb'
+            textSize={27}
+            borderRadius={10}
+            activeOpacity={.8}	
+            backgroundDarker='#5c00c7'
+            backgroundShadow='transparent'
+            raiseLevel={5}
+            onPress={this._takePhoto}
+            >
+            Take Photo
+        </AwesomeButton>
         <Button
           onPress={this._pickImage}
           title="Pick an image from camera roll"
@@ -286,23 +301,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
+    backgroundColor:'#121212'
   },
   exampleText: {
     fontSize: 20,
     marginBottom: 20,
     marginHorizontal: 15,
     textAlign: 'center',
+    color:'white'
   },
   maybeRenderUploading: {
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'white',
     justifyContent: 'center',
   },
   maybeRenderContainer: {
     borderRadius: 3,
     elevation: 2,
     marginTop: 30,
-    shadowColor: 'rgba(0,0,0,1)',
+    shadowColor: 'white',
     shadowOpacity: 0.2,
     shadowOffset: {
       height: 4,

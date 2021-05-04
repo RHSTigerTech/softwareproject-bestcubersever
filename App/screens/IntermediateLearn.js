@@ -122,15 +122,16 @@ export default class App extends Component {
                         {/* STEP 2: F2L */}
                         <Text onLayout={event =>(this.FirstTwoLayers = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
-                            <Card.Title style={styles.textTitle}>2: First Two Layers (F2L)</Card.Title>
+                            <Card.Title style={styles.textTitle}>2: First Two Layers (F2L) {/* Card Title */}</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textSummary}>
                                 F2L is when you solve the white corners and the edges in the second later at the same time.  In order to do 
                                 this, you create pairs of a corner and an edge piece with corresponding colors.  Then, you insert them into the 
-                                spot they are supposed to be in.  This can be done intuitively or with algorithms.  
+                                spot they are supposed to be in.  This can be done intuitively or with algorithms. {/* Summary of Step */}
                             </Text>
                             <Card.Divider/>
-                            <Text style={styles.textHeader}>Basic Algorithms</Text>
+                            <Text style={styles.textHeader}>Basic Algorithms {/* Header: Algorithms */}</Text>
+                            {/* This view holds cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
                                     <B>Inserting Algorithms:</B>
@@ -149,6 +150,7 @@ export default class App extends Component {
                                 </Text>
                             </View>
                             <Text style={styles.textHeader}>Instructions and Cases</Text>
+                            {/* This view holds cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
                                     First, you want to get the corner and its matching edge into the yellow layer.  If you find the corner in 

@@ -657,9 +657,9 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:iconSize*4, position:'absolute', bottom:'-10%' }} pointerEvents='box-none'>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:icon*1.5*4, position:'absolute', bottom:(Dimensions.get('window').height)*-.086, }} pointerEvents='box-none'>
 
-          <View style={{flex:1,flexDirection:'column',right: bottomButtonPadding, bottom:'3.15%' }} pointerEvents='box-none'>
+          <View style={{flex:1,flexDirection:'column',right: bottomButtonPadding, bottom:(Dimensions.get('window').height)*.109 }} pointerEvents='box-none'>
             
               <ActionButton
               buttonColor="#121212"
@@ -711,7 +711,7 @@ function dismissed(){
             </ActionButton>
             
 
-            <Text style={{ bottom:'-6.3%', position:'absolute', fontSize:dynamicFont, color:'white', opacity:1, textAlign:'center',  right:bottomButtonPadding*.6}}>Options</Text>
+            <Text style={{ bottom:(Dimensions.get('window').height)*-.01, position:'absolute', fontSize:dynamicFont, color:'white', opacity:1, textAlign:'center',  right:bottomButtonPadding*.6}}>Options</Text>
 
             </View>
 </View>
@@ -876,7 +876,7 @@ const styles = StyleSheet.create({
     // position:'relative',
     alignItems: 'center',
     //justifyContent: 'center',
-    height:'90%'
+    height:'100%'
     //backgroundColor:'transparent'
   },
 
@@ -895,7 +895,8 @@ const styles = StyleSheet.create({
     //width:'60%',
     height:'40%',
     color:'#FFF',
-    bottom:'8%',
+    //paddingTop:'0%',
+    //top:'-10%',
     paddingLeft:25,
     paddingRight:25,
     flexWrap:'wrap',
@@ -935,7 +936,7 @@ const styles = StyleSheet.create({
   background:{
     backgroundColor:'#121212',
     flex:1,
-    paddingTop: Platform.OS === 'android' ?'0%' : 0
+    
 },
 
   actionButtonIcon: {
@@ -987,6 +988,6 @@ const options = {
     color: '#FFF',
     opacity:.87,
     marginLeft: 0,
-    top:'200%',
+    top:'270%',
   },
 };
