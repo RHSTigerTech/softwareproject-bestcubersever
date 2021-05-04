@@ -657,9 +657,9 @@ function dismissed(){
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:icon*1.5*4, position:'absolute', bottom:'-10%',  }} pointerEvents='box-none'>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:icon*1.5*4, position:'absolute', bottom:(Dimensions.get('window').height)*-.086, }} pointerEvents='box-none'>
 
-          <View style={{flex:1,flexDirection:'column',right: bottomButtonPadding, bottom:(Dimensions.get('window').height)*.109,  }} pointerEvents='box-none'>
+          <View style={{flex:1,flexDirection:'column',right: bottomButtonPadding, bottom:(Dimensions.get('window').height)*.109 }} pointerEvents='box-none'>
             
               <ActionButton
               buttonColor="#121212"
