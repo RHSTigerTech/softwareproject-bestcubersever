@@ -38,14 +38,20 @@ export default class App extends Component {
                     <Card containerStyle={{backgroundColor: '#121212'}}>
                 <Text style={styles.textDescripWideTip}>CFOP Method</Text>
                 <Text style={styles.textDescripWide}>Description</Text>
+                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('CFOP')}> Cube Basics </Text>
+
                 </Card>
                 <Card containerStyle={{backgroundColor: '#121212'}}>
                 <Text style={styles.textDescripWideTip}>ZZ Method</Text>
                 <Text style={styles.textDescripWide}>Description</Text>
+                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('ZZ')}> Cube Basics </Text>
+
                 </Card>
                 <Card containerStyle={{backgroundColor: '#121212'}}>
-                <Text style={styles.textDescripWideTip}>CFOP Method</Text>
+                <Text style={styles.textDescripWideTip}>Roux Method</Text>
                 <Text style={styles.textDescripWide}>Description</Text>
+                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('Roux')}> Cube Basics </Text>
+
                 </Card>
                     </ScrollView>
                 </View>
