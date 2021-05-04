@@ -23,7 +23,7 @@ export default class App extends Component {
                 <Card.Divider/>
                     <TouchableOpacity
                         onPress={() => {
-                            this.scrollViewRef.scrollTo({y: this.SideMoves.y,animated: true});
+                            this.scrollViewRef.scrollTo({y: this.SideMoves.y*3.95,animated: true});
                         }}
                     >
                     <Text style={styles.contentButtons}>1: Side Moves</Text>
@@ -31,7 +31,7 @@ export default class App extends Component {
 
                     <TouchableOpacity
                         onPress={() => {
-                            this.scrollViewRef.scrollTo({y: this.MiddleMoves.y,animated: true});
+                            this.scrollViewRef.scrollTo({y: this.MiddleMoves.y*1.35,animated: true});
                         }}
                     >
                     <Text paddingTop='-3%' style={styles.contentButtons} >2: Middle Moves</Text>
@@ -39,7 +39,7 @@ export default class App extends Component {
                     
                     <TouchableOpacity
                         onPress={() => {
-                            this.scrollViewRef.scrollTo({y: this.OrientationMoves.y,animated: true});
+                            this.scrollViewRef.scrollTo({y: this.OrientationMoves.y*1.275,animated: true});
                         }}
                     >
                     <Text style={styles.contentButtons}>3: Orientation Moves</Text>
@@ -94,6 +94,8 @@ export default class App extends Component {
                                 counter clockwise, up turn counter clockwise, and wide front turn counter clockwise.{'\n'}
                             </Text>
                             <Card.Divider/>
+                            <Text onLayout={event =>(this.SideMoves = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
+
                             <Text style={styles.textHeader}>Side Moves</Text>
                             <Text style={styles.textSubHeader}>R moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -199,6 +201,7 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>Fw' OR f' {'\n'}Rotate the front layer and middle layer counter clockwise</Text>
                                 </View>
                             </View>
+                            
                             <Text style={styles.textSubHeader}>{'\n'}B moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -219,7 +222,7 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>Bw' OR b' {'\n'}Rotate the back layer and middle layer counter clockwise</Text>
                                 </View>
                             </View>
-
+                            <Text onLayout={event =>(this.MiddleMoves = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                             <Text style={styles.textHeader}>{'\n'}Middle Moves</Text>
                             <Text style={styles.textSubHeader}>{'\n'}M moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -256,6 +259,7 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>S' {'\n'}Rotate the middle layer between F and B counter clockwise</Text>
                                 </View>
                             </View>
+                            <Text onLayout={event =>(this.OrientationMoves = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
 
                             <Text style={styles.textHeader}>{'\n'}Orientation Moves</Text>
                             <Text style={styles.textSubHeader}>{'\n'}X moves</Text>
@@ -512,6 +516,7 @@ const styles = StyleSheet.create({
         color:'transparent',
         alignItems:'center'
     },
+    
 
     contentButtons:{
         color:'#7600ff',

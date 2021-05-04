@@ -108,6 +108,8 @@ const App = () => {
         <Stack.Screen
           name="HowToReadAlg"
           component={HowToReadAlg}
+          options={{headerTitle:'Cube Basics', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+
           //options={{headerShown:false}}
         />
 
@@ -121,7 +123,7 @@ const App = () => {
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
-          //options={{headerShown:false}}
+          options={{headerTitle:'Intermediate Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen 
