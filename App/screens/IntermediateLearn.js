@@ -754,7 +754,7 @@ const styles = StyleSheet.create({
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
         backgroundColor:'#121212',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        
         
     },
 })

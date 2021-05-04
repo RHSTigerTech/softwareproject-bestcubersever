@@ -121,12 +121,15 @@ const App = () => {
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
-          //options={{headerShown:false}}
+          options={{headerTitle:'Intermediate Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+
         />
 
         <Stack.Screen 
           name="AdvancedLearn" 
           component={AdvancedLearn}
+          options={{headerTitle:'Advanced Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+
         />
         
         <Stack.Screen
