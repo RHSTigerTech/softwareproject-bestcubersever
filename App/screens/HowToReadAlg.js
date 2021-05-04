@@ -23,7 +23,7 @@ export default class App extends Component {
                 <Card.Divider/>
                     <TouchableOpacity
                         onPress={() => {
-                            this.scrollViewRef.scrollTo({y: this.SideMoves.y*3.95,animated: true});
+                            this.scrollViewRef.scrollTo({y: this.SideMoves.y*(Dimensions.get('window').width)*.0097,animated: true});
                         }}
                     >
                     <Text style={styles.contentButtons}>1: Side Moves</Text>
