@@ -7,13 +7,11 @@ import * as Font from 'expo-font';
 import AwesomeButton from "react-native-really-awesome-button";
 
 
-
-
-
-
+const initialList=[5,3,8,9,6,4];
 let randomthing=false;
 let newList;
 let smallList;
+let amount=0;
 
 
 export default class App extends Component {
@@ -32,23 +30,39 @@ export default class App extends Component {
         console.log(data)
         this.setState({ users: data });
         newList =this.state.users;
-        
+        //const initialList=this.state.users;
 
         //viewlist=false;    
     }
 
     
-    deleteAllItems(){
-        this.setState({users:[]});
-        newList =this.state.users;
-    }
+   
 
     deleteItem(index){
+        if(amount==0){
         let helperArray=this.state.users;
         helperArray.splice(index, 1);
         this.setState({users:helperArray})
         newList =this.state.users;
+        }
+        else{
+            console.log(initialList)
+            
+            this.setState({users:initialList})
+            this.state.users=initialList;
+
+
+        }
     }
+
+    // cancelDelete(){
+        
+    //     console.log('before')
+    //     console.log(initialList)
+    //     this.setState({users:initialList}); 
+    //     console.log(this.state.users);
+
+    // }
 
     selectAll(){}
 
@@ -71,7 +85,8 @@ export default class App extends Component {
                 </Header> */}
                 
                 <Content>
-                    {smallList.map((item,index, data) => (
+                    {console.log(this.state.users)}
+                    {this.state.users.map((item,index, data) => (
                         
                       <ListItem key={index}>
                      
@@ -101,7 +116,7 @@ export default class App extends Component {
                         backgroundShadow='transparent'
                         raiseLevel={5}
                         paddingHorizontal={20}
-                        onPress={()=> {storeData(newList),push('Statistics')}}
+                        onPress={()=> {push('Statistics')}}
                         
                         
                     >
@@ -118,7 +133,7 @@ export default class App extends Component {
                         backgroundDarker='#5c00c7'
                         backgroundShadow='transparent'
                         raiseLevel={5}
-                        onPress={()=> {push('Statistics'), storeData(data)}}
+                        onPress={()=> { amount++, this.deleteItem(), push('Statistics'), amount=0}}
                         
                         
                     >

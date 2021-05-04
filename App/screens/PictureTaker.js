@@ -57,9 +57,9 @@ export default class App extends Component {
             backgroundDarker='#5c00c7'
             backgroundShadow='transparent'
             raiseLevel={5}
-            onPress={this._pickImage}
+            onPress={this._takePhoto}
             >
-            Image From Camera Roll
+            Take Photo
         </AwesomeButton>
         <Button
           onPress={this._pickImage}
