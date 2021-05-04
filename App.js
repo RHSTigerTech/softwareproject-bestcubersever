@@ -15,6 +15,9 @@ import Statistics from './App/screens/Statistics';
 import Scanner from './App/screens/PictureTaker';
 import NumberList from './App/screens/NumberList'
 import VirtualCube from './App/screens/VirtualCube.js';
+import CFOP from './App/screens/CFOP.js'
+import ZZ from './App/screens/ZZ.js'
+import Roux from './App/screens/Roux.js'
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -108,6 +111,8 @@ const App = () => {
         <Stack.Screen
           name="HowToReadAlg"
           component={HowToReadAlg}
+          options={{headerTitle:'Cube Basics', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+
           //options={{headerShown:false}}
         />
 
@@ -122,7 +127,6 @@ const App = () => {
           name="IntermediateLearn"
           component={IntermediateLearn}
           options={{headerTitle:'Intermediate Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
-
         />
 
         <Stack.Screen 
@@ -140,6 +144,21 @@ const App = () => {
         <Stack.Screen 
           name='VirtualCube' 
           component={VirtualCube}
+          options={{gestureEnabled: false }}
+        />
+        <Stack.Screen 
+          name='CFOP' 
+          component={CFOP}
+          options={{gestureEnabled: false }}
+        />
+        <Stack.Screen 
+          name='ZZ' 
+          component={ZZ}
+          options={{gestureEnabled: false }}
+        />
+        <Stack.Screen 
+          name='Roux' 
+          component={Roux}
           options={{gestureEnabled: false }}
         />
       </Stack.Navigator>
