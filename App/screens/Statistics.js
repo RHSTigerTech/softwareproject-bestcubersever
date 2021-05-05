@@ -157,7 +157,7 @@ export {data};
 
     let changedList=[1];
 
-    const height= Platform.OS === 'android' ?  ((Dimensions.get('window').height)*.59)-StatusBar.currentHeight: ((Dimensions.get('window').height)*.59)-getStatusBarHeight();
+    const height= ((Dimensions.get('window').height)*.55)
     console.log(height)
 
     // let iosStatusBar=getStatusBarHeight(true);
@@ -327,7 +327,7 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView ref={ref => (this.scrollViewRef = ref)} top='50%' directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar} position="absolute">
+        <ScrollView ref={ref => (this.scrollViewRef = ref)} top= {Platform.OS === 'android' ?  (Dimensions.get('window').height)*.5-StatusBar.currentHeight: (Dimensions.get('window').height)*.5-getStatusBarHeight()} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar} position="absolute">
           
           {
             chartConfigs.map(chartConfig => {
