@@ -156,7 +156,8 @@ export {data};
 
     let changedList=[1];
 
-    const height=(Dimensions.get('window').height)*.59;
+    const height= Platform.OS === 'android' ?  ((Dimensions.get('window').height)*.59)-StatusBar.currentHeight: ((Dimensions.get('window').height)*.59)
+    console.log(height)
 
 
     
@@ -273,7 +274,7 @@ export {data};
       <View style={{backgroundColor:'#121212', height:'100%', paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,}}>
         <View style={{backgroundColor: '#121212',height:'92%'}} >
          
-        <View style={{top:'6%', alignItems:'center'}}>
+        <View style={{top:Platform.OS === 'android' ?  50: 72, alignItems:'center'}}>
         <AwesomeButton 
                         
                         width={(Dimensions.get('window').width)*.8} 
