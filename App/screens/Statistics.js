@@ -156,7 +156,7 @@ export {data};
 
     let changedList=[1];
 
-    const height=360;
+    const height=(Dimensions.get('window').height)*.59;
 
 
     
@@ -270,14 +270,14 @@ export {data};
 
       return (
        
-      <View style={{backgroundColor:'#121212', height:'100%'}}>
-        <View style={{backgroundColor: '#121212',height:'90%'}} >
+      <View style={{backgroundColor:'#121212', height:'100%', paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,}}>
+        <View style={{backgroundColor: '#121212',height:'92%'}} >
          
-        <View style={{top:'7%', alignItems:'center'}}>
+        <View style={{top:'6%', alignItems:'center'}}>
         <AwesomeButton 
                         
-                        width={300} 
-                        height={40}
+                        width={(Dimensions.get('window').width)*.8} 
+                        height={(Dimensions.get('window').height)*.067}
                         backgroundColor='#6d00eb'
                         textSize={27}
                         borderRadius={10}
@@ -291,8 +291,8 @@ export {data};
              </AwesomeButton>
              </View>
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:'28%', top:'7%',zIndex:5}}>
-      <ScrollView >
+        <Card containerStyle={{backgroundColor: '#121212',height:(Dimensions.get('window').height)*.25, top:'7%',zIndex:5}}>
+      <ScrollView indicatorStyle='white' showsVerticalScrollIndicator={true} persistentScrollbar={true}>
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
         <Card.Divider/>
@@ -318,7 +318,7 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView ref={ref => (this.scrollViewRef = ref)} bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        <ScrollView ref={ref => (this.scrollViewRef = ref)} bottom={'-13%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           
           {
             chartConfigs.map(chartConfig => {
@@ -343,7 +343,8 @@ export {data};
                 vertical={false} 
                 horizontal={true}
                 style={{
-                  backgroundColor: chartConfig.backgroundColor
+                  backgroundColor: chartConfig.backgroundColor,
+                  
                 }}
               >
 
@@ -381,7 +382,7 @@ export {data};
 
     
     </View>
-      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
+      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', bottom:0}}>
                 
                 <Icon.Button
                     name='cube-outline'
@@ -537,7 +538,8 @@ const styles = StyleSheet.create({
       opacity:1,
       justifyContent:'center',
       left:'-7%',
-      paddingHorizontal:'1%'
+      paddingHorizontal:'1%',
+      bottom:0
     },
 
 })

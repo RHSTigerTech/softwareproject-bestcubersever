@@ -139,6 +139,8 @@ const App = () => {
         <Stack.Screen
           name="AlgList"
           component={AlgList}
+          options={{headerTitle:'List of Algorithms', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+
         />
 
         <Stack.Screen 

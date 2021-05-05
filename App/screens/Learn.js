@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View,Platform, StatusBar, Image, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, View,Platform, StatusBar, Image, SafeAreaView, Text, Dimensions } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
 import AwesomeButton from "react-native-really-awesome-button";
 //import {Header} from 'react-native-elements'
@@ -8,8 +8,8 @@ import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button,
 
 
 
-const ButtonHeight=65;
-const ButtonWidth=320;
+const ButtonHeight=(Dimensions.get('window').height)*.1;
+const ButtonWidth=(Dimensions.get('window').width)*.8;
 const ButtonRadius=10; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
 

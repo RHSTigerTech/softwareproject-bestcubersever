@@ -20,8 +20,9 @@ export default class App extends Component {
     render(){
     const {navigate} = this.props.navigation;
 
-    const ButtonHeight=65;
-    const ButtonWidth=320;
+    const ButtonHeight=(Dimensions.get('window').height)*.1;
+    
+    const ButtonWidth=(Dimensions.get('window').width)*.8;
     const ButtonRadius=10; // effects how circular the buttons look
     const ButtonGradientDirection='vertical';
     
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     ViewContainer:{
         flex: 1, 
         alignItems: 'center', 
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 
     image:{        

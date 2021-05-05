@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
         lineHeight:20,
         letterSpacing:.2,
         //paddingTop:2,
-        top:'20%',
+        //top:'20%',
         //bottom:-10,
         textDecorationLine: 'underline',
         //paddingTop:5
