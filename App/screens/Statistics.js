@@ -279,16 +279,17 @@ export {data};
 
       return (
        
-      <View style={{backgroundColor:'#121212', height:'100%', paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(),}}>
+      <View style={{backgroundColor:'#121212', height:'100%',}}>
         <View style={{backgroundColor: '#121212',height:'92%'}} >
          
-        <View style={{top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(true), alignItems:'center'}}>
+        <View style={{ alignItems:'center'}}>
         <AwesomeButton 
                         
                         width={(Dimensions.get('window').width)*.8} 
                         height={(Dimensions.get('window').height)*.067}
                         backgroundColor='#6d00eb'
                         textSize={27}
+                        bottom={0}
                         borderRadius={10}
                         activeOpacity={.8}	
                         backgroundDarker='#5c00c7'
@@ -300,7 +301,7 @@ export {data};
              </AwesomeButton>
              </View>
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:Platform.OS === 'android' ?  (Dimensions.get('window').height)*.35-StatusBar.currentHeight: (Dimensions.get('window').height)*.27-getStatusBarHeight(), top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight()}}>
+        <Card containerStyle={{backgroundColor: '#121212',height:(Dimensions.get('window').height)*.29, top:0}}>
       <ScrollView indicatorStyle='white' showsVerticalScrollIndicator={true} persistentScrollbar={true}>
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
@@ -327,7 +328,7 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView ref={ref => (this.scrollViewRef = ref)} top= {Platform.OS === 'android' ?  (Dimensions.get('window').height)*.5-StatusBar.currentHeight: (Dimensions.get('window').height)*.5-getStatusBarHeight()} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar} position="absolute">
+        <ScrollView ref={ref => (this.scrollViewRef = ref)}  directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           
           {
             chartConfigs.map(chartConfig => {
@@ -394,7 +395,7 @@ export {data};
 
     
     </View>
-      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', bottom:0}}>
+      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly',bottom:0 }}>
                 
                 <Icon.Button
                     name='cube-outline'
@@ -505,11 +506,7 @@ export {data};
   
 
 const styles = StyleSheet.create({
-    ViewContainer:{
-        flex: 1, 
-        alignItems: 'center', 
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    },  
+    
     ErrorContainer:{
       flex: 1, 
       alignItems: 'center', 
@@ -519,14 +516,7 @@ const styles = StyleSheet.create({
 
 
     },
-    AverageTime:{
-      color:'white',
-      opacity:.87,
-      top:'-3%',
-      textAlign:'center',
-      fontSize:30,
-      borderColor:'white',
-    },
+    
     scroll:{
       backgroundColor:'transparent'
     },
