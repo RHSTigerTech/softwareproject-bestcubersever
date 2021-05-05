@@ -14,6 +14,8 @@ import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ErrorBoundary from "./ErrorBoundary";
 import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exception-handler'
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 
 // setJSExceptionHandler((error, isFatal) => {
 //   console.log(error, isFatal)
@@ -25,8 +27,8 @@ import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exc
 // // )
 // }, true);
 
-storeData(convertedTimes)
-getData()
+// storeData(convertedTimes)
+// getData()
 
 // class ErrorBoundary extends React.Component {
 //   constructor(props) {
@@ -138,7 +140,6 @@ export {data};
   try{ 
      
     let width;
-    
 
     let average=0.0;
 
@@ -156,9 +157,16 @@ export {data};
 
     let changedList=[1];
 
-    const height= Platform.OS === 'android' ?  ((Dimensions.get('window').height)*.59)-StatusBar.currentHeight: ((Dimensions.get('window').height)*.59)
+    const height= Platform.OS === 'android' ?  ((Dimensions.get('window').height)*.59)-StatusBar.currentHeight: ((Dimensions.get('window').height)*.59)-getStatusBarHeight();
     console.log(height)
 
+    // let iosStatusBar=getStatusBarHeight(true);
+
+    // console.log(iosStatusBar)
+
+    console.log(getStatusBarHeight());
+
+    console.log('height of status')
 
     
 
@@ -271,10 +279,10 @@ export {data};
 
       return (
        
-      <View style={{backgroundColor:'#121212', height:'100%', paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,}}>
+      <View style={{backgroundColor:'#121212', height:'100%', paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(),}}>
         <View style={{backgroundColor: '#121212',height:'92%'}} >
          
-        <View style={{top:Platform.OS === 'android' ?  50: 72, alignItems:'center'}}>
+        <View style={{top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(), alignItems:'center'}}>
         <AwesomeButton 
                         
                         width={(Dimensions.get('window').width)*.8} 
@@ -292,7 +300,7 @@ export {data};
              </AwesomeButton>
              </View>
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:(Dimensions.get('window').height)*.25, top:'7%',zIndex:5}}>
+        <Card containerStyle={{backgroundColor: '#121212',height:Platform.OS === 'android' ?  (Dimensions.get('window').height)*.27-StatusBar.currentHeight: (Dimensions.get('window').height)*.27-getStatusBarHeight(), top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(),zIndex:5}}>
       <ScrollView indicatorStyle='white' showsVerticalScrollIndicator={true} persistentScrollbar={true}>
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
@@ -319,7 +327,7 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView ref={ref => (this.scrollViewRef = ref)} bottom={'-13%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        <ScrollView ref={ref => (this.scrollViewRef = ref)} top={Platform.OS === 'android' ?  ((Dimensions.get('window').height)*.1)-StatusBar.currentHeight:((Dimensions.get('window').height)*.1)-getStatusBarHeight()} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           
           {
             chartConfigs.map(chartConfig => {
