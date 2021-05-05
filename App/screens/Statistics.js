@@ -27,8 +27,8 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 // // )
 // }, true);
 
-// storeData(convertedTimes)
-// getData()
+storeData(convertedTimes)
+getData()
 
 // class ErrorBoundary extends React.Component {
 //   constructor(props) {
@@ -86,7 +86,7 @@ export const timerthing = () => {
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
     data=deletetime();
     
-    data.pop();
+    //data.pop();
     data.pop(); 
       if(data[0]==0){
         //console.log(data[0])
@@ -282,7 +282,7 @@ export {data};
       <View style={{backgroundColor:'#121212', height:'100%', paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(),}}>
         <View style={{backgroundColor: '#121212',height:'92%'}} >
          
-        <View style={{top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(), alignItems:'center'}}>
+        <View style={{top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(true), alignItems:'center'}}>
         <AwesomeButton 
                         
                         width={(Dimensions.get('window').width)*.8} 
@@ -351,6 +351,8 @@ export {data};
                 automaticallyAdjustContentInsets={false} 
                 vertical={false} 
                 horizontal={true}
+                paddingTop='1%'
+                paddingBottom='1%'
                 style={{
                   backgroundColor: chartConfig.backgroundColor,
                   
