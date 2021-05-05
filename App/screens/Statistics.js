@@ -300,7 +300,7 @@ export {data};
              </AwesomeButton>
              </View>
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:Platform.OS === 'android' ?  (Dimensions.get('window').height)*.27-StatusBar.currentHeight: (Dimensions.get('window').height)*.27-getStatusBarHeight(), top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight(),zIndex:5}}>
+        <Card containerStyle={{backgroundColor: '#121212',height:Platform.OS === 'android' ?  (Dimensions.get('window').height)*.35-StatusBar.currentHeight: (Dimensions.get('window').height)*.27-getStatusBarHeight(), top:Platform.OS === 'android' ?  StatusBar.currentHeight: getStatusBarHeight()}}>
       <ScrollView indicatorStyle='white' showsVerticalScrollIndicator={true} persistentScrollbar={true}>
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
@@ -327,7 +327,7 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView ref={ref => (this.scrollViewRef = ref)} top={Platform.OS === 'android' ?  ((Dimensions.get('window').height)*.1)-StatusBar.currentHeight:((Dimensions.get('window').height)*.1)-getStatusBarHeight()} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        <ScrollView ref={ref => (this.scrollViewRef = ref)} top='50%' directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar} position="absolute">
           
           {
             chartConfigs.map(chartConfig => {
@@ -351,11 +351,12 @@ export {data};
                 automaticallyAdjustContentInsets={false} 
                 vertical={false} 
                 horizontal={true}
-                paddingTop='1%'
-                paddingBottom='1%'
+                
+                
                 style={{
                   backgroundColor: chartConfig.backgroundColor,
                   
+                
                 }}
               >
 
