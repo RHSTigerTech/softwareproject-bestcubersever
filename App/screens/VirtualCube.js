@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
+let shouldRender=1;
 
 export default class App extends React.PureComponent {
   
@@ -12,7 +12,10 @@ export default class App extends React.PureComponent {
 
   render() {
     const {navigate} = this.props.navigation;
-
+    if(shouldRender==1){
+      navigate('Gradient')
+      shouldRender=0;
+    }
     // const myScript = 
       
     //   setTimeout(function() { window.alert('hi') }, 2000);
@@ -38,80 +41,84 @@ export default class App extends React.PureComponent {
           //injectedJavaScript={myScript}
         />
         </View>
-        <View style={{flexDirection:'row', backgroundColor:'#121212'}}>
-                
-                    <Icon.Button
-                        name='cube-outline'
-                        flexDirection='column'
-                        backgroundColor='transparent'
-                        //backgroundColor='#121212'
-                        alignItems='center'
-                        color='white'
-                        opacity={1}
-                        size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={({}) => navigate('VirtualCube')}
-                        >
-                        <Text style={styles.BottomTabText}>3DCube</Text>
-                    </Icon.Button>
-                    {/* Statistics */}
-                    <Icon.Button            
-                        name='chart-line'
-                        alignItems='center'
-                        flexDirection='column'
-                        backgroundColor='transparent'
-                        //backgroundColor='#121212'
-                        color='white'
-                        opacity={1}
-                        size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Statistics')}
-                    >
-                    <Text style={styles.BottomTabText}>Statistics</Text>
-                    </Icon.Button>
-                    {/* Home Screen */}
-                    <Icon.Button
+        <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', left:'1.35%'}}>
+                 {/* Home Screen */}
+                 <Icon.Button
                         name='home' 
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
                         color='white'
+                        alignSelf='center'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        paddingHorizontal='4%'
                         onPress={() => navigate('Gradient')}
                     >
                     <Text style={styles.BottomTabText}>Home</Text>
                     </Icon.Button>
-                    {/* Learn */}
                     <Icon.Button
                         name='school'
-                        backgroundColor='transparent'
                         flexDirection='column'
+                        backgroundColor='transparent'
                         //backgroundColor='#121212'
+                        alignSelf='center'
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Learn')}
-                    >
-                    <Text style={styles.BottomTabText}>Learn</Text>
+                        paddingHorizontal='4%'
+                        onPress={({}) => navigate('Learn')}
+                        >
+                        <Text style={styles.BottomTabText}>Learn</Text>
                     </Icon.Button>
                     <Icon.Button
                         name='timer-outline'
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
-                        alignItems='center'
+                        alignSelf='center'
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        paddingHorizontal='4%'
                         onPress={() => navigate('Timer')}
                         >
                         <Text style={styles.BottomTabText}>Timer</Text>
                     </Icon.Button>
-                </View>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='camera'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        alignSelf='center'
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Scanner')}
+                    >
+                    <Text style={styles.BottomTabText}>Solver</Text>
+                    </Icon.Button>
+                    
+            
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignSelf='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                   
+            </View>
       </View>
       </SafeAreaView>
     );
