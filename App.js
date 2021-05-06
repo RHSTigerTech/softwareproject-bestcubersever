@@ -48,6 +48,14 @@ const App = () => {
       
       <Stack.Navigator>
         {/*   Home Screens   */}
+        <Stack.Screen 
+          name='VirtualCube' 
+          component={VirtualCube}
+          options={{headerTitle:'Virtual Cube', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+
+        />
+
+
 
         <Stack.Screen 
           name="Gradient" 
@@ -143,11 +151,7 @@ const App = () => {
 
         />
 
-        <Stack.Screen 
-          name='VirtualCube' 
-          component={VirtualCube}
-          options={{gestureEnabled: false }}
-        />
+        
         <Stack.Screen 
           name='CFOP' 
           component={CFOP}
