@@ -87,7 +87,7 @@ export const timerthing = () => {
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
     data=deletetime();
     
-    //data.pop();
+    data.pop();
     data.pop(); 
       if(data[0]==0){
         //console.log(data[0])
@@ -297,7 +297,7 @@ export {data};
             <View style={{height: '90%'}}>
          
         <AwesomeButton 
-                        style={{alignSelf:'center',top:((Dimensions.get('window').height)*.03)}}
+                        style={{alignSelf:'center',top: Platform.OS== 'android' ? ((Dimensions.get('window').height)*.03):0}}
                         width={(Dimensions.get('window').width)*.8} 
                         height={(Dimensions.get('window').height)*.067}
                         backgroundColor='#6d00eb'
