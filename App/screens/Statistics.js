@@ -288,7 +288,7 @@ export {data};
       return (
        
         
-        
+      <SafeAreaView style={styles.background}>
         <View style={styles.ViewContainer} >
         <StatusBar
           hidden={true}
@@ -485,7 +485,7 @@ export {data};
                 
             </View>
     </View> 
-    
+    </SafeAreaView>  
     
     );
   }
