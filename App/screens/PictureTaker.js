@@ -24,7 +24,7 @@ let colorName='';
 
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 
-
+export {val};
 
 export default class App extends Component {
   state = {
@@ -34,6 +34,9 @@ export default class App extends Component {
   
   
   render() {
+
+    const {navigate} = this.props.navigation;
+
     let {
       image
     } = this.state;
@@ -47,26 +50,9 @@ export default class App extends Component {
           style={styles.exampleText}>
           Example: Upload ImagePicker result
         </Text> */}
-        <AwesomeButton 
-            width={300} 
-            height={65}
-            backgroundColor='#6d00eb'
-            textSize={27}
-            borderRadius={10}
-            activeOpacity={.8}	
-            backgroundDarker='#5c00c7'
-            backgroundShadow='transparent'
-            raiseLevel={5}
-            onPress={this._takePhoto}
-            >
-            Take Photo
-        </AwesomeButton>
-        <Button
-          onPress={this._pickImage}
-          title="Pick an image from camera roll"
-        />
+        
 
-        <Button onPress={this._takePhoto} title="Take a photo" />
+        <Button onPress={({}) => navigate('White')} title="Take a photo" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}

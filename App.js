@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 
-import ViewImageScreen from './App/screens/ViewImageScreen';	
+
 import Gradient from './App/screens/Gradient';
 import Learn from './App/screens/Learn';
 import BeginnerLearn from './App/screens/BeginnerLearn';
@@ -18,6 +18,14 @@ import VirtualCube from './App/screens/VirtualCube.js';
 import CFOP from './App/screens/CFOP.js'
 import ZZ from './App/screens/ZZ.js'
 import Roux from './App/screens/Roux.js'
+
+import White from './App/screens/ColorPictureTaker/White'
+import Blue from './App/screens/ColorPictureTaker/Blue'
+import Orange from './App/screens/ColorPictureTaker/Orange'
+import Green from './App/screens/ColorPictureTaker/Green'
+import Red from './App/screens/ColorPictureTaker/Red'
+import Yellow from './App/screens/ColorPictureTaker/Yellow'
+
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -83,24 +91,9 @@ const App = () => {
           options={{headerShown:false,gestureEnabled: false,}}
         />
 
-        <Stack.Screen
-          name='Scanner'
-          component={Scanner}
-          //options={{headerShown:false}}
-        />
-
         
 
-        {/* <Stack.Screen 
-          name="WelcomeScreen" 
-          component={WelcomeScreen} 
-          options={{headerShown:false}}
-        /> */}
-
-        <Stack.Screen 
-        name="ViewImageScreen" 
-        component={ViewImageScreen} 
-        options={{headerShown:false}}/>
+      
 
         <Stack.Screen 
         name="NumberList" 
@@ -167,6 +160,50 @@ const App = () => {
           component={Roux}
           options={{gestureEnabled: false }}
         />
+
+        <Stack.Screen
+          name='Scanner'
+          component={Scanner}
+          options={{headerTitle:'Scanner', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='White'
+          component={White}
+          options={{headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='Blue'
+          component={Blue}
+          options={{headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+        <Stack.Screen
+          name='Orange'
+          component={Orange}
+          options={{headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+        <Stack.Screen
+          name='Green'
+          component={Green}
+          options={{headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='Red'
+          component={Red}
+          options={{headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='Yellow'
+          component={Yellow}
+          options={{headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+
+
+
       </Stack.Navigator>
 
       
