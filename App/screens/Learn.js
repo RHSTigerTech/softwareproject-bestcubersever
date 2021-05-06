@@ -152,6 +152,7 @@ function Learn({navigation}) {
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
                         color='white'
+                        alignSelf='center'
                         opacity={1}
                         size={30}
                         paddingHorizontal='4%'
@@ -164,7 +165,7 @@ function Learn({navigation}) {
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
-                        alignItems='center'
+                        alignSelf='center'
                         color='white'
                         opacity={1}
                         size={30}
@@ -194,7 +195,7 @@ function Learn({navigation}) {
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
-                        alignItems='center'
+                        alignSelf='center'
                         color='white'
                         opacity={1}
                         size={30}
@@ -206,7 +207,7 @@ function Learn({navigation}) {
                     {/* Statistics */}
                     <Icon.Button            
                         name='chart-line'
-                        alignItems='center'
+                        alignSelf='center'
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
