@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View,Platform, StatusBar, Image, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, View,Platform, StatusBar, Image, SafeAreaView, Text, Dimensions } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
 import AwesomeButton from "react-native-really-awesome-button";
 //import {Header} from 'react-native-elements'
@@ -8,8 +8,8 @@ import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button,
 
 
 
-const ButtonHeight=65;
-const ButtonWidth=320;
+const ButtonHeight=(Dimensions.get('window').height)*.1;
+const ButtonWidth=(Dimensions.get('window').width)*.8;
 const ButtonRadius=10; // effects how circular the buttons look
 const ButtonGradientDirection='vertical';
 
@@ -144,50 +144,35 @@ function Learn({navigation}) {
                 </View>
                 
             </View>
-            <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
-                
-            <Icon.Button
-                        name='cube-outline'
-                        flexDirection='column'
-                        backgroundColor='transparent'
-                        //backgroundColor='#121212'
-                        alignItems='center'
-                        color='white'
-                        opacity={1}
-                        size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={({}) => navigation.navigate('VirtualCube')}
-                        >
-                        <Text style={styles.BottomTabText}>3DCube</Text>
-                    </Icon.Button>
-                    {/* Statistics */}
-                    <Icon.Button            
-                        name='chart-line'
-                        alignItems='center'
-                        flexDirection='column'
-                        backgroundColor='transparent'
-                        //backgroundColor='#121212'
-                        color='white'
-                        opacity={1}
-                        size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigation.navigate('Statistics')}
-                    >
-                    <Text style={styles.BottomTabText}>Statistics</Text>
-                    </Icon.Button>
-                    {/* Home Screen */}
-                    <Icon.Button
+            <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', left:'1.35%'}}>
+                 {/* Home Screen */}
+                 <Icon.Button
                         name='home' 
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
                         color='white'
+                        alignSelf='center'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        paddingHorizontal='4%'
                         onPress={() => navigation.navigate('Gradient')}
                     >
                     <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignSelf='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigation.navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
                     </Icon.Button>
                     {/* Learn */}
                     <Icon.Button
@@ -198,25 +183,43 @@ function Learn({navigation}) {
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        alignSelf='center'
+                        paddingHorizontal='4%'
                         onPress={() => navigation.navigate('Scanner')}
                     >
                     <Text style={styles.BottomTabText}>Solver</Text>
                     </Icon.Button>
-                    <Icon.Button
-                        name='timer-outline'
+                    
+            <Icon.Button
+                        name='cube-outline'
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
-                        alignItems='center'
+                        alignSelf='center'
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigation.navigate('Timer')}
+                        paddingHorizontal='4%'
+                        onPress={({}) => navigation.navigate('VirtualCube')}
                         >
-                        <Text style={styles.BottomTabText}>Timer</Text>
+                        <Text style={styles.BottomTabText}>3DCube</Text>
                     </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignSelf='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigation.navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                   
             </View>
         </SafeAreaView>
     );
@@ -258,6 +261,7 @@ const styles = StyleSheet.create({
         fontSize:10,
         color:'white',
         opacity:1,
+        textAlign:'center',
         justifyContent:'center',
         left:'-7%',
         paddingHorizontal:'1%'

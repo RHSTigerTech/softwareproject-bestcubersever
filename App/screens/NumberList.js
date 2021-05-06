@@ -7,71 +7,64 @@ import * as Font from 'expo-font';
 import AwesomeButton from "react-native-really-awesome-button";
 
 
+let deletedTimes=[];
+let timePosition=[];
 
-
-
-
-let randomthing=false;
-let newList;
-let smallList;
 
 
 export default class App extends Component {
     constructor(props){
-        super(props);
-        
+        super(props);   
         this.state={
             users:[],
             deletionArray: [],
             allSelected: true,
+            
         };
     }   
+    
 
     
-    UNSAFE_componentWillMount() {
-        console.log(data)
+    UNSAFE_componentWillMount() { 
         this.setState({ users: data });
-        newList =this.state.users;
-        
-
-        //viewlist=false;    
     }
 
-    
-    deleteAllItems(){
-        this.setState({users:[]});
-        newList =this.state.users;
-    }
-
-    deleteItem(index){
+    deleteItem(index){   
+        deletedTimes.unshift(this.state.users[index]);
+        timePosition.unshift(index)     
         let helperArray=this.state.users;
         helperArray.splice(index, 1);
         this.setState({users:helperArray})
-        newList =this.state.users;
+        
+        console.log(deletedTimes)
+        console.log(timePosition)
     }
 
-    selectAll(){}
+    cancelDelete(){
+        let addBack=this.state.users;
+        for(let i=0;i<deletedTimes.length;i++){
+            addBack.splice(timePosition[i],0,deletedTimes[i])
+        }
+        console.log(addBack)
+    }
+    
+
 
 
     
     
     render() {
         const {push} = this.props.navigation;
-        smallList=this.state.users;
-        //  if(smallList.length>10){
-        //     //data=data.slice(Math.max(data.length-20,1))
-        //     smallList=smallList.slice(Math.max(smallList.length-10,1))
-        //     //data=data.slice(Math.max(data.length-20,1))
-        //   }
+        //const {navigate} = this.props.navigation;
+        
+
         return(
            
             <Container style={{backgroundColor:'#121212', paddingTop:'4%'}}>
-                {/* <Header>
-                    <Text>    </Text>
-                </Header> */}
-                
+
                 <Content>
-                    {smallList.map((item,index, data) => (
+                    
+                    {this.state.users.map((item,index, data) => (
                         
                       <ListItem key={index}>
                      
@@ -82,14 +75,13 @@ export default class App extends Component {
                             <Button style={{backgroundColor:'#121212'}} onPress={()=>this.deleteItem(index)}>
                             <Icon style={{color: '#8c29ff'}} name='trash'/>
                             </Button>
+                            
                         </Right>
                       </ListItem>  
                     ))}  
                 </Content>
                 <Footer style={{backgroundColor:'#121212', paddingTop:'1%'}}>
-                
-                {/* <Button style={{backgroundColor:'#121212'}} onPress={()=> {push('Statistics'), storeData(newList)}}><Text style={{color:'#8c29ff'}}>Confirm Deleted</Text></Button>
-                <Button style={{backgroundColor:'#121212'}} onPress={()=> {push('Statistics')}}><Text style={{color:'#8c29ff'}}>Cancel</Text></Button> */}
+
                 <AwesomeButton 
                         width={175} 
                         height={30}
@@ -101,7 +93,7 @@ export default class App extends Component {
                         backgroundShadow='transparent'
                         raiseLevel={5}
                         paddingHorizontal={20}
-                        onPress={()=> {storeData(newList),push('Statistics')}}
+                        onPress={()=> { deletedTimes.splice(0,deletedTimes.length), timePosition.splice(0, timePosition.length) ,push('Statistics')}}
                         
                         
                     >
@@ -118,7 +110,7 @@ export default class App extends Component {
                         backgroundDarker='#5c00c7'
                         backgroundShadow='transparent'
                         raiseLevel={5}
-                        onPress={()=> {push('Statistics'), storeData(data)}}
+                        onPress={()=> {this.cancelDelete(),deletedTimes.splice(0,deletedTimes.length), timePosition.splice(0, timePosition.length) ,push('Statistics')}}
                         
                         
                     >
@@ -133,7 +125,7 @@ export default class App extends Component {
     
 }
 
-export{newList}
+
 
   
 

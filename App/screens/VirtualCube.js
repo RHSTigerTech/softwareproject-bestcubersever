@@ -19,8 +19,9 @@ export default class App extends React.PureComponent {
     //   true;
     // ;
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{height:'90%'}}>
+      <SafeAreaView style={styles.background}>
+            <View style={styles.ViewContainer} >
+                <View style={{height: '90%'}}>
         <WebView
           source={{
             uri:
@@ -112,6 +113,7 @@ export default class App extends React.PureComponent {
                     </Icon.Button>
                 </View>
       </View>
+      </SafeAreaView>
     );
   }
 }
@@ -126,6 +128,20 @@ const styles = StyleSheet.create({
     left:'-7%',
     paddingHorizontal:'1%'
   },
+
+  background:{
+    backgroundColor:'#121212',
+    flex:1
+},
+
+ViewContainer:{
+  // Holds the whole screen
+  flex: 1, 
+  //justifyContent: 'space-evenly', 
+  //alignItems: 'center', 
+  //backgroundColor:'#121212',
+  //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+},
 })
 
 // import React, {Component} from 'react';

@@ -9,12 +9,14 @@ import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-nat
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
 import AwesomeButton from "react-native-really-awesome-button";
-import {newList, randomthing} from './NumberList'
 import _ from 'lodash';
 import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ErrorBoundary from "./ErrorBoundary";
 import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exception-handler'
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Platform } from "react-native";
+
 
 // setJSExceptionHandler((error, isFatal) => {
 //   console.log(error, isFatal)
@@ -139,7 +141,6 @@ export {data};
   try{ 
      
     let width;
-    
 
     let average=0.0;
 
@@ -157,7 +158,22 @@ export {data};
 
     let changedList=[1];
 
-    const height=360;
+    const height= Platform.OS === 'android' ? ((Dimensions.get('window').height)*.50) : ((Dimensions.get('screen').height)*.50-getStatusBarHeight())
+    
+    // console.log(height)
+
+    console.log('height of window')
+    console.log((Dimensions.get('window').height))
+
+    console.log('height of screen')
+    console.log((Dimensions.get('screen').height))
+
+
+    // let iosStatusBar=getStatusBarHeight(true);
+
+    // console.log(iosStatusBar)
+
+    
 
 
     
@@ -271,29 +287,35 @@ export {data};
 
       return (
        
-      <View style={{backgroundColor:'#121212', height:'100%'}}>
-        <View style={{backgroundColor: '#121212',height:'90%'}} >
+        
+      <SafeAreaView style={styles.background}>
+        <View style={styles.ViewContainer} >
+        <StatusBar
+          hidden={true}
+          
+        />
+            <View style={{height: '90%'}}>
          
-        <View style={{top:'7%', alignItems:'center'}}>
         <AwesomeButton 
-                        
-                        width={300} 
-                        height={40}
+                        style={{alignSelf:'center',top: Platform.OS== 'android' ? ((Dimensions.get('window').height)*.03):0}}
+                        width={(Dimensions.get('window').width)*.8} 
+                        height={(Dimensions.get('window').height)*.067}
                         backgroundColor='#6d00eb'
                         textSize={27}
+                        bottom={0}
                         borderRadius={10}
                         activeOpacity={.8}	
                         backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
+                       
                         raiseLevel={5}
                         onPress={() => push('NumberList')}
                     >
                         List View
              </AwesomeButton>
-             </View>
+             
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:'28%', top:'7%',zIndex:5}}>
-      <ScrollView >
+        <Card containerStyle={{backgroundColor: '#121212',top:((Dimensions.get('window').height)*.03),height:((Dimensions.get('window').height)*.29)}}>
+      <ScrollView indicatorStyle='white' showsVerticalScrollIndicator={true} persistentScrollbar={true}>
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
         <Card.Divider/>
@@ -319,7 +341,7 @@ export {data};
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView ref={ref => (this.scrollViewRef = ref)} bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+        <ScrollView ref={ref => (this.scrollViewRef = ref)}  directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
           
           {
             chartConfigs.map(chartConfig => {
@@ -343,8 +365,13 @@ export {data};
                 automaticallyAdjustContentInsets={false} 
                 vertical={false} 
                 horizontal={true}
+                
+                
                 style={{
-                  backgroundColor: chartConfig.backgroundColor
+                  backgroundColor: chartConfig.backgroundColor,
+                  top:((Dimensions.get('window').height)*.05)
+                  
+                
                 }}
               >
 
@@ -382,37 +409,7 @@ export {data};
 
     
     </View>
-      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
-                
-                <Icon.Button
-                    name='cube-outline'
-                    flexDirection='column'
-                    backgroundColor='transparent'
-                    //backgroundColor='#121212'
-                    alignItems='center'
-                    color='white'
-                    opacity={1}
-                    size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                    onPress={({}) => navigate('VirtualCube')}
-                    >
-                    <Text style={styles.BottomTabText}>3DCube</Text>
-                </Icon.Button>
-                {/* Statistics */}
-                <Icon.Button            
-                    name='camera'
-                    alignItems='center'
-                    flexDirection='column'
-                    backgroundColor='transparent'
-                    //backgroundColor='#121212'
-                    color='white'
-                    opacity={1}
-                    size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                    onPress={() => navigate('Scanner')}
-                >
-                <Text style={styles.BottomTabText}>Solver</Text>
-                </Icon.Button>
+      <View style={{flexDirection:'row', left:Platform.OS=='android' ? '1.1%':'1.1%'}}>
                 {/* Home Screen */}
                 <Icon.Button
                     name='home' 
@@ -422,7 +419,7 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Gradient')}
                 >
                 <Text style={styles.BottomTabText}>Home</Text>
@@ -436,7 +433,7 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Learn')}
                 >
                 <Text style={styles.BottomTabText}>Learn</Text>
@@ -450,13 +447,45 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Timer')}
                     >
                     <Text style={styles.BottomTabText}>Timer</Text>
                 </Icon.Button>
+                <Icon.Button            
+                    name='camera'
+                    alignItems='center'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal='4%'
+                    onPress={() => navigate('Scanner')}
+                >
+                <Text style={styles.BottomTabText}>Solver</Text>
+                </Icon.Button>
+                <Icon.Button
+                    name='cube-outline'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    alignItems='center'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal='4%'
+                    onPress={({}) => navigate('VirtualCube')}
+                    >
+                    <Text style={styles.BottomTabText}>3DCube</Text>
+                </Icon.Button>
+                {/* Statistics */}
+                
+                
             </View>
     </View> 
+    </SafeAreaView>  
     
     );
   }
@@ -493,11 +522,7 @@ export {data};
   
 
 const styles = StyleSheet.create({
-    ViewContainer:{
-        flex: 1, 
-        alignItems: 'center', 
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    },  
+    
     ErrorContainer:{
       flex: 1, 
       alignItems: 'center', 
@@ -507,14 +532,22 @@ const styles = StyleSheet.create({
 
 
     },
-    AverageTime:{
-      color:'white',
-      opacity:.87,
-      top:'-3%',
-      textAlign:'center',
-      fontSize:30,
-      borderColor:'white',
-    },
+    ViewContainer:{
+      // Holds the whole screen
+      flex: 1, 
+      //justifyContent: 'space-evenly', 
+      alignItems: 'center', 
+      backgroundColor:'#121212',
+      //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+  },
+    background:{
+      //backgroundColor:'#121212',
+      flex:1,
+      backgroundColor: "#121212",
+      //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      
+  },
+    
     scroll:{
       backgroundColor:'transparent'
     },
@@ -534,11 +567,14 @@ const styles = StyleSheet.create({
     BottomTabText:{
       //Text used for the bottom menu
       fontSize:10,
-      color:'white',
-      opacity:1,
-      justifyContent:'center',
-      left:'-7%',
-      paddingHorizontal:'1%'
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
     },
+    AndroidSafeArea: {
+      
+    }
 
 })
