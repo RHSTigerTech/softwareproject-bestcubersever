@@ -82,7 +82,7 @@ export default class App extends Component {
                         opacity={1}
                         size={30}
                         paddingHorizontal='4%'
-                        onPress={() => navigation.navigate('Gradient')}
+                        onPress={() => navigate('Gradient')}
                     >
                     <Text style={styles.BottomTabText}>Home</Text>
                     </Icon.Button>
@@ -96,7 +96,7 @@ export default class App extends Component {
                         opacity={1}
                         size={30}
                         paddingHorizontal='4%'
-                        onPress={() => navigation.navigate('Timer')}
+                        onPress={() => navigate('Timer')}
                         >
                         <Text style={styles.BottomTabText}>Timer</Text>
                     </Icon.Button>
@@ -111,7 +111,7 @@ export default class App extends Component {
                         size={30}
                         alignSelf='center'
                         paddingHorizontal='4%'
-                        onPress={() => navigation.navigate('Scanner')}
+                        onPress={() => navigate('Scanner')}
                     >
                     <Text style={styles.BottomTabText}>Solver</Text>
                     </Icon.Button>
@@ -126,7 +126,7 @@ export default class App extends Component {
                         opacity={1}
                         size={30}
                         paddingHorizontal='4%'
-                        onPress={({}) => navigation.navigate('VirtualCube')}
+                        onPress={({}) => navigate('VirtualCube')}
                         >
                         <Text style={styles.BottomTabText}>3DCube</Text>
                     </Icon.Button>
@@ -141,7 +141,7 @@ export default class App extends Component {
                         opacity={1}
                         size={30}
                         paddingHorizontal='4%'
-                        onPress={() => navigation.navigate('Statistics')}
+                        onPress={() => navigate('Statistics')}
                     >
                     <Text style={styles.BottomTabText}>Statistics</Text>
                     </Icon.Button>
