@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ErrorBoundary from "./ErrorBoundary";
 import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exception-handler'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Platform } from "react-native";
 
 
 // setJSExceptionHandler((error, isFatal) => {
@@ -137,7 +138,7 @@ export {data};
     // if(removeZero.length>=1){
 
     
-  try{ 
+  // try{ 
      
     let width;
 
@@ -157,16 +158,23 @@ export {data};
 
     let changedList=[1];
 
-    const height= ((Dimensions.get('window').height)*.55)
-    console.log(height)
+    const height= Platform.OS === 'android' ? ((Dimensions.get('window').height)*.53) : ((Dimensions.get('screen').height)*.53)
+    
+    // console.log(height)
+
+    console.log('height of window')
+    console.log((Dimensions.get('window').height))
+
+    console.log('height of screen')
+    console.log((Dimensions.get('screen').height))
+
 
     // let iosStatusBar=getStatusBarHeight(true);
 
     // console.log(iosStatusBar)
 
-    console.log(getStatusBarHeight());
+    
 
-    console.log('height of status')
 
     
 
@@ -279,12 +287,17 @@ export {data};
 
       return (
        
-      <View style={{backgroundColor:'#121212', height:'100%',}}>
-        <View style={{backgroundColor: '#121212',height:'92%'}} >
+        
+        
+        <View style={styles.ViewContainer} >
+        <StatusBar
+          hidden={true}
+          
+        />
+            <View style={{height: '90%'}}>
          
-        <View style={{ alignItems:'center'}}>
         <AwesomeButton 
-                        
+                        style={{alignSelf:'center',top:((Dimensions.get('window').height)*.03)}}
                         width={(Dimensions.get('window').width)*.8} 
                         height={(Dimensions.get('window').height)*.067}
                         backgroundColor='#6d00eb'
@@ -293,15 +306,15 @@ export {data};
                         borderRadius={10}
                         activeOpacity={.8}	
                         backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
+                       
                         raiseLevel={5}
                         onPress={() => push('NumberList')}
                     >
                         List View
              </AwesomeButton>
-             </View>
+             
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:(Dimensions.get('window').height)*.29, top:0}}>
+        <Card containerStyle={{backgroundColor: '#121212',top:((Dimensions.get('window').height)*.03),height:((Dimensions.get('window').height)*.29)}}>
       <ScrollView indicatorStyle='white' showsVerticalScrollIndicator={true} persistentScrollbar={true}>
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
@@ -356,6 +369,7 @@ export {data};
                 
                 style={{
                   backgroundColor: chartConfig.backgroundColor,
+                  top:((Dimensions.get('window').height)*.05)
                   
                 
                 }}
@@ -395,37 +409,7 @@ export {data};
 
     
     </View>
-      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly',bottom:0 }}>
-                
-                <Icon.Button
-                    name='cube-outline'
-                    flexDirection='column'
-                    backgroundColor='transparent'
-                    //backgroundColor='#121212'
-                    alignItems='center'
-                    color='white'
-                    opacity={1}
-                    size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                    onPress={({}) => navigate('VirtualCube')}
-                    >
-                    <Text style={styles.BottomTabText}>3DCube</Text>
-                </Icon.Button>
-                {/* Statistics */}
-                <Icon.Button            
-                    name='camera'
-                    alignItems='center'
-                    flexDirection='column'
-                    backgroundColor='transparent'
-                    //backgroundColor='#121212'
-                    color='white'
-                    opacity={1}
-                    size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                    onPress={() => navigate('Scanner')}
-                >
-                <Text style={styles.BottomTabText}>Solver</Text>
-                </Icon.Button>
+      <View style={{flexDirection:'row', left:Platform.OS=='android' ? '1.1%':'1.1%'}}>
                 {/* Home Screen */}
                 <Icon.Button
                     name='home' 
@@ -435,7 +419,7 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Gradient')}
                 >
                 <Text style={styles.BottomTabText}>Home</Text>
@@ -449,7 +433,7 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Learn')}
                 >
                 <Text style={styles.BottomTabText}>Learn</Text>
@@ -463,40 +447,72 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Timer')}
                     >
                     <Text style={styles.BottomTabText}>Timer</Text>
                 </Icon.Button>
+                <Icon.Button            
+                    name='camera'
+                    alignItems='center'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal='4%'
+                    onPress={() => navigate('Scanner')}
+                >
+                <Text style={styles.BottomTabText}>Solver</Text>
+                </Icon.Button>
+                <Icon.Button
+                    name='cube-outline'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    alignItems='center'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal='4%'
+                    onPress={({}) => navigate('VirtualCube')}
+                    >
+                    <Text style={styles.BottomTabText}>3DCube</Text>
+                </Icon.Button>
+                {/* Statistics */}
+                
+                
             </View>
     </View> 
     
+    
     );
-  }
+  // }
   
-  catch(err){
-    return(
-    <View style={styles.ErrorContainer}>
-      <Text style={styles.textSummary}>
-          No Data Has Been Entered
-      </Text>
-      <AwesomeButton 
-                        width={300} 
-                        height={40}
-                        backgroundColor='#6d00eb'
-                        textSize={27}
-                        borderRadius={10}
-                        activeOpacity={.8}	
-                        backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
-                        raiseLevel={5}
-                        onPress={() => navigate('Gradient')}
-                    >
-                        Exit
-             </AwesomeButton>
-    </View>
-    )
-  }
+  // catch(err){
+  //   return(
+  //   <View style={styles.ErrorContainer}>
+  //     <Text style={styles.textSummary}>
+  //         No Data Has Been Entered
+  //     </Text>
+  //     <AwesomeButton 
+  //                       width={300} 
+  //                       height={40}
+  //                       backgroundColor='#6d00eb'
+  //                       textSize={27}
+  //                       borderRadius={10}
+  //                       activeOpacity={.8}	
+  //                       backgroundDarker='#5c00c7'
+  //                       backgroundShadow='transparent'
+  //                       raiseLevel={5}
+  //                       onPress={() => navigate('Gradient')}
+  //                   >
+  //                       Exit
+  //            </AwesomeButton>
+  //   </View>
+  //   )
+  // }
         
         }
   
@@ -516,6 +532,21 @@ const styles = StyleSheet.create({
 
 
     },
+    ViewContainer:{
+      // Holds the whole screen
+      flex: 1, 
+      //justifyContent: 'space-evenly', 
+      alignItems: 'center', 
+      backgroundColor:'#121212',
+      //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+  },
+    background:{
+      //backgroundColor:'#121212',
+      flex:1,
+      backgroundColor: "#121212",
+      //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      
+  },
     
     scroll:{
       backgroundColor:'transparent'
@@ -536,12 +567,14 @@ const styles = StyleSheet.create({
     BottomTabText:{
       //Text used for the bottom menu
       fontSize:10,
-      color:'white',
-      opacity:1,
-      justifyContent:'center',
-      left:'-7%',
-      paddingHorizontal:'1%',
-      bottom:0
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
     },
+    AndroidSafeArea: {
+      
+    }
 
 })

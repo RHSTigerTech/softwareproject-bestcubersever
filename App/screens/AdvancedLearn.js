@@ -5,8 +5,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
+
+// use to bold certain word or phrases. Such as Pros and Cons ex: <Text><B>Pros:</B> pros of method/step </Text>
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:17, lineHeight:18,letterSpacing:.2}}>{props.children}</Text>
-//const WrapText = (props) => <Text style={{paddingTop: 10,color: 'white',fontSize: RFPercentage(2.1),width: '100%',lineHeight:18,letterSpacing:.2}}>{props.children}</Text>
 
  
 export default class App extends Component {
@@ -25,6 +26,7 @@ export default class App extends Component {
 
                     
                 <Card containerStyle={{backgroundColor: '#121212'}}>
+                {/* should probably add or change description. */}
                 <Text style={styles.textDescripWideTip}>Intro to Advanced Methods.</Text>
                 <Text style={styles.textDescripWideTip}>
                     There are plenty of advanced methods used to solve a rubiks cube. 
@@ -36,20 +38,32 @@ export default class App extends Component {
                     </Card>
 
                     <Card containerStyle={{backgroundColor: '#121212'}}>
+
+                {/* dont actually know what are considered advanced methods so i just put random ones down. Should probably be changed idk. 
+                The websites they naviagte to need to also be added/changed. Not sure what the best site to learn this would be */}
+
+                {/* it also might make more sense to give advanced ways to solve each step rather than just three full advanced methods. 
+                Might be easier to find sites that have the steps to do a certain step of solving a rubiks cube rather than an entire method due to the length*/}
                 <Text style={styles.textDescripWideTip}>CFOP Method</Text>
                 <Text style={styles.textDescripWide}>Description</Text>
+                <Text style={styles.textDescripWide}>Pros:</Text>
+                <Text style={styles.textDescripWide}>Cons:</Text>
                 <Text style={styles.NavigateScreenButtons} onPress={() => navigate('CFOP')}> Cube Basics </Text>
 
                 </Card>
                 <Card containerStyle={{backgroundColor: '#121212'}}>
                 <Text style={styles.textDescripWideTip}>ZZ Method</Text>
                 <Text style={styles.textDescripWide}>Description</Text>
+                <Text style={styles.textDescripWide}>Pros:</Text>
+                <Text style={styles.textDescripWide}>Cons:</Text>
                 <Text style={styles.NavigateScreenButtons} onPress={() => navigate('ZZ')}> Cube Basics </Text>
 
                 </Card>
                 <Card containerStyle={{backgroundColor: '#121212'}}>
                 <Text style={styles.textDescripWideTip}>Roux Method</Text>
                 <Text style={styles.textDescripWide}>Description</Text>
+                <Text style={styles.textDescripWide}>Pros:</Text>
+                <Text style={styles.textDescripWide}>Cons:</Text>
                 <Text style={styles.NavigateScreenButtons} onPress={() => navigate('Roux')}> Cube Basics </Text>
 
                 </Card>
