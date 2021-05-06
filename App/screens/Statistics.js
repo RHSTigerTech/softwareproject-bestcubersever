@@ -158,7 +158,7 @@ export {data};
 
     let changedList=[1];
 
-    const height= Platform.OS === 'android' ? ((Dimensions.get('window').height)*.53) : ((Dimensions.get('screen').height)*.50)
+    const height= Platform.OS === 'android' ? ((Dimensions.get('window').height)*.50) : ((Dimensions.get('screen').height)*.50-getStatusBarHeight())
     
     // console.log(height)
 
