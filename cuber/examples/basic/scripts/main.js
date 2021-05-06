@@ -114,6 +114,8 @@ $(document).ready( function(){
 		
 	});
 
+	//Colin is cool :)
+
 	playSolutionButton.addEventListener('click', (e) => {
 		playSolution(1);
 	});
