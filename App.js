@@ -19,12 +19,12 @@ import CFOP from './App/screens/CFOP.js'
 import ZZ from './App/screens/ZZ.js'
 import Roux from './App/screens/Roux.js'
 
-import White from './App/screens/ColorPictureTaker/White'
-import Blue from './App/screens/ColorPictureTaker/Blue'
-import Orange from './App/screens/ColorPictureTaker/Orange'
-import Green from './App/screens/ColorPictureTaker/Green'
-import Red from './App/screens/ColorPictureTaker/Red'
-import Yellow from './App/screens/ColorPictureTaker/Yellow'
+import White from './App/screens/ColorPictureTaker/white'
+import Blue from './App/screens/ColorPictureTaker/blue'
+import Orange from './App/screens/ColorPictureTaker/orange'
+import Green from './App/screens/ColorPictureTaker/green'
+import Red from './App/screens/ColorPictureTaker/red'
+import Yellow from './App/screens/ColorPictureTaker/yellow'
 
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
