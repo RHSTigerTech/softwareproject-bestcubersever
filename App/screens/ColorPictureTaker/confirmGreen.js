@@ -53,7 +53,6 @@ export default class App extends Component {
         
 
         <Button onPress={({}) => navigate('White')} title="Take a photo" />
-        <Button onPress={({}) => navigate('confirmWhite')} title="confirm" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}

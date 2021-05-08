@@ -120,7 +120,7 @@ export default class App extends Component {
                                 </Text>
                                 <Text style={styles.textDescripWide}>
                                     <B>6:</B> It's inevitable that in the beginning you'll make a few mistakes performing some of the algorithms. 
-                                            Don't get discouraged. When you get back to the same step again just go slower 
+                                            When you get back to the same step again just go slower 
                                             and confirm every move is correct.
                                     {'\n'}
                                 </Text>

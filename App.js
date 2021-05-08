@@ -26,6 +26,15 @@ import Green from './App/screens/ColorPictureTaker/green'
 import Red from './App/screens/ColorPictureTaker/red'
 import Yellow from './App/screens/ColorPictureTaker/yellow'
 
+import confirmWhite from './App/screens/ColorPictureTaker/confirmWhite'
+import confirmBlue from './App/screens/ColorPictureTaker/confirmBlue'
+import confirmOrange from './App/screens/ColorPictureTaker/confirmOrange'
+import confirmGreen from './App/screens/ColorPictureTaker/confirmGreen'
+import confirmRed from './App/screens/ColorPictureTaker/confirmRed'
+import confirmYellow from './App/screens/ColorPictureTaker/confirmYellow'
+
+
+
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -198,6 +207,40 @@ const App = () => {
         <Stack.Screen
           name='Yellow'
           component={Yellow}
+          options={{headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='confirmWhite'
+          component={confirmWhite}
+          options={{headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='confirmBlue'
+          component={confirmBlue}
+          options={{headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+        <Stack.Screen
+          name='confirmOrange'
+          component={confirmOrange}
+          options={{headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+        <Stack.Screen
+          name='confirmGreen'
+          component={confirmGreen}
+          options={{headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='confirmRed'
+          component={confirmRed}
+          options={{headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name='confirmYellow'
+          component={confirmYellow}
           options={{headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 

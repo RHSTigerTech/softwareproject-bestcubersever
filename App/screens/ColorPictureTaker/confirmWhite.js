@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   ActivityIndicator,
-  Button,
+  
   Clipboard,
   Image,
   Share,
@@ -15,6 +15,7 @@ import { Constants } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import AwesomeButton from "react-native-really-awesome-button";
+import {Button} from "react-native-elements";
 
 
 
@@ -52,8 +53,7 @@ export default class App extends Component {
         </Text> */}
         
 
-        <Button onPress={({}) => navigate('White')} title="Take a photo" />
-        <Button onPress={({}) => navigate('confirmWhite')} title="confirm" />
+        <Button buttonStyle={styles.change} onPress={({}) => navigate('White')} />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}
@@ -314,6 +314,11 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 5,
     width: 250,
+  },
+  change: {
+    backgroundColor:'white',
+    width:70,
+    height:70
   },
   maybeRenderImageContainer: {
     borderTopLeftRadius: 3,
