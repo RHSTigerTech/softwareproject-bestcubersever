@@ -36,6 +36,8 @@ export default class App extends Component {
   render() {
 
     const {navigate} = this.props.navigation;
+    const {push} = this.props.navigation;
+
 
     let {
       image
@@ -53,7 +55,7 @@ export default class App extends Component {
         
 
         <Button onPress={({}) => navigate('White')} title="Take a photo" />
-        <Button onPress={({}) => navigate('confirmWhite')} title="confirm" />
+        <Button onPress={({}) => push('confirmWhite')} title="confirm" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}
