@@ -14,6 +14,9 @@ import {
 
 import {Button} from "react-native-elements";
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 const colors=['white', 'blue', 'darkorange', 'green', 'red', 'yellow' ]
 const val = Math.floor(100000 + Math.random() * 9999999);
@@ -806,7 +809,41 @@ export default class App extends Component {
         <Button buttonStyle={{backgroundColor:this.state.buttonColor8, width:70, height:70}} onPress={colorSwitch8++,  this.onButtonPress8} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor9, width:70, height:70}} onPress={colorSwitch9++,  this.onButtonPress9} />   
       </View>
-      <View style={{flex:2}}></View>
+      <View style={{flex:2}}>
+      
+      </View>
+      <View style={{bottom:0,flexDirection:'row', right:0,}}>
+      <Icon.Button
+                        name='arrow-left-bold' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        style={{left:0}}
+                        alignSelf='center'
+                        opacity={1}
+                        size={40}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Confirm</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='arrow-right-bold' 
+                        flexDirection='column'
+                        style={{right:0}}
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        alignSelf='center'
+                        opacity={1}
+                        size={40}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Blue</Text>
+                    </Icon.Button>
+      </View>
       </View>
     );
   }
@@ -853,6 +890,15 @@ const styles = StyleSheet.create({
     paddingVertical:'5%',
     backgroundColor:'#121212',
     
+  },
+  BottomTabText:{
+    //Text used for the bottom menu
+    fontSize:15,
+    color:'white',
+    opacity:1,
+    justifyContent:'center',
+    left:'-6%',
+    paddingHorizontal:'1%'
   },
   
 
