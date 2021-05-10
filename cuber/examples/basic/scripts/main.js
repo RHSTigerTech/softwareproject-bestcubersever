@@ -29,6 +29,8 @@
   ≈$=  ~$%  -$&                                                &$·  %$~  -$x  
   -&   ~$~   &≠                                                #%   ~$~   #=*/
 
+const { defaultsDeep } = require("lodash");
+
 
 
 
@@ -99,6 +101,7 @@ $(document).ready( function(){
 
 	var shuffleButton = document.getElementById('shuffle-btn');
 
+	var undoButton = document.getElementById('undo-btn');
 
 	if( controls === ERNO.Locked ){
 		var fixedOrientation = new THREE.Euler(  Math.PI * 0.12, Math.PI * -0.14, 0 );
@@ -115,6 +118,11 @@ $(document).ready( function(){
 	});
 
 	//Colin is cool :)
+
+	undoButton.addEventListener('click', (e) => {
+		
+		cube.undo();
+	});
 
 	playSolutionButton.addEventListener('click', (e) => {
 		playSolution(1);
