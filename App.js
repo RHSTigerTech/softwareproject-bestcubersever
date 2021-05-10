@@ -26,12 +26,12 @@ import Green from './App/screens/ColorPictureTaker/green'
 import Red from './App/screens/ColorPictureTaker/red'
 import Yellow from './App/screens/ColorPictureTaker/yellow'
 
-import confirmWhite from './App/screens/ColorPictureTaker/confirmWhite'
-import confirmBlue from './App/screens/ColorPictureTaker/confirmBlue'
-import confirmOrange from './App/screens/ColorPictureTaker/confirmOrange'
-import confirmGreen from './App/screens/ColorPictureTaker/confirmGreen'
-import confirmRed from './App/screens/ColorPictureTaker/confirmRed'
-import confirmYellow from './App/screens/ColorPictureTaker/confirmYellow'
+import confirmWhite from './App/screens/confirmWhite'
+import confirmBlue from './App/screens/confirmBlue'
+import confirmOrange from './App/screens/confirmOrange'
+import confirmGreen from './App/screens/confirmGreen'
+import confirmRed from './App/screens/confirmRed'
+import confirmYellow from './App/screens/confirmYellow'
 
 
 
