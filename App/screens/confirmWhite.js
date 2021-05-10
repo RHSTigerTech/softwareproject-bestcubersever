@@ -94,15 +94,15 @@ export default class App extends Component {
     colorSwitch7=0;
     colorSwitch8=0;
     colorSwitch9=0;
-    startColor1=Math.floor(Math.random() * 6);
-    startColor2=Math.floor(Math.random() * 6);
-    startColor3=Math.floor(Math.random() * 6);
-    startColor4=Math.floor(Math.random() * 6);
-    startColor5=Math.floor(Math.random() * 6);
-    startColor6=Math.floor(Math.random() * 6);
-    startColor7=Math.floor(Math.random() * 6);
-    startColor8=Math.floor(Math.random() * 6);
-    startColor9=Math.floor(Math.random() * 6);
+    // startColor1=Math.floor(Math.random() * 6);
+    // startColor2=Math.floor(Math.random() * 6);
+    // startColor3=Math.floor(Math.random() * 6);
+    // startColor4=Math.floor(Math.random() * 6);
+    // startColor5=Math.floor(Math.random() * 6);
+    // startColor6=Math.floor(Math.random() * 6);
+    // startColor7=Math.floor(Math.random() * 6);
+    // startColor8=Math.floor(Math.random() * 6);
+    // startColor9=Math.floor(Math.random() * 6);
 
 
 
@@ -812,37 +812,43 @@ export default class App extends Component {
       <View style={{flex:2}}>
       
       </View>
-      <View style={{bottom:0,flexDirection:'row', right:0,}}>
+      <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
+        <View style={{paddingRight:'25%%'}}>
       <Icon.Button
                         name='arrow-left-bold' 
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
                         color='white'
-                        style={{left:0}}
                         alignSelf='center'
+                        alignItems='center'
                         opacity={1}
                         size={40}
-                        paddingHorizontal='4%'
-                        onPress={() => navigate('Gradient')}
+                        //paddingHorizontal='4%'
+                        onPress={() => navigate('Scanner')}
                     >
-                    <Text style={styles.BottomTabText}>Confirm</Text>
+                    <Text style={styles.BottomTabTextLeft}>Back</Text>
                     </Icon.Button>
+                    </View>
+
+                    <View style={{paddingLeft:'25%'}}>
+
                     <Icon.Button
                         name='arrow-right-bold' 
                         flexDirection='column'
-                        style={{right:0}}
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
                         color='white'
                         alignSelf='center'
                         opacity={1}
                         size={40}
-                        paddingHorizontal='4%'
-                        onPress={() => navigate('Gradient')}
+                        //paddingHorizontal='4%'
+                        onPress={() => navigate('confirmBlue')}
                     >
-                    <Text style={styles.BottomTabText}>Blue</Text>
+                    <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>
+                    </View>
+
       </View>
       </View>
     );
@@ -891,14 +897,23 @@ const styles = StyleSheet.create({
     backgroundColor:'#121212',
     
   },
-  BottomTabText:{
+  BottomTabTextLeft:{
     //Text used for the bottom menu
     fontSize:15,
     color:'white',
     opacity:1,
     justifyContent:'center',
-    left:'-6%',
-    paddingHorizontal:'1%'
+    right:'6%',
+    //paddingHorizontal:'1%'
+  },
+  BottomTabTextRight:{
+    //Text used for the bottom menu
+    fontSize:15,
+    color:'white',
+    opacity:1,
+    justifyContent:'center',
+    left:'-11%',
+    //paddingHorizontal:'1%'
   },
   
 

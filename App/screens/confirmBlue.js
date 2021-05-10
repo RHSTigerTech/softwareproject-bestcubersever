@@ -14,6 +14,9 @@ import {
 
 import {Button} from "react-native-elements";
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 const colors=['white', 'blue', 'darkorange', 'green', 'red', 'yellow' ]
 const val = Math.floor(100000 + Math.random() * 9999999);
@@ -91,15 +94,15 @@ export default class App extends Component {
     colorSwitch7=0;
     colorSwitch8=0;
     colorSwitch9=0;
-    startColor1=Math.floor(Math.random() * 6);
-    startColor2=Math.floor(Math.random() * 6);
-    startColor3=Math.floor(Math.random() * 6);
-    startColor4=Math.floor(Math.random() * 6);
-    startColor5=Math.floor(Math.random() * 6);
-    startColor6=Math.floor(Math.random() * 6);
-    startColor7=Math.floor(Math.random() * 6);
-    startColor8=Math.floor(Math.random() * 6);
-    startColor9=Math.floor(Math.random() * 6);
+    // startColor1=Math.floor(Math.random() * 6);
+    // startColor2=Math.floor(Math.random() * 6);
+    // startColor3=Math.floor(Math.random() * 6);
+    // startColor4=Math.floor(Math.random() * 6);
+    // startColor5=Math.floor(Math.random() * 6);
+    // startColor6=Math.floor(Math.random() * 6);
+    // startColor7=Math.floor(Math.random() * 6);
+    // startColor8=Math.floor(Math.random() * 6);
+    // startColor9=Math.floor(Math.random() * 6);
 
 
 
@@ -806,7 +809,47 @@ export default class App extends Component {
         <Button buttonStyle={{backgroundColor:this.state.buttonColor8, width:70, height:70}} onPress={colorSwitch8++,  this.onButtonPress8} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor9, width:70, height:70}} onPress={colorSwitch9++,  this.onButtonPress9} />   
       </View>
-      <View style={{flex:2}}></View>
+      <View style={{flex:2}}>
+      
+      </View>
+      <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
+        <View style={{paddingRight:'25%%'}}>
+      <Icon.Button
+                        name='arrow-left-bold' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        alignSelf='center'
+                        alignItems='center'
+                        opacity={1}
+                        size={40}
+                        //paddingHorizontal='4%'
+                        onPress={() => navigate('confirmWhite')}
+                    >
+                    <Text style={styles.BottomTabTextLeft}>Back</Text>
+                    </Icon.Button>
+                    </View>
+
+                    <View style={{paddingLeft:'25%'}}>
+
+                    <Icon.Button
+                        name='arrow-right-bold' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        alignSelf='center'
+                        opacity={1}
+                        size={40}
+                        //paddingHorizontal='4%'
+                        onPress={() => navigate('confirmOrange')}
+                    >
+                    <Text style={styles.BottomTabTextRight}>Next</Text>
+                    </Icon.Button>
+                    </View>
+
+      </View>
       </View>
     );
   }
@@ -853,6 +896,24 @@ const styles = StyleSheet.create({
     paddingVertical:'5%',
     backgroundColor:'#121212',
     
+  },
+  BottomTabTextLeft:{
+    //Text used for the bottom menu
+    fontSize:15,
+    color:'white',
+    opacity:1,
+    justifyContent:'center',
+    right:'6%',
+    //paddingHorizontal:'1%'
+  },
+  BottomTabTextRight:{
+    //Text used for the bottom menu
+    fontSize:15,
+    color:'white',
+    opacity:1,
+    justifyContent:'center',
+    left:'-11%',
+    //paddingHorizontal:'1%'
   },
   
 

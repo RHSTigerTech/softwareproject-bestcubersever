@@ -68,7 +68,7 @@ export default class App extends Component {
           title="Pick an image from camera roll"
         />
 
-        <Button  onPress={({}) => push('Gradient')} title="Finish" />
+        <Button  onPress={({}) => push('confirmWhite')} title="Finish" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}

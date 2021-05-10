@@ -210,40 +210,38 @@ const App = () => {
           options={{headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
+ 
         <Stack.Screen
-          name='confirmWhite'
-          component={confirmWhite}
-          options={{headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
-        />
-
-        <Stack.Screen
-          name='confirmBlue'
-          component={confirmBlue}
-          options={{headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          name='confirmYellow'
+          component={confirmYellow}
+          options={{headerLeft: null ,headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
         <Stack.Screen
-          name='confirmOrange'
-          component={confirmOrange}
-          options={{headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          name='confirmRed'
+          component={confirmRed}
+          options={{headerLeft: null ,headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
         <Stack.Screen
           name='confirmGreen'
           component={confirmGreen}
-          options={{headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerLeft: null ,headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+        <Stack.Screen
+          name='confirmOrange'
+          component={confirmOrange}
+          options={{headerLeft: null ,headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+        <Stack.Screen
+          name='confirmBlue'
+          component={confirmBlue}
+          options={{headerLeft: null ,headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
-          name='confirmRed'
-          component={confirmRed}
-          options={{headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          name='confirmWhite'
+          component={confirmWhite}
+          options={{headerLeft: null , headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
-
-        <Stack.Screen
-          name='confirmYellow'
-          component={confirmYellow}
-          options={{headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
-        />
-
 
 
 
