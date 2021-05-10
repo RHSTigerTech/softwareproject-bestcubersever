@@ -83,6 +83,22 @@ export default class App extends Component {
     image: null,
     uploading: false,
   };
+
+  UNSAFE_componentWillMount() { 
+    colorSwitch1=0;
+    colorSwitch2=0;
+    colorSwitch3=0;
+    colorSwitch4=0;
+    colorSwitch5=0;
+    colorSwitch6=0;
+    colorSwitch7=0;
+    colorSwitch8=0;
+    colorSwitch9=0;
+
+
+
+    
+}
   onButtonPress1 = () => {
       if(colorSwitch1==1){
         this.setState({buttonColor1: 'white'});
@@ -223,7 +239,6 @@ export default class App extends Component {
         colorSwitch9--;
     }
   }
-
   onButtonPress3 = () => {
       if(colorSwitch3==1){
         this.setState({buttonColor3: 'white'});
@@ -299,7 +314,6 @@ export default class App extends Component {
 
       }
   }
-
   onButtonPress4 = () => {
     if(colorSwitch4==1){
       this.setState({buttonColor4: 'white'});
