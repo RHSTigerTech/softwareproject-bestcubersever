@@ -18,23 +18,115 @@ import AwesomeButton from "react-native-really-awesome-button";
 import {Button} from "react-native-elements";
 
 
-
+const colors=['white', 'blue', 'orange', 'green', 'red', 'yellow' ]
 const val = Math.floor(100000 + Math.random() * 9999999);
 let amount =0;
 let colorName='';
 
+let colorSwitch1=0;
+let startColor1=Math.floor(Math.random() * 6);;
+
+let colorSwitch2=0;
+let startColor2=Math.floor(Math.random() * 6);;
+
+
+
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
+
+
+
+
+
+
+
 
 export {val};
 
 export default class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            buttonColor1:colors[startColor1],
+            buttonColor2:colors[startColor2]
+        }
+    }
+
+
   state = {
     image: null,
     uploading: false,
   };
-  
+  onButtonPress1 = () => {
+      if(colorSwitch1==1){
+        this.setState({buttonColor1: 'white'});
+        colorSwitch2--;
+      }
+      if(colorSwitch1==2){
+        this.setState({buttonColor1: 'blue'});
+        colorSwitch2--;
+
+      }
+      if(colorSwitch1==3){
+        this.setState({buttonColor1: 'orange'});
+        colorSwitch2--;
+
+      }
+      if(colorSwitch1==4){
+        this.setState({buttonColor1: 'green'});
+        colorSwitch2--;
+
+      }
+      if(colorSwitch1==5){
+        this.setState({buttonColor1: 'red'});
+        colorSwitch2--;
+
+      }
+      if(colorSwitch1==6){
+        this.setState({buttonColor1: 'yellow'});
+        colorSwitch1=0;
+        colorSwitch2--;
+
+      }
+
+  }
+  onButtonPress2 = () => {
+    if(colorSwitch2==1){
+      this.setState({buttonColor2: 'white'});
+      colorSwitch1--;
+    }
+    if(colorSwitch2==2){
+      this.setState({buttonColor2: 'blue'});
+      colorSwitch1--;
+
+    }
+    if(colorSwitch2==3){
+      this.setState({buttonColor2: 'orange'});
+      colorSwitch1--;
+
+      
+    }
+    if(colorSwitch2==4){
+      this.setState({buttonColor2: 'green'});
+      colorSwitch1--;
+
+      
+    }
+    if(colorSwitch2==5){
+      this.setState({buttonColor2: 'red'});
+      colorSwitch1--;
+
+    }
+    if(colorSwitch2==6){
+      this.setState({buttonColor2: 'yellow'});
+      colorSwitch2=0;
+      colorSwitch1--;
+
+    }
+
+}
   
   render() {
+    
 
     const {navigate} = this.props.navigation;
 
@@ -53,8 +145,10 @@ export default class App extends Component {
         </Text> */}
         
 
-        <Button buttonStyle={styles.change} onPress={({}) => navigate('White')} />
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor1, width:70, height:70}} onPress={colorSwitch1++, console.log(colorSwitch1), this.onButtonPress1} />
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor2, width:70, height:70}} onPress={colorSwitch2++, console.log(colorSwitch2), this.onButtonPress2} />
 
+        
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}
       </View>
@@ -316,7 +410,8 @@ const styles = StyleSheet.create({
     width: 250,
   },
   change: {
-    backgroundColor:'white',
+    
+    backgroundColor:colors[colorSwitch1],
     width:70,
     height:70
   },
