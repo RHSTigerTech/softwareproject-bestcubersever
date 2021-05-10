@@ -11,10 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Constants } from 'expo';
-import * as Permissions from 'expo-permissions';
-import * as ImagePicker from 'expo-image-picker';
-import AwesomeButton from "react-native-really-awesome-button";
+
 import {Button} from "react-native-elements";
 
 
@@ -94,6 +91,15 @@ export default class App extends Component {
     colorSwitch7=0;
     colorSwitch8=0;
     colorSwitch9=0;
+    startColor1=Math.floor(Math.random() * 6);
+    startColor2=Math.floor(Math.random() * 6);
+    startColor3=Math.floor(Math.random() * 6);
+    startColor4=Math.floor(Math.random() * 6);
+    startColor5=Math.floor(Math.random() * 6);
+    startColor6=Math.floor(Math.random() * 6);
+    startColor7=Math.floor(Math.random() * 6);
+    startColor8=Math.floor(Math.random() * 6);
+    startColor9=Math.floor(Math.random() * 6);
 
 
 
