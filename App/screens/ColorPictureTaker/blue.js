@@ -31,9 +31,9 @@ export default class App extends Component {
     image: null,
     uploading: false,
   };
-  UNSAFE_componentWillMount() { 
-    this._takePhoto()
-}
+//   UNSAFE_componentWillMount() { 
+//     this._takePhoto()
+// }
   
   render() {
     const {navigate} = this.props.navigation;
@@ -45,6 +45,7 @@ export default class App extends Component {
     console.log(val);
     return (
       <View style={styles.container}>
+
         <AwesomeButton 
             width={300} 
             height={65}

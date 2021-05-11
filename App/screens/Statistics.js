@@ -166,11 +166,11 @@ export {data};
     
     // console.log(height)
 
-    console.log('height of window')
-    console.log((Dimensions.get('window').height))
+    // console.log('height of window')
+    // console.log((Dimensions.get('window').height))
 
-    console.log('height of screen')
-    console.log((Dimensions.get('screen').height))
+    // console.log('height of screen')
+    // console.log((Dimensions.get('screen').height))
 
 
     // let iosStatusBar=getStatusBarHeight(true);
@@ -277,7 +277,7 @@ export {data};
   let last12sorted=last12.slice(0).sort(sorter)
   last12sorted.pop()
   last12sorted.shift()
-  console.log(last12sorted)
+  //console.log(last12sorted)
   let total12=0.0;
   if(data.length>=12){
   for(let i=0;i<10;i++){
@@ -298,7 +298,7 @@ if(data.length>=10){
 }
 
 
-console.log(best10)
+//console.log(best10)
 
     if(data.length>=10){
       for(let i=data.length-1;i>data.length-11;i--){
