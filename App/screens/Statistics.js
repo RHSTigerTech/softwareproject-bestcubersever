@@ -148,9 +148,7 @@ export {data};
 
     let Avg10=0.0;
 
-    let ThreeofFive=0.0;
-
-    let stored3of5=[];
+    
 
     let notEnough5='Not enough data'
 
@@ -258,30 +256,49 @@ export {data};
     }
 
     //3 of 5
-    // if(data.length>=5){
-    //   for(let i=data.length-1;i>data.length-6;i--){
-    //       floatnum=parseFloat(data[i])
-    //       Avg5=floatnum+Avg5
-    //   }
-    //   stored3of5 = arrSort.slice(Math.max(arr.length - 5, 0))
-    //   console.log(stored3of5)
-    //   Avg5=Avg5/5
-    //   //console.log(Avg5)
-    //   }
+    let stored3of5=[];
     stored3of5 = arrSort.slice(Math.max(arrSort.length - 5, 0))
-    console.log(stored3of5)
     let last5= numData.slice(Math.max(arrSort.length - 5, 0))
     let last5sorted=last5.slice(0).sort(sorter)
-    console.log(last5)
-    console.log(last5sorted)
     last5sorted.pop()
     last5sorted.shift()
-    console.log(last5sorted)
     let total5=0.0;
+    if(data.length>=5){
     for(let i=0;i<3;i++){
       total5=last5sorted[i]+total5
     }
     total5=total5/3
+  }
+
+  //3 of 5
+  let stored10of12=[];
+  stored10of12 = arrSort.slice(Math.max(arrSort.length - 12, 0))
+  let last12= numData.slice(Math.max(arrSort.length - 12, 0))
+  let last12sorted=last12.slice(0).sort(sorter)
+  last12sorted.pop()
+  last12sorted.shift()
+  console.log(last12sorted)
+  let total12=0.0;
+  if(data.length>=12){
+  for(let i=0;i<10;i++){
+    total12=last12sorted[i]+total12
+  }
+  total12=total12/10
+}
+
+let best10=[];
+let best10Avg=0.0;
+
+if(data.length>=10){
+    best10=arrSort.slice(0,10)
+    for(let i=0;i<10;i++){
+      best10Avg=best10[i]+best10Avg
+    }
+    best10Avg=best10Avg/10
+}
+
+
+console.log(best10)
 
     if(data.length>=10){
       for(let i=data.length-1;i>data.length-11;i--){
@@ -369,19 +386,13 @@ export {data};
         <Card.Divider/>
         <Text style={styles.textSummary}>Avg 5: {Avg5.toFixed(3)}</Text>
         <Card.Divider/>
-        {/* start at the first 5 numbers and sort them.
-            remove the fastest and slowest times and take that average of the other 3
-            assign this average to best 3 of 5
-            then do the same for numbers 1-6 then 2-7 etc...
-            if one of these averages is lower than the assigned average replace it
-             */}
         <Text style={styles.textSummary}>3 of 5: {total5.toFixed(3)}</Text>
         <Card.Divider/>
         <Text style={styles.textSummary}>Avg 10: {Avg10.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>10 of 12: not added</Text>
+        <Text style={styles.textSummary}>10 of 12: {total12.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Best 10 Avg: not added</Text>
+        <Text style={styles.textSummary}>Best 10 Avg: {best10Avg.toFixed(3)}</Text>
         <Card.Divider/>
       </ScrollView>
     </Card>
