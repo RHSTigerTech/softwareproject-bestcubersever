@@ -33,13 +33,14 @@ import confirmGreen from './App/screens/confirmGreen'
 import confirmRed from './App/screens/confirmRed'
 import confirmYellow from './App/screens/confirmYellow'
 
-
+import Solution from './App/screens/Solution'
 
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {BackHandler, Alert} from 'react-native';
+import {SafeAreaProvider, SafeAreaView } from 'react-native';
 
 
 
@@ -68,7 +69,7 @@ const App = () => {
         <Stack.Screen 
           name='VirtualCube' 
           component={VirtualCube}
-          options={{headerTitle:'Virtual Cube', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerShown:false}}
 
         />
 
@@ -121,7 +122,7 @@ const App = () => {
         <Stack.Screen
           name="HowToReadAlg"
           component={HowToReadAlg}
-          options={{headerTitle:'Cube Basics', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerTitle:'Cube Basics', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
 
           //options={{headerShown:false}}
         />
@@ -129,27 +130,27 @@ const App = () => {
         <Stack.Screen
           name="BeginnerLearn"
           component={BeginnerLearn}
-          options={{headerTitle:'Beginner Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerTitle:'Beginner Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
           //mode='screen'
         />
         
         <Stack.Screen 
           name="IntermediateLearn"
           component={IntermediateLearn}
-          options={{headerTitle:'Intermediate Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerTitle:'Intermediate Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
         />
 
         <Stack.Screen 
           name="AdvancedLearn" 
           component={AdvancedLearn}
-          options={{headerTitle:'Advanced Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerTitle:'Advanced Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
 
         />
         
         <Stack.Screen
           name="AlgList"
           component={AlgList}
-          options={{headerTitle:'List of Algorithms', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerTitle:'List of Algorithms', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
 
         />
 
@@ -177,37 +178,38 @@ const App = () => {
         />
 
         <Stack.Screen
+        
           name='White'
           component={White}
-          options={{headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerLeft: null, headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
           name='Blue'
           component={Blue}
-          options={{headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerLeft: null, headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
         <Stack.Screen
           name='Orange'
           component={Orange}
-          options={{headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerLeft: null, headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
         <Stack.Screen
           name='Green'
           component={Green}
-          options={{headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{ headerLeft: null, headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
           name='Red'
           component={Red}
-          options={{headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerLeft: null, headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
           name='Yellow'
           component={Yellow}
-          options={{headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{headerLeft: null, headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
  
@@ -241,6 +243,14 @@ const App = () => {
           name='confirmWhite'
           component={confirmWhite}
           options={{headerLeft: null , headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+        />
+
+        <Stack.Screen
+          name="Solution"
+          component={Solution}
+          options={{headerTitle:'Solution', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
+
+          //options={{headerShown:false}}
         />
 
 

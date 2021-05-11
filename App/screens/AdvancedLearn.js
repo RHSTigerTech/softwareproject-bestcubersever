@@ -1,3 +1,6 @@
+//very rought emplate. Should probably be changed. atleast font size.
+
+
 import React, { useState, Component, useEffect } from 'react';
 import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';

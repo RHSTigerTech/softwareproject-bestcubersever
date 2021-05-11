@@ -54,7 +54,7 @@ export default class App extends Component {
         </Text> */}
         
 
-        <Button onPress={({}) => navigate('White')} title="Take a photo" />
+        <Button onPress={({}) => push('White')} title="Take a photo" />
         <Button onPress={({}) => push('confirmWhite')} title="confirm" />
 
         {this._maybeRenderImage()}
