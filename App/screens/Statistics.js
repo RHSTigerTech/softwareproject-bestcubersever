@@ -9,7 +9,7 @@ import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-nat
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
 import AwesomeButton from "react-native-really-awesome-button";
-import _ from 'lodash';
+import _, { last } from 'lodash';
 import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ErrorBoundary from "./ErrorBoundary";
@@ -146,6 +146,12 @@ export {data};
 
     let Avg5=0.0;
 
+    let Avg10=0.0;
+
+    let ThreeofFive=0.0;
+
+    let stored3of5=[];
+
     let notEnough5='Not enough data'
 
     let floatnum;
@@ -192,6 +198,7 @@ export {data};
         numData.push(parseFloat(data[i])) 
       }    
       floatnum=parseFloat(data[i])
+      
       average=floatnum+average 
       
       if(data[i]==0){
@@ -249,6 +256,41 @@ export {data};
     Avg5=Avg5/5
     //console.log(Avg5)
     }
+
+    //3 of 5
+    // if(data.length>=5){
+    //   for(let i=data.length-1;i>data.length-6;i--){
+    //       floatnum=parseFloat(data[i])
+    //       Avg5=floatnum+Avg5
+    //   }
+    //   stored3of5 = arrSort.slice(Math.max(arr.length - 5, 0))
+    //   console.log(stored3of5)
+    //   Avg5=Avg5/5
+    //   //console.log(Avg5)
+    //   }
+    stored3of5 = arrSort.slice(Math.max(arrSort.length - 5, 0))
+    console.log(stored3of5)
+    let last5= numData.slice(Math.max(arrSort.length - 5, 0))
+    let last5sorted=last5.slice(0).sort(sorter)
+    console.log(last5)
+    console.log(last5sorted)
+    last5sorted.pop()
+    last5sorted.shift()
+    console.log(last5sorted)
+    let total5=0.0;
+    for(let i=0;i<3;i++){
+      total5=last5sorted[i]+total5
+    }
+    total5=total5/3
+
+    if(data.length>=10){
+      for(let i=data.length-1;i>data.length-11;i--){
+          floatnum=parseFloat(data[i])
+          Avg10=floatnum+Avg10
+      }
+      Avg10=Avg10/10
+      //console.log(Avg5)
+      }
     
     //Best 3 of 5
     // if(data.length>=5){
@@ -333,11 +375,13 @@ export {data};
             then do the same for numbers 1-6 then 2-7 etc...
             if one of these averages is lower than the assigned average replace it
              */}
-        <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
+        <Text style={styles.textSummary}>3 of 5: {total5.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Avg 12: not added</Text>
+        <Text style={styles.textSummary}>Avg 10: {Avg10.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
+        <Text style={styles.textSummary}>10 of 12: not added</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best 10 Avg: not added</Text>
         <Card.Divider/>
       </ScrollView>
     </Card>
