@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
+import {val} from './PictureTaker';
+let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 
 export default App = () => {
+
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   console.log(data);
 
   useEffect(() => {
-    fetch('https://metal-density-310218.wl.r.appspot.com/endpoint')
+    fetch('https://metal-density-310218.wl.r.appspot.com/sendColors?serial='+val+'&extension='+fileType+'')
+        
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
