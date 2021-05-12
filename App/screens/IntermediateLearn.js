@@ -284,7 +284,7 @@ export default class App extends Component {
                                     <Text style={styles.textWideCenter}>P shapes</Text>
                                     {/* pics  1-4 */}
                                     <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_1.png')} />
-                                    <Text style={styles.textDescrip}>R' E' F (U R U' R') F' R</Text>
+                                    <Text style={styles.textDescrip}>R' U' F (U R U' R') F' R</Text>
 
                                     <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_2.png')} />
                                     <Text style={styles.textDescrip}>F U R U' F' r U R' U' r'</Text>
@@ -431,7 +431,7 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip}>F R' F R2 U' R' U' R U R' F2</Text>
 
                                     <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_39.png')} />
-                                    <Text style={styles.textDescrip}>(R U R' U)(R U2 R') F (R U R' U') F'</Text>
+                                    <Text style={styles.textDescrip}>(R U R' U R U2 R') F (R U R' U') F'</Text>
 
                                     <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_40.png')} />
                                     <Text style={styles.textDescrip}>(R' U' R) U' (R' U2 R) F (R U R' U') F'</Text>
@@ -481,7 +481,7 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip}>(R' U' F')(R U R' U') R' F R2 U' R' U' R U R' U R</Text>
 
                                     {/* Ja */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Ja.png')} />
-                                    <Text style={styles.textDescrip}>x R2 F R F' R U2 r' U r U2</Text>
+                                    <Text style={styles.textDescrip}>L U' R' U L' U2 R U' R' U2 R</Text>
 
                                     {/* Jb */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Jb.png')} />
                                     <Text style={styles.textDescrip}>(R U R' F')(R U R' U') R' F R2 U' R'</Text>
@@ -490,7 +490,7 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip}>(R U' R' U')(R U R D)(R' U' R D') R' U2 R'</Text>
 
                                     {/* Rb */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_Rb.png')} />
-                                    <Text style={styles.textDescrip}>R2 F (U R U' R') F' R U2 R' U2 R</Text>
+                                    <Text style={styles.textDescrip}>R2 F R (U R U' R') F' R U2 R' U2 R</Text>
 
                                     {/* T */}<Image style={styles.exImage} source={require('../Assets/intermediate/i_pll_T.png')} />
                                     <Text style={styles.textDescrip}>(R U R' U') R' F R2 (U' R' U')(R U R' F')</Text>

@@ -9,7 +9,6 @@ const B = (props) => <Text style={{fontWeight: 'bold',fontSize:17, lineHeight:18
 export default class App extends Component{
     render(){
         const {navigate} = this.props.navigation;
-
         return (
             <SafeAreaView style={styles.background}>
                 <View style={styles.ViewContainer}>
@@ -74,13 +73,13 @@ export default class App extends Component{
                                     There are three different types of pieces on a cube.
                                 </Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                                    <Image style={styles.exImage} source={require('../Assets/basics/cb_centers.jpg')} />
+                                    <Image style={styles.imageEx} source={require('../Assets/basics/cb_centers.jpg')} />
                                     <Text style={styles.textDescrip}>Center pieces: These only have one color on them</Text>
 
-                                    <Image style={styles.exImage} source={require('../Assets/basics/cb_edges.jpg')} />
+                                    <Image style={styles.imageEx} source={require('../Assets/basics/cb_edges.jpg')} />
                                     <Text style={styles.textDescrip}>Edge Pieces: These have two colors on them</Text>
 
-                                    <Image style={styles.exImage} source={require('../Assets/basics/cb_corners.jpg')} />
+                                    <Image style={styles.imageEx} source={require('../Assets/basics/cb_corners.jpg')} />
                                     <Text style={styles.textDescrip}>Corner Pieces: These have three colors on them</Text>
                                 </View>
                             </Card>
@@ -106,20 +105,20 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>R moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_rc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_rc.jpg')} />
                                         <Text style={styles.textDescrip2}>R {'\n'}Rotate the right layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_rcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_rcc.jpg')} />
                                         <Text style={styles.textDescrip2}>R' {'\n'}Rotate the right layer counter clockwise</Text>
                                     </View>
 
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_rwc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_rwc.jpg')} />
                                         <Text style={styles.textDescrip2}>Rw OR r {'\n'}Rotate the right layer and the middle layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_rwcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_rwcc.jpg')} />
                                         <Text style={styles.textDescrip2}>Rw' OR r' {'\n'}Rotate the right layer and middle layer counter clockwise</Text>
                                     </View>
                                 </View>
@@ -127,20 +126,20 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}L moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_lc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_lc.jpg')} />
                                         <Text style={styles.textDescrip2}>L {'\n'}Rotate the left layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_lcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_lcc.jpg')} />
                                         <Text style={styles.textDescrip2}>L' {'\n'}Rotate the left layer counter clockwise</Text>
                                     </View>
 
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_lwc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_lwc.jpg')} />
                                         <Text style={styles.textDescrip2}>Lw OR l {'\n'}Rotate the left layer and the middle layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_lwcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_lwcc.jpg')} />
                                         <Text style={styles.textDescrip2}>Lw' OR l' {'\n'}Rotate the left layer and middle layer counter clockwise</Text>
                                     </View>
                                 </View>
@@ -148,20 +147,20 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}U moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_uc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_uc.jpg')} />
                                         <Text style={styles.textDescrip2}>U {'\n'}Rotate the top layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_ucc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_ucc.jpg')} />
                                         <Text style={styles.textDescrip2}>U' {'\n'}Rotate the top layer counter clockwise</Text>
                                     </View>
 
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_uwc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_uwc.jpg')} />
                                         <Text style={styles.textDescrip2}>Uw OR u {'\n'}Rotate the top layer and the middle layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_uwcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_uwcc.jpg')} />
                                         <Text style={styles.textDescrip2}>Uw' OR u' {'\n'}Rotate the top layer and middle layer counter clockwise</Text>
                                     </View>
                                 </View>
@@ -169,20 +168,20 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}D moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_dc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_dc.jpg')} />
                                         <Text style={styles.textDescrip2}>D {'\n'}Rotate the bottom layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_dcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_dcc.jpg')} />
                                         <Text style={styles.textDescrip2}>D' {'\n'}Rotate the bottom layer counter clockwise</Text>
                                     </View>
 
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_dwc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_dwc.jpg')} />
                                         <Text style={styles.textDescrip2}>Dw OR d {'\n'}Rotate the bottom layer and the middle layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_dwcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_dwcc.jpg')} />
                                         <Text style={styles.textDescrip2}>Dw' OR d' {'\n'}Rotate the bottom layer and middle layer counter clockwise</Text>
                                     </View>
                                 </View>
@@ -190,40 +189,40 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}F moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_fc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_fc.jpg')} />
                                         <Text style={styles.textDescrip2}>F {'\n'}Rotate the front layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_fcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_fcc.jpg')} />
                                         <Text style={styles.textDescrip2}>F' {'\n'}Rotate the front layer counter clockwise</Text>
                                     </View>
 
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_fwc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_fwc.jpg')} />
                                         <Text style={styles.textDescrip2}>Fw OR f {'\n'}Rotate the front layer and the middle layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_fwcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_fwcc.jpg')} />
                                         <Text style={styles.textDescrip2}>Fw' OR f' {'\n'}Rotate the front layer and middle layer counter clockwise</Text>
                                     </View>
                                 </View>
                                 <Text style={styles.textSubHeader}>{'\n'}B moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_bc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_bc.jpg')} />
                                         <Text style={styles.textDescrip2}>B {'\n'}Rotate the back layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_bcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_bcc.jpg')} />
                                         <Text style={styles.textDescrip2}>B' {'\n'}Rotate the back layer counter clockwise</Text>
                                     </View>
 
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_bwc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_bwc.jpg')} />
                                         <Text style={styles.textDescrip2}>Bw OR b {'\n'}Rotate the back layer and the middle layer clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_bwcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_bwcc.jpg')} />
                                         <Text style={styles.textDescrip2}>Bw' OR b' {'\n'}Rotate the back layer and middle layer counter clockwise</Text>
                                     </View>
                                 </View>
@@ -232,11 +231,11 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}M moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_mc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_mc.jpg')} />
                                         <Text style={styles.textDescrip2}>M {'\n'}Rotate the middle layer between R and L clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_mcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_mcc.jpg')} />
                                         <Text style={styles.textDescrip2}>M' {'\n'}Rotate the middle layer between R and L counter clockwise</Text>
                                     </View>
                                 </View>
@@ -244,11 +243,11 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}E moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_ec.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_ec.jpg')} />
                                         <Text style={styles.textDescrip2}>E {'\n'}Rotate the middle layer between U and D clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_ecc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_ecc.jpg')} />
                                         <Text style={styles.textDescrip2}>E' {'\n'}Rotate the middle layer between U and D counter clockwise</Text>
                                     </View>
                                 </View>
@@ -256,11 +255,11 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}S moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_sc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_sc.jpg')} />
                                         <Text style={styles.textDescrip2}>S {'\n'}Rotate the middle layer between F and B clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_scc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_scc.jpg')} />
                                         <Text style={styles.textDescrip2}>S' {'\n'}Rotate the middle layer between F and B counter clockwise</Text>
                                     </View>
                                 </View>
@@ -269,11 +268,11 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}X moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_xc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_xc.jpg')} />
                                         <Text style={styles.textDescrip2}>x {'\n'}Rotate the cube on its x-axis clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_xcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_xcc.jpg')} />
                                         <Text style={styles.textDescrip2}>x' {'\n'}Rotate the cube on its x-axis counter clockwise</Text>
                                     </View>
                                 </View>
@@ -281,11 +280,11 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}Y moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_yc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_yc.jpg')} />
                                         <Text style={styles.textDescrip2}>y {'\n'}Rotate the cube on its y-axis clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_ycc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_ycc.jpg')} />
                                         <Text style={styles.textDescrip2}>y' {'\n'}Rotate the cube on its y-axis counter clockwise</Text>
                                     </View>
                                 </View>
@@ -293,11 +292,11 @@ export default class App extends Component{
                                 <Text style={styles.textSubHeader}>{'\n'}Z moves</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_zc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_zc.jpg')} />
                                         <Text style={styles.textDescrip2}>z {'\n'}Rotate the cube on its z-axis clockwise</Text>
                                     </View>
                                     <View style={styles.viewMove}>
-                                        <Image style={styles.movesImage} source={require('../Assets/basics/cb_zcc.jpg')} />
+                                        <Image style={styles.imageMoves} source={require('../Assets/basics/cb_zcc.jpg')} />
                                         <Text style={styles.textDescrip2}>z' {'\n'}Rotate the cube on its z-axis counter clockwise</Text>
                                     </View>
                                 </View>
@@ -389,40 +388,6 @@ const styles = StyleSheet.create({
         flex:1
     },
 
-    exImage: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginRight: '5%', 
-    },
-
-    movesImage: {
-        width: '80%', 
-        height: (Dimensions.get('window').width*.5)*.8, 
-        resizeMode: 'contain', 
-    },
-
-    InstructionsImage: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginLeft: '5%', 
-    },
-
-    image: {
-        // Background image of cube
-        width:'100%',
-        height: '100%',
-        position: 'absolute',
-    },
-
-    placeHolder: {
-        // Text with this style holds the place of something that will be implemented later
-        color: 'blue',
-        fontWeight: 'bold',
-        width: '40%',
-    },
-
     BottomTabText:{
         //Text used for the bottom menu
         fontSize:10,
@@ -433,17 +398,66 @@ const styles = StyleSheet.create({
         paddingHorizontal:'1%'
     },
 
+    contentButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:20,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        paddingTop:'5%',
+        top:'-30%'
+    },
+
+    contentLocal:{
+        fontSize:.1,
+        color:'transparent',
+        alignItems:'center'
+    },
+
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 25,
+        fontWeight:'bold',
+    },
+
+    image: {
+        // Background image of cube
+        width:'100%',
+        height: '100%',
+        position: 'absolute',
+    },
+
+    imageEx: {
+        width: '35%', 
+        height: (Dimensions.get('window').width)*.35, 
+        resizeMode: 'contain', 
+        marginRight: '5%', 
+    },
+
+    imageInstructions: {
+        width: '35%', 
+        height: (Dimensions.get('window').width)*.35, 
+        resizeMode: 'contain', 
+        marginLeft: '5%', 
+    },
+
+    imageMoves: {
+        width: '80%', 
+        height: (Dimensions.get('window').width*.5)*.8, 
+        resizeMode: 'contain', 
+    },
+
+    placeHolder: {
+        // Text with this style holds the place of something that will be implemented later
+        color: 'blue',
+        fontWeight: 'bold',
+        width: '40%',
+    },
+
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
-    },
-
-    textHeader: {
-        //headers
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 19,
-        textAlign: 'center',
     },
 
     textDescrip:{
@@ -457,8 +471,11 @@ const styles = StyleSheet.create({
     },
 
     textDescrip2: {
+        paddingTop: 10,
         color: 'white',
-        fontSize: 13,
+        fontSize: 14,
+        lineHeight:18,
+        letterSpacing:.2,
         width: '80%'
     },
 
@@ -513,20 +530,12 @@ const styles = StyleSheet.create({
         
     },
 
-    contentLocal:{
-        fontSize:.1,
-        color:'transparent',
-        alignItems:'center'
-    },
-
-    contentButtons:{
-        color:'#7600ff',
-        //textAlign:'center',
-        fontSize:20,
-        //textDecorationLine: 'underline',
-        fontWeight:'bold',
-        paddingTop:'5%',
-        top:'-30%'
+    textHeader: {
+        //headers
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 19,
+        textAlign: 'center',
     },
 
     textSubHeader: {
@@ -564,14 +573,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         width: '100%',
         textAlign: 'center'
-    },
-
-    ContentsTitle: {
-        // Table of contents title
-        color: 'white',
-        fontSize: 25,
-        fontWeight:'bold',
-        
     },
 
     ViewContainer:{
