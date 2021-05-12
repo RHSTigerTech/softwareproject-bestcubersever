@@ -116,11 +116,11 @@ let bottomButtonPadding=(Dimensions.get('window').width)*.029;
 
 
 let icon=(Dimensions.get('window').width)*.08;
-console.log(icon)
+// console.log(icon)
 
 const iconSize=45;
 let dynamicFont=(Dimensions.get('window').width)*.024306;
-console.log(dynamicFont)
+// console.log(dynamicFont)
 
 
 
@@ -243,7 +243,7 @@ export const times = () =>{
 export const LimitLength= (limit) =>{
     if (convertedTimes.length>limit){
       convertedTimes=convertedTimes.slice(Math.max(convertedTimes.length-limit,1))
-      console.log('converted times length shortened')
+      //console.log('converted times length shortened')
       storeData(convertedTimes)
     }
 }
@@ -651,7 +651,7 @@ function dismissed(){
           {delperm()}
           {clearAll()}
           {LimitLength(200)}
-          {console.log(iconSize)}
+          {/* {console.log(iconSize)} */}
             
           
          

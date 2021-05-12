@@ -16,6 +16,8 @@ import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import AwesomeButton from "react-native-really-awesome-button";
 import {val} from '../PictureTaker';
+import {Card} from 'react-native-elements';
+
 
 
 
@@ -31,9 +33,9 @@ export default class App extends Component {
     image: null,
     uploading: false,
   };
-  UNSAFE_componentWillMount() { 
-    this._takePhoto()
-}
+//   UNSAFE_componentWillMount() { 
+//     this._takePhoto()
+// }
   
   render() {
     const {navigate} = this.props.navigation;
@@ -45,6 +47,14 @@ export default class App extends Component {
     console.log(val);
     return (
       <View style={styles.container}>
+         
+         <View style={{flex:1, top:'3%'}}>
+         <Card containerStyle={{backgroundColor:'#121212'}}>
+        <Text style={{color:'white', fontWeight:'bold', textAlign:'center', fontSize:30, paddingBottom:'5%', paddingHorizontal:'10%'}}>Take A Photo Of The White Center With The Blue Center Facing You.</Text>
+        </Card>
+
+        </View>
+      <View style={{flex:1,justifyContent:'flex-end',bottom:'10%' ,}}>
         <AwesomeButton 
             width={300} 
             height={65}
@@ -59,9 +69,9 @@ export default class App extends Component {
             >
             Take Photo
         </AwesomeButton>
-
-        
+        </View>
       </View>
+      
     );
   }
 
@@ -128,7 +138,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
+    //justifyContent: 'center',
     backgroundColor:'#121212'
   },
 });

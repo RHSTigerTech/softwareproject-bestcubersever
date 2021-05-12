@@ -181,35 +181,35 @@ const App = () => {
         
           name='White'
           component={White}
-          options={{headerLeft: null, headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{ headerTitle:'White Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
           name='Blue'
           component={Blue}
-          options={{headerLeft: null, headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{ headerTitle:'Blue Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
         <Stack.Screen
           name='Orange'
           component={Orange}
-          options={{headerLeft: null, headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{ headerTitle:'Orange Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
         <Stack.Screen
           name='Green'
           component={Green}
-          options={{ headerLeft: null, headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{ headerTitle:'Green Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
           name='Red'
           component={Red}
-          options={{headerLeft: null, headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{ headerTitle:'Red Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
           name='Yellow'
           component={Yellow}
-          options={{headerLeft: null, headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
+          options={{ headerTitle:'Yellow Side', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
  
