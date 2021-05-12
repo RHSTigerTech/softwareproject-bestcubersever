@@ -843,7 +843,7 @@ export default class App extends Component {
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => navigate('Gradient')}
+                        onPress={() => navigate('Solution')}
                     >
                     <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>

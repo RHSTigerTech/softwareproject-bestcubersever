@@ -1,41 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
-import {val} from './PictureTaker';
-let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
+import React, { Component } from 'react';
+import {
+  ActivityIndicator,
+  Button,
+  Clipboard,
+  Image,
+  Share,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
-export default App = () => {
 
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  console.log(data);
 
-  useEffect(() => {
-    fetch('https://metal-density-310218.wl.r.appspot.com/sendColors?serial='+val+'&extension='+fileType+'')
+
+
+
+export default class App extends Component {
+  
+  
+  render() {
+
+    const solver = require('rubiks-cube-solver');
+
+    let cubeState = [
+      'flulfbddr', // front
+      'rudrruddl', // right
+      'dbbburrfb', // up
+      'llffdrubf', // down
+      'rludlubrf', // left
+      'lubfbfudl' // back
+    ].join('');
+
+    let solveMoves = solver(cubeState);
+    console.log(solveMoves);
+    
+    const {navigate} = this.props.navigation;
+
+   
+    return (
+      <View style={styles.container}>
+        <Text style={{color:'white'}}>{solveMoves}</Text>
+
         
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+      </View>
+    );
+  }
+}
 
-  return (
-    <View>
-        <Text>{data}</Text>
-    </View>
-    // <View style={{ flex: 1, padding: 24 }}>
-    //   {isLoading ? <Text>Loading...</Text> : 
-    //   ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
-    //       <Text style={{ fontSize: 18, color: 'green', textAlign: 'center'}}>{data.title}</Text>
-    //       <Text style={{ fontSize: 14, color: 'green', textAlign: 'center', paddingBottom: 10}}>Articles:</Text>
-    //       <FlatList
-    //         data={data.articles}
-    //         keyExtractor={({ id }, index) => id}
-    //         renderItem={({ item }) => (
-    //           <Text>{item.id + '. ' + item.title}</Text>
-    //         )}
-    //       />
-    //     </View>
-    //   )}
-    // </View>
-  );
-};
+  const styles = StyleSheet.create({
+    container: {
+      alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor:'#121212'
+    },
+  });
