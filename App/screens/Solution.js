@@ -23,14 +23,15 @@ export default class App extends Component {
   render() {
 
     const solver = require('rubiks-cube-solver');
+//relative to the front cube
 
     let cubeState = [
-      'flulfbddr', // front
-      'rudrruddl', // right
-      'dbbburrfb', // up
-      'llffdrubf', // down
-      'rludlubrf', // left
-      'lubfbfudl' // back
+      'ddrffrurl', // front
+      'fudurubdd', // right
+      'fdruublrd', // up
+      'rbuldbrrf', // down
+      'lfblldbbf', // left
+      'blulbflfu' // back
     ].join('');
 
     let solveMoves = solver(cubeState);
