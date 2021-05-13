@@ -1100,7 +1100,7 @@ data4=colorPosition[PhotoColor4]
       
       </View>
       <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
-        <View style={{paddingRight:'25%%'}}>
+        <View style={{paddingRight:'25%'}}>
       <Icon.Button
                         name='arrow-left-bold' 
                         flexDirection='column'

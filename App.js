@@ -34,6 +34,7 @@ import confirmRed from './App/screens/confirmRed'
 import confirmYellow from './App/screens/confirmYellow'
 
 import Solution from './App/screens/Solution'
+import recieveColors from './App/screens/recieveColors'
 
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack';
@@ -248,6 +249,14 @@ const App = () => {
         <Stack.Screen
           name="Solution"
           component={Solution}
+          options={{headerTitle:'Solution', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
+
+          //options={{headerShown:false}}
+        />
+
+        <Stack.Screen
+          name="recieveColors"
+          component={recieveColors}
           options={{headerTitle:'Solution', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
 
           //options={{headerShown:false}}
