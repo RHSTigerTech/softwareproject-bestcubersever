@@ -22,10 +22,12 @@ const val = Math.floor(100000 + Math.random() * 9999999);
 let amount =0;
 let colorName='';
 
+let defaultCube= false;
+
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 
 export {val};
-
+export {defaultCube}
 export default class App extends Component {
   state = {
     image: null,
@@ -54,8 +56,8 @@ export default class App extends Component {
         </Text> */}
         
 
-        <Button onPress={({}) => push('White')} title="Take a photo" />
-        <Button onPress={({}) => push('confirmWhite')} title="confirm" />
+        <Button onPress={() => {{defaultCube=false} push('White')}} title="Take a photo" />
+        <Button onPress={() => {{defaultCube=true} push('confirmWhite')}} title="confirm" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}

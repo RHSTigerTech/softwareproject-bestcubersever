@@ -16,40 +16,98 @@ import {Button} from "react-native-elements";
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import {defaultCube} from './PictureTaker'
+import {Card} from 'react-native-elements';
 
 
+const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.children}</Text>
+
+
+let checkState=defaultCube;
 const colors=['white', 'blue', 'darkorange', 'green', 'red', 'yellow' ]
-const val = Math.floor(100000 + Math.random() * 9999999);
-let amount =0;
+
+const colorPosition=['u', 'f', 'r', 'b', 'l', 'd']
+let amount =1;
 let colorName='';
 
 let colorSwitch1=0;
-let startColor1=Math.floor(Math.random() * 6);
+let startColor1;
+let PhotoColor1;
 
 let colorSwitch2=0;
-let startColor2=Math.floor(Math.random() * 6);
+let startColor2;
+let PhotoColor2;
 
 let colorSwitch3=0;
-let startColor3=Math.floor(Math.random() * 6);
+let startColor3;
+let PhotoColor3;
 
 let colorSwitch4=0;
-let startColor4=Math.floor(Math.random() * 6);
+let startColor4;
+let PhotoColor4;
 
 let colorSwitch5=0;
-let startColor5=Math.floor(Math.random() * 6);
+let startColor5;
+let PhotoColor5;
 
 let colorSwitch6=0;
-let startColor6=Math.floor(Math.random() * 6);
+let startColor6;
+let PhotoColor6;
 
 let colorSwitch7=0;
-let startColor7=Math.floor(Math.random() * 6);
+let startColor7;
+let PhotoColor7;
 
 let colorSwitch8=0;
-let startColor8=Math.floor(Math.random() * 6);
+let startColor8;
+let PhotoColor8;
 
 let colorSwitch9=0;
-let startColor9=Math.floor(Math.random() * 6);
+let startColor9;
+let PhotoColor9;
 
+startColor1=0
+startColor2=0
+startColor3=0
+startColor4=0
+startColor5=1
+startColor6=0
+startColor7=0
+startColor8=0
+startColor9=0
+  
+let data1;
+let data2;
+let data3;
+let data4;
+let data5;
+let data6;
+let data7;
+let data8;
+let data9;
+
+
+
+
+
+
+
+let totalPositionBlueSide=[]
+//console.log(totalPositionBlueSide)
+export{totalPositionBlueSide}
+
+// if(usedImage=true){
+//   //set to colors used in images
+// }
+
+
+
+// let WhiteData='u'
+// let BlueData='f'
+// let OrangeData='r'
+// let YelloData='d'
+// let RedData='l'
+// let GreenData='b'
 
 
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
@@ -61,22 +119,106 @@ let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 
 
 
-export {val};
 
 export default class App extends Component {
+      
     constructor(props){
         super(props);
+        if(defaultCube==true){
+           data1=colorPosition[startColor1]
+
+ data2=colorPosition[startColor2]
+
+ data3=colorPosition[startColor3]
+
+ data4=colorPosition[startColor4]
+
+ data5=colorPosition[startColor5]
+
+ data6=colorPosition[startColor6]
+
+ data7=colorPosition[startColor7]
+
+ data8=colorPosition[startColor8]
+
+ data9=colorPosition[startColor9]
+          totalPositionBlueSide=[
+            data1,
+            data2,
+            data3,
+            data4,
+            data5,
+            data6,
+            data7,
+            data8,
+            data9,
+          ].join('');
         this.state = {
-            buttonColor1:colors[startColor1],
-            buttonColor2:colors[startColor2],
-            buttonColor3:colors[startColor3],
-            buttonColor4:colors[startColor4],
-            buttonColor5:colors[startColor5],
-            buttonColor6:colors[startColor6],
-            buttonColor7:colors[startColor7],
-            buttonColor8:colors[startColor8],
-            buttonColor9:colors[startColor9],
+          buttonColor1:'grey',
+          buttonColor2:'grey',
+          buttonColor3:'grey',
+          buttonColor4:'grey',
+          buttonColor5:colors[1],
+          buttonColor6:'grey',
+          buttonColor7:'grey',
+          buttonColor8:'grey',
+          buttonColor9:'grey',
+            
         }
+      }
+      else{
+        PhotoColor1=Math.floor(Math.random() * 6)
+        PhotoColor2=Math.floor(Math.random() * 6)
+        PhotoColor3=Math.floor(Math.random() * 6)
+        PhotoColor4=Math.floor(Math.random() * 6)
+        PhotoColor5=Math.floor(Math.random() * 6)
+        PhotoColor6=Math.floor(Math.random() * 6)
+        PhotoColor7=Math.floor(Math.random() * 6)
+        PhotoColor8=Math.floor(Math.random() * 6)
+        PhotoColor9=Math.floor(Math.random() * 6)
+        data1=colorPosition[startColor1]
+
+data2=colorPosition[PhotoColor2]
+
+data3=colorPosition[PhotoColor3]
+
+data4=colorPosition[PhotoColor4]
+
+ data5=colorPosition[PhotoColor5]
+
+ data6=colorPosition[PhotoColor6]
+
+ data7=colorPosition[PhotoColor7]
+
+ data8=colorPosition[PhotoColor8]
+
+ data9=colorPosition[PhotoColor9]
+
+        totalPositionBlueSide=[
+          data1,
+          data2,
+          data3,
+          data4,
+          data5,
+          data6,
+          data7,
+          data8,
+          data9,
+        ].join('')
+        this.state = {
+          buttonColor1:colors[PhotoColor1],
+            buttonColor2:colors[PhotoColor2],
+            buttonColor3:colors[PhotoColor3],
+            buttonColor4:colors[PhotoColor4],
+            buttonColor5:colors[PhotoColor5],
+            buttonColor6:colors[PhotoColor6],
+            buttonColor7:colors[PhotoColor7],
+            buttonColor8:colors[PhotoColor8],
+            buttonColor9:colors[PhotoColor9],
+          
+          
+      }
+      }
     }
 
   state = {
@@ -84,30 +226,7 @@ export default class App extends Component {
     uploading: false,
   };
 
-  UNSAFE_componentWillMount() { 
-    colorSwitch1=0;
-    colorSwitch2=0;
-    colorSwitch3=0;
-    colorSwitch4=0;
-    colorSwitch5=0;
-    colorSwitch6=0;
-    colorSwitch7=0;
-    colorSwitch8=0;
-    colorSwitch9=0;
-    // startColor1=Math.floor(Math.random() * 6);
-    // startColor2=Math.floor(Math.random() * 6);
-    // startColor3=Math.floor(Math.random() * 6);
-    // startColor4=Math.floor(Math.random() * 6);
-    // startColor5=Math.floor(Math.random() * 6);
-    // startColor6=Math.floor(Math.random() * 6);
-    // startColor7=Math.floor(Math.random() * 6);
-    // startColor8=Math.floor(Math.random() * 6);
-    // startColor9=Math.floor(Math.random() * 6);
-
-
-
-    
-}
+  
   onButtonPress1 = () => {
       if(colorSwitch1==1){
         this.setState({buttonColor1: 'white'});
@@ -119,7 +238,9 @@ export default class App extends Component {
         colorSwitch7--;
         colorSwitch8--;
         colorSwitch9--;
-        
+        data1=colorPosition[colorSwitch1-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       }
       if(colorSwitch1==2){
         this.setState({buttonColor1: 'blue'});
@@ -131,6 +252,9 @@ export default class App extends Component {
         colorSwitch7--;
         colorSwitch8--;
         colorSwitch9--;
+        data1=colorPosition[colorSwitch1-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       }
       if(colorSwitch1==3){
         this.setState({buttonColor1: 'darkorange'});
@@ -142,6 +266,9 @@ export default class App extends Component {
         colorSwitch7--;
         colorSwitch8--;
         colorSwitch9--;
+        data1=colorPosition[colorSwitch1-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       }
       if(colorSwitch1==4){
         this.setState({buttonColor1: 'green'});
@@ -153,6 +280,9 @@ export default class App extends Component {
         colorSwitch7--;
         colorSwitch8--;
         colorSwitch9--;
+        data1=colorPosition[colorSwitch1-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       }
       if(colorSwitch1==5){
         this.setState({buttonColor1: 'red'});
@@ -164,9 +294,15 @@ export default class App extends Component {
         colorSwitch7--;
         colorSwitch8--;
         colorSwitch9--;
+        data1=colorPosition[colorSwitch1-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       }
       if(colorSwitch1==6){
         this.setState({buttonColor1: 'yellow'});
+        data1=colorPosition[colorSwitch1-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
         colorSwitch1=0;
         colorSwitch2--;
         colorSwitch3--;
@@ -176,12 +312,16 @@ export default class App extends Component {
         colorSwitch7--;
         colorSwitch8--;
         colorSwitch9--;
+        
       }
 
   }
   onButtonPress2 = () => {
     if(colorSwitch2==1){
       this.setState({buttonColor2: 'white'});
+      data2=colorPosition[colorSwitch2-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
         colorSwitch3--;
         colorSwitch4--;
@@ -193,6 +333,9 @@ export default class App extends Component {
     }
     if(colorSwitch2==2){
       this.setState({buttonColor2: 'blue'});
+      data2=colorPosition[colorSwitch2-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
         colorSwitch3--;
         colorSwitch4--;
@@ -204,6 +347,9 @@ export default class App extends Component {
     }
     if(colorSwitch2==3){
       this.setState({buttonColor2: 'darkorange'});
+      data2=colorPosition[colorSwitch2-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
         colorSwitch3--;
         colorSwitch4--;
@@ -215,6 +361,9 @@ export default class App extends Component {
     }
     if(colorSwitch2==4){
       this.setState({buttonColor2: 'green'});
+      data2=colorPosition[colorSwitch2-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
         colorSwitch3--;
         colorSwitch4--;
@@ -226,6 +375,9 @@ export default class App extends Component {
     }
     if(colorSwitch2==5){
       this.setState({buttonColor2: 'red'});
+      data2=colorPosition[colorSwitch2-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
         colorSwitch3--;
         colorSwitch4--;
@@ -237,6 +389,9 @@ export default class App extends Component {
     }
     if(colorSwitch2==6){
       this.setState({buttonColor2: 'yellow'});
+      data2=colorPosition[colorSwitch2-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch2=0;
       colorSwitch1--;
         colorSwitch3--;
@@ -251,6 +406,9 @@ export default class App extends Component {
   onButtonPress3 = () => {
       if(colorSwitch3==1){
         this.setState({buttonColor3: 'white'});
+        data3=colorPosition[colorSwitch3-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
         colorSwitch1--;
         colorSwitch2--;
         colorSwitch4--;
@@ -263,6 +421,9 @@ export default class App extends Component {
       }
       if(colorSwitch3==2){
         this.setState({buttonColor3: 'blue'});
+        data3=colorPosition[colorSwitch3-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
         colorSwitch1--;
         colorSwitch2--;
         colorSwitch4--;
@@ -275,6 +436,9 @@ export default class App extends Component {
       }
       if(colorSwitch3==3){
         this.setState({buttonColor3: 'darkorange'});
+        data3=colorPosition[colorSwitch3-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
         colorSwitch1--;
         colorSwitch2--;
         colorSwitch4--;
@@ -287,6 +451,9 @@ export default class App extends Component {
       }
       if(colorSwitch3==4){
         this.setState({buttonColor3: 'green'});
+        data3=colorPosition[colorSwitch3-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
         colorSwitch1--;
         colorSwitch2--;
         colorSwitch4--;
@@ -299,6 +466,9 @@ export default class App extends Component {
       }
       if(colorSwitch3==5){
         this.setState({buttonColor3: 'red'});
+        data3=colorPosition[colorSwitch3-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
         colorSwitch1--;
         colorSwitch2--;
         colorSwitch4--;
@@ -311,6 +481,9 @@ export default class App extends Component {
       }
       if(colorSwitch3==6){
         this.setState({buttonColor3: 'yellow'});
+        data3=colorPosition[colorSwitch3-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
         colorSwitch3=0;
         colorSwitch1--;
         colorSwitch2--;
@@ -326,6 +499,9 @@ export default class App extends Component {
   onButtonPress4 = () => {
     if(colorSwitch4==1){
       this.setState({buttonColor4: 'white'});
+      data4=colorPosition[colorSwitch4-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch3--;
@@ -338,6 +514,9 @@ export default class App extends Component {
     }
     if(colorSwitch4==2){
       this.setState({buttonColor4: 'blue'});
+      data4=colorPosition[colorSwitch4-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch3--;
@@ -350,6 +529,9 @@ export default class App extends Component {
     }
     if(colorSwitch4==3){
       this.setState({buttonColor4: 'darkorange'});
+      data4=colorPosition[colorSwitch4-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch3--;
@@ -362,6 +544,9 @@ export default class App extends Component {
     }
     if(colorSwitch4==4){
       this.setState({buttonColor4: 'green'});
+      data4=colorPosition[colorSwitch4-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch3--;
@@ -374,6 +559,9 @@ export default class App extends Component {
     }
     if(colorSwitch4==5){
       this.setState({buttonColor4: 'red'});
+      data4=colorPosition[colorSwitch4-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch3--;
@@ -386,6 +574,9 @@ export default class App extends Component {
     }
     if(colorSwitch4==6){
       this.setState({buttonColor4: 'yellow'});
+      data4=colorPosition[colorSwitch4-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch4=0;
       colorSwitch1--;
       colorSwitch2--;
@@ -401,6 +592,9 @@ export default class App extends Component {
   onButtonPress5 = () => {
   if(colorSwitch5==1){
     this.setState({buttonColor5: 'white'});
+    data5=colorPosition[colorSwitch5-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -413,6 +607,9 @@ export default class App extends Component {
   }
   if(colorSwitch5==2){
     this.setState({buttonColor5: 'blue'});
+    data5=colorPosition[colorSwitch5-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -425,6 +622,9 @@ export default class App extends Component {
   }
   if(colorSwitch5==3){
     this.setState({buttonColor5: 'darkorange'});
+    data5=colorPosition[colorSwitch5-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -437,6 +637,9 @@ export default class App extends Component {
   }
   if(colorSwitch5==4){
     this.setState({buttonColor5: 'green'});
+    data5=colorPosition[colorSwitch5-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -449,6 +652,9 @@ export default class App extends Component {
   }
   if(colorSwitch5==5){
     this.setState({buttonColor5: 'red'});
+    data5=colorPosition[colorSwitch5-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -461,6 +667,9 @@ export default class App extends Component {
   }
   if(colorSwitch5==6){
     this.setState({buttonColor5: 'yellow'});
+    data5=colorPosition[colorSwitch5-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch5=0;
     colorSwitch1--;
     colorSwitch2--;
@@ -476,6 +685,9 @@ export default class App extends Component {
   onButtonPress6 = () => {
   if(colorSwitch6==1){
     this.setState({buttonColor6: 'white'});
+    data6=colorPosition[colorSwitch6-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -488,6 +700,9 @@ export default class App extends Component {
   }
   if(colorSwitch6==2){
     this.setState({buttonColor6: 'blue'});
+    data6=colorPosition[colorSwitch6-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -500,6 +715,9 @@ export default class App extends Component {
   }
   if(colorSwitch6==3){
     this.setState({buttonColor6: 'darkorange'});
+    data6=colorPosition[colorSwitch6-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -512,6 +730,9 @@ export default class App extends Component {
   }
   if(colorSwitch6==4){
     this.setState({buttonColor6: 'green'});
+    data6=colorPosition[colorSwitch6-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -524,6 +745,9 @@ export default class App extends Component {
   }
   if(colorSwitch6==5){
     this.setState({buttonColor6: 'red'});
+    data6=colorPosition[colorSwitch6-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -536,6 +760,9 @@ export default class App extends Component {
   }
   if(colorSwitch6==6){
     this.setState({buttonColor6: 'yellow'});
+    data6=colorPosition[colorSwitch6-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch6=0;
     colorSwitch1--;
     colorSwitch2--;
@@ -551,6 +778,9 @@ export default class App extends Component {
   onButtonPress7 = () => {
   if(colorSwitch7==1){
     this.setState({buttonColor7: 'white'});
+    data7=colorPosition[colorSwitch7-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -563,6 +793,9 @@ export default class App extends Component {
   }
   if(colorSwitch7==2){
     this.setState({buttonColor7: 'blue'});
+    data7=colorPosition[colorSwitch7-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -575,6 +808,9 @@ export default class App extends Component {
   }
   if(colorSwitch7==3){
     this.setState({buttonColor7: 'darkorange'});
+    data7=colorPosition[colorSwitch7-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -587,6 +823,9 @@ export default class App extends Component {
   }
   if(colorSwitch7==4){
     this.setState({buttonColor7: 'green'});
+    data7=colorPosition[colorSwitch7-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -599,6 +838,9 @@ export default class App extends Component {
   }
   if(colorSwitch7==5){
     this.setState({buttonColor7: 'red'});
+    data7=colorPosition[colorSwitch7-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -611,6 +853,9 @@ export default class App extends Component {
   }
   if(colorSwitch7==6){
     this.setState({buttonColor7: 'yellow'});
+    data7=colorPosition[colorSwitch7-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch7=0;
     colorSwitch1--;
     colorSwitch2--;
@@ -626,6 +871,9 @@ export default class App extends Component {
   onButtonPress8 = () => {
   if(colorSwitch8==1){
     this.setState({buttonColor8: 'white'});
+    data8=colorPosition[colorSwitch8-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -638,6 +886,9 @@ export default class App extends Component {
   }
   if(colorSwitch8==2){
     this.setState({buttonColor8: 'blue'});
+    data8=colorPosition[colorSwitch8-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -650,6 +901,9 @@ export default class App extends Component {
   }
   if(colorSwitch8==3){
     this.setState({buttonColor8: 'darkorange'});
+    data8=colorPosition[colorSwitch8-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -662,6 +916,9 @@ export default class App extends Component {
   }
   if(colorSwitch8==4){
     this.setState({buttonColor8: 'green'});
+    data8=colorPosition[colorSwitch8-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -674,6 +931,9 @@ export default class App extends Component {
   }
   if(colorSwitch8==5){
     this.setState({buttonColor8: 'red'});
+    data8=colorPosition[colorSwitch8-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch1--;
     colorSwitch2--;
     colorSwitch4--;
@@ -686,6 +946,9 @@ export default class App extends Component {
   }
   if(colorSwitch8==6){
     this.setState({buttonColor8: 'yellow'});
+    data8=colorPosition[colorSwitch8-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
     colorSwitch8=0;
     colorSwitch1--;
     colorSwitch2--;
@@ -701,6 +964,9 @@ export default class App extends Component {
   onButtonPress9 = () => {
     if(colorSwitch9==1){
       this.setState({buttonColor9: 'white'});
+      data9=colorPosition[colorSwitch9-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch4--;
@@ -713,6 +979,9 @@ export default class App extends Component {
     }
     if(colorSwitch9==2){
       this.setState({buttonColor9: 'blue'});
+      data9=colorPosition[colorSwitch9-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch4--;
@@ -725,6 +994,9 @@ export default class App extends Component {
     }
     if(colorSwitch9==3){
       this.setState({buttonColor9: 'darkorange'});
+      data9=colorPosition[colorSwitch9-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch4--;
@@ -737,6 +1009,9 @@ export default class App extends Component {
     }
     if(colorSwitch9==4){
       this.setState({buttonColor9: 'green'});
+      data9=colorPosition[colorSwitch9-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch4--;
@@ -749,6 +1024,9 @@ export default class App extends Component {
     }
     if(colorSwitch9==5){
       this.setState({buttonColor9: 'red'});
+      data9=colorPosition[colorSwitch9-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch1--;
       colorSwitch2--;
       colorSwitch4--;
@@ -761,6 +1039,9 @@ export default class App extends Component {
     }
     if(colorSwitch9==6){
       this.setState({buttonColor9: 'yellow'});
+      data9=colorPosition[colorSwitch9-1]
+        totalPositionBlueSide=[data1,data2,data3,data4,data5,data6,data7,data8,data9,].join('')
+        console.log(totalPositionBlueSide)
       colorSwitch9=0;
       colorSwitch1--;
       colorSwitch2--;
@@ -775,23 +1056,29 @@ export default class App extends Component {
   }
 
   
+
+  
   render() {
     
-
     const {navigate} = this.props.navigation;
-
+    console.log(totalPositionBlueSide)
     let {
       image
     } = this.state;
     
-    console.log(val);
+    
     return (
       <View style={{backgroundColor:'#121212', flex:1}}>
 <StatusBar barStyle="default" />
+<View style={{position:'absolute',left:0, right:0}}>
+<Card containerStyle={{backgroundColor:'#121212'}}>
+  <Text style={styles.Warning}><B>Warning:</B> Going back will reset the state of the current side.</Text>
+  </Card>
+</View>
 <View style={{flex:2}}></View>
       <View style={styles.topcontainer}>
       
-        <Button buttonStyle={{backgroundColor:this.state.buttonColor1, width:70, height:70}} onPress={colorSwitch1++,  this.onButtonPress1} />
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor1, width:70, height:70}} onPress={colorSwitch1++, this.onButtonPress1} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor2, width:70, height:70}} onPress={colorSwitch2++,  this.onButtonPress2} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor3, width:70, height:70}} onPress={colorSwitch3++,  this.onButtonPress3} />  
         
@@ -843,7 +1130,7 @@ export default class App extends Component {
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => navigate('confirmOrange')}
+                        onPress={() => {navigate('confirmOrange'), console.log(totalPositionBlueSide), console.log('final')}}
                     >
                     <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>
@@ -913,6 +1200,21 @@ const styles = StyleSheet.create({
     opacity:1,
     justifyContent:'center',
     left:'-11%',
+    //paddingHorizontal:'1%'
+  },
+  Warning:{
+    //Text used for the bottom menu
+    fontSize:20,
+    color:'white',
+    opacity:1,
+    //justifyContent:'center',
+    textAlign:'center',
+    //paddingHorizontal:'5%',
+    
+    //top:'5%',
+    //flexWrap:'wrap',
+
+    //left:'-11%',
     //paddingHorizontal:'1%'
   },
   

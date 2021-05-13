@@ -17,6 +17,8 @@ import * as ImagePicker from 'expo-image-picker';
 import AwesomeButton from "react-native-really-awesome-button";
 import {val} from '../PictureTaker';
 import {Card} from 'react-native-elements';
+import {defaultCube} from '../PictureTaker'
+
 
 
 

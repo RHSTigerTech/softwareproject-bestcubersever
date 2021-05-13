@@ -12,17 +12,25 @@ import {
   View,
 } from 'react-native';
 import {cross, phases} from 'rubiks-cube-solver'
-import { F2LSolver } from 'rubiks-cube-solver/src';
+import { CrossSolver, F2LSolver } from 'rubiks-cube-solver/src';
+import {totalPositionWhiteSide} from './confirmWhite'
+import {totalPositionBlueSide} from './confirmBlue'
+import {totalPositionOrangeSide} from './confirmOrange'
+import {totalPositionGreenSide} from './confirmGreen'
+import {totalPositionRedSide} from './confirmRed'
+import {totalPositionYellowSide} from './confirmYellow'
 
 
 
+
+let solver = require('rubiks-cube-solver');
 
 export default class App extends Component {
   
   
   render() {
 
-    const solver = require('rubiks-cube-solver');
+    console.log(totalPositionWhiteSide)
 //relative to the front cube
 
     // f - blue
@@ -34,14 +42,14 @@ export default class App extends Component {
 
 
     let cubeState = [
-      'ddrffrurl', // front
-      'fudurubdd', // right
-      'fdruublrd', // up
-      'rbuldbrrf', // down
-      'lfblldbbf', // left
-      'blulbflfu' // back
+      totalPositionBlueSide, // front
+      totalPositionOrangeSide, // right
+      totalPositionWhiteSide, // up
+      totalPositionYellowSide, // down
+      totalPositionRedSide, // left
+      totalPositionGreenSide // back
     ].join('');
-    let solveMoves = solver(cubeState,cross);
+    let solveMoves = solver(cubeState);
     console.log(solveMoves);
     console.log('yoooo')
 

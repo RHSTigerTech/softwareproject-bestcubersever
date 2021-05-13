@@ -84,7 +84,7 @@ export default class App extends Component {
       if (!pickerResult.cancelled) {
         this.setState({ image: pickerResult.uri });
         this.uploadImageAsync(pickerResult.uri);
-        navigate('Solution')
+        navigate('confirmWhite')
       }      
     }
   };
