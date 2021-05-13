@@ -23,26 +23,34 @@ export default class App extends Component {
                 <Card.Divider/>
                     <TouchableOpacity
                         onPress={() => {
-                            this.scrollViewRef.scrollTo({y: this.SideMoves.y*3.95,animated: true});
+                            this.scrollViewRef.scrollTo({y: this.AlgorithmNotation.y,animated: true});
                         }}
                     >
-                    <Text style={styles.contentButtons}>1: Side Moves</Text>
+                    <Text style={styles.contentButtons}>1: Algorithm Notation</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={() => {
-                            this.scrollViewRef.scrollTo({y: this.MiddleMoves.y*1.35,animated: true});
+                            this.scrollViewRef.scrollTo({y: this.SideMoves.y,animated: true});
                         }}
                     >
-                    <Text paddingTop='-3%' style={styles.contentButtons} >2: Middle Moves</Text>
+                    <Text style={styles.contentButtons}>2: Side Moves</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.scrollViewRef.scrollTo({y: this.MiddleMoves.y,animated: true});
+                        }}
+                    >
+                    <Text style={styles.contentButtons} >3: Middle Moves</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity
                         onPress={() => {
-                            this.scrollViewRef.scrollTo({y: this.OrientationMoves.y*1.275,animated: true});
+                            this.scrollViewRef.scrollTo({y: this.OrientationMoves.y,animated: true});
                         }}
                     >
-                    <Text style={styles.contentButtons}>3: Orientation Moves</Text>
+                    <Text style={styles.contentButtons}>4: Orientation Moves</Text>
                     </TouchableOpacity>
 
                     
@@ -79,6 +87,8 @@ export default class App extends Component {
                                 <Text style={styles.textDescrip}>Corner Pieces: These have three colors on them</Text>
                             </View>
                         </Card>
+                        <Text onLayout={event =>(this.AlgorithmNotation = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
+
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>Algorithm Notation</Card.Title>
                             <Card.Divider/>
@@ -93,9 +103,10 @@ export default class App extends Component {
                                 {'\n'}{'\n'}Ex: f (R U R' U') f' means wide front turn clockwise, right turn clockwise, up turn clockwise, right turn 
                                 counter clockwise, up turn counter clockwise, and wide front turn counter clockwise.{'\n'}
                             </Text>
-                            <Card.Divider/>
+                            </Card>
                             <Text onLayout={event =>(this.SideMoves = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
 
+                            <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Text style={styles.textHeader}>Side Moves</Text>
                             <Text style={styles.textSubHeader}>R moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -222,7 +233,10 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>Bw' OR b' {'\n'}Rotate the back layer and middle layer counter clockwise</Text>
                                 </View>
                             </View>
+                            </Card>
                             <Text onLayout={event =>(this.MiddleMoves = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
+                            <Card containerStyle={{backgroundColor:'#121212'}}>
+                            
                             <Text style={styles.textHeader}>{'\n'}Middle Moves</Text>
                             <Text style={styles.textSubHeader}>{'\n'}M moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -259,8 +273,9 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>S' {'\n'}Rotate the middle layer between F and B counter clockwise</Text>
                                 </View>
                             </View>
+                            </Card>
                             <Text onLayout={event =>(this.OrientationMoves = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-
+                            <Card containerStyle={{backgroundColor:'#121212'}}>
                             <Text style={styles.textHeader}>{'\n'}Orientation Moves</Text>
                             <Text style={styles.textSubHeader}>{'\n'}X moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
