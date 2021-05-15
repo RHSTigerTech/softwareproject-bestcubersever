@@ -103,10 +103,10 @@ $(document).ready( function(){
 	var undoButton = document.getElementById('undo-btn');
 
 	if( controls === ERNO.Locked ){
-		var fixedOrientation = new THREE.Euler(  Math.PI * 0.14, Math.PI * -0.16, 0 );
+		var fixedOrientation = new THREE.Euler(  Math.PI * 0.14, Math.PI * -0.19, 0 );
 		cube.object3D.lookAt( cube.camera.position );
 		cube.rotation.x += fixedOrientation.x;
-		cube.rotation.y += fixedOrientation.y;
+		cube.rotation.y += fixedOrientation.y
 		cube.rotation.z += fixedOrientation.z;
 	}
 
