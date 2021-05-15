@@ -123,9 +123,7 @@ $(document).ready( function(){
 		cube.undo();
 	});
 
-	playSolutionButton.addEventListener('click', (e) => {
-		playSolution(1);
-	});
+	
 
 	cube.domElement.addEventListener('click', (e) => {
 
