@@ -5,8 +5,8 @@
 /************/
 
 .cube {
-  width: 80%;
-  height: 80%;
+  width: 100vw !important;
+  height: 100vh !important;
 }
 
 @font-face {
@@ -154,8 +154,8 @@
   /*box-sizing: border-box;*/
   display: none;
   position: absolute;
-  width: 140px;
-  height: 140px;
+  width: 40px;
+  height: 40px;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -440,8 +440,8 @@ Bottom Face
   display: none;
   position: absolute;
   z-index: 1000;
-  width: 90%;
-  height: 90%;
+  width: 90% !important;
+  height: 90% !important;
   font-size: 1em;
   line-height: 0.9em;
   text-align: center;
@@ -493,12 +493,12 @@ Bottom Face
 
 .buttons {
   /* flex-direction: row; */
-  font-size: 32px;
+  font-size: 10px;
   position: absolute;
   bottom: 81%;
   display: flex;
   justify-content: center;
-  right: 33%;
+  right: 15%;
   /* border-right: 5px solid black; */
   /* padding: 15px; */
 }
