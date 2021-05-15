@@ -495,10 +495,10 @@ Bottom Face
   /* flex-direction: row; */
   font-size: 10px;
   position: absolute;
-  bottom: 81%;
+  top: 5%;
   display: flex;
   justify-content: center;
-  right: 15%;
+  right: 35vw;
   /* border-right: 5px solid black; */
   /* padding: 15px; */
 }
