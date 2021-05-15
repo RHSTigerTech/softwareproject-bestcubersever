@@ -115,7 +115,7 @@ export default function App() {
       <TouchableOpacity
         activeOpacity={0.7}
         disabled={!isCameraReady}
-        onLongPress={recordVideo}
+        // onLongPress={recordVideo}
         onPressOut={stopVideoRecording}
         onPress={takePicture}
         style={styles.capture}
@@ -151,7 +151,7 @@ export default function App() {
         ref={cameraRef}
         style={styles.container}
         type={cameraType}
-        flashMode={Camera.Constants.FlashMode.on}
+        //flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
         onMountError={(error) => {
           console.log("cammera error", error);
