@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-elements';
 
-import {cross, phases} from 'rubiks-cube-solver'
+
 import { CrossSolver, F2LSolver } from 'rubiks-cube-solver/src';
 import {totalPositionWhiteSide} from './confirmWhite'
 import {totalPositionBlueSide} from './confirmBlue'
@@ -59,10 +59,31 @@ export default class App extends Component {
     // let solveMoves = solver(cubeState);
     // console.log(solveMoves);
     // console.log('yoooo')
+    const solver = require('rubiks-cube-solver');
 
+    let cubeState = [
+      'flulfbddr', // front
+      'rudrruddl', // right
+      'dbbburrfb', // up
+      'llffdrubf', // down
+      'rludlubrf', // left
+      'lubfbfudl' // back
+    ].join('');
+    let options = { partitioned: true };
+    let solveMoves = solver(cubeState, options);
+    let solveMovesString = solver(cubeState);
+    console.log(solveMoves, options);
+
+
+    console.log(solveMoves.cross)
+    console.log(solveMoves.f2l)
+    console.log(solveMoves.oll)
+    console.log(solveMoves.pll)
+
+    console.log(solveMovesString)
 
     const {navigate} = this.props.navigation;
-
+//create function that return a text input depending on the the string type
    
     return (
       <SafeAreaView style={styles.background}>
@@ -79,6 +100,7 @@ export default class App extends Component {
       <View style={styles.viewMove}>
           <Image style={styles.movesImage} source={require('../Assets/basics/cb_rcc.jpg')}/>
           <Text style={styles.textDescrip2}>R' {'\n'}Rotate the right layer counter clockwise</Text>
+          <Text style={{color:'white'}}>{solveMoves.f2l}</Text>
       </View>
 
       <View style={styles.viewMove}>
@@ -89,6 +111,7 @@ export default class App extends Component {
           <Image style={styles.movesImage} source={require('../Assets/basics/cb_rwcc.jpg')}/>
           <Text style={styles.textDescrip2}>Rw' OR r' {'\n'}Rotate the right layer and middle layer counter clockwise</Text>
       </View>
+
   </View>
   </Card>
   </ScrollView>

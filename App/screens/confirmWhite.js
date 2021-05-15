@@ -1104,36 +1104,44 @@ data4=colorPosition[PhotoColor4]
         <Button buttonStyle={{backgroundColor:this.state.buttonColor8, width:70, height:70}} onPress={colorSwitch8++,  this.onButtonPress8} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor9, width:70, height:70}} onPress={colorSwitch9++,  this.onButtonPress9} />   
       </View>
-      
+
+
+
       <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="12.5%" y1="25%" x2="12.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"  />
-  </Svg>
-  <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="37.5%" y1="25%" x2="37.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  <Line x1="10%" y1="37%" x2="90%" y2="37%" stroke="white" strokeWidth="2" pointerEvents="none"/>
 </Svg>
 <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="62.5%" y1="25%" x2="62.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  <Line x1="10%" y1="53%" x2="90%" y2="53%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  </Svg>
+<Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="10%" y1="53%" x2="90%" y2="53%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  </Svg>
+      <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="10%" y1="20%" x2="10%" y2="70%" stroke="red" strokeWidth="10" pointerEvents="none"  />
   </Svg>
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="87.5%" y1="25%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  <Line x1="37.5%" y1="20%" x2="37.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+</Svg>
+<Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="62.5%" y1="20%" x2="62.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  </Svg>
+  <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="90%" y1="20%" x2="90%" y2="70%" stroke="darkorange" strokeWidth="10" pointerEvents="none"/>
   </Svg>
 
 
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="12.5%" y1="22.5%" x2="87.5%" y2="22.5%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  <Line x1="8.5%" y1="20%" x2="91.5%" y2="20%" stroke="green" strokeWidth="10" pointerEvents="none"/>
 </Svg>
-<Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="12.5%" y1="37.5%" x2="87.5%" y2="37.5%" stroke="white" strokeWidth="2" pointerEvents="none"/>
-</Svg>
-<Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="12.5%" y1="47.5%" x2="87.5%" y2="45%" stroke="white" strokeWidth="2" pointerEvents="none"/>
-  </Svg>
+
+
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="12.5%" y1="70%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="blue" strokeWidth="10" pointerEvents="none"/>
   </Svg>
       <View style={{flex:2}}>
       
       </View>
+      
       <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
         <View style={{paddingRight:'25%'}}>
       <Icon.Button
