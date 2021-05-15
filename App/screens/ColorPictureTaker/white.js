@@ -1,7 +1,7 @@
 
 
 import React, { useState, useRef, useEffect } from "react";
-import Svg, {Line} from 'react-native-svg'
+import Svg, {Line, Polygon} from 'react-native-svg'
 import {
   StyleSheet,
   Dimensions,

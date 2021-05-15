@@ -8,9 +8,13 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  Dimensions,
   TouchableOpacity,
   View,
 } from 'react-native';
+
+import Svg, {Line, Polygon} from 'react-native-svg'
+
 
 import {Button} from "react-native-elements";
 
@@ -113,9 +117,11 @@ export{totalPositionWhiteSide}
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 
 
+const height = Dimensions.get("window").height;
+const width = Dimensions.get("window").width;
 
-
-
+let topleft= height*.02
+let topleftwidth=width*.01
 
 
 
@@ -1070,12 +1076,14 @@ data4=colorPosition[PhotoColor4]
     return (
       <View style={{backgroundColor:'#121212', flex:1}}>
 <StatusBar barStyle="default" />
+
 <View style={{position:'absolute',left:0, right:0}}>
 <Card containerStyle={{backgroundColor:'#121212'}}>
   <Text style={styles.Warning}><B>Warning:</B> Going back will reset the state of the current side.</Text>
   </Card>
 </View>
 <View style={{flex:2}}></View>
+
       <View style={styles.topcontainer}>
       
         <Button buttonStyle={{backgroundColor:this.state.buttonColor1, width:70, height:70}} onPress={colorSwitch1++, this.onButtonPress1} />
@@ -1096,6 +1104,33 @@ data4=colorPosition[PhotoColor4]
         <Button buttonStyle={{backgroundColor:this.state.buttonColor8, width:70, height:70}} onPress={colorSwitch8++,  this.onButtonPress8} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor9, width:70, height:70}} onPress={colorSwitch9++,  this.onButtonPress9} />   
       </View>
+      
+      <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="12.5%" y1="25%" x2="12.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"  />
+  </Svg>
+  <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="37.5%" y1="25%" x2="37.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+</Svg>
+<Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="62.5%" y1="25%" x2="62.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  </Svg>
+  <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="87.5%" y1="25%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  </Svg>
+
+
+  <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="12.5%" y1="22.5%" x2="87.5%" y2="22.5%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+</Svg>
+<Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="12.5%" y1="37.5%" x2="87.5%" y2="37.5%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+</Svg>
+<Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="12.5%" y1="47.5%" x2="87.5%" y2="45%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  </Svg>
+  <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
+  <Line x1="12.5%" y1="70%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
+  </Svg>
       <View style={{flex:2}}>
       
       </View>
