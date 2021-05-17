@@ -25,6 +25,7 @@ import {totalPositionOrangeSide} from './confirmOrange'
 import {totalPositionGreenSide} from './confirmGreen'
 import {totalPositionRedSide} from './confirmRed'
 import {totalPositionYellowSide} from './confirmYellow'
+import { FlatList } from 'react-native-gesture-handler';
 
 const R = require('../Assets/basics/cb_rc.jpg')
 const Rprime= require('../Assets/basics/cb_rcc.jpg')
@@ -90,6 +91,9 @@ export default class App extends Component {
     // let solveMoves = solver(cubeState);
     // console.log(solveMoves);
     // console.log('yoooo')
+
+    
+
     const solver = require('rubiks-cube-solver');
     let CrossStepImages=[];
     let CrossStepText=[];
@@ -129,8 +133,20 @@ export default class App extends Component {
 let steps= pllSteps.split(' ');
 console.log(steps)
 
+let DATA = [];
 
+   
 
+// {
+//   id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+//   title: 'Second Item',
+//   images: require('../Assets/basics/cb_rcc.jpg')
+// },
+// {
+//   id: '58694a0f-3da1-471f-bd96-145571e29d72',
+//   title: 'Third Item',
+//   images: require('../Assets/basics/cb_rwc.jpg')
+// },
     // function amount(){
     //   for(let i=0;i<crossSteps.length;i++){
         
@@ -155,132 +171,246 @@ console.log(steps)
       )
     }
 
+    
+
     function renderCrossSteps() {
       for( let i=0; i<crossSteps.length;i++){
         if(crossSteps[i]=='R'){
           CrossStepImages.push(R)
           CrossStepText.push('R \n Rotate the right layer clockwise')
+          DATA.push({
+            id: i+'R',
+            title: 'R \n Rotate the right layer clockwise',
+            images: R
+          })
         }
         if(crossSteps[i]=='Rprime'){
           CrossStepImages.push(Rprime)
           CrossStepText.push('R\' \n Rotate the right layer counter clockwise')
+          DATA.push({
+            id: i+'Rprime',
+            title: 'R\' \n Rotate the right layer counter clockwise',
+            images: Rprime
+          })
         }
         if(crossSteps[i]=='r'){
           CrossStepImages.push(Rw)
           CrossStepText.push('Rw OR r \nRotate the right layer and the middle layer clockwise')
-
+          DATA.push({
+            id: i+'r',
+            title: 'Rw OR r \nRotate the right layer and the middle layer clockwise',
+            images: Rw
+          })
         }
         if(crossSteps[i]=='rprime'){
           CrossStepImages.push(Rwprime)
           CrossStepText.push('Rw\' OR r\' \nRotate the right layer and middle layer counter clockwise')
-
+          DATA.push({
+            id: i+'rprime',
+            title: 'Rw\' OR r\' \nRotate the right layer and middle layer counter clockwise',
+            images: Rwprime
+          })
         }
         if(crossSteps[i]=='L'){
           CrossStepImages.push(L)
           CrossStepText.push('L \nRotate the left layer clockwise')
-
+          DATA.push({
+            id: i+'L',
+            title: 'L \nRotate the left layer clockwise',
+            images: L
+          })
         }
         if(crossSteps[i]=='Lprime'){
           CrossStepImages.push(Lprime)
           CrossStepText.push('L\' \nRotate the left layer counter clockwise')
-
+          DATA.push({
+            id: i+'Lprime',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Lprime
+          })
         }
         if(crossSteps[i]=='l'){
           CrossStepImages.push(Lw)
           CrossStepText.push('Lw OR l \nRotate the left layer and the middle layer clockwise')
-
+          DATA.push({
+            id: i+'l',
+            title: 'Lw OR l \nRotate the left layer and the middle layer clockwise',
+            images: Lw
+          })
         }
         if(crossSteps[i]=='lprime'){
           CrossStepImages.push(Lwprime)
           CrossStepText.push('Lw\' OR l\' \nRotate the left layer and middle layer counter clockwise')
-
+          DATA.push({
+            id: i+'lprime',
+            title: 'Lw\' OR l\' \nRotate the left layer and middle layer counter clockwise',
+            images: Lwprime
+          })
         }
         if(crossSteps[i]=='U'){
           CrossStepImages.push(U)
           CrossStepText.push('U \nRotate the top layer clockwise')
-
+          DATA.push({
+            id: i+'U',
+            title: 'U \nRotate the top layer clockwise',
+            images: U
+          })
         }
         if(crossSteps[i]=='Uprime'){
           CrossStepImages.push(Uprime)
           CrossStepText.push('U\' \nRotate the top layer counter clockwise')
-
+          DATA.push({
+            id: i+'Uprime',
+            title: 'U\' \nRotate the top layer counter clockwise',
+            images: Uprime
+          })
         }
         if(crossSteps[i]=='u'){
           CrossStepImages.push(Uw)
           CrossStepText.push('Uw OR u \nRotate the top layer and the middle layer clockwise')
-
+          DATA.push({
+            id: i+'u',
+            title: 'Uw OR u \nRotate the top layer and the middle layer clockwise',
+            images: Uw
+          })
         }
         if(crossSteps[i]=='uprime'){
           CrossStepImages.push(Uwprime)
           CrossStepText.push('Uw\' OR u\' \nRotate the top layer and middle layer counter clockwise')
-
+          DATA.push({
+            id: i+'uprime',
+            title: 'Uw\' OR u\' \nRotate the top layer and middle layer counter clockwise',
+            images: Uwprime
+          })
         }
         if(crossSteps[i]=='D'){
           CrossStepImages.push(D)
           CrossStepText.push('D \nRotate the bottom layer clockwise')
-
+          DATA.push({
+            id: i+'D',
+            title: 'D \nRotate the bottom layer clockwise',
+            images: D
+          })
         }
         if(crossSteps[i]=='Dprime'){
           CrossStepImages.push(Dprime)
           CrossStepText.push('D\' \nRotate the bottom layer counter clockwise')
-
+          DATA.push({
+            id: i+'Lprime',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Lprime
+          })
         }
         if(crossSteps[i]=='d'){
           CrossStepImages.push(Dw)
           CrossStepText.push('Dw OR d \nRotate the bottom layer and the middle layer clockwise')
-
+          DATA.push({
+            id: i+'d',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Dw
+          })
         }
         if(crossSteps[i]=='dprime'){
           CrossStepImages.push(Dwprime)
           CrossStepText.push('Dw\' OR d\' \nRotate the bottom layer and middle layer counter clockwise')
-
+          DATA.push({
+            id: i+'dprime',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Dwprime
+          })
         }
         if(crossSteps[i]=='F'){
           CrossStepImages.push(F)
           CrossStepText.push('F \nRotate the front layer clockwise')
-
+          DATA.push({
+            id: i+'F',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: F
+          })
         }
         if(crossSteps[i]=='Fprime'){
           CrossStepImages.push(Fprime)
           CrossStepText.push('F\' \nRotate the front layer counter clockwise')
-
+          DATA.push({
+            id: i+'Fprime',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Fprime
+          })
         }
         if(crossSteps[i]=='f'){
           CrossStepImages.push(Fw)
           CrossStepText.push('Fw OR f \nRotate the front layer and the middle layer clockwise')
-
+          DATA.push({
+            id: i+'f',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Fw
+          })
         }
         if(crossSteps[i]=='fprime'){
           CrossStepImages.push(Fwprime)
           CrossStepText.push('Fw\' OR f\' \nRotate the front layer and middle layer counter clockwise')
-
+          DATA.push({
+            id: i+'fprime',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Fwprime
+          })
         }
         if(crossSteps[i]=='B'){
           CrossStepImages.push(B)
           CrossStepText.push('B \nRotate the back layer clockwise')
-
+          DATA.push({
+            id: i+'B',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: B
+          })
         }
         if(crossSteps[i]=='Bprime'){
           CrossStepImages.push(Bprime)
           CrossStepText.push('B\' \nRotate the back layer counter clockwise')
-
+          DATA.push({
+            id: i+'Bprime',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Bprime
+          })
         }
         if(crossSteps[i]=='b'){
           CrossStepImages.push(Bw)
           CrossStepText.push('Bw OR b \nRotate the back layer and the middle layer clockwise')
-
+          DATA.push({
+            id: i+'b',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Bw
+          })
         }
         if(crossSteps[i]=='bprime'){
           CrossStepImages.push(Bwprime)
           CrossStepText.push('Bw\' OR b\' \nRotate the back layer and middle layer counter clockwise')
-
+          DATA.push({
+            id: i+'bprime',
+            title: 'L\' \nRotate the left layer counter clockwise',
+            images: Bwprime
+          })
         }
         // else{
         //   CrossStepImages.push('yo')
         // }
       }
-      
+      console.log(DATA)
     }
+
+    
+
+    const Item= ({img, txt}) => (
+      <View style={{ backgroundColor: '#f9c2ff',marginVertical: 20,marginHorizontal: '-15%', left:'35%'}}>
+        <ImageBackground style={styles.movesImage} source={img} >
+          <Text style={styles.textDescrip2}>{txt}</Text>
+          </ImageBackground>
+      </View>
+      );
+    
+      const renderItem = ({item}) => (
+        <Item img={item.images} txt={item.title}/>
+      )
 
     // function renderT() {
 
@@ -301,30 +431,48 @@ console.log(steps)
     return (
       
       <SafeAreaView style={styles.background}>
-        <View style={styles.ViewContainer}>
-          <View style={{height: '90%'}}>
-              <ScrollView 
-                  style={styles.scroll}>
+      
+      <View style={{height: '90%'}}>
+      <View style={styles.ViewContainer}>
+      <Card containerStyle={{backgroundColor: '#121212'}}>
+      <Card.Title style={styles.ContentsTitle}>Cross Step{/* Card Title*/}</Card.Title>
+      <FlatList 
+      numColumns={2}
+        style={{height: '90%',
+  backgroundColor: 'red',
+  flexGrow: 0}}
+        data={DATA} 
+        renderItem={renderItem}
+        keyExtractor={item => item.id}  
+        />
+        
+          
+              
 
-                    <Card containerStyle={{backgroundColor: '#121212'}}>
-                    <Card.Title style={styles.ContentsTitle}>Cross Step{/* Card Title*/}</Card.Title>
+                    
+                    
                     <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
       
       
       {renderCrossSteps()}
-      <>
-       {CrossStepImages.map(img =>  <ImageBackground style={styles.movesImage} source={img} >{CrossStepText.map(txt => <Text style={styles.textDescrip2}>{txt}</Text>)}</ImageBackground> )}
-       {CrossStepText.map(txt => <Text style={styles.textDescrip2}>{txt}</Text>)}
-     </>
+      
+
+      
+      
+       {/* {CrossStepImages.map(img =>  <ImageBackground style={styles.movesImage} source={img} >{CrossStepText.map(txt => <Text style={styles.textDescrip2}>{txt}</Text>)}</ImageBackground> )}
+       {CrossStepText.map(txt => <Text style={styles.textDescrip2}>{txt}</Text>)} */}
+     
      </View>
      </View>
       
 
   
-  </Card>
   
-  </ScrollView>
+  
+ 
+  
+  </Card>
   </View>
   </View>
   </SafeAreaView>
@@ -340,8 +488,8 @@ console.log(steps)
       backgroundColor:'#121212'
     },
     movesImage: {
-      width: '80%', 
-      height: (Dimensions.get('window').width*.5), 
+      width: '75%', 
+      height: (Dimensions.get('window').width*.5)*.7, 
       resizeMode: 'contain', 
       flexDirection:'row'
       
