@@ -9,6 +9,7 @@ import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-nat
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
 import AwesomeButton from "react-native-really-awesome-button";
+import {newList, randomthing} from './NumberList'
 import _ from 'lodash';
 import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,6 +18,11 @@ import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exc
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { Platform } from "react-native";
 
+// setJSExceptionHandler((error, isFatal) => {
+//   console.log(error, isFatal)
+//   alert(error.name)
+// // return(
+// //   <View>
 
 // setJSExceptionHandler((error, isFatal) => {
 //   console.log(error, isFatal)

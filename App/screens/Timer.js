@@ -124,7 +124,6 @@ console.log(dynamicFont)
 
 
 
-
 // if(newList !== undefined){
 //   convertedTimes=newList;
 // }
