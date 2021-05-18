@@ -30,7 +30,7 @@ const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.child
 let checkState=defaultCube;
 const colors=['white', 'blue', 'darkorange', 'green', 'red', 'yellow' ]
 
-const colorPosition=['u', 'f', 'r', 'b', 'l', 'd']
+const colorPosition=['u', 'b', 'l', 'f', 'r', 'd']
 let amount =1;
 let colorName='';
 
@@ -1117,7 +1117,7 @@ data4=colorPosition[PhotoColor4]
   <Line x1="10%" y1="53%" x2="90%" y2="53%" stroke="white" strokeWidth="2" pointerEvents="none"/>
   </Svg>
       <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="10%" y1="20%" x2="10%" y2="70%" stroke="red" strokeWidth="10" pointerEvents="none"  />
+  <Line x1="10%" y1="20%" x2="10%" y2="70%" stroke="darkorange" strokeWidth="10" pointerEvents="none"  />
   </Svg>
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
   <Line x1="37.5%" y1="20%" x2="37.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
@@ -1126,17 +1126,17 @@ data4=colorPosition[PhotoColor4]
   <Line x1="62.5%" y1="20%" x2="62.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
   </Svg>
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="90%" y1="20%" x2="90%" y2="70%" stroke="darkorange" strokeWidth="10" pointerEvents="none"/>
+  <Line x1="90%" y1="20%" x2="90%" y2="70%" stroke="red" strokeWidth="10" pointerEvents="none"/>
   </Svg>
 
 
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="8.5%" y1="20%" x2="91.5%" y2="20%" stroke="green" strokeWidth="10" pointerEvents="none"/>
+  <Line x1="8.5%" y1="20%" x2="91.5%" y2="20%" stroke="blue" strokeWidth="10" pointerEvents="none"/>
 </Svg>
 
 
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="blue" strokeWidth="10" pointerEvents="none"/>
+  <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="green" strokeWidth="10" pointerEvents="none"/>
   </Svg>
       <View style={{flex:2}}>
       
@@ -1173,7 +1173,7 @@ data4=colorPosition[PhotoColor4]
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => {navigate('confirmBlue'), console.log(totalPositionWhiteSide), console.log('final')}}
+                        onPress={() => {navigate('confirmGreen'), console.log(totalPositionWhiteSide), console.log('final')}}
                     >
                     <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>

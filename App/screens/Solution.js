@@ -78,22 +78,22 @@ export default class App extends Component {
 
 //relative to the front cube
 
-    // f - blue
-    // r - orange
+    // f - green
+    // r - red
     // u - white
-    // y - yellow
-    // l - red
-    // b - green
+    // d - yellow
+    // l - orange
+    // b - blue
 
 
-    // let cubeState = [
-    //   totalPositionBlueSide, // front
-    //   totalPositionOrangeSide, // right
-    //   totalPositionWhiteSide, // up
-    //   totalPositionYellowSide, // down
-    //   totalPositionRedSide, // left
-    //   totalPositionGreenSide // back
-    // ].join('');
+    let cubeState = [
+      totalPositionGreenSide, // front
+      totalPositionRedSide, // right
+      totalPositionWhiteSide, // up
+      totalPositionYellowSide, // down
+      totalPositionOrangeSide, // left
+      totalPositionBlueSide // back
+    ].join('');
     // let solveMoves = solver(cubeState);
     // console.log(solveMoves);
     // console.log('yoooo')
@@ -104,14 +104,14 @@ export default class App extends Component {
     let CrossStepImages=[];
     let CrossStepText=[];
 
-    let cubeState = [
-      'flulfbddr', // front
-      'rudrruddl', // right
-      'dbbburrfb', // up
-      'llffdrubf', // down
-      'rludlubrf', // left
-      'lubfbfudl' // back
-    ].join('');
+    // let cubeState = [
+    //   'flulfbddr', // front
+    //   'rudrruddl', // right
+    //   'dbbburrfb', // up
+    //   'llffdrubf', // down
+    //   'rludlubrf', // left
+    //   'lubfbfudl' // back
+    // ].join('');
     let options = { partitioned: true };
     let solveMoves = solver(cubeState, options);
     let solveMovesString = solver(cubeState);
@@ -126,19 +126,37 @@ export default class App extends Component {
     console.log(crossSteps)
 
     console.log(solveMoves.f2l)
-    let f2lSteps= solveMoves.f2l
-    console.log(solveMoves.oll)
-    let ollSteps= solveMoves.oll
-    console.log(solveMoves.pll)
-    let pllSteps= solveMoves.pll
+    let f2lSteps= solveMoves.f2l.join(',')
+    f2lSteps=f2lSteps.replace(/,/g, ' ')
+    f2lSteps=f2lSteps.split(' ')
+    f2lSteps.unshift('f2l')
+    console.log(f2lSteps)
+    console.log('f2l')
+
+    let ollSteps= solveMoves.oll.split(' ')
+    ollSteps.unshift('oll')
+    console.log(ollSteps)
+    console.log('oll')
+
+    let pllSteps= solveMoves.pll.split(' ')
+    pllSteps.unshift('pll')
+    console.log(pllSteps)
+    console.log('pll')
+
     console.log(solveMovesString)
+
+    crossSteps.push(...f2lSteps)
+    crossSteps.push(...ollSteps)
+    crossSteps.push(...pllSteps)
+    console.log(crossSteps)
+    console.log('everything')
 
     const {navigate} = this.props.navigation;
 //create function that return a text input depending on the the string type
 //create for loop function that calls function as many times as there are moves
    
-let steps= pllSteps.split(' ');
-console.log(steps)
+// let steps= pllSteps.split(' ');
+// console.log(steps)
 
 let DATA = [];
 
@@ -192,6 +210,33 @@ let sectionData=[]
             title: '\n',
             images: crossImg,
             notation:'Blue Infront White On Top'
+            
+          })
+        }
+        if(crossSteps[i]=='f2l'){
+          DATA.push({
+            id:i+'f2l',
+            title: '\n',
+            images: crossImg,
+            notation:'yo'
+            
+          })
+        }
+        if(crossSteps[i]=='oll'){
+          DATA.push({
+            id:i+'oll',
+            title: '\n',
+            images: crossImg,
+            notation:'yo'
+            
+          })
+        }
+        if(crossSteps[i]=='pll'){
+          DATA.push({
+            id:i+'pll',
+            title: '\n',
+            images: crossImg,
+            notation:'yo'
             
           })
         }
@@ -327,9 +372,9 @@ let sectionData=[]
         if(crossSteps[i]=='Dprime'){
           
           DATA.push({
-            id: i+'Lprime',
+            id: i+'Dprime',
             title: '\n'+num+': Rotate the bottom layer counter clockwise',
-            images: Lprime,
+            images: Dprime,
             notation:'D\''
 
           })
@@ -533,7 +578,7 @@ let sectionData=[]
           DATA.push({
             id: i+'B2',
             title: '\n'+num+': Rotate the back layer clockwise twice',
-            images: Bwprime,
+            images: B,
             notation:'B2'
 
           })
@@ -543,7 +588,7 @@ let sectionData=[]
           DATA.push({
             id: i+'D2',
             title: '\n'+num+': Rotate the bottom layer clockwise twice',
-            images: Bwprime,
+            images: D,
             notation:'D2'
 
           })
@@ -553,7 +598,7 @@ let sectionData=[]
           DATA.push({
             id: i+'U2',
             title: '\n'+num+': Rotate the top layer clockwise twice',
-            images: Bwprime,
+            images: U,
             notation:'U2'
 
           })

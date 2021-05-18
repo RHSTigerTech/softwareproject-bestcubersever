@@ -27,7 +27,7 @@ const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.child
 let checkState=defaultCube;
 const colors=['white', 'blue', 'darkorange', 'green', 'red', 'yellow' ]
 
-const colorPosition=['u', 'f', 'r', 'b', 'l', 'd']
+const colorPosition=['u', 'b', 'l', 'f', 'r', 'd']
 let amount =1;
 let colorName='';
 
@@ -1165,7 +1165,7 @@ data4=colorPosition[PhotoColor4]
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => {navigate('confirmGreen'), console.log(totalPositionOrangeSide), console.log('final')}}
+                        onPress={() => {navigate('confirmYellow'), console.log(totalPositionOrangeSide), console.log('final')}}
                     >
                     <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>
