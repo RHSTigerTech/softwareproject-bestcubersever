@@ -99,7 +99,7 @@ export default class App extends Component {
                                 cube and they are represented by either lowercase letters or the letter and "w".  There are also three different 
                                 types of moves: side, middle, and orientation.  Side moves are when you rotate one or more of the layers on one 
                                 side of the cube.  Middle moves are where you rotate just the center of the cube.  Orientation moves are when 
-                                you rotate the whole cube.
+                                you rotate the whole cube. If a move has a 2 at the end that means you would repeat the move twice to make a full 180 degree turn.
                                 {'\n'}{'\n'}Ex: f (R U R' U') f' means wide front turn clockwise, right turn clockwise, up turn clockwise, right turn 
                                 counter clockwise, up turn counter clockwise, and wide front turn counter clockwise.{'\n'}
                             </Text>

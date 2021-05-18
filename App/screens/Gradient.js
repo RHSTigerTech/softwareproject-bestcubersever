@@ -85,7 +85,7 @@ export default class App extends Component {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigate('Scanner')}
+                            onPressAction={() => navigate('Solution')}
                         >
                         </GradientButton>
 
