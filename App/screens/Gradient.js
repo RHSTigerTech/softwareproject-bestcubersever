@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component,useState, useRef  } from 'react';
+
 import { StyleSheet, SafeAreaView, Text, View, 
   Image, Alert, TouchableWithoutFeedback, 
   TouchableOpacity, TouchableHighlight, 
@@ -14,17 +15,19 @@ import {convertedTimes,storeData, getData,times} from './Timer'
 // getData()
 
 
-function Gradient({navigation}) { 
-    
-    const ButtonHeight=65;
-    const ButtonWidth=320;
+export default class App extends Component {
+
+    render(){
+    const {navigate} = this.props.navigation;
+
+    const ButtonHeight=(Dimensions.get('window').height)*.09;
+    const ButtonWidth=(Dimensions.get('window').width)*.8;
     const ButtonRadius=10; // effects how circular the buttons look
     const ButtonGradientDirection='vertical';
     
     return (
         <View style={styles.ViewContainer}>
-        {console.log(times())}
-    {console.log('------------------------')}
+        
             <Video
                 source={LightVideo}
                 rate={1.0}
@@ -53,7 +56,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact                        
-                            onPressAction={() => navigation.navigate('Learn')}                        
+                            onPressAction={() => navigate('Learn')}                        
                         >
                         </GradientButton>
                         
@@ -67,7 +70,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => {storeData(convertedTimes),navigation.navigate('Timer')}}
+                            onPressAction={() => {storeData(convertedTimes),navigate('Timer')}}
                         >
                         </GradientButton>
 
@@ -81,7 +84,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('Scanner')}
+                            onPressAction={() => navigate('Scanner')}
                         >
                         </GradientButton>
 
@@ -95,7 +98,7 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigation.navigate('VirtualCube')}
+                            onPressAction={() => navigate('VirtualCube')}
                         >
                         </GradientButton>
 
@@ -109,12 +112,13 @@ function Gradient({navigation}) {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => {storeData(convertedTimes),navigation.navigate('Statistics')}}
+                            onPressAction={() => {storeData(convertedTimes),navigate('Statistics')}}
                         >
                         </GradientButton>
                     </View>            
         </View>
     );
+}
 }
 
 const styles = StyleSheet.create({
@@ -126,7 +130,7 @@ const styles = StyleSheet.create({
     ViewContainer:{
         flex: 1, 
         alignItems: 'center', 
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 
     image:{        
@@ -156,4 +160,3 @@ const styles = StyleSheet.create({
     
 })
 
-export default Gradient;
