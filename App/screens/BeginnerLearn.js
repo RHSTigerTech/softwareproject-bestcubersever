@@ -13,6 +13,7 @@ export default class App extends Component {
     
     render() {
         const {navigate} = this.props.navigation;
+        const navi = (routeBack) => { navigation.popToTop(), navigate(routeBack) }
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer} >
@@ -94,15 +95,21 @@ export default class App extends Component {
                                 to complete. {/* Summary of Step */}
                             </Text>
                             <Card.Divider/>
+                            <Text style={styles.textSubHeader}>
+                            If this is your first time learning how to solve a rubiks cube,
+                             it's strongly recommended that you first view our
+                                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('HowToReadAlg')}> Cube Basics </Text>
+                            page so you have a basic understanding of the cube and its notations
+                             </Text>
                             <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the yellow center is on the top. {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white center is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    <B>1:</B> Find any center edge piece that has a white tile. 
+                                    <B>1:</B> Find any edge piece that has a white tile. 
                                     An edge piece is where two visible colors meet. 
-                                    There are four of these center edge pieces with white tiles 
+                                    There are four of these edge pieces with white tiles 
                                     located on the cube.
                                      
                                     {'\n'}
@@ -152,8 +159,8 @@ export default class App extends Component {
                                         
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_aligned.jpg')}/>
-                                <Text style={{color: 'white', fontSize: 16, width: '20%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'-1.5%', textAlignVertical: 'center'}}><B>(R2)</B>     </Text>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
+                                <Text style={{color: 'white', fontSize: 16, width: '19.9%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'0%', textAlignVertical: 'center'}}><B>(R2)</B></Text>
+                                <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
                             </View>
                         </Card>
 
@@ -168,7 +175,7 @@ export default class App extends Component {
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white center is on the top {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the yellow center is on the bottom. {/* Sub header: Cube Orientation */}
                                 </Text>
                             <Text style={styles.textDescripWideTip}>
                                 <B>Tip:</B> Make sure you're inserting the white corners into
@@ -225,7 +232,7 @@ export default class App extends Component {
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <Text 
                              style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white side is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap', }}>
@@ -266,7 +273,7 @@ export default class App extends Component {
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white side is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -295,7 +302,7 @@ export default class App extends Component {
 
                             
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white side is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             
                             {/* This view holds all the cases for this step */}
@@ -600,13 +607,30 @@ const styles = StyleSheet.create({
         paddingTop:'5%',
         top:'-30%'
     },
+    NavigateScreenButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:18,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        textAlign: 'center',
+        lineHeight:20,
+        letterSpacing:.2,
+        //paddingTop:2,
+        top:'20%',
+        //bottom:-10,
+        textDecorationLine: 'underline',
+        //paddingTop:5
+        //paddingTop:'5%',
+        //top:'-30%'
+    },
 
     textSubHeader: {
         //Text that goes under headers
         color: 'white',
         fontSize: 14,
         textAlign: 'center',
-        lineHeight:18,
+        lineHeight:20,
         letterSpacing:.2,
         paddingTop:2,
         paddingBottom:5
