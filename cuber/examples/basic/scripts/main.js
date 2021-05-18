@@ -29,7 +29,6 @@
   ≈$=  ~$%  -$&                                                &$·  %$~  -$x  
   -&   ~$~   &≠                                                #%   ~$~   #=*/
 
-const { defaultsDeep } = require("lodash");
 
 
 
@@ -104,10 +103,10 @@ $(document).ready( function(){
 	var undoButton = document.getElementById('undo-btn');
 
 	if( controls === ERNO.Locked ){
-		var fixedOrientation = new THREE.Euler(  Math.PI * 0.12, Math.PI * -0.14, 0 );
+		var fixedOrientation = new THREE.Euler(  Math.PI * 0.14, Math.PI * -0.19, 0 );
 		cube.object3D.lookAt( cube.camera.position );
 		cube.rotation.x += fixedOrientation.x;
-		cube.rotation.y += fixedOrientation.y;
+		cube.rotation.y += fixedOrientation.y
 		cube.rotation.z += fixedOrientation.z;
 	}
 
@@ -124,9 +123,7 @@ $(document).ready( function(){
 		cube.undo();
 	});
 
-	playSolutionButton.addEventListener('click', (e) => {
-		playSolution(1);
-	});
+	
 
 	cube.domElement.addEventListener('click', (e) => {
 

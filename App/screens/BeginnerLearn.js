@@ -13,7 +13,6 @@ export default class App extends Component {
     
     render() {
         const {navigate} = this.props.navigation;
-        const navi = (routeBack) => { navigation.popToTop(), navigate(routeBack) }
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer} >
@@ -83,6 +82,54 @@ export default class App extends Component {
                     <Text style={styles.contentButtons}>7: Permute Yellow Edges</Text>
                     </TouchableOpacity>
                     </Card>
+                    <Card containerStyle={{backgroundColor: '#121212'}}>
+                        
+                            <Card.Title style={styles.textTitle}>Things To Remember{/* Card Title*/}</Card.Title>
+                            <Card.Divider/>
+                            
+                            
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <Text style={styles.textDescripWide}>
+                                    <B>1:</B> If this is your first time learning how to solve a rubiks cube or you keep messing up an algorithm,
+                             it's strongly recommended that you first view our
+                                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('HowToReadAlg')}> Cube Basics </Text>
+                            page so you have a basic understanding of the cube and its notations.
+                                    {'\n'}
+                                </Text>
+
+                                <Text style={styles.textDescripWide}>
+                                    <B>2:</B> Don't rotate the entire cube while executing an algorithm. 
+                                    Keep the same face in the front.
+                                    {'\n'}
+                                </Text>
+
+                                <Text style={styles.textDescripWide}>
+                                    <B>3:</B> A <B>'</B> after a notation <B>(Ex: R')</B> is a counter clockwise turn.
+                                    {'\n'}
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    <B>4:</B> Sometimes a step wont make sense the first time you read it.
+                                     Go back and read it slower or even outloud.
+                                    {'\n'}
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    <B>5:</B> If part of an algoithm is in parentheses. For example, <B>F (R U R' U') F'</B>. It's 
+                                    simply signifying when a series of moves are very fast to execute and are encountered frequently.
+                                    Treat moves inside the parentheses like any other move.   
+                                    {'\n'}
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    <B>6:</B> It's inevitable that in the beginning you'll make a few mistakes performing some of the algorithms. 
+                                            When you get back to the same step again just go slower 
+                                            and confirm every move is correct.
+                                    {'\n'}
+                                </Text>
+                                
+                                {/* maybe turn this into another step */}
+                                
+                                
+                            </View>
+                        </Card>
                         {/* STEP 1 */}
                         <Text onLayout={event =>(this.WhiteCross = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
@@ -92,15 +139,10 @@ export default class App extends Component {
                             <Text style={styles.textSummary}>
                                 The first step to solving a rubiks cube is forming the white cross. To accomplish this, you first have to align the 
                                 white edges with the white center and the center of the corresponding color. This step doesn't require an algorithm
-                                to complete. {/* Summary of Step */}
+                                to complete and is intuitive. Some may find it easier to refer to the diagrams on how the cube is supposed to look rather than read the instructions. {/* Summary of Step */}
                             </Text>
                             <Card.Divider/>
-                            <Text style={styles.textSubHeader}>
-                            If this is your first time learning how to solve a rubiks cube,
-                             it's strongly recommended that you first view our
-                                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('HowToReadAlg')}> Cube Basics </Text>
-                            page so you have a basic understanding of the cube and its notations
-                             </Text>
+                            
                             <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
                             <Text style={styles.textSubHeader}>
                                 Hold the cube so that the white center is on the bottom. {/* Sub header: Cube Orientation */}
@@ -404,10 +446,10 @@ export default class App extends Component {
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={({}) => navigate('VirtualCube')}
-                        >
-                        <Text style={styles.BottomTabText}>3DCube</Text>
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
                     </Icon.Button>
                     {/* Statistics */}
                     <Icon.Button            
@@ -419,10 +461,10 @@ export default class App extends Component {
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Statistics')}
-                    >
-                    <Text style={styles.BottomTabText}>Statistics</Text>
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
                     </Icon.Button>
                     {/* Home Screen */}
                     <Icon.Button
@@ -433,8 +475,9 @@ export default class App extends Component {
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Gradient')}
+                        alignSelf='center'
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Scanner')}
                     >
                     <Text style={styles.BottomTabText}>Home</Text>
                     </Icon.Button>
@@ -447,10 +490,10 @@ export default class App extends Component {
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Learn')}
-                    >
-                    <Text style={styles.BottomTabText}>Learn</Text>
+                        paddingHorizontal='4%'
+                        onPress={({}) => navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
                     </Icon.Button>
                     <Icon.Button
                         name='timer-outline'
@@ -461,10 +504,10 @@ export default class App extends Component {
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Timer')}
-                        >
-                        <Text style={styles.BottomTabText}>Timer</Text>
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
                     </Icon.Button>
                 </View>
             </View>

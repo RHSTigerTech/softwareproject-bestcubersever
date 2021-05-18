@@ -22,10 +22,12 @@ const val = Math.floor(100000 + Math.random() * 9999999);
 let amount =0;
 let colorName='';
 
+let defaultCube= false;
+
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 
-
-
+export {val};
+export {defaultCube}
 export default class App extends Component {
   state = {
     image: null,
@@ -34,6 +36,11 @@ export default class App extends Component {
   
   
   render() {
+
+    const {navigate} = this.props.navigation;
+    const {push} = this.props.navigation;
+
+
     let {
       image
     } = this.state;
@@ -47,26 +54,10 @@ export default class App extends Component {
           style={styles.exampleText}>
           Example: Upload ImagePicker result
         </Text> */}
-        <AwesomeButton 
-            width={300} 
-            height={65}
-            backgroundColor='#6d00eb'
-            textSize={27}
-            borderRadius={10}
-            activeOpacity={.8}	
-            backgroundDarker='#5c00c7'
-            backgroundShadow='transparent'
-            raiseLevel={5}
-            onPress={this._takePhoto}
-            >
-            Take Photo
-        </AwesomeButton>
-        <Button
-          onPress={this._pickImage}
-          title="Pick an image from camera roll"
-        />
+        
 
-        <Button onPress={this._takePhoto} title="Take a photo" />
+        <Button onPress={() => {{defaultCube=false} push('White')}} title="Take a photo" />
+        <Button onPress={() => {{defaultCube=true} push('confirmWhite')}} title="confirm" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}
