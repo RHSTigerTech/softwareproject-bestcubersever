@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 
-
 import Gradient from './App/screens/Gradient';
 import Learn from './App/screens/Learn';
 import BeginnerLearn from './App/screens/BeginnerLearn';
@@ -9,7 +8,7 @@ import HowToReadAlg from './App/screens/HowToReadAlg';
 import AdvancedLearn from './App/screens/AdvancedLearn';
 import AlgList from './App/screens/AlgList';
 //import Video from './App/screens/video.js';
-import React, { useState, Component, useEffect} from 'react';
+import React, { useState, Component, useEffect } from 'react';
 import Timer from './App/screens/Timer.js';
 import Statistics from './App/screens/Statistics';
 import Scanner from './App/screens/PictureTaker';
@@ -58,17 +57,14 @@ const App = () => {
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', () => true)
   }, [])
-  
+  return (
 
-
-  return(
-    
     <NavigationContainer>
-      
+
       <Stack.Navigator>
         {/*   Home Screens   */}
-        <Stack.Screen 
-          name='VirtualCube' 
+        <Stack.Screen
+          name='VirtualCube'
           component={VirtualCube}
           options={{headerShown:false}}
 
@@ -76,30 +72,30 @@ const App = () => {
 
 
 
-        <Stack.Screen 
-          name="Gradient" 
-          component={Gradient} 
-          options={{headerShown:false}}
+        <Stack.Screen
+          name="Gradient"
+          component={Gradient}
+          options={{ headerShown: false }}
         />
 
-        <Stack.Screen 
-          name="Learn" 
+        <Stack.Screen
+          name="Learn"
           component={Learn}
-          options={{headerShown:false}}
+          options={{ headerShown: false }}
         />
 
-        <Stack.Screen 
-        name='Timer' 
-        component={Timer}
-        options={{headerShown:false,gestureEnabled: false }}
+        <Stack.Screen
+          name='Timer'
+          component={Timer}
+          options={{ headerShown: false, gestureEnabled: false }}
         />
 
-        
+
 
         <Stack.Screen
           name='Statistics'
           component={Statistics}
-          options={{headerShown:false,gestureEnabled: false,}}
+          options={{ headerShown: false, gestureEnabled: false, }}
         />
 
         
@@ -125,7 +121,7 @@ const App = () => {
           component={HowToReadAlg}
           options={{headerTitle:'Cube Basics', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
 
-          //options={{headerShown:false}}
+        //options={{headerShown:false}}
         />
 
         <Stack.Screen
@@ -134,20 +130,20 @@ const App = () => {
           options={{headerTitle:'Beginner Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
           //mode='screen'
         />
-        
-        <Stack.Screen 
+
+        <Stack.Screen
           name="IntermediateLearn"
           component={IntermediateLearn}
           options={{headerTitle:'Intermediate Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
         />
 
-        <Stack.Screen 
-          name="AdvancedLearn" 
+        <Stack.Screen
+          name="AdvancedLearn"
           component={AdvancedLearn}
           options={{headerTitle:'Advanced Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
 
         />
-        
+
         <Stack.Screen
           name="AlgList"
           component={AlgList}
@@ -155,21 +151,21 @@ const App = () => {
 
         />
 
-        
-        <Stack.Screen 
-          name='CFOP' 
+
+        <Stack.Screen
+          name='CFOP'
           component={CFOP}
-          options={{gestureEnabled: false }}
+          options={{ gestureEnabled: false }}
         />
-        <Stack.Screen 
-          name='ZZ' 
+        <Stack.Screen
+          name='ZZ'
           component={ZZ}
-          options={{gestureEnabled: false }}
+          options={{ gestureEnabled: false }}
         />
-        <Stack.Screen 
-          name='Roux' 
+        <Stack.Screen
+          name='Roux'
           component={Roux}
-          options={{gestureEnabled: false }}
+          options={{ gestureEnabled: false }}
         />
 
         <Stack.Screen
@@ -266,11 +262,11 @@ const App = () => {
 
       </Stack.Navigator>
 
-      
-       
-     
+
+
+
     </NavigationContainer>
-    
+
   );
 };
 

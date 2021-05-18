@@ -21,7 +21,6 @@ export default class App extends Component {
     const {navigate} = this.props.navigation;
 
     const ButtonHeight=(Dimensions.get('window').height)*.09;
-    
     const ButtonWidth=(Dimensions.get('window').width)*.8;
     const ButtonRadius=10; // effects how circular the buttons look
     const ButtonGradientDirection='vertical';

@@ -124,7 +124,6 @@ let dynamicFont=(Dimensions.get('window').width)*.024306;
 
 
 
-
 // if(newList !== undefined){
 //   convertedTimes=newList;
 // }

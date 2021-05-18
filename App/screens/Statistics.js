@@ -17,6 +17,11 @@ import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exc
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { Platform } from "react-native";
 
+// setJSExceptionHandler((error, isFatal) => {
+//   console.log(error, isFatal)
+//   alert(error.name)
+// // return(
+// //   <View>
 
 // setJSExceptionHandler((error, isFatal) => {
 //   console.log(error, isFatal)

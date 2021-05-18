@@ -4,6 +4,8 @@
 import React, { useState, Component, useEffect } from 'react';
 import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
 import {Header, Card} from 'react-native-elements';
+import GradientButton from 'react-native-gradient-buttons';
+import AwesomeButton from "react-native-really-awesome-button";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 

@@ -1,14 +1,13 @@
+
 import React, { useState, Component, useEffect } from 'react';
-import { StyleSheet, View,
- Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions, TouchableOpacity} from 'react-native';
-import {Header, Card} from 'react-native-elements';
-import GradientButton from 'react-native-gradient-buttons';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+import { Header, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-
+const B = (props) => <Text style={{ fontWeight: 'bold', fontSize: 17, lineHeight: 18, letterSpacing: .2 }}>{props.children}</Text>
 
 export default class App extends Component {
-    
     render() {
         const {navigate} = this.props.navigation;
     return (
@@ -68,7 +67,7 @@ export default class App extends Component {
                                       Blue and green are always opposites
                                 {'\n'}Red and orange are always opposites
                                 {'\n'}White and yellow are always opposites
-                                {'\n'}When white is on the bottom and yellow is on the top, the colors in the middle layer (starting from the 
+                                {'\n'}When white is on the bottom and yellow is on the top, the colors in the middle layer (starting from the
                                 front facing color going to the right) are in this order: blue, red, green, then orange.{'\n'}
                             </Text>
                             <Card.Divider/>
@@ -398,35 +397,74 @@ export default class App extends Component {
 }
 }
 
+
 const styles = StyleSheet.create({
-    background:{
-        backgroundColor:'#121212',
-        flex:1
+    background: {
+        backgroundColor: '#121212',
+        flex: 1
     },
 
-    exImage: {
-        width: '35%', 
-        height: (Dimensions.get('window').width*.35), 
-        resizeMode: 'contain', 
-        marginRight: '5%', 
+    BottomTabText: {
+        //Text used for the bottom menu
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
     },
 
-    movesImage: {
-        width: '80%', 
-        height: (Dimensions.get('window').width*.5)*.8, 
-        resizeMode: 'contain', 
+    contentButtons: {
+        color: '#7600ff',
+        //textAlign:'center',
+        fontSize: 20,
+        //textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        paddingTop: '5%',
+        top: '-30%'
+    },
+
+    contentLocal: {
+        fontSize: .1,
+        color: 'transparent',
+        alignItems: 'center'
+    },
+
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 25,
+        fontWeight: 'bold',
     },
 
     image: {
         // Background image of cube
-        width:'100%',
+        width: '100%',
         height: '100%',
         position: 'absolute',
-        //color: 'transparent',
-        //top: 24,
     },
 
-    pageHeader:{
+    imageEx: {
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginRight: '5%',
+    },
+
+    imageInstructions: {
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginLeft: '5%',
+    },
+
+    imageMoves: {
+        width: '80%',
+        height: (Dimensions.get('window').width * .5) * .8,
+        resizeMode: 'contain',
+    },
+
+    pageHeader: {
         // Header
         backgroundColor: '#121212',
     },
@@ -443,48 +481,126 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
     },
 
-    BottomTabText:{
+    textDescrip: {
+        // Text thats a description
+        paddingTop: 10,
+    },
+
+    BottomTabText: {
         //Text used for the bottom menu
-        fontSize:10,
-        color:'white',
-        opacity:1,
-        justifyContent:'center',
-        left:'-7%',
-        paddingHorizontal:'1%'
-      },
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
+    },
+
+    textHeader: {
+        //headers
+        color: 'white',
+        fontSize: 14,
+        width: '60%',
+        lineHeight: 18,
+        letterSpacing: .2,
+    },
+
+    textDescrip2: {
+        paddingTop: 10,
+        color: 'white',
+        fontSize: 14,
+        lineHeight: 18,
+        letterSpacing: .2,
+        width: '80%'
+    },
+
+    textDescripWrap: {
+        // Text thats a description
+        paddingTop: 10,
+        color: 'white',
+        fontSize: RFPercentage(2.1),
+
+        width: '60%',
+        lineHeight: 18,
+        letterSpacing: .2,
+        height: (Dimensions.get('window').width) * .35,
+        //flexGrow:10,  
+
+    },
+
+    textDescripPlus: {
+        fontWeight: 'bold',
+        fontSize: 17,
+        lineHeight: 25,
+        letterSpacing: .2,
+        paddingTop: 10,
+        color: 'white',
+        width: '60%',
+    },
+
+    textDescripWide: {
+        // Text thats a description but full width
+        paddingTop: 10,
+        color: 'white',
+        //fontSize: RFPercentage(2.1), 
+        fontSize: 14,
+        width: '100%',
+        lineHeight: 18,
+        letterSpacing: .2
+    },
+
+    textDescripWideTip: {
+        // Text thats a description but full width
+        paddingTop: 10,
+        color: 'white',
+        //opacity:.8,
+        //fontSize: RFPercentage(2.1), 
+        fontSize: 14,
+        width: '100%',
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingLeft: '5%',
+        paddingRight: '5%',
+        textAlign: 'center'
+
+    },
 
     textHeader: {
         //headers
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 17.5,
+        fontSize: 19,
         textAlign: 'center',
     },
 
-    textDescrip:{
-        // Text thats a description
-        paddingTop: 10,
+    textSubHeader: {
+        //Text that goes under headers
         color: 'white',
-        fontSize: 13,
-        width: '60%',
+        fontSize: 14,
+        textAlign: 'center',
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingTop: 2,
+        paddingBottom: 5
     },
 
-    textDescrip2:{
-        // Text thats a description
+    textSummary: {
+        // the summary of the step
         color: 'white',
-        fontSize: 13,
-        width: '80%',
+        fontSize: 16,
+        paddingBottom: '6%',
+        lineHeight: 20,
+        letterSpacing: .2
     },
 
-    textDescripWide:{
-        // Text thats a description but full width
-        paddingTop: 10,
+    textTitle: {
+        // Titles of the cards
         color: 'white',
-        fontSize: 13,
-        width: '100%'
+        fontSize: 25,
+        fontWeight: 'bold'
     },
 
-    textWideCenter:{
+    textWideCenter: {
         // Text thats a description but full width and centered
         paddingTop: 10,
         color: 'white',
@@ -494,64 +610,20 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
 
-    textSubHeader: {
-        //Text that goes under headers
-        color: 'white',
-        fontSize: 15,
-        textAlign: 'center'
-    },
-
-    textSummary: {
-        // the summary of the step
-        color: 'white',
-        fontSize: 15,
-    },
-
-    textTitle: {
-        // Titles of the cards
-        color: 'white',
-        fontSize: 20
-    },
-
-    ViewContainer:{
+    ViewContainer: {
         // Holds the whole screen
-        flex: 1, 
+        flex: 1,
         //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'#121212',
+        alignItems: 'center',
+        backgroundColor: '#121212',
         //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 
-    viewMove:{
+    viewMove: {
         //Holds a move's picture and description
-        flexDirection: 'column', 
-        flexWrap: 'wrap', 
-        width: '50%', 
-        alignContent: 'center', 
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        width: '50%',
+        alignContent: 'center',
     },
-    contentLocal:{
-        fontSize:.1,
-        color:'transparent',
-        alignItems:'center'
-    },
-    
-
-    contentButtons:{
-        color:'#7600ff',
-        //textAlign:'center',
-        fontSize:20,
-        //textDecorationLine: 'underline',
-        fontWeight:'bold',
-        paddingTop:'5%',
-        top:'-30%'
-    },
-    ContentsTitle: {
-        // Table of contents title
-        color: 'white',
-        fontSize: 25,
-        fontWeight:'bold',
-        
-    },
-
 })
-
