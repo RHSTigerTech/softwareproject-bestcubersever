@@ -169,7 +169,7 @@ export default class App extends Component {
                                     
                                     {'\n'}
                                 </Text>
-                                <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
+                                <Image style={styles.imageInstructions} source={require('../Assets/beginners/b_wcr_daisy.jpg')}/>
                                 <Text style={styles.textDescripWideTip}>
                                     <B>Tip:</B> Be careful not to bump out the white
                                     edge pieces you've already placed at the top of the cube. 
@@ -200,9 +200,9 @@ export default class App extends Component {
                                         {'\n'}
                                         
                                 </Text>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_aligned.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_wcr_aligned.jpg')}/>
                                 <Text style={{color: 'white', fontSize: 16, width: '19.9%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'0%', textAlignVertical: 'center'}}><B>(R2)</B></Text>
-                                <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
+                                <Image style={styles.imageInstructions} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
                             </View>
                         </Card>
 
@@ -226,14 +226,14 @@ export default class App extends Component {
                             </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_right.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_right.jpg')}/>
                                 <Text style={styles.textDescrip}>
                                     When the corner is below the slot it needs to be inserted into, with white facing to the right and the 
                                     color on the left matches that side
                                     {'\n'}<B>R' D R</B>
                                 </Text>
 
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_left.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_left.jpg')}/>
                                 
                                 
                                 <Text style={styles.textDescrip}>
@@ -245,13 +245,13 @@ export default class App extends Component {
                                 
           
 
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_down.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_down.jpg')}/>
                                 <Text style={styles.textDescrip}>
                                     When the corner is below the slot it needs to be inserted into, with white facing down
                                     {'\n'}<B>R' D2 R D R' D' R</B>
                                 </Text>
 
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_wrong.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_wrong.jpg')}/>
                                 <Text style={styles.textDescrip}>
                                     When the corner is in the white layer already, but in the wrong spot or oriented incorrectly.
                                     {'\n'}Take it out of the white layer using this algorithm, then you will have one of the cases mentioned
@@ -278,21 +278,21 @@ export default class App extends Component {
                             </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap', }}>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_sl_right.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_right.jpg')}/>
                                 <Text style={styles.textDescrip}>
                                     When the color on the edge that is facing you is lined up with it's matching center, the edge needs to be 
                                     inserted on the right.
                                     {'\n'}<B>U R U' R' U' F' U F</B>
                                 </Text>
 
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_sl_left.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_left.jpg')}/>
                                 <Text style={styles.textDescrip}>
                                     When the color on the edge that is facing you is lined up with it's matching center, the edge needs to be 
                                     inserted on the left.
                                     {'\n'}<B>U' L' U L U F U' F'</B>
                                 </Text>
                                 
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_sl_orient.jpg')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_orient.jpg')}/>
                                 <Text style={styles.textDescrip}>
                                     When the edge is in its correct spot, but it is oriented wrong. First, you do one of the algorithms from 
                                     above.
@@ -319,13 +319,13 @@ export default class App extends Component {
                             </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_ye_line.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_line.png')}/>
                                 <Text style={styles.textDescripPlus}>Line{'\n'}F (R U R' U') F'</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_ye_L.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_L.png')}/>
                                 <Text style={styles.textDescripPlus}>L-shape{'\n'}Fw (R U R' U') Fw'</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_ye_dot.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_dot.png')}/>
                                 <Text style={styles.textDescripPlus}>Dot{'\n'}F R U R' U' F' Fw (R U R' U') Fw'</Text>
                             </View>
                         </Card>
@@ -349,25 +349,25 @@ export default class App extends Component {
                             
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_0.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_0.png')}/>
                                 <Text style={styles.textDescripPlus}>R2 D' R U2 R' D R U2 R</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_1.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_1.png')}/>
                                 <Text style={styles.textDescripPlus}>(F R F' Rw)(U R' U' Rw)</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_2.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_2.png')}/>
                                 <Text style={styles.textDescripPlus}>(F R' F' Rw)(U R U' Rw)</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_3.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_3.png')}/>
                                 <Text style={styles.textDescripPlus}>R U R' U R U2 R'</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_4.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_4.png')}/>
                                 <Text style={styles.textDescripPlus}>R U2 R' U' R U' R'</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_5.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_5.png')}/>
                                 <Text style={styles.textDescripPlus}>R U2 (R2 U' R2 U') R2 U2 R</Text>
                             
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_6.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_6.png')}/>
                                 <Text style={styles.textDescripPlus}>F (R U R' U') (R U R' U') (R U R' U') F'</Text>
                             </View>
                         </Card>
@@ -390,11 +390,11 @@ export default class App extends Component {
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 {/* adjacent */}
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_pyc_adj.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_pyc_adj.png')}/>
                                 <Text style={styles.textDescripPlus}>R' F R' B2 R F' R' B2 R2</Text>
                             
                                 {/* opposite */}
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_pyc_opp.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_pyc_opp.png')}/>
                                 <Text style={styles.textDescripPlus}>F R U' R' U' R U R' F' (R U R' U'){'\n'}(R' F R F')</Text>
                             </View>
                         </Card>
@@ -416,19 +416,19 @@ export default class App extends Component {
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 {/* 3 edge counter clockwise rotation */}
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_pye_cc.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_pye_cc.png')}/>
                                 <Text style={styles.textDescripPlus}>(R U' R U)(R U R U') R' U' R2</Text>
                             
                                 {/* 3 edge clockwise rotation */}
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_pye_c.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_pye_c.png')}/>
                                 <Text style={styles.textDescripPlus}>R2 U (R U R' U') R' U' R' U R'</Text>
                             
                                 {/* opposite sides */}
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_pye_opp.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_pye_opp.png')}/>
                                 <Text style={styles.textDescripPlus}>M2 U M2 U2 M2 U M2</Text>
                             
                                 {/* adjacent sides */}
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_pye_adj.png')}/>
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_pye_adj.png')}/>
                                 <Text style={styles.textDescripPlus}>M' U M2 U M2 U M' U2 M2 U'</Text>
                             </View>
                         </Card>
@@ -556,12 +556,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
     },
-    InstructionsImage: {
-        width: '35%',
-        height: (Dimensions.get('window').width) * .35,
-        resizeMode: 'contain',
-        marginLeft: '5%',
-    },
+   
 
     image: {
         // Background image of cube
