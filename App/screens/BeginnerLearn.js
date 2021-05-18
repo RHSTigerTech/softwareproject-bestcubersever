@@ -7,7 +7,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 const B = (props) => <Text style={{ fontWeight: 'bold', fontSize: 17, lineHeight: 18, letterSpacing: .2 }}>{props.children}</Text>
 //const WrapText = (props) => <Text style={{paddingTop: 10,color: 'white',fontSize: RFPercentage(2.1),width: '100%',lineHeight:18,letterSpacing:.2}}>{props.children}</Text>
-
+//change
  
 export default class App extends Component {
     
