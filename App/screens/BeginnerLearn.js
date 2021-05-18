@@ -82,6 +82,54 @@ export default class App extends Component {
                     <Text style={styles.contentButtons}>7: Permute Yellow Edges</Text>
                     </TouchableOpacity>
                     </Card>
+                    <Card containerStyle={{backgroundColor: '#121212'}}>
+                        
+                            <Card.Title style={styles.textTitle}>Things To Remember{/* Card Title*/}</Card.Title>
+                            <Card.Divider/>
+                            
+                            
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <Text style={styles.textDescripWide}>
+                                    <B>1:</B> If this is your first time learning how to solve a rubiks cube or you keep messing up an algorithm,
+                             it's strongly recommended that you first view our
+                                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('HowToReadAlg')}> Cube Basics </Text>
+                            page so you have a basic understanding of the cube and its notations.
+                                    {'\n'}
+                                </Text>
+
+                                <Text style={styles.textDescripWide}>
+                                    <B>2:</B> Don't rotate the entire cube while executing an algorithm. 
+                                    Keep the same face in the front.
+                                    {'\n'}
+                                </Text>
+
+                                <Text style={styles.textDescripWide}>
+                                    <B>3:</B> A <B>'</B> after a notation <B>(Ex: R')</B> is a counter clockwise turn.
+                                    {'\n'}
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    <B>4:</B> Sometimes a step wont make sense the first time you read it.
+                                     Go back and read it slower or even outloud.
+                                    {'\n'}
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    <B>5:</B> If part of an algoithm is in parentheses. For example, <B>F (R U R' U') F'</B>. It's 
+                                    simply signifying when a series of moves are very fast to execute and are encountered frequently.
+                                    Treat moves inside the parentheses like any other move.   
+                                    {'\n'}
+                                </Text>
+                                <Text style={styles.textDescripWide}>
+                                    <B>6:</B> It's inevitable that in the beginning you'll make a few mistakes performing some of the algorithms. 
+                                            When you get back to the same step again just go slower 
+                                            and confirm every move is correct.
+                                    {'\n'}
+                                </Text>
+                                
+                                {/* maybe turn this into another step */}
+                                
+                                
+                            </View>
+                        </Card>
                         {/* STEP 1 */}
                         <Text onLayout={event =>(this.WhiteCross = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
@@ -91,18 +139,19 @@ export default class App extends Component {
                             <Text style={styles.textSummary}>
                                 The first step to solving a rubiks cube is forming the white cross. To accomplish this, you first have to align the 
                                 white edges with the white center and the center of the corresponding color. This step doesn't require an algorithm
-                                to complete. {/* Summary of Step */}
+                                to complete and is intuitive. Some may find it easier to refer to the diagrams on how the cube is supposed to look rather than read the instructions. {/* Summary of Step */}
                             </Text>
                             <Card.Divider/>
+                            
                             <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the yellow center is on the top. {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white center is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Text style={styles.textDescripWide}>
-                                    <B>1:</B> Find any center edge piece that has a white tile. 
+                                    <B>1:</B> Find any edge piece that has a white tile. 
                                     An edge piece is where two visible colors meet. 
-                                    There are four of these center edge pieces with white tiles 
+                                    There are four of these edge pieces with white tiles 
                                     located on the cube.
                                      
                                     {'\n'}
@@ -152,8 +201,8 @@ export default class App extends Component {
                                         
                                 </Text>
                                 <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_aligned.jpg')}/>
-                                <Text style={{color: 'white', fontSize: 16, width: '20%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'-1.5%', textAlignVertical: 'center'}}><B>(R2)</B>     </Text>
-                                <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
+                                <Text style={{color: 'white', fontSize: 16, width: '19.9%', textAlign: 'center', alignSelf:'center',left:Platform.OS === 'android' ? 0:'0%', textAlignVertical: 'center'}}><B>(R2)</B></Text>
+                                <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')}/>
                             </View>
                         </Card>
 
@@ -168,7 +217,7 @@ export default class App extends Component {
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white center is on the top {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the yellow center is on the bottom. {/* Sub header: Cube Orientation */}
                                 </Text>
                             <Text style={styles.textDescripWideTip}>
                                 <B>Tip:</B> Make sure you're inserting the white corners into
@@ -225,7 +274,7 @@ export default class App extends Component {
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <Text 
                              style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white side is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap', }}>
@@ -266,7 +315,7 @@ export default class App extends Component {
                             <Card.Divider/>
                             <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white side is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             {/* This view holds all the cases for this step */}
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -295,7 +344,7 @@ export default class App extends Component {
 
                             
                             <Text style={styles.textSubHeader}>
-                                Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
+                                Hold the cube so that the white side is on the bottom. {/* Sub header: Cube Orientation */}
                             </Text>
                             
                             {/* This view holds all the cases for this step */}
@@ -386,18 +435,62 @@ export default class App extends Component {
                     </ScrollView>
                 </View>
                 
-                <View style={{flexDirection:'row'}}>
-                
+                <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', left:'1.35%'}}>
+                 {/* Home Screen */}
+                 <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        alignSelf='center'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
                     <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignSelf='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='camera'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        alignSelf='center'
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Scanner')}
+                    >
+                    <Text style={styles.BottomTabText}>Solver</Text>
+                    </Icon.Button>
+                    
+            <Icon.Button
                         name='cube-outline'
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
-                        alignItems='center'
+                        alignSelf='center'
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        paddingHorizontal='4%'
                         onPress={({}) => navigate('VirtualCube')}
                         >
                         <Text style={styles.BottomTabText}>3DCube</Text>
@@ -405,61 +498,20 @@ export default class App extends Component {
                     {/* Statistics */}
                     <Icon.Button            
                         name='chart-line'
-                        alignItems='center'
+                        alignSelf='center'
                         flexDirection='column'
                         backgroundColor='transparent'
                         //backgroundColor='#121212'
                         color='white'
                         opacity={1}
                         size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                        paddingHorizontal='4%'
                         onPress={() => navigate('Statistics')}
                     >
                     <Text style={styles.BottomTabText}>Statistics</Text>
                     </Icon.Button>
-                    {/* Home Screen */}
-                    <Icon.Button
-                        name='home' 
-                        flexDirection='column'
-                        backgroundColor='transparent'
-                        //backgroundColor='#121212'
-                        color='white'
-                        opacity={1}
-                        size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Gradient')}
-                    >
-                    <Text style={styles.BottomTabText}>Home</Text>
-                    </Icon.Button>
-                    {/* Learn */}
-                    <Icon.Button
-                        name='school'
-                        backgroundColor='transparent'
-                        flexDirection='column'
-                        //backgroundColor='#121212'
-                        color='white'
-                        opacity={1}
-                        size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Learn')}
-                    >
-                    <Text style={styles.BottomTabText}>Learn</Text>
-                    </Icon.Button>
-                    <Icon.Button
-                        name='timer-outline'
-                        flexDirection='column'
-                        backgroundColor='transparent'
-                        //backgroundColor='#121212'
-                        alignItems='center'
-                        color='white'
-                        opacity={1}
-                        size={30}
-                        paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                        onPress={() => navigate('Timer')}
-                        >
-                        <Text style={styles.BottomTabText}>Timer</Text>
-                    </Icon.Button>
-                </View>
+                   
+            </View>
             </View>
         </SafeAreaView>
     );
@@ -600,13 +652,30 @@ const styles = StyleSheet.create({
         paddingTop:'5%',
         top:'-30%'
     },
+    NavigateScreenButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:18,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        textAlign: 'center',
+        lineHeight:20,
+        letterSpacing:.2,
+        //paddingTop:2,
+        top:'20%',
+        //bottom:-10,
+        textDecorationLine: 'underline',
+        //paddingTop:5
+        //paddingTop:'5%',
+        //top:'-30%'
+    },
 
     textSubHeader: {
         //Text that goes under headers
         color: 'white',
         fontSize: 14,
         textAlign: 'center',
-        lineHeight:18,
+        lineHeight:20,
         letterSpacing:.2,
         paddingTop:2,
         paddingBottom:5
@@ -641,7 +710,7 @@ const styles = StyleSheet.create({
         //justifyContent: 'space-evenly', 
         alignItems: 'center', 
         backgroundColor:'#121212',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 })
 
