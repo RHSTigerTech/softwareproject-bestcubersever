@@ -1,32 +1,32 @@
 import React, { useState, Component, useEffect } from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
-import {Header, Card} from 'react-native-elements';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+import { Header, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
-const B = (props) => <Text style={{fontWeight: 'bold',fontSize:17, lineHeight:18,letterSpacing:.2}}>{props.children}</Text>
+const B = (props) => <Text style={{ fontWeight: 'bold', fontSize: 17, lineHeight: 18, letterSpacing: .2 }}>{props.children}</Text>
 //const WrapText = (props) => <Text style={{paddingTop: 10,color: 'white',fontSize: RFPercentage(2.1),width: '100%',lineHeight:18,letterSpacing:.2}}>{props.children}</Text>
 
- 
+
 export default class App extends Component {
-    
+
     render() {
-        const {navigate} = this.props.navigation;
+        const { navigate } = this.props.navigation;
+        const navi = (routeBack) => { navigation.popToTop(), navigate(routeBack) }
         return (
             <SafeAreaView style={styles.background}>
                 <View style={styles.ViewContainer} >
-                    <View style={{height: '90%'}}>
+                    <View style={{ height: '90%' }}>
                         <ScrollView
                             ref={ref => (this.scrollViewRef = ref)}
-                            style={styles.scroll}
-                        >
-                            <Card containerStyle={{backgroundColor: '#121212'}}>
+                            style={styles.scroll}>
+                            <Card containerStyle={{ backgroundColor: '#121212' }}>
                                 <Card.Title style={styles.ContentsTitle}>Beginner Steps{/* Card Title*/}</Card.Title>
-                                <Card.Divider/>
+                                <Card.Divider />
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.WhiteCross.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.WhiteCross.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>1: White Cross</Text>
@@ -34,15 +34,15 @@ export default class App extends Component {
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.WhiteCorners.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.WhiteCorners.y, animated: true });
                                     }}
                                 >
                                     <Text paddingTop='-3%' style={styles.contentButtons} >2: White Corners</Text>
                                 </TouchableOpacity>
-                                
+
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.SecondLayer.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.SecondLayer.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>3: Second Layer</Text>
@@ -50,15 +50,15 @@ export default class App extends Component {
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.OrientYellowEdges.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.OrientYellowEdges.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>4: Orient Yellow Edges</Text>
                                 </TouchableOpacity>
-                                
+
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.OrientYellowCorners.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.OrientYellowCorners.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>5: Orient Yellow Corners</Text>
@@ -66,7 +66,7 @@ export default class App extends Component {
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.PermuteYellowCorners.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.PermuteYellowCorners.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>6: Permute Yellow Corners</Text>
@@ -74,7 +74,7 @@ export default class App extends Component {
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.PermuteYellowEdges.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.PermuteYellowEdges.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>7: Permute Yellow Edges</Text>
@@ -83,72 +83,81 @@ export default class App extends Component {
                             {/* STEP 1 */}
                             <Text onLayout={event => (this.WhiteCross = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                             <Card containerStyle={{ backgroundColor: '#121212' }}>
+
                                 <Card.Title style={styles.textTitle}>1: White Cross {/* Card Title*/}</Card.Title>
                                 <Card.Divider />
                                 <Text style={styles.textSummary}>
                                     The first step to solving a rubiks cube is forming the white cross. To accomplish this, you first have to align the
                                     white edges with the white center and the center of the corresponding color. This step doesn't require an algorithm
-                                                to complete. {/* Summary of Step */}
+                                to complete. {/* Summary of Step */}
                                 </Text>
                                 <Card.Divider />
+                                <Text style={styles.textSubHeader}>
+                                    If this is your first time learning how to solve a rubiks cube,
+                                    it's strongly recommended that you first view our
+                                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('HowToReadAlg')}> Cube Basics </Text>
+                            page so you have a basic understanding of the cube and its notations
+                             </Text>
                                 <Text style={styles.textHeader}>Instructions {/* Header: Instructions */}</Text>
                                 <Text style={styles.textSubHeader}>
-                                    Hold the cube so that the yellow center is on the top. {/* Sub header: Cube Orientation */}
+                                    Hold the cube so that the white center is on the bottom. {/* Sub header: Cube Orientation */}
                                 </Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <Text style={styles.textDescripWide}>
-                                        <B>1:</B> Find any center edge piece that has a white tile.
-                                                    An edge piece is where two visible colors meet.
-                                                    There are four of these center edge pieces with white tiles
-                                                    located on the cube.
+                                        <B>1:</B> Find any edge piece that has a white tile.
+                                    An edge piece is where two visible colors meet.
+                                    There are four of these edge pieces with white tiles
+                                    located on the cube.
 
-                                                    {'\n'}
+                                    {'\n'}
                                     </Text>
                                     {/* maybe turn this into another step */}
                                     <Text style={styles.textDescrip}>
                                         <B>2:</B> Create a "daisy" pattern by
-                                                    inserting the white edge piece next to the
-                                                    yellow center so that the edge piece's white
-                                                    tile is facing up. You can accomplish this by
-                                                    rotating the colored tile sides face until the white
-                                                    edge tile piece is adjacent to the yellow center.
+                                    inserting the white edge piece next to the
+                                    yellow center so that the edge piece's white
+                                    tile is facing up. You can accomplish this by
+                                    rotating the colored tile sides face until the white
+                                    edge tile piece is adjacent to the yellow center. Move
+                                    on to step 3 if you have not white edge pieces in your
+                                    middle layer.
 
-                                                    {'\n'}
+                                    {'\n'}
                                     </Text>
-                                    <Image style={styles.imageInstructions} source={require('../Assets/beginners/b_wcr_daisy.jpg')} />
+                                    <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_daisy.jpg')} />
                                     <Text style={styles.textDescripWideTip}>
                                         <B>Tip:</B> Be careful not to bump out the white
-                                                    edge pieces you've already placed at the top of the cube
-                                                    while repeating the process. By rotating the top yellow layer you
-                                                    can move edge pieces already at the top out of the way.
+                                    edge pieces you've already placed at the top of the cube.
+                                    By rotating the top yellow layer you
+                                    can move edge pieces already at the top out of the way.
 
-                                                    {'\n'}
+                                    {'\n'}
                                     </Text>
                                     <Text style={styles.textDescripWide}>
                                         <B>3:</B> If one of the white edge pieces is located
-                                                    at the the bottom of the cube, or is located at
-                                                    the top but facing the wrong way, rotate the face
-                                                    once so that the white edge piece is located
-                                                    in the middle layer of the cube then repeat step 2. Repeat until all
-                                                    white edges are in the yellow layer and you have
-                                                    the "daisy" pattern.
+                                    at the the bottom of the cube, or is located at
+                                    the top but facing the wrong way, rotate the face
+                                    once so that the white edge piece is located
+                                    in the middle layer of the cube then repeat step 2. Repeat until all
+                                    white edges are in the yellow layer and you have
+                                    the "daisy" pattern.
 
-                                                    {'\n'}
+                                    {'\n'}
                                     </Text>
                                     <Text style={styles.textDescripWide}>
                                         <B>4:</B> Once all edges are in the yellow layer, choose one of the white
-                                                        edge pieces and
-                                                        align it with the center that matches the edge tiles color by
-                                                        rotating the top yellow layer. Now rotate that side twice so that
-                                                        the edge piece's white tile is now in the white layer.
-                                                        Repeat this until all edges are in the white layer and
-                                                        you have a white cross. {/* Steps */}
+                                        edge pieces and
+                                        align it with the center that matches the edge tiles color by
+                                        rotating the top yellow layer. Now rotate that side twice so that
+                                        the edge piece's white tile is now in the white layer.
+                                        Repeat this until all edges are in the white layer and
+                                        you have a white cross. {/* Steps */}
                                         {'\n'}
 
                                     </Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_wcr_aligned.jpg')} />
-                                    <Text style={{ color: 'white', fontSize: 16, width: '20%', textAlign: 'center', alignSelf: 'center', left: Platform.OS === 'android' ? 0 : '-1.5%', textAlignVertical: 'center' }}><B>(R2)</B>     </Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_wcr_inserted.jpg')} />
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_wcr_aligned.jpg')} />
+                                    <Text style={{ color: 'white', fontSize: 16, width: '19.9%', textAlign: 'center', alignSelf: 'center', left: Platform.OS === 'android' ? 0 : '0%', textAlignVertical: 'center' }}><B>(R2)</B></Text>
+                                    <Image style={styles.InstructionsImage} source={require('../Assets/beginners/b_wcr_inserted.jpg')} />
                                 </View>
                             </Card>
 
@@ -163,80 +172,45 @@ export default class App extends Component {
                                 <Card.Divider />
                                 <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
                                 <Text style={styles.textSubHeader}>
-                                    Hold the cube so that the white side is on the top {/* Sub header: Cube Orientation */}
+                                    Hold the cube so that the yellow center is on the bottom. {/* Sub header: Cube Orientation */}
                                 </Text>
+                                <Text style={styles.textDescripWideTip}>
+                                    <B>Tip:</B> Make sure you're inserting the white corners into
+                                the right slot. The corner pieces color's should match with the
+                                colors of the center pieces to the left and right of the corner piece.
+                            </Text>
                                 {/* This view holds all the cases for this step */}
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_right.jpg')} />
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_wco_right.jpg')} />
                                     <Text style={styles.textDescrip}>
                                         When the corner is below the slot it needs to be inserted into, with white facing to the right and the
                                         color on the left matches that side
-                                                {'\n'}<B>R' D R</B>
+                                    {'\n'}<B>R' D R</B>
                                     </Text>
-
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_left.jpg')} />
-
-
-                                    <Text style={styles.textDescrip}>
-                                        When the corner is below the slot it needs to be inserted into, with white facing to the left and the
-                                        color on the right matches that side
-                                                {'\n'}<B>F D F'</B>
-                                    </Text>
-
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_down.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        When the corner is below the slot it needs to be inserted into, with white facing down
-                                                {'\n'}<B>R' D2 R D R' D' R</B>
-                                    </Text>
-
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_wco_wrong.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        When the corner is in the white layer already, but in the wrong spot or oriented incorrectly.
-                                                {'\n'}Take it out of the white layer using this algorithm, then you will have one of the cases mentioned
-                                                before.
-                                                {'\n'}<B>L D L'</B>
-                                    </Text>
-                                </View>
-                            </Card>
-
-                            {/* STEP 3 */}
-                            <Text onLayout={event => (this.SecondLayer = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-                            <Card containerStyle={{ backgroundColor: '#121212' }}>
-                                <Card.Title style={styles.textTitle}>3: Second Layer {/* Card Title */}</Card.Title>
-                                <Card.Divider />
-                                <Text style={styles.textSummary}>
-                                    The next step is solving the second layer of the cube. In order to do this, the edges are inserted into their
-                                            correct spots using one of two algorithms. {/* Summary of Step */}
-                                </Text>
-                                <Card.Divider />
-                                <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
-                                <Text
-                                    style={styles.textSubHeader}>
-                                    Hold the cube so that the white side is on the bottom {/* Sub header: Cube Orientation */}
-                                </Text>
-                                {/* This view holds all the cases for this step */}
-                                <View style={{ flexDirection: 'row', flexWrap: 'wrap', }}>
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_right.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        When the color on the edge that is facing you is lined up with it's matching center, the edge needs to be
-                                        inserted on the right.
+                                    {/* This view holds all the cases for this step */}
+                                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', }}>
+                                        <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_right.jpg')} />
+                                        <Text style={styles.textDescrip}>
+                                            When the color on the edge that is facing you is lined up with it's matching center, the edge needs to be
+                                            inserted on the right.
                                                 {'\n'}<B>U R U' R' U' F' U F</B>
-                                    </Text>
+                                        </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_left.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        When the color on the edge that is facing you is lined up with it's matching center, the edge needs to be
-                                        inserted on the left.
+                                        <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_left.jpg')} />
+                                        <Text style={styles.textDescrip}>
+                                            When the color on the edge that is facing you is lined up with it's matching center, the edge needs to be
+                                            inserted on the left.
                                                 {'\n'}<B>U' L' U L U F U' F'</B>
-                                    </Text>
+                                        </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_orient.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        When the edge is in its correct spot, but it is oriented wrong. First, you do one of the algorithms from
-                                        above.
-                                                {'\n'}<B>(U R U' R' U' F' U F) or {'\n'}(U' L' U L U F U' F')</B>
-                                        {'\n'}Then, you will have one of the first two cases.
-                                            </Text>
+                                        <Image style={styles.imageEx} source={require('../Assets/beginners/b_sl_orient.jpg')} />
+                                        <Text style={styles.textDescrip}>
+                                            When the edge is in its correct spot, but it is oriented wrong. First, you do one of the algorithms from
+                                            above.
+                                        {'\n'}<B>(U R U' R' U' F' U F) or {'\n'}(U' L' U L U F U' F')</B>
+                                            {'\n'}Then, you will have one of the first two cases.
+                                    </Text>
+                                    </View>
                                 </View>
                             </Card>
 
@@ -306,7 +280,7 @@ export default class App extends Component {
                                     <Text style={styles.textDescripPlus}>F (R U R' U') (R U R' U') (R U R' U') F'</Text>
                                 </View>
                             </Card>
-                                       
+
                             {/* STEP 6 */}
                             <Text onLayout={event => (this.PermuteYellowCorners = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                             <Card containerStyle={{ backgroundColor: '#121212' }}>
@@ -333,7 +307,7 @@ export default class App extends Component {
                                 </View>
                             </Card>
 
-                            {/* STEP 7 */}  
+                            {/* STEP 7 */}
                             <Text onLayout={event => (this.PermuteYellowEdges = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                             <Card containerStyle={{ backgroundColor: '#121212' }}>
                                 <Card.Title style={styles.textTitle}>7: Permute Yellow Edges {/* Card Title */}</Card.Title>
@@ -368,8 +342,8 @@ export default class App extends Component {
                             </Card>
                         </ScrollView>
                     </View>
-                    
-                    <View style={{flexDirection:'row'}}>
+
+                    <View style={{ flexDirection: 'row' }}>
                         <Icon.Button
                             name='cube-outline'
                             flexDirection='column'
@@ -379,13 +353,13 @@ export default class App extends Component {
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                            onPress={({}) => navigate('VirtualCube')}
-                            >
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
+                            onPress={({ }) => navigate('VirtualCube')}
+                        >
                             <Text style={styles.BottomTabText}>3DCube</Text>
                         </Icon.Button>
                         {/* Statistics */}
-                        <Icon.Button            
+                        <Icon.Button
                             name='chart-line'
                             alignItems='center'
                             flexDirection='column'
@@ -394,24 +368,24 @@ export default class App extends Component {
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Statistics')}
                         >
-                        <Text style={styles.BottomTabText}>Statistics</Text>
+                            <Text style={styles.BottomTabText}>Statistics</Text>
                         </Icon.Button>
                         {/* Home Screen */}
                         <Icon.Button
-                            name='home' 
+                            name='home'
                             flexDirection='column'
                             backgroundColor='transparent'
                             //backgroundColor='#121212'
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Gradient')}
                         >
-                        <Text style={styles.BottomTabText}>Home</Text>
+                            <Text style={styles.BottomTabText}>Home</Text>
                         </Icon.Button>
                         {/* Learn */}
                         <Icon.Button
@@ -422,10 +396,10 @@ export default class App extends Component {
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Learn')}
                         >
-                        <Text style={styles.BottomTabText}>Learn</Text>
+                            <Text style={styles.BottomTabText}>Learn</Text>
                         </Icon.Button>
                         <Icon.Button
                             name='timer-outline'
@@ -436,9 +410,9 @@ export default class App extends Component {
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Timer')}
-                            >
+                        >
                             <Text style={styles.BottomTabText}>Timer</Text>
                         </Icon.Button>
                     </View>
@@ -449,63 +423,69 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-    background:{
-        backgroundColor:'#121212',
-        flex:1
+    background: {
+        backgroundColor: '#121212',
+        flex: 1
     },
 
-    BottomTabText:{
+    BottomTabText: {
         //Text used for the bottom menu
-        fontSize:10,
-        color:'white',
-        opacity:1,
-        justifyContent:'center',
-        left:'-7%',
-        paddingHorizontal:'1%'
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
     },
 
-    contentButtons:{
-        color:'#7600ff',
+    contentButtons: {
+        color: '#7600ff',
         //textAlign:'center',
-        fontSize:20,
+        fontSize: 20,
         //textDecorationLine: 'underline',
-        fontWeight:'bold',
-        paddingTop:'5%',
-        top:'-30%'
+        fontWeight: 'bold',
+        paddingTop: '5%',
+        top: '-30%'
     },
 
-    contentLocal:{
-        fontSize:.1,
-        color:'transparent',
-        alignItems:'center'
+    contentLocal: {
+        fontSize: .1,
+        color: 'transparent',
+        alignItems: 'center'
     },
-    
+
     ContentsTitle: {
         // Table of contents title
         color: 'white',
         fontSize: 25,
-        fontWeight:'bold',
+        fontWeight: 'bold',
+    },
+    InstructionsImage: {
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginLeft: '5%',
     },
 
     image: {
         // Background image of cube
-        width:'100%',
+        width: '100%',
         height: '100%',
         position: 'absolute',
     },
 
     imageEx: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginRight: '5%', 
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginRight: '5%',
     },
 
     imageInstructions: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginLeft: '5%', 
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginLeft: '5%',
     },
 
     placeHolder: {
@@ -515,56 +495,65 @@ const styles = StyleSheet.create({
         width: '40%',
     },
 
+    BottomTabText: {
+        //Text used for the bottom menu
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
+    },
+
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
     },
 
-    textDescrip:{
+    textDescrip: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: 14,        
+        fontSize: 14,
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,
+        lineHeight: 18,
+        letterSpacing: .2,
     },
 
-    textDescripWrap:{
+    textDescripWrap: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: RFPercentage(2.1),  
-               
+        fontSize: RFPercentage(2.1),
+
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,  
-        height: (Dimensions.get('window').width)*.35, 
+        lineHeight: 18,
+        letterSpacing: .2,
+        height: (Dimensions.get('window').width) * .35,
         //flexGrow:10,
     },
 
-    textDescripPlus:{
+    textDescripPlus: {
         fontWeight: 'bold',
-        fontSize:17, 
-        lineHeight:25,
-        letterSpacing:.2,
+        fontSize: 17,
+        lineHeight: 25,
+        letterSpacing: .2,
         paddingTop: 10,
         color: 'white',
         width: '60%',
     },
 
-    textDescripWide:{
+    textDescripWide: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
         //fontSize: RFPercentage(2.1), 
         fontSize: 14,
         width: '100%',
-        lineHeight:18,
-        letterSpacing:.2
+        lineHeight: 18,
+        letterSpacing: .2
     },
-
-    textDescripWideTip:{
+    textDescripWideTip: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
@@ -572,12 +561,12 @@ const styles = StyleSheet.create({
         //fontSize: RFPercentage(2.1), 
         fontSize: 14,
         width: '100%',
-        lineHeight:18,
-        letterSpacing:.2,
-        paddingLeft:'5%',
-        paddingRight:'5%',
-        textAlign:'center'
-        
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingLeft: '5%',
+        paddingRight: '5%',
+        textAlign: 'center'
+
     },
 
     textHeader: {
@@ -593,35 +582,35 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
         textAlign: 'center',
-        lineHeight:18,
-        letterSpacing:.2,
-        paddingTop:2,
-        paddingBottom:5
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingTop: 2,
+        paddingBottom: 5
     },
 
     textSummary: {
         // the summary of the step
         color: 'white',
         fontSize: 16,
-        paddingBottom:'6%',
-        lineHeight:20,
-        letterSpacing:.2
+        paddingBottom: '6%',
+        lineHeight: 20,
+        letterSpacing: .2
     },
 
     textTitle: {
         // Titles of the cards
         color: 'white',
         fontSize: 25,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
 
-    ViewContainer:{
+    ViewContainer: {
         // Holds the whole screen
-        flex: 1, 
+        flex: 1,
         //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'#121212',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        alignItems: 'center',
+        backgroundColor: '#121212',
+        //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 })
 

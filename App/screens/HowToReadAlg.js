@@ -1,50 +1,51 @@
-import React, {useState, Component, useEffect} from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
-import {Header, Card} from 'react-native-elements';
+
+import React, { useState, Component, useEffect } from 'react';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+import { Header, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-const B = (props) => <Text style={{fontWeight: 'bold',fontSize:17, lineHeight:18,letterSpacing:.2}}>{props.children}</Text>
+const B = (props) => <Text style={{ fontWeight: 'bold', fontSize: 17, lineHeight: 18, letterSpacing: .2 }}>{props.children}</Text>
 
-export default class App extends Component{
-    render(){
-        const {navigate} = this.props.navigation;
+export default class App extends Component {
+    render() {
+        const { navigate } = this.props.navigation;
         return (
             <SafeAreaView style={styles.background}>
                 <View style={styles.ViewContainer}>
                     <View style={{ height: '90%' }}>
-                        <ScrollView 
+                        <ScrollView
                             ref={ref => (this.scrollViewRef = ref)}
                             style={styles.scroll}
                         >
-                            <Card containerStyle={{backgroundColor: '#121212'}}>
+                            <Card containerStyle={{ backgroundColor: '#121212' }}>
                                 <Card.Title style={styles.ContentsTitle}>Basic Cube Knowledge</Card.Title>
-                                <Card.Divider/>
+                                <Card.Divider />
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.ColorScheme.y, animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.SideMoves.y * 3.95, animated: true });
                                     }}
                                 >
-                                    <Text style={styles.contentButtons}>Color Scheme</Text>
-                                </TouchableOpacity>
-                                
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.Types.y, animated: true});
-                                    }}
-                                >
-                                    <Text style={styles.contentButtons}>Types of Pieces</Text>
+                                    <Text style={styles.contentButtons}>1: Side Moves</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.AlgNotation.y, animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.MiddleMoves.y * 1.35, animated: true });
                                     }}
                                 >
-                                    <Text style={styles.contentButtons}>Algorithm Notation</Text>
+                                    <Text paddingTop='-3%' style={styles.contentButtons} >2: Middle Moves</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        this.scrollViewRef.scrollTo({ y: this.OrientationMoves.y * 1.275, animated: true });
+                                    }}
+                                >
+                                    <Text style={styles.contentButtons}>3: Orientation Moves</Text>
                                 </TouchableOpacity>
                             </Card>
-                            
+
                             {/* Color Scheme */}
                             <Text onLayout={event => (this.ColorScheme = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
                             <Card containerStyle={{ backgroundColor: 'black' }}>
@@ -57,6 +58,7 @@ export default class App extends Component{
                                 </Text>
                                 <Text style={styles.textWideCenter}>
                                     Blue and green are always opposites
+
                                 {'\n'}Red and orange are always opposites
                                 {'\n'}White and yellow are always opposites
                                 {'\n'}When white is on the bottom and yellow is on the top, the colors in the middle layer (starting from the
@@ -66,7 +68,7 @@ export default class App extends Component{
 
                             {/* Types of Pieces */}
                             <Text onLayout={event => (this.Types = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-                            <Card containerStyle={{ backgroundColor: 'black'}}>
+                            <Card containerStyle={{ backgroundColor: 'black' }}>
                                 <Card.Title style={styles.textTitle}>Types of Pieces {/* Card Title */}</Card.Title>
                                 <Card.Divider />
                                 <Text style={styles.textDescripWide}>
@@ -303,7 +305,7 @@ export default class App extends Component{
                             </Card>
                         </ScrollView>
                     </View>
-                    <View style={{flexDirection:'row'}}>
+                    <View style={{ flexDirection: 'row' }}>
                         <Icon.Button
                             name='cube-outline'
                             flexDirection='column'
@@ -313,13 +315,13 @@ export default class App extends Component{
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                            onPress={({}) => navigate('VirtualCube')}
-                            >
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
+                            onPress={({ }) => navigate('VirtualCube')}
+                        >
                             <Text style={styles.BottomTabText}>3DCube</Text>
                         </Icon.Button>
                         {/* Statistics */}
-                        <Icon.Button            
+                        <Icon.Button
                             name='chart-line'
                             alignItems='center'
                             flexDirection='column'
@@ -328,24 +330,24 @@ export default class App extends Component{
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Statistics')}
                         >
-                        <Text style={styles.BottomTabText}>Statistics</Text>
+                            <Text style={styles.BottomTabText}>Statistics</Text>
                         </Icon.Button>
                         {/* Home Screen */}
                         <Icon.Button
-                            name='home' 
+                            name='home'
                             flexDirection='column'
                             backgroundColor='transparent'
                             //backgroundColor='#121212'
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Gradient')}
                         >
-                        <Text style={styles.BottomTabText}>Home</Text>
+                            <Text style={styles.BottomTabText}>Home</Text>
                         </Icon.Button>
                         {/* Learn */}
                         <Icon.Button
@@ -356,10 +358,10 @@ export default class App extends Component{
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Learn')}
                         >
-                        <Text style={styles.BottomTabText}>Learn</Text>
+                            <Text style={styles.BottomTabText}>Learn</Text>
                         </Icon.Button>
                         <Icon.Button
                             name='timer-outline'
@@ -370,9 +372,9 @@ export default class App extends Component{
                             color='white'
                             opacity={1}
                             size={30}
-                            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                            paddingHorizontal={Platform.OS === 'ios' ? '3%' : '4.5%'}
                             onPress={() => navigate('Timer')}
-                            >
+                        >
                             <Text style={styles.BottomTabText}>Timer</Text>
                         </Icon.Button>
                     </View>
@@ -382,70 +384,76 @@ export default class App extends Component{
     }
 }
 
+
 const styles = StyleSheet.create({
-    background:{
-        backgroundColor:'#121212',
-        flex:1
+    background: {
+        backgroundColor: '#121212',
+        flex: 1
     },
 
-    BottomTabText:{
+    BottomTabText: {
         //Text used for the bottom menu
-        fontSize:10,
-        color:'white',
-        opacity:1,
-        justifyContent:'center',
-        left:'-7%',
-        paddingHorizontal:'1%'
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
     },
 
-    contentButtons:{
-        color:'#7600ff',
+    contentButtons: {
+        color: '#7600ff',
         //textAlign:'center',
-        fontSize:20,
+        fontSize: 20,
         //textDecorationLine: 'underline',
-        fontWeight:'bold',
-        paddingTop:'5%',
-        top:'-30%'
+        fontWeight: 'bold',
+        paddingTop: '5%',
+        top: '-30%'
     },
 
-    contentLocal:{
-        fontSize:.1,
-        color:'transparent',
-        alignItems:'center'
+    contentLocal: {
+        fontSize: .1,
+        color: 'transparent',
+        alignItems: 'center'
     },
 
     ContentsTitle: {
         // Table of contents title
         color: 'white',
         fontSize: 25,
-        fontWeight:'bold',
+        fontWeight: 'bold',
     },
 
     image: {
         // Background image of cube
-        width:'100%',
+        width: '100%',
         height: '100%',
         position: 'absolute',
     },
 
     imageEx: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginRight: '5%', 
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginRight: '5%',
     },
 
     imageInstructions: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginLeft: '5%', 
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginLeft: '5%',
     },
 
     imageMoves: {
-        width: '80%', 
-        height: (Dimensions.get('window').width*.5)*.8, 
-        resizeMode: 'contain', 
+        width: '80%',
+        height: (Dimensions.get('window').width * .5) * .8,
+        resizeMode: 'contain',
+    },
+
+    pageHeader: {
+        // Header
+        backgroundColor: '#121212',
     },
 
     placeHolder: {
@@ -460,61 +468,75 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
     },
 
-    textDescrip:{
+    textDescrip: {
         // Text thats a description
         paddingTop: 10,
+    },
+
+    BottomTabText: {
+        //Text used for the bottom menu
+        fontSize: 10,
         color: 'white',
-        fontSize: 14,        
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
+    },
+
+    textHeader: {
+        //headers
+        color: 'white',
+        fontSize: 14,
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,
+        lineHeight: 18,
+        letterSpacing: .2,
     },
 
     textDescrip2: {
         paddingTop: 10,
         color: 'white',
         fontSize: 14,
-        lineHeight:18,
-        letterSpacing:.2,
+        lineHeight: 18,
+        letterSpacing: .2,
         width: '80%'
     },
 
-    textDescripWrap:{
+    textDescripWrap: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: RFPercentage(2.1),  
-               
+        fontSize: RFPercentage(2.1),
+
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,  
-        height: (Dimensions.get('window').width)*.35, 
+        lineHeight: 18,
+        letterSpacing: .2,
+        height: (Dimensions.get('window').width) * .35,
         //flexGrow:10,  
-        
+
     },
 
-    textDescripPlus:{
+    textDescripPlus: {
         fontWeight: 'bold',
-        fontSize:17, 
-        lineHeight:25,
-        letterSpacing:.2,
+        fontSize: 17,
+        lineHeight: 25,
+        letterSpacing: .2,
         paddingTop: 10,
         color: 'white',
         width: '60%',
     },
 
-    textDescripWide:{
+    textDescripWide: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
         //fontSize: RFPercentage(2.1), 
         fontSize: 14,
         width: '100%',
-        lineHeight:18,
-        letterSpacing:.2
+        lineHeight: 18,
+        letterSpacing: .2
     },
 
-    textDescripWideTip:{
+    textDescripWideTip: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
@@ -522,12 +544,12 @@ const styles = StyleSheet.create({
         //fontSize: RFPercentage(2.1), 
         fontSize: 14,
         width: '100%',
-        lineHeight:18,
-        letterSpacing:.2,
-        paddingLeft:'5%',
-        paddingRight:'5%',
-        textAlign:'center'
-        
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingLeft: '5%',
+        paddingRight: '5%',
+        textAlign: 'center'
+
     },
 
     textHeader: {
@@ -543,29 +565,29 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
         textAlign: 'center',
-        lineHeight:18,
-        letterSpacing:.2,
-        paddingTop:2,
-        paddingBottom:5
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingTop: 2,
+        paddingBottom: 5
     },
 
     textSummary: {
         // the summary of the step
         color: 'white',
         fontSize: 16,
-        paddingBottom:'6%',
-        lineHeight:20,
-        letterSpacing:.2
+        paddingBottom: '6%',
+        lineHeight: 20,
+        letterSpacing: .2
     },
 
     textTitle: {
         // Titles of the cards
         color: 'white',
         fontSize: 25,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
 
-    textWideCenter:{
+    textWideCenter: {
         // Text thats a description but full width and centered
         paddingTop: 10,
         color: 'white',
@@ -575,20 +597,20 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
 
-    ViewContainer:{
+    ViewContainer: {
         // Holds the whole screen
-        flex: 1, 
+        flex: 1,
         //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'#121212',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        alignItems: 'center',
+        backgroundColor: '#121212',
+        //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 
-    viewMove:{
+    viewMove: {
         //Holds a move's picture and description
-        flexDirection: 'column', 
-        flexWrap: 'wrap', 
-        width: '50%', 
-        alignContent: 'center', 
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        width: '50%',
+        alignContent: 'center',
     },
 })

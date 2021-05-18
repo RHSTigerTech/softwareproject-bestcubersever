@@ -1,52 +1,51 @@
 import React, { useState, Component, useEffect } from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
-import {Header, Card} from 'react-native-elements';
+import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+import { Header, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-// 36 X 24 final blog
 export default class App extends Component {
-    render(){
-        const {navigate} = this.props.navigation;
+    render() {
+        const { navigate } = this.props.navigation;
         return (
             <SafeAreaView style={styles.background}>
                 <View style={styles.ViewContainer}>
-                    <View style={{height: '90%'}}>
-                        <ScrollView 
+                    <View style={{ height: '90%' }}>
+                        <ScrollView
                             ref={ref => (this.scrollViewRef = ref)}
                             style={styles.scroll}
                         >
-                            <Card containerStyle={{backgroundColor: '#121212'}}>
+                            <Card containerStyle={{ backgroundColor: '#121212' }}>
                                 <Card.Title style={styles.ContentsTitle}>Steps{/* Card Title*/}</Card.Title>
-                                <Card.Divider/>
+                                <Card.Divider />
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.beginner.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.beginner.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>Beginner's Method</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.scrollViewRef.scrollTo({y: this.intermediate.y,animated: true});
+                                        this.scrollViewRef.scrollTo({ y: this.intermediate.y, animated: true });
                                     }}
                                 >
                                     <Text style={styles.contentButtons}>Intermediate Method</Text>
                                 </TouchableOpacity>
                             </Card>
-                            
+
                             <Text onLayout={event => (this.beginner = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-                            <Card containerStyle={{backgroundColor: 'black'}}>
+                            <Card containerStyle={{ backgroundColor: 'black' }}>
                                 <Card.Title style={styles.textTitle}>Beginner's Method</Card.Title>
-                                <Card.Divider/>
+                                <Card.Divider />
                                 <Text style={styles.textHeader}>Step 4: Orient Yellow Edges</Text>
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_L.png')}/>
+                                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_L.png')} />
                                     <Text style={styles.textDescrip}>U2 F (R' U' R U) F'</Text>
                                 </View>
 
                                 <Text style={styles.textHeader}>Step 5: Orient Yellow Corners</Text>
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <Image style={styles.imageEx} source={require('../Assets/beginners/b_yc_0.png')} />
                                     <Text style={styles.textDescrip}>
                                         R' U2 R F U' R' U' R U F'
@@ -98,15 +97,15 @@ export default class App extends Component {
                                 </View>
 
                                 <Text style={styles.textHeader}>Step 6: Permute Yellow Corners</Text>
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_pyc_adj.png')}/>
+                                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_pyc_adj.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y) l' U R' D2 R U' R' D2 R2
                                         {'\n'}(y') l U' R D2 R' U R D2 R2
                                         {'\n'}(R' U' F')(R U R' U') R' F R2 U' R' U' R U R' U R
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_pyc_opp.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_pyc_opp.png')} />
                                     <Text style={styles.textDescrip}>
                                         (R' U R' U') y (R' F' R2 U')(R' U R' F) R F
                                         {'\n'}R U R' U (R U R' F' R U R' U' R' F R2 U' R') U2 R U' R'
@@ -115,7 +114,7 @@ export default class App extends Component {
                                 </View>
 
                                 <Text style={styles.textHeader}>Step 7: Permute Yellow Edges</Text>
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <Image style={styles.imageEx} source={require('../Assets/beginners/b_pye_cc.png')} />
                                     <Text style={styles.textDescrip}>
                                         M2 U M U2 M' U M2
@@ -146,22 +145,22 @@ export default class App extends Component {
                                 </View>
                             </Card>
 
-                            
+
                             <Text onLayout={event => (this.intermediate = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-                            <Card containerStyle={{backgroundColor: 'black'}}>
+                            <Card containerStyle={{ backgroundColor: 'black' }}>
                                 <Card.Title style={styles.textTitle}>Intermediate Method</Card.Title>
-                                <Card.Divider/>
+                                <Card.Divider />
                                 <Text style={styles.textHeader}>3: Orient Last Layer (OLL)</Text>
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <Text style={styles.textWideCenter}>All corners oriented</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_42.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_42.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) F (R U R' U') F' U2 F (R U F' U') F'
-                                        {'\n'}M U' M2 U' M' U2 M U' M 
+                                        {'\n'}M U' M2 U' M' U2 M U' M
                                         {'\n'}(y2) F (R U R' U') F2 (L' U' L U) F
                                     </Text>
-                                    
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_43.png')}/>
+
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_43.png')} />
                                     <Text style={styles.textDescrip}>
                                         R U R' U' r R' U R U' r'
                                         {'\n'}M' U' M' U' M' d2 M' U' M' U' M'
@@ -170,55 +169,55 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>No Edges oriented</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_41.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_41.png')} />
                                     <Text style={styles.textDescrip}>
                                         r' R U R U R' U' r2 R2' U R U' r'
                                         {'\n'}M U R U R' U' M2 U R U' r'
                                         {'\n'}L' R' F' U2 L2 U2 L2 U2 L2 F L R
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_44.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_44.png')} />
                                     <Text style={styles.textDescrip}>
                                         R U B' R B R2 U' R' F R F'
                                         {'\n'}L' U2 L2 F' L' F U2 L F' L' F
                                         {'\n'}(y) R U' R2 D' r U' r' D R2 U R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_45.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_45.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) F' (L' U' L U) F f' (L' U' L U) f
                                         {'\n'}F R F' U2 f R2 f' U2 F R' F'
                                         {'\n'}(y2) (F R' F' R) U2 F R' F' R2 U2 R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_46.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_46.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y') (M' U) (r' U2 r U) (R' U R2 r')
                                         {'\n'}(y) M U l' U2 l U L' U L M'
                                         {'\n'}(y) r' R2 U R' U r U2 r' U M'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_47.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_47.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y) r' R U' r U2 r' U' R U' R2' r
                                         {'\n'}(y) M U' r U2' r' U' R U' R' M'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_48.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_48.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2)F R' F' l R L' U R U' R' U' M'
                                         {'\n'}F' R U2 r' U F2 U' r U2 R' F
                                         {'\n'}(F' R U2 r' d) R2 U' F R2 f' R
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_49.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_49.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y') (R' F R F') U2 (R' F R F') (U F' U F)
                                         {'\n'}(y') (F R U' R' U' R U R' F') U' (F R U R' U' F')
                                         {'\m'}(y2) (M' U M U2 M' U M) U (f R U R' U' f')
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_50.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_50.png')} />
                                     <Text style={styles.textDescrip}>
                                         M U R U R' U' M' R' F R F'
                                         {'\n'}(y2) M' U L U L' U' l L2 B L B'
@@ -227,28 +226,28 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>P shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_1.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_1.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y') (F R' F' R) (U R U R') (U' R U' R')
                                         {'\n'}(y2) L' d' R d L U' L' B' L
                                         {'\n'}(y2) L' U' B U L U' L' B' L
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_2.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_2.png')} />
                                     <Text style={styles.textDescrip}>
                                         L U F' U' L' U L F L'
                                         {'\n'}(R U R' U') (L' U' L U) M' U R U2 L' U x'
                                         {'\n'}F U R U' F' r U R' U' r'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_3.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_3.png')} />
                                     <Text style={styles.textDescrip}>
                                         R' U' F R' F' R U R
                                         {'\n'}U R U R' F' L' U' L F
                                         {'\n'}(y2) B' U' R' U R B
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_4.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_4.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) f (R U R' U') f'
                                         {'\n'}(y') R U y' L U' L' B'
@@ -257,14 +256,14 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>W shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_5.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_5.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) (L' U' L U') (L' U L U) (L F' L' F)
                                         {'\n'}(R U R' U' F') (U2' F U) (R U R')
                                         {'\n'}(y') R U' R' U' F (U R U' R') F' R U2 R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_6.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_6.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) L U L' U L U' L' U' L' B L B'
                                         {'\n'}(y2) (L' U' L U) y' (R U2 R' U') y (L' U' L)
@@ -272,41 +271,41 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>L shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_7.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_7.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y') r U R' U R U2 r' R' U2 R U R' U R
                                         {'\n'}R' U' x (R' U R U')2 x' U R
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_8.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_8.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) f (U R U' R') (U R U' R') f'
                                         {'\n'}(y) r U2 R' U' R U' r' R' U' R U' R' U2 R
                                         {'\n'}(y') r' U' R U' R' U2 r R U2 R' U' R U' R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_9.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_9.png')} />
                                     <Text style={styles.textDescrip}>
                                         r U2 R2' U' R2 U' r' R' U2 R
                                         {'\n'}R' F R' F' R2 d2 y' R' F R F'
                                         {'\n'}(y) R' U2 R U R' U R F R U R' U' F'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_10.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_10.png')} />
                                     <Text style={styles.textDescrip}>
                                         R' F R2 B' R2 F' R2 B R'
                                         {'\n'}(r U R U' r') (F R' U R U' R' F')
                                         {'\n'}(y) F R U' R' U' R U R' U R U' R' F'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_11.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_11.png')} />
                                     <Text style={styles.textDescrip}>
                                         r U R' U R U2 r' R U R' U R U2 R'
                                         {'\n'}F (R U R' U') F' (R U R' U') (R' F R F')
                                         {'\n'}(y2) r' U' R U' R' U R U' R' U2 r
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_12.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_12.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) l U L' U L U' L' U L U2 l'
                                         {'\n'}(y2) r' U' R U' R' U2 r R' U' R U' R' U2 R
@@ -315,14 +314,14 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>C shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_13.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_13.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) F R U R' U' R' F' r U R U' r'
                                         {'\n'}(y2) R U2 R' F R U R' U' F' U R U R'
                                         {'\n'}R U R' U2 L' U (R' F R F') U' L
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_14.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_14.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y) F U F l' U' l U' F'
                                         {'\n'}R' U' l' U l F' U R
@@ -331,14 +330,14 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>T shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_15.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_15.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) (L' U' L U) (L F' L' F)
                                         {'\n'}R' U' R U l U' R' U x
                                         {'\n'}R U R' F' U' F R U' R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_16.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_16.png')} />
                                     <Text style={styles.textDescrip}>
                                         f' (U' L' U L) f
                                         {'\n'}(y2) f (U R U' R') f'
@@ -347,27 +346,27 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>I shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_17.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_17.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) f R U R' U' R U R' U' f'
                                         {'\n'}(y') R' U2 R U R' F R' F' R U R
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_18.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_18.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y') F R U R' U F' U' F U' F'
                                         {'\n'}R' U' R U' R' U F' U F R
                                         {'\n'}(R U R' U R U2 R') U (F U R U' R' F')
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_19.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_19.png')} />
                                     <Text style={styles.textDescrip}>
                                         r U2 R2 F R F' U2 r' F R F'
                                         {'\n'}(y) F U' R2 D R' U2 R D' R2' U F'
                                         {'\n'}(y) L F' L' U' L F' L' U L F L' U' M' U M
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_20.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_20.png')} />
                                     <Text style={styles.textDescrip}>
                                         l U l' (U L U' L')2 l U' l'
                                         {'\n'}(R' F R F') U2 (R U' R' U) F' U2 F
@@ -376,28 +375,28 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>Square shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_21.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_21.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) R' F2 L F L' F R
                                         {'\n'}(y2) l' U2 L U L' U l
                                         {'\n'}(y) x' U' l2 U l F' l U
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_22.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_22.png')} />
                                     <Text style={styles.textDescrip}>
                                         l U2 L' U' L U' l'
                                     </Text>
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>Big Lightning Bolt</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_23.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_23.png')} />
                                     <Text style={styles.textDescrip}>
                                         l U' l' U' R U B U' R'
                                         {'\n'}R U R' F' U' F U R U2 R'
                                         {'\n'}R B' R' U' R U B U' R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_24.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_24.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) f R' F' R U R U' R' S'
                                         {'\n'}(y2) L' B L U L' U' B' U L
@@ -405,28 +404,28 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>Small Lightning Bolt</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_25.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_25.png')} />
                                     <Text style={styles.textDescrip}>
                                         F R' F' R U2 R U2 R'
                                         {'\n'}(y) B L F' L F L2 B'
                                         {'\n'}L' U2 L U2 L F' L' F
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_26.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_26.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) l' U' L U' L' U2 l
                                         {'\n'}(y) B' R' F R' F' R2 B
                                         {'\n'}(y2) R U2 R' U2 R' F R F'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_27.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_27.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) r U R' U R' F R F' R U2 r'
                                         {'\n'}(y) R U' R' U' R U' R' U2 F' U F U' R U R'
                                         {'\n'}(y) F' (L' U' L U) F y F (R U R' U') F'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_28.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_28.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y) F (R U R' U') F' U F (R U R' U') F'
                                         {'\n'}(y2) F R U R2 F R y' R2 U R U2 R'
@@ -435,28 +434,28 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>Fish Shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_29.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_29.png')} />
                                     <Text style={styles.textDescrip}>
                                         R' U' R y r U' r' U r U r'
                                         {'\n'}R' U' R y' x' R U' R' F R U R' x
                                         {'\n'}(y2) L' U' L y l U' l' U l U l'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_30.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_30.png')} />
                                     <Text style={styles.textDescrip}>
                                         (R' U' R U) R B' R2 U' R U B
                                         {'\n'}R U R' y' r' U r U' r' U' r
                                         {'\n'}R U R' y R' F R U' R' F' R
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_31.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_31.png')} />
                                     <Text style={styles.textDescrip}>
                                         f (R U R' U') f' (R U R' U R U2 R')
                                         {'\n'}R U B' R B R2 U R U2 R'
                                         {'\n'}R U2 R2' F R F' R U2 R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_32.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_32.png')} />
                                     <Text style={styles.textDescrip}>
                                         F R U' R' U' R U R' F'
                                         {'\n'}R' F R F' U' F' U F
@@ -465,27 +464,27 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>Knight</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_33.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_33.png')} />
                                     <Text style={styles.textDescrip}>
                                         F U R U' R2 F' R U R U' R'
                                         {'\n'}r U' r' U' r U r' y' R' U R
                                         {'\n'}R U2 L' U' L U2 R' U' L F' L' F
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_34.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_34.png')} />
                                     <Text style={styles.textDescrip}>
                                         l' U l U l' U' l y' R U' R'
                                         {'\n'}F' U' L' U2 L U L' U' L F
                                         {'\n'}L' U2 R U R' U2 L U R' F R F'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_35.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_35.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) l' U' l (L' U' L U) l' U l
                                         {'\n'}(y2) R' F' R L' U' L U R' F R
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_36.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_36.png')} />
                                     <Text style={styles.textDescrip}>
                                         r U M U R' U' r U' r'
                                         {'\n'}(y2) l U l' L U L' U' l U' l'
@@ -493,28 +492,28 @@ export default class App extends Component {
 
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>Awkward Shapes</Text>
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_37.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_37.png')} />
                                     <Text style={styles.textDescrip}>
                                         M U (R U R' U') (R' F R F') M'
                                         {'\n'}(y) (R U R' U') (R U' R' F') U' (F R U R')
                                         {'\n'}(y) R' U2 R2 U R' U' R' U2 F R F'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_38.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_38.png')} />
                                     <Text style={styles.textDescrip}>
                                         F U (R U2 R' U') (R U2 R' U') F'
                                         {'\n'}(L F' L' F) L' U2 L d (R U R')
                                         {'\n'}F' L U L2 U L2 U2 L' U F
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_39.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_39.png')} />
                                     <Text style={styles.textDescrip}>
                                         (y2) R' M2 U' F' U F r U' M'
                                         {'\n'}(y) r U2 R' U' R U' r' U' R U R' U R U2 R'
                                         {'\n'}(y2) R U' R' U2 R U y R U' R' y' U' R'
                                     </Text>
 
-                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_40.png')}/>
+                                    <Image style={styles.imageEx} source={require('../Assets/intermediate/i_oll_40.png')} />
                                     <Text style={styles.textDescrip}>
                                         L' U L U2 L' U' y' L' U L U F
                                         {'\n'}R' U' R U F R U R' U' R' U R U' F'
@@ -522,7 +521,7 @@ export default class App extends Component {
                                     </Text>
                                 </View>
                                 <Text style={styles.textHeader}>4: Permute Last Layer (PLL)</Text>
-                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                                     <Text style={styles.textWideCenter}>Refer to Step 7 in the Beginner's Method section for Edges Only cases</Text>
                                     {/*----------------------------*/}
                                     <Text style={styles.textWideCenter}>Corners only</Text>
@@ -657,73 +656,73 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-    background:{
-        backgroundColor:'#121212',
-        flex:1
+    background: {
+        backgroundColor: '#121212',
+        flex: 1
     },
 
-    BottomTabText:{
+    BottomTabText: {
         //Text used for the bottom menu
-        fontSize:10,
-        color:'white',
-        opacity:1,
-        justifyContent:'center',
-        left:'-7%',
-        paddingHorizontal:'1%'
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
     },
 
-    contentButtons:{
-        color:'#7600ff',
+    contentButtons: {
+        color: '#7600ff',
         //textAlign:'center',
-        fontSize:20,
+        fontSize: 20,
         //textDecorationLine: 'underline',
-        fontWeight:'bold',
-        paddingTop:'5%',
-        top:'-30%'
+        fontWeight: 'bold',
+        paddingTop: '5%',
+        top: '-30%'
     },
-    
-    contentHeader:{
-        color:'#7600ff',
+
+    contentHeader: {
+        color: '#7600ff',
         //textAlign:'center',
-        fontSize:23,
+        fontSize: 23,
         //textDecorationLine: 'underline',
-        fontWeight:'bold',
-        paddingTop:'5%',
+        fontWeight: 'bold',
+        paddingTop: '5%',
         //top:'-30%'
     },
 
-    contentLocal:{
-        fontSize:.1,
-        color:'transparent',
-        alignItems:'center'
+    contentLocal: {
+        fontSize: .1,
+        color: 'transparent',
+        alignItems: 'center'
     },
-    
+
     ContentsTitle: {
         // Table of contents title
         color: 'white',
         fontSize: 25,
-        fontWeight:'bold',
+        fontWeight: 'bold',
     },
 
     image: {
         // Background image of cube
-        width:'100%',
+        width: '100%',
         height: '100%',
         position: 'absolute',
     },
 
     imageEx: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginRight: '5%', 
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginRight: '5%',
     },
 
     imageInstructions: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginLeft: '5%', 
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginLeft: '5%',
     },
 
     placeHolder: {
@@ -738,51 +737,51 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
     },
 
-    textDescrip:{
+    textDescrip: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: 14,        
+        fontSize: 14,
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,
+        lineHeight: 18,
+        letterSpacing: .2,
     },
 
-    textDescripWrap:{
+    textDescripWrap: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: RFPercentage(2.1),  
-               
+        fontSize: RFPercentage(2.1),
+
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,  
-        height: (Dimensions.get('window').width)*.35, 
+        lineHeight: 18,
+        letterSpacing: .2,
+        height: (Dimensions.get('window').width) * .35,
         //flexGrow:10,
     },
 
-    textDescripPlus:{
+    textDescripPlus: {
         fontWeight: 'bold',
-        fontSize:17, 
-        lineHeight:25,
-        letterSpacing:.2,
+        fontSize: 17,
+        lineHeight: 25,
+        letterSpacing: .2,
         paddingTop: 10,
         color: 'white',
         width: '60%',
     },
 
-    textDescripWide:{
+    textDescripWide: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
         //fontSize: RFPercentage(2.1), 
         fontSize: 14,
         width: '100%',
-        lineHeight:18,
-        letterSpacing:.2
+        lineHeight: 18,
+        letterSpacing: .2
     },
 
-    textDescripWideTip:{
+    textDescripWideTip: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
@@ -790,12 +789,12 @@ const styles = StyleSheet.create({
         //fontSize: RFPercentage(2.1), 
         fontSize: 14,
         width: '100%',
-        lineHeight:18,
-        letterSpacing:.2,
-        paddingLeft:'5%',
-        paddingRight:'5%',
-        textAlign:'center'
-        
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingLeft: '5%',
+        paddingRight: '5%',
+        textAlign: 'center'
+
     },
 
     textHeader: {
@@ -811,29 +810,29 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
         textAlign: 'center',
-        lineHeight:18,
-        letterSpacing:.2,
-        paddingTop:2,
-        paddingBottom:5
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingTop: 2,
+        paddingBottom: 5
     },
 
     textSummary: {
         // the summary of the step
         color: 'white',
         fontSize: 16,
-        paddingBottom:'6%',
-        lineHeight:20,
-        letterSpacing:.2
+        paddingBottom: '6%',
+        lineHeight: 20,
+        letterSpacing: .2
     },
 
     textTitle: {
         // Titles of the cards
         color: 'white',
         fontSize: 25,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
 
-    textWideCenter:{
+    textWideCenter: {
         // Text thats a description but full width and centered
         paddingTop: 10,
         color: 'white',
@@ -843,12 +842,12 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
 
-    ViewContainer:{
+    ViewContainer: {
         // Holds the whole screen
-        flex: 1, 
+        flex: 1,
         //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'#121212',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+        alignItems: 'center',
+        backgroundColor: '#121212',
+        //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 })

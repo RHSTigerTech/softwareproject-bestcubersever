@@ -1,10 +1,10 @@
 import React, { useState, Component, useEffect } from 'react';
-import { StyleSheet, View, Platform, StatusBar, TouchableOpacity, Text, Image, ScrollView, SafeAreaView, Dimensions} from 'react-native';
-import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
-import {Header, Card} from 'react-native-elements';
+import { StyleSheet, View, Platform, StatusBar, TouchableOpacity, Text, Image, ScrollView, SafeAreaView, Dimensions } from 'react-native';
+import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
+import { Header, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const B = (props) => <Text style={{fontWeight: 'bold',fontSize:15}}>{props.children}</Text>
+const B = (props) => <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{props.children}</Text>
 
 export default class App extends Component {
     render() {
@@ -90,28 +90,60 @@ export default class App extends Component {
                                     {'\n'}<B>3:</B> Rotate the side with that color until the edge is
                                     {'\n'}    inserted into the white layer.{'\n'} {/* Steps */}
                                 </Text>
-                                <Text style={styles.textHeader}>Special Cases {/* Header: Special Cases */}</Text>
-                                {/* This view holds all the cases for this step */}
+                            </Card>
+
+                            {/* STEP 2: F2L */}
+                            <Text onLayout={event => (this.FirstTwoLayers = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
+                            <Card containerStyle={{ backgroundColor: '#121212' }}>
+                                <Card.Title style={styles.textTitle}>2: First Two Layers (F2L) {/* Card Title */}</Card.Title>
+                                <Card.Divider />
+                                <Text style={styles.textSummary}>
+                                    F2L is when you solve the white corners and the edges in the second later at the same time.  In order to do
+                                    this, you create pairs of a corner and an edge piece with corresponding colors.  Then, you insert them into the
+                                spot they are supposed to be in.  This can be done intuitively or with algorithms. {/* Summary of Step */}
+                                </Text>
+                                <Card.Divider />
+                                <Text style={styles.textHeader}>Basic Algorithms {/* Header: Algorithms */}</Text>
+                                {/* This view holds cases for this step */}
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_wlayer.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        All edges are in the white layer, but one is oriented wrong.
-                                        {'\n'}F' D R' D'
-                                    </Text>
+                                    <Text style={styles.textDescripWide}>
+                                        <B>Inserting Algorithms:</B>
 
-                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_ylayer.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        Last edge is on the correct side in the yellow layer, but it is oriented wrong so that you can not simply
-                                        move it down
-                                        {'\n'}F D R' D'
+                                        {'\n'}Inserts the top left corner and the top middle edge into the bottom right corner
+                                        {'\n'}R U' R'
+                                        {'\n'}Inserts the top right corner and the top middle edge into the bottom left corner
+                                        {'\n'}L' U L
                                     </Text>
+                                    <Text style={styles.textDescripWide}>
+                                        <B>Removing Algorithm:</B>
+                                        {'\n'}Removes the bottom right corner and the middle right edge and moves them to the top layer
+                                        {'\n'}R U R'
+                                        {'\n'}Removes the bottom left corner and the middle left edge and moves them to the top layer.
+                                        {'\n'}L' U' L
+                                    </Text>
+                                    <Text style={styles.textHeader}>Special Cases {/* Header: Special Cases */}</Text>
+                                    {/* This view holds all the cases for this step */}
+                                    <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                                        <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_wlayer.jpg')} />
+                                        <Text style={styles.textDescrip}>
+                                            All edges are in the white layer, but one is oriented wrong.
+                                            {'\n'}F' D R' D'
+                                        </Text>
 
-                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_2layer.jpg')} />
-                                    <Text style={styles.textDescrip}>
-                                        Last edge is on the correct side in the second layer, but it is oriented wrong so that you can not simply
-                                        move it down
-                                        {'\n'}D R' D'
-                                    </Text>
+                                        <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_ylayer.jpg')} />
+                                        <Text style={styles.textDescrip}>
+                                            Last edge is on the correct side in the yellow layer, but it is oriented wrong so that you can not simply
+                                            move it down
+                                            {'\n'}F D R' D'
+                                        </Text>
+
+                                        <Image style={styles.exImage} source={require('../Assets/intermediate/i_wcr_2layer.jpg')} />
+                                        <Text style={styles.textDescrip}>
+                                            Last edge is on the correct side in the second layer, but it is oriented wrong so that you can not simply
+                                            move it down
+                                            {'\n'}D R' D'
+                                        </Text>
+                                    </View>
                                 </View>
                             </Card>
 
@@ -231,6 +263,153 @@ export default class App extends Component {
 
                                     <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_2.png')} />
                                     <Text style={styles.textDescrip}>(F R' F' Rw)(U R U' Rw)</Text>
+                                    <Text style={styles.textWideCenter}>Top of the corner is white</Text>
+                                    <Text style={styles.textDescripWide}>
+                                        Position the edge so that it is on the side that corresponds with the color on the side of the edge.
+                                    </Text>
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_tr.jpg')} />
+                                    <Text style={styles.textDescrip}>
+                                        If the edge is on the right, insert using this:
+                                        {'\n'}R U R2 F R F' {/* tr */}
+                                    </Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_f2l_tl.jpg')} />
+                                    <Text style={styles.textDescrip}>
+                                        If the edge is on the left, insert using this:
+                                        {'\n'}L' U' L2 F' L' F {/* tl */}
+                                    </Text>
+                                </View>
+                            </Card>
+
+                            {/* STEP 3: OLL */}
+                            <Text onLayout={event => (this.OrientLastLayer = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
+                            <Card containerStyle={{ backgroundColor: '#121212' }}>
+                                <Card.Title style={styles.textTitle}>3: Orient Last Layer (OLL) {/* Card Title */}</Card.Title>
+                                <Card.Divider />
+                                <Text style={styles.textSummary}>
+                                    In order to orient the last layer in this method, you use one algorithm to orient both the yellow edges and
+                                corners. {/* Summary of Step */}
+                                </Text>
+                                <Card.Divider />
+                                <Text style={styles.textHeader}>Cases {/* Header: Cases */}</Text>
+                                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                                    <Text style={styles.textWideCenter}>All edges oriented</Text>
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_0.png')} />
+                                    <Text style={styles.textDescrip}>R2 D' R U2 R' D R U2 R</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_1.png')} />
+                                    <Text style={styles.textDescrip}>(F R F' Rw)(U R' U' Rw)</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_2.png')} />
+                                    <Text style={styles.textDescrip}>(F R' F' Rw)(U R U' Rw)</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_3.png')} />
+                                    <Text style={styles.textDescrip}>R U R' U R U2 R'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_4.png')} />
+                                    <Text style={styles.textDescrip}>R U2 R' U' R U' R'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_5.png')} />
+                                    <Text style={styles.textDescrip}>R U2 (R2 U' R2 U') R2 U2 R</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_6.png')} />
+                                    <Text style={styles.textDescrip}>F (R U R' U') (R U R' U') (R U R' U') F'</Text>
+
+                                    {/*----------------------------*/}
+                                    <Text style={styles.textWideCenter}>All corners oriented</Text>
+                                    {/* pics  42-43 */}
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_42.png')} />
+                                    <Text style={styles.textDescrip}>M' U M U2 M' U M</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_43.png')} />
+                                    <Text style={styles.textDescrip}>(R U R' U') M' U R U' r'</Text>
+
+                                    {/*----------------------------*/}
+                                    <Text style={styles.textWideCenter}>No Edges Oriented</Text>
+                                    {/* pics 44-50 and 41 */}
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_41.png')} />
+                                    <Text style={styles.textDescrip}>r U R' U' M2 (U R U' R') U' M'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_44.png')} />
+                                    <Text style={styles.textDescrip}>(R U2)(R2 F R F' U2)(R' F R F')</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_45.png')} />
+                                    <Text style={styles.textDescrip}>F (R U R' U') F' f (R U R' U') f'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_46.png')} />
+                                    <Text style={styles.textDescrip}>f (R U R' U') f' U' F (R U R' U') F'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_47.png')} />
+                                    <Text style={styles.textDescrip}>f (R U R' U') f' U F (R U R' U') F'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_48.png')} />
+                                    <Text style={styles.textDescrip}>R U R' U (R' F R F') U2 (R' F R F')</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_49.png')} />
+                                    <Text style={styles.textDescrip}>F R U R' d R' U2 R' F R F'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_50.png')} />
+                                    <Text style={styles.textDescrip}>r' R U R U R' U' r R2 F R F'</Text>
+
+                                    {/*----------------------------*/}
+                                    <Text style={styles.textWideCenter}>P shapes</Text>
+                                    {/* pics  1-4 */}
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_1.png')} />
+                                    <Text style={styles.textDescrip}>R' E' F (U R U' R') F' R</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_2.png')} />
+                                    <Text style={styles.textDescrip}>F U R U' F' r U R' U' r'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_3.png')} />
+                                    <Text style={styles.textDescrip}>F' U' L' U L F</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_4.png')} />
+                                    <Text style={styles.textDescrip}>F (U R U' R') F'</Text>
+
+                                    {/*----------------------------*/}
+                                    <Text style={styles.textWideCenter}>W shapes</Text>
+                                    {/* pics  5-6 */}
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_5.png')} />
+                                    <Text style={styles.textDescrip}>R' U' R U' R' U R U (R B' R' B)</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_6.png')} />
+                                    <Text style={styles.textDescrip}>(R U R' U)(R U' R' U')(R' F R F')</Text>
+
+                                    {/*----------------------------*/}
+                                    <Text style={styles.textWideCenter}>L shapes</Text>
+                                    {/* pics  7-12 */}
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_7.png')} />
+                                    <Text style={styles.textDescrip}>F' (L' U' L U)(L' U' L U) F</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_8.png')} />
+                                    <Text style={styles.textDescrip}>F (R U R' U')(R U R' U') F'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_9.png')} />
+                                    <Text style={styles.textDescrip}>r U' (r2 U r2 U r2) U' r</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_10.png')} />
+                                    <Text style={styles.textDescrip}>l' U (l2 U' l2 U' l2) U l'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_11.png')} />
+                                    <Text style={styles.textDescrip}>l' U' L U' L' U L U' L' U2 l</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_12.png')} />
+                                    <Text style={styles.textDescrip}>r U R' U R U' R' U R U2 r'</Text>
+
+                                    {/*----------------------------*/}
+                                    <Text style={styles.textWideCenter}>C shapes</Text>
+                                    {/* pics  13-14 */}
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_13.png')} />
+                                    <Text style={styles.textDescrip}>(R U R2 U') R' F R U R U' F'</Text>
+
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_14.png')} />
+                                    <Text style={styles.textDescrip}>R' U' R' F R F' U R</Text>
+
+                                    {/*----------------------------*/}
+                                    <Text style={styles.textWideCenter}>T shapes</Text>
+                                    {/* pics  15-16 */}
+                                    <Image style={styles.exImage} source={require('../Assets/intermediate/i_oll_15.png')} />
+                                    <Text style={styles.textDescrip}>(R U R' U')(R' F R F')</Text>
 
                                     <Image style={styles.exImage} source={require('../Assets/beginners/b_yc_3.png')} />
                                     <Text style={styles.textDescrip}>R U R' U R U2 R'</Text>
@@ -601,28 +780,28 @@ export default class App extends Component {
     }
 }
 const styles = StyleSheet.create({
-    background:{
-        backgroundColor:'#121212',
-        flex:1
+    background: {
+        backgroundColor: '#121212',
+        flex: 1
     },
 
     exImage: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginRight: '5%', 
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginRight: '5%',
     },
 
     image: {
         // Background image of cube
-        width:'100%',
+        width: '100%',
         height: '100%',
         position: 'absolute',
         //color: 'transparent',
         //top: 24,
     },
 
-    pageHeader:{
+    pageHeader: {
         // Header
         backgroundColor: '#121212',
     },
@@ -637,7 +816,7 @@ const styles = StyleSheet.create({
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
-        
+
     },
 
     textHeader: {
@@ -645,7 +824,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 17.5,
-        textAlign: 'center', 
+        textAlign: 'center',
     },
 
     firsttextHeader: {
@@ -653,21 +832,21 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 17.5,
-        textAlign: 'center', 
+        textAlign: 'center',
         paddingTop: '3%'
     },
-    
-    BottomTabText:{
-        //Text used for the bottom menu
-        fontSize:10,
-        color:'white',
-        opacity:1,
-        justifyContent:'center',
-        left:'-7%',
-        paddingHorizontal:'1%'
-      },
 
-    textDescrip:{
+    BottomTabText: {
+        //Text used for the bottom menu
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
+    },
+
+    textDescrip: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
@@ -675,7 +854,7 @@ const styles = StyleSheet.create({
         width: '60%',
     },
 
-    textDescripWide:{
+    textDescripWide: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
@@ -683,7 +862,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
 
-    textWideCenter:{
+    textWideCenter: {
         // Text thats a description but full width and centered
         paddingTop: 10,
         color: 'white',
@@ -698,7 +877,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
         //textAlign: 'center',
-        marginHorizontal:'3%'
+        marginHorizontal: '3%'
     },
 
     textSubHeader: {
@@ -706,29 +885,29 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
         textAlign: 'center',
-        marginHorizontal:'3%'
+        marginHorizontal: '3%'
     },
-    contentLocal:{
-        fontSize:.1,
-        color:'transparent',
-        alignItems:'center'
+    contentLocal: {
+        fontSize: .1,
+        color: 'transparent',
+        alignItems: 'center'
     },
     ContentsTitle: {
         // Table of contents title
         color: 'white',
         fontSize: 23,
-        fontWeight:'bold',
-        
+        fontWeight: 'bold',
+
     },
 
-    contentButtons:{
-        color:'#7600ff',
+    contentButtons: {
+        color: '#7600ff',
         //textAlign:'center',
-        fontSize:20,
+        fontSize: 20,
         //textDecorationLine: 'underline',
-        fontWeight:'bold',
-        paddingTop:'5%',
-        top:'-30%'
+        fontWeight: 'bold',
+        paddingTop: '5%',
+        top: '-30%'
     },
 
     textSummary: {
@@ -743,14 +922,14 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
 
-    ViewContainer:{
+    ViewContainer: {
         // Holds the whole screen
-        flex: 1, 
-        //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'#121212',
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-        
+        flex: 1,
+        //justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: '#121212',
+
+
     },
 })
 

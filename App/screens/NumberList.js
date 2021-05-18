@@ -1,94 +1,130 @@
 import React, { useState, Component, useEffect} from 'react';
-import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button, Left, Right, Body, Icon, Text, Segment, ListItem, CheckBox, Thumbnail} from 'native-base';
+import { Container, Header, Title, Content, Footer, Subtitle, FooterTab, Button, Left, Right, Body, Icon, Segment, ListItem, CheckBox, Thumbnail, StyleProvider} from 'native-base';
+import {StyleSheet, Text} from 'react-native'
 import {storeData, getData, convertedTimes, times } from './Timer';
 import {data} from './Statistics'
+import * as Font from 'expo-font';
+import AwesomeButton from "react-native-really-awesome-button";
 
-let randomthing=false;
-let newList;
+
+let deletedTimes=[];
+let timePosition=[];
+
+
+
 export default class App extends Component {
     constructor(props){
-        super(props);
+        super(props);   
         this.state={
             users:[],
             deletionArray: [],
             allSelected: true,
+            
         };
     }   
+    
 
     
-    UNSAFE_componentWillMount() {
+    UNSAFE_componentWillMount() { 
         this.setState({ users: data });
-        newList =this.state.users;
-        //viewlist=false;    
-    }
-    
-    deleteAllItems(){
-        this.setState({users:[]});
-        newList =this.state.users;
     }
 
-    deleteItem(index){
+    deleteItem(index){   
+        deletedTimes.unshift(this.state.users[index]);
+        timePosition.unshift(index)     
         let helperArray=this.state.users;
         helperArray.splice(index, 1);
         this.setState({users:helperArray})
-        newList =this.state.users;
+        
+        console.log(deletedTimes)
+        console.log(timePosition)
     }
 
-    selectAll(){}
+    cancelDelete(){
+        let addBack=this.state.users;
+        for(let i=0;i<deletedTimes.length;i++){
+            addBack.splice(timePosition[i],0,deletedTimes[i])
+        }
+        console.log(addBack)
+    }
+    
+
 
 
     
     
     render() {
         const {push} = this.props.navigation;
+        //const {navigate} = this.props.navigation;
+        
+
         return(
-            
-            <Container>
-                <Header>
-                    <Left>
-                        <Button transparent onPress={()=> {push('Statistics'), storeData(newList), console.log(newList)}}>
-                            <Icon name='menu'/>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Total Users: {data.length}</Title>
-                        <Subtitle>Selected Users :20</Subtitle>
-                    </Body>
-                    <Right/>
-                </Header>
-                <Segment>
-                    <Button first><Text>Delete Selected</Text></Button>
-                    <Button >
-                        <Text>
-                            {this.state.allSelected ? 'Unselected All' : 'Select All'}
-                        </Text>
-                    </Button>
-                    
-                    <Button last onPress={()=> this.deleteAllItems()}><Text>Delete All</Text></Button>
-                </Segment>
+           
+            <Container style={{backgroundColor:'#121212', paddingTop:'4%'}}>
+
                 <Content>
+                    
                     {this.state.users.map((item,index, data) => (
+                        
                       <ListItem key={index}>
-                      <CheckBox style={{marginRight:"3%"}} checked={this.state.deletionArray.includes(index)} />
+                     
                         <Body>
-                          <Text>{data[index]}</Text>
+                          <Text style={{color:'white', fontSize:25, fontWeight:'bold' }}>{data[index]}</Text>
                         </Body>
                         <Right>
-                            <Button danger onPress={()=>this.deleteItem(index)}>
-                            <Icon name='trash'/>
+                            <Button style={{backgroundColor:'#121212'}} onPress={()=>this.deleteItem(index)}>
+                            <Icon style={{color: '#8c29ff'}} name='trash'/>
                             </Button>
+                            
                         </Right>
                       </ListItem>  
                     ))}  
                 </Content>
+                <Footer style={{backgroundColor:'#121212', paddingTop:'1%'}}>
+
+                <AwesomeButton 
+                        width={175} 
+                        height={30}
+                        backgroundColor='#6d00eb'
+                        textSize={15}
+                        borderRadius={5}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        paddingHorizontal={20}
+                        onPress={()=> { deletedTimes.splice(0,deletedTimes.length), timePosition.splice(0, timePosition.length) ,push('Statistics')}}
+                        
+                        
+                    >
+                        Confirm Deleted
+                    </AwesomeButton>
+                    <Text style={{color:'transparent'}}>....</Text>
+                    <AwesomeButton 
+                        width={175} 
+                        height={30}
+                        backgroundColor='#6d00eb'
+                        textSize={15}
+                        borderRadius={5}
+                        activeOpacity={.8}	
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        onPress={()=> {this.cancelDelete(),deletedTimes.splice(0,deletedTimes.length), timePosition.splice(0, timePosition.length) ,push('Statistics')}}
+                        
+                        
+                    >
+                        Cancel
+                    </AwesomeButton>
+                </Footer>
             </Container>
+            
 
         )
     }
     
 }
 
-export{newList}
 
   
 
