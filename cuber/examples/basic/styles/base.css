@@ -6,8 +6,9 @@
 
 html,
 body {
-  width: 100%;
-  height: 100%;
+  width: 100vw !important;
+  height: 100vh !important;
+  right: 50% !important;
 }
 body {
   background-color: #000;
@@ -22,7 +23,7 @@ h2 {
   border: 0;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 121px !important;
   line-height: 15px;
   color: rgba(42, 42, 42, 0.7);
 }
@@ -84,8 +85,8 @@ tr {
   ); /* IE10+ */
   background: radial-gradient(
     ellipse at center,
-    #d83b55 0%,
-    #4f76e2 90%
+    #d6d4d5 0%,
+    #121212 90%
   ); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e768', endColorstr='#d79050',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
@@ -94,8 +95,8 @@ tr {
 }
 
 #container {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 147vw;
 }
 
 #fail {

@@ -14,32 +14,50 @@ import {
 import { Constants } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+import AwesomeButton from "react-native-really-awesome-button";
+
+
+
+const val = Math.floor(100000 + Math.random() * 9999999);
+let amount =0;
+let colorName='';
+
+let defaultCube= false;
+
+let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
+
+export {val};
+export {defaultCube}
 export default class App extends Component {
   state = {
     image: null,
     uploading: false,
   };
-
+  
+  
   render() {
+
+    const {navigate} = this.props.navigation;
+    const {push} = this.props.navigation;
+
+
     let {
       image
     } = this.state;
-
+    
+    console.log(val);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="default" />
 
-        <Text
+        {/* <Text
           style={styles.exampleText}>
           Example: Upload ImagePicker result
-        </Text>
+        </Text> */}
+        
 
-        <Button
-          onPress={this._pickImage}
-          title="Pick an image from camera roll"
-        />
-
-        <Button onPress={this._takePhoto} title="Take a photo" />
+        <Button onPress={() => {{defaultCube=false} push('White')}} title="Take a photo" />
+        <Button onPress={() => {{defaultCube=true} push('confirmWhite')}} title="confirm" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}
@@ -143,19 +161,45 @@ export default class App extends Component {
       this.uploadImageAsync(pickerResult.uri);
     }
   };
-
+  
  uploadImageAsync(pictureuri) {
-  let apiUrl = 'localhost:5000/upload';
+  let apiUrl = 'https://metal-density-310218.wl.r.appspot.com/endpoint';
+   
+  
 
-
+  if (amount==0){
+    colorName='white'
+  }
+  if (amount==1){
+    colorName='blue'
+  }
+  if (amount==2){
+    colorName='orange'
+  }
+  if (amount==3){
+    colorName='green'
+  }
+  if (amount==4){
+    colorName='red'
+  }
+  if (amount==5){
+    colorName='yellow'
+  }
+  amount++;
+  if(amount >5){
+    amount=0;
+  }
+  console.log(colorName)
+  console.log(''+colorName+val+'.'+fileType)
 
     var data = new FormData();  
     data.append('file', {  
       uri: pictureuri,
-      name: 'file',
-      type: 'image/jpg'
+      name: ''+colorName+val+'.'+fileType,
+      type: 'image/'+fileType
+      
     })
-
+    
     fetch(apiUrl, {  
       headers: {
         'Accept': 'application/json',
@@ -171,12 +215,75 @@ export default class App extends Component {
       ).catch(err => {
       console.log('err ')
       console.log(err)
+      amount--;
     } )
 
 
 
 
   }
+
+
+  // getImageAsync(pictureuri) {
+  //   let apiUrl = 'https://metal-density-310218.wl.r.appspot.com/sendColors?serial='+val+'&extension='+fileType;
+     
+    
+  
+  //   if (amount==0){
+  //     colorName='white'
+  //   }
+  //   if (amount==1){
+  //     colorName='blue'
+  //   }
+  //   if (amount==2){
+  //     colorName='orange'
+  //   }
+  //   if (amount==3){
+  //     colorName='green'
+  //   }
+  //   if (amount==4){
+  //     colorName='red'
+  //   }
+  //   if (amount==5){
+  //     colorName='yellow'
+  //   }
+  //   amount++;
+  //   if(amount >5){
+  //     amount=0;
+  //   }
+  //   console.log(colorName)
+  //   console.log(''+colorName+val+fileType)
+  
+  //     var data = new FormData();  
+  //     data.append('file', {  
+  //       uri: pictureuri,
+  //       name: ''+colorName+val+'.png',
+  //       type: 'image/png'
+        
+  //     })
+      
+  //     fetch(apiUrl, {  
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'multipart/form-data'
+  //       },
+  //       method: 'POST',
+  //       body: data
+  //     }).then(
+  //       response => {
+  //         console.log('succ ')
+  //         console.log(response)
+  //       }
+  //       ).catch(err => {
+  //       console.log('err ')
+  //       console.log(err)
+  //       amount--;
+  //     } )
+  
+  
+  
+  
+  //   }
 
 }
 
@@ -185,23 +292,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
+    backgroundColor:'#121212'
   },
   exampleText: {
     fontSize: 20,
     marginBottom: 20,
     marginHorizontal: 15,
     textAlign: 'center',
+    color:'white'
   },
   maybeRenderUploading: {
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'white',
     justifyContent: 'center',
   },
   maybeRenderContainer: {
     borderRadius: 3,
     elevation: 2,
     marginTop: 30,
-    shadowColor: 'rgba(0,0,0,1)',
+    shadowColor: 'white',
     shadowOpacity: 0.2,
     shadowOffset: {
       height: 4,

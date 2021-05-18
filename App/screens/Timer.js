@@ -1,7 +1,7 @@
 
 import React, { useState, Component, useEffect } from 'react';
-import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable, KeyboardAvoidingView} from 'react-native';
-import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme } from 'react-native-paper';
+import {SafeAreaView,StyleSheet,View,TouchableHighlight,TouchableOpacity,StatusBar, ModalDropdown, Pressable, KeyboardAvoidingView, Dimensions} from 'react-native';
+import { TextInput,Modal, Portal, Text, Button, Provider, Dialog, DefaultTheme, FAB } from 'react-native-paper';
 import {Header} from 'react-native-elements';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from 'react-native-action-button';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
+//import { Container, Fab } from 'native-base';
+
 //import {newList} from './NumberList'
 
 //import {storeData, getData} from './storage';
@@ -29,29 +31,29 @@ export const getData = async () => {
     let jsonValue = await AsyncStorage.getItem('@storage_Key')
     
     convertedJson=jsonValue != null ? JSON.parse(jsonValue) : null;
-    console.log(convertedJson)
+    //console.log(convertedJson)
     let jsonstring=JSON.stringify(convertedJson)
     let i=0;
     
-    console.log(jsonstring)
+    //console.log(jsonstring)
     let formattedjsonstring= jsonstring.split('[').join('')
     formattedjsonstring= formattedjsonstring.split(']').join('')
     formattedjsonstring= formattedjsonstring.split('\\').join('')
     formattedjsonstring= formattedjsonstring.split('"').join('')
 
-    console.log(formattedjsonstring)
+    //console.log(formattedjsonstring)
     timerarray=formattedjsonstring.split(',');
     
-    console.log(timerarray)
-    console.log('--------------------------------------------------')
+    //console.log(timerarray)
+    //console.log('--------------------------------------------------')
     
     array=timerarray.map(Number)
-    console.log('-----------')
-    console.log(array)
-    console.log('-----------')
-    console.log(convertedJson)
+    // console.log('-----------')
+    // console.log(array)
+    // console.log('-----------')
+    // console.log(convertedJson)
     const propertyValues = Object.values(convertedJson);
-    console.log(propertyValues)
+    //console.log(propertyValues)
 
 
     while (i<timerarray.length){
@@ -108,6 +110,19 @@ let testdel=0;
 
 let amount =0;
 
+let pointerEventsChange='auto';
+
+let bottomButtonPadding=(Dimensions.get('window').width)*.029;
+
+
+let icon=(Dimensions.get('window').width)*.08;
+// console.log(icon)
+
+const iconSize=45;
+let dynamicFont=(Dimensions.get('window').width)*.024306;
+// console.log(dynamicFont)
+
+
 
 // if(newList !== undefined){
 //   convertedTimes=newList;
@@ -131,10 +146,10 @@ export const times = () =>{
   lastItem=lastItem.replace(":",".");
   lastItem=lastItem.replace(":",".");
       
-    console.log(lastItem.substring(0,2))
+    //console.log(lastItem.substring(0,2))
     minutes= lastItem.substring(0,2)
     minutes=parseInt(minutes)
-    console.log(minutes)
+    //console.log(minutes)
     if(lastItem.substring(0,1)==='0'){
       lastItem=lastItem.replace('0','')
     }
@@ -145,7 +160,7 @@ export const times = () =>{
 
     if(minutes>=1){
       lastItem=lastItem.replace('.','')
-      console.log(lastItem.substring(1))
+      //console.log(lastItem.substring(1))
       lastItem=lastItem.substring(1)
       
     }
@@ -160,7 +175,7 @@ export const times = () =>{
     
   }
   if(checkadd===true){
-    console.log(convertedTimes)
+    //console.log(convertedTimes)
     if(amount==0){
     convertedTimes.splice(convertedTimes.length-3,1)
     convertedTimes.pop()
@@ -175,7 +190,7 @@ export const times = () =>{
       convertedTimes.pop()
     }
     finaltime='0';
-    console.log(amount)      
+    //console.log(amount)      
     checkadd=false;
     amount+=1;      
   }
@@ -198,12 +213,12 @@ export const times = () =>{
       convertedTimes.pop()
     }
     if(delExtra==true){
-      console.log(convertedTimes)
+      //console.log(convertedTimes)
       convertedTimes.pop()
-      console.log(convertedTimes)
-      console.log('------------------------')
+      //console.log(convertedTimes)
+      //console.log('------------------------')
     }
-    console.log('del is true')
+    //console.log('del is true')
     del=false;
     finaltime='0';
   }
@@ -216,12 +231,20 @@ export const times = () =>{
   
   
   storeData(convertedTimes)
-  console.log(convertedTimes)
-  console.log(testdel)
-  console.log(finaltime)
+  //console.log(convertedTimes)
+  //console.log(testdel)
+  //console.log(finaltime)
   
   return (convertedTimes);
   
+}
+
+export const LimitLength= (limit) =>{
+    if (convertedTimes.length>limit){
+      convertedTimes=convertedTimes.slice(Math.max(convertedTimes.length-limit,1))
+      //console.log('converted times length shortened')
+      storeData(convertedTimes)
+    }
 }
 
 const theme = {
@@ -246,7 +269,7 @@ export const deletetime = () =>{
   }
   //times();
   del=false;
-  console.log(convertedTimes)
+  //console.log(convertedTimes)
   return (convertedTimes);
 }
 
@@ -308,29 +331,29 @@ function k(){
       s.push(possiblemoves[l])
     }
     s=s.join(' ')
-    console.log(s)
+    //console.log(s)
     return(s)
 }
 
-console.log('--------------')
+//console.log('--------------')
 let effect=0;
 
 const App = ({navigation}) => {
   useEffect(()=>{
     if(amount>1){
       convertedTimes.pop()
-      console.log(convertedTimes)  
+      //console.log(convertedTimes)  
       storeData(convertedTimes)
     }
     if(getrid==true && mayberid<1 && delOnce==false){
       convertedTimes.pop()
-      console.log(convertedTimes)
-      console.log('showing delete screen')
+      //console.log(convertedTimes)
+      //console.log('showing delete screen')
       getrid=false;
       storeData(convertedTimes)
     } 
     if(confirmClear==true){
-      console.log('cleared time')
+      //console.log('cleared time')
       convertedTimes.pop()
       storeData(convertedTimes)
       confirmClear=false;
@@ -341,7 +364,7 @@ const App = ({navigation}) => {
     }
   },[]);
 
-  console.log('maybe'+mayberid)
+  //console.log('maybe'+mayberid)
   
   
 
@@ -364,9 +387,18 @@ const App = ({navigation}) => {
   const hideClearModal = () => setClearVisible(false);
   const [ClearVisible, setClearVisible] = React.useState(false);
 
+  const [state, setState] = React.useState({ open: false });
+  const onStateChange = ({ open }) => setState({ open });
+  const { open } = state;
+
+  const[disabled,setDisabled] = useState(false)
+   
 
 //sets the input value
   const [inputVal, setInputVal] = useState('');
+
+
+
 
 //function used when the add button is pressed on the modal
 let check=false;
@@ -392,8 +424,8 @@ function fixnum(input){
     }
     input=input.replace(/[- #*;,<>\{\}\[\]\\\/]/gi, '');
                                             
-    console.log(input)
-    console.log('is this working')
+    //console.log(input)
+    //console.log('is this working')
     return input;
 }
 let value=inputVal;
@@ -404,26 +436,26 @@ function add(){
       value=0
     }
     convertedTimes.push(value)
-    console.log(value)
+    //console.log(value)
     hideAddModal()
     setInputVal('')
     check=true;
     checkadd=true;
-    console.log(check)
+    //console.log(check)
     //finaltime='0'    
 }
 
 //removes anything written as input and closes out of the modalview
 function cancel(){
-  console.log(convertedTimes)
-  console.log('amount'+amount)
+  //console.log(convertedTimes)
+  //console.log('amount'+amount)
   if(amount>1){
     if(convertedTimes[convertedTimes.length-1]==convertedTimes[convertedTimes.length-2]){
       convertedTimes.pop()
       doubleDel=true;
     }
     convertedTimes.pop()
-    console.log(convertedTimes)
+    //console.log(convertedTimes)
     
   }
   finaltime='0'
@@ -432,7 +464,7 @@ function cancel(){
   hideClearModal()
   setInputVal('')
   check=true;
-  console.log(check)
+  //console.log(check)
   stopadd=false;
   storeData(convertedTimes)
 }
@@ -449,7 +481,7 @@ function onCancel(){
 function openAdd(){
   check=true;
   showAddModal()
-  console.log(check)
+  //console.log(check)
 }
 
 
@@ -462,14 +494,9 @@ function dismissed(){
   hideAddModal()
   hideClearModal()
   stopadd=false;
-  console.log(check)
+  //console.log(check)
 
 }
-
-
-
-
-
 
 
 
@@ -511,7 +538,7 @@ function dismissed(){
     
 
     const delperm = () => (
-      <Provider theme={theme}>
+      <Provider theme={theme} elevation={10} zIndex={9}>
         <Portal>
           <Dialog visible={Delvisible} onDismiss={()=> {dismissed()}} style={styles.dialogContainer}>
           <Dialog.Title>Would you like to delete: {convertedtimestext}</Dialog.Title>
@@ -539,9 +566,46 @@ function dismissed(){
       </Provider>
     )
 
-  return (
+    // const PopUpButton = () => (
+    //   <Provider>
+    //   <Portal>
+    //     <FAB.Group
+    //       open={open}
+    //       icon={open ? 'calendar-today' : 'plus'}
+    //       actions={[
+    //         { icon: 'plus', onPress: () => console.log('Pressed add') },
+    //         {
+    //           icon: 'star',
+    //           label: 'Star',
+    //           onPress: () => console.log('Pressed star'),
+    //         },
+    //         {
+    //           icon: 'email',
+    //           label: 'Email',
+    //           onPress: () => console.log('Pressed email'),
+    //         },
+    //         {
+    //           icon: 'bell',
+    //           label: 'Remind',
+    //           onPress: () => console.log('Pressed notifications'),
+    //           small: false,
+    //         },
+    //       ]}
+    //       onStateChange={onStateChange}
+    //       onPress={() => {
+    //         if (open) {
+              
+    //           // do something if the speed dial is open
+    //         }
+    //       }}
+    //     />
+    //   </Portal>
+    // </Provider>
+    // )
 
-    <View style={styles.container} pointerEvents='box-none' >
+  return (
+<SafeAreaView style={styles.background}>
+    <View style={styles.container} pointerEvents='box-none'>
       {/* <View style={styles.container}> */}
         <View style={styles.sectionStyle} pointerEvents='box-none'>
 {/* calls certain parameters from the stopwatch library  */}
@@ -558,6 +622,7 @@ function dismissed(){
           />
          {/*starts and resets stopwatch using the same button  */}
           <TouchableOpacity style={styles.startbuttonSize} 
+            disabled={disabled}
             onPress={() => {  
               setIsStopwatchStart(!isStopwatchStart);
               setResetStopwatch(false); 
@@ -572,39 +637,45 @@ function dismissed(){
             
 {/* where scramble text is called*/}
         
-            {store()}
-          
-            <Text style={{color:'transparent'}}>{!isStopwatchStart ? times() : ''}</Text>
+            
+                    <Text style={styles.ScrambleText}>{!isStopwatchStart ? k() : ''}</Text>
+
+            <Text style={{color:'transparent', fontSize:1}}>{!isStopwatchStart ? times() : ''}</Text>
         
           </TouchableOpacity>
+
+
           {/* where the modal is called */}
           {addTimes()}
           {delperm()}
           {clearAll()}
-
+          {LimitLength(200)}
+          {/* {console.log(iconSize)} */}
+            
           
          
             
 {/* bottom icon buttons */}
- <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', left:Platform.OS === 'ios' ? '-13.5%':'-12%',bottom:'-17%'}}>
+ <View style={{flexDirection:'row', justifyContent:'space-evenly', width:'100%', height:icon*1.5*4, position:'absolute', bottom:(Dimensions.get('window').height)*-.086, }} pointerEvents='box-none'>
 
-          <View style={{flex:1,flexDirection:'column',height:180,bottom:Platform.OS === 'ios' ? '37%': '32.5%', right:Platform.OS === 'ios' ? '-178%':'-207%',backgroundColor: 'transparent'}} pointerEvents='box-none'>
-            {/* Options */}
+          <View style={{flex:1,flexDirection:'column',right: bottomButtonPadding, bottom:(Dimensions.get('window').height)*.109 }} pointerEvents='box-none'>
+            
               <ActionButton
               buttonColor="#121212"
               hideShadow={true}
-              //zIndex={100}
-              //paddingHorizontal={50}
-              size={45}
+              right={15}
+              size={icon*1.5}
               spacing={0}
               offsetX={0}
               offsetY={0}
               
               
               buttonText="+"
+              
+              
               >
               
-            {/* Add */}
+            
               <ActionButton.Item 
                 spaceBetween={-5} 
                 //buttonColor='transparent'
@@ -616,7 +687,7 @@ function dismissed(){
                 <Icon name="plus" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
-            {/* Delete  */}
+            
             <ActionButton.Item 
               // zIndex={100}
                 spaceBetween={-5} 
@@ -626,7 +697,7 @@ function dismissed(){
                 <Icon name="delete" style={styles.actionButtonIcon} />
               </ActionButton.Item>
 
-            {/* Clear */}
+            
               <ActionButton.Item 
                 spaceBetween={-5} 
                 //buttonColor='#121212' 
@@ -637,11 +708,59 @@ function dismissed(){
                 <Icon name="broom" style={styles.actionButtonIcon} />
               </ActionButton.Item>          
             </ActionButton>
-            <Text style={styles.OptionsButton}>Options</Text> 
+            
+
+            <Text style={{ bottom:(Dimensions.get('window').height)*-.01, position:'absolute', fontSize:dynamicFont, color:'white', opacity:1, textAlign:'center',  right:bottomButtonPadding*.6}}>Options</Text>
+
             </View>
+</View>
 
+</View>
 
+<View style={{flexDirection:'row', zIndex:5, elevation:6, position:'absolute', left:bottomButtonPadding,bottom:'0%',}}>
+{/* <View> */}
+{/* Home Screen */}
+<Icon.Button
+            name='home' 
+            flexDirection='column'
+            backgroundColor='transparent'
+            //backgroundColor='#121212'
+            color='white'
+            opacity={1}
+            size={icon}
+            paddingHorizontal={bottomButtonPadding}
+            onPress={() => {navigation.navigate('Gradient'), storeData(convertedTimes)}}
+          >
+          <Text style={styles.BottomTabText}>Home</Text>
+          </Icon.Button>
+{/* Learn */}
+          <Icon.Button
+            name='school'
+            backgroundColor='transparent'
+            flexDirection='column'
+            //backgroundColor='#121212'
+            color='white'
+            opacity={1}
+            size={icon}
+            paddingHorizontal={bottomButtonPadding}
+            onPress={() => {navigation.navigate('Learn')}}
+          >
+          <Text style={styles.BottomTabText}>Learn</Text>
+          </Icon.Button>
 
+          <Icon.Button
+              name='camera'
+              backgroundColor='transparent'
+              flexDirection='column'
+              //backgroundColor='#121212'
+              color='white'
+              opacity={1}
+              size={icon}
+              paddingHorizontal={bottomButtonPadding}
+              onPress={() => navigation.navigate('Scanner')}
+          >
+          <Text style={styles.BottomTabText}>Solver</Text>
+          </Icon.Button>
 {/* Virtual Cube */}
           <Icon.Button
             name='cube-outline'
@@ -651,8 +770,8 @@ function dismissed(){
             alignItems='center'
             color='white'
             opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+            size={icon}
+            paddingHorizontal= {bottomButtonPadding}
             onPress={() => navigation.navigate('VirtualCube')}
           >
           <Text style={styles.BottomTabText}>3DCube</Text>
@@ -666,48 +785,68 @@ function dismissed(){
             //backgroundColor='#121212'
             color='white'
             opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+            size={icon}
+            paddingHorizontal={bottomButtonPadding}
             onPress={() => {navigation.push('Statistics')}}
           >
           <Text style={styles.BottomTabText}>Statistics</Text>
           </Icon.Button>
-{/* Home Screen */}
-          <Icon.Button
-            name='home' 
-            flexDirection='column'
-            backgroundColor='transparent'
-            //backgroundColor='#121212'
-            color='white'
-            opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Gradient'), storeData(convertedTimes)}}
-          >
-          <Text style={styles.BottomTabText}>Home</Text>
-          </Icon.Button>
-{/* Learn */}
-          <Icon.Button
-            name='school'
-            backgroundColor='transparent'
-            flexDirection='column'
-            //backgroundColor='#121212'
-            color='white'
-            opacity={1}
-            size={30}
-            paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-            onPress={() => {navigation.navigate('Learn')}}
-          >
-          <Text style={styles.BottomTabText}>Learn</Text>
-          </Icon.Button>
 
-    </View>
-    {/* <View style={{backgroundColor:'yellow', width:50,flexDirection:'column',height:100}}>
 
-    </View> */}
-  </View>
-{/*</View> */}
-    </View>
+          
+          
+          
+
+          {/* <Text style={styles.BottomTabText}>Options</Text> */}
+          {/* <Provider style={{zIndex:8, elevation:9}}>
+      <Portal style={{zIndex:8, elevation:9}}>
+        <FAB.Group
+        style={{zIndex:8, elevation:9}}
+          open={open}
+          icon={open ? 'calendar-today' : 'plus'}
+          //pointerEventsChange='none'
+          //pointerEvents='box-none'
+          
+          actions={[
+            { icon: 'plus', onPress: () => console.log('Pressed add') },
+            {
+              icon: 'star',
+              label: 'Star',
+              onPress: () => console.log('Pressed star'),
+            },
+            {
+              icon: 'email',
+              label: 'Email',
+              zIndex:5,
+              onPress: () => console.log('Pressed email'),
+            },
+            {
+              icon: 'bell',
+              label: 'Remind',
+              zIndex:10,
+              elevation:11,
+              onPress: () => console.log('Pressed notifications'),
+              //small: false,
+            },
+          ]}
+          onStateChange={onStateChange}
+          onPress={() => {
+            if (open) {
+              pointerEventsChange='none'
+              console.log('opened')
+              // do something if the speed dial is open
+            }
+          }}
+          
+        />
+      </Portal>
+    </Provider> */}
+</View>
+   </View> 
+   </SafeAreaView>
+  
+
+    
     
   );
 }
@@ -719,21 +858,24 @@ const styles = StyleSheet.create({
   container: {
     //basic container that encompases the screen
     
-    zIndex:1,
-    flex: 1,
-    position:'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'#121212'
+    flex: 1, 
+        //justifyContent: 'space-evenly', 
+    alignItems: 'center', 
+    backgroundColor:'#121212',
+    paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+    //zIndex:1,
+    //elevation:2
+  
   },
 
   sectionStyle: {
     //encompases the entire app
-    zIndex:1,
-    flex: 1,
-    position:'relative',
+    // zIndex:1,
+    // flex: 1,
+    // position:'relative',
     alignItems: 'center',
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    height:'100%'
     //backgroundColor:'transparent'
   },
 
@@ -742,16 +884,25 @@ const styles = StyleSheet.create({
     fontSize: 80,
     color:'#FFF',
     opacity:.87,
-    top:320, 
+    top:(Dimensions.get('window').height)*.55, 
+    //backgroundColor:'green'
   },
 
   ScrambleText: {
     fontSize: 25,
-    width:'60%',
+    //paddingBottom:'40%',
+    //width:'60%',
+    height:'40%',
     color:'#FFF',
+    //paddingTop:'0%',
+    //top:'-10%',
+    paddingLeft:25,
+    paddingRight:25,
+    flexWrap:'wrap',
     opacity:.87,
-    position:'absolute',
-    top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
+    //backgroundColor:'white',
+    //position:'absolute',
+    //top:Platform.OS === 'android' ? StatusBar.currentHeight+13:13,
     textAlign:'center',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
   },
@@ -762,24 +913,34 @@ const styles = StyleSheet.create({
     color:'white',
     opacity:1,
     justifyContent:'center',
-    left:'-7%',
-    paddingHorizontal:'1%'
+    left:(Dimensions.get('window').width)*-.0125,
+    //paddingHorizontal:'3%',
+    bottom:0,
+    justifyContent:'space-evenly',
+    textAlign:'center'
+    //position:'absolute'
   },
 
   startbuttonSize:{
-    
-    width: 500,
-    height: '89%',
-    bottom:-70,
+    //flex:600,
+    width: (Dimensions.get('window').width),
+    height: (Dimensions.get('window').height),
+    bottom:'17.5%',
     
     alignItems:'center',
-    //backgroundColor:'#FFF',
+    //backgroundColor:'blue',
     //zIndex:1,
+    //elevation:2,
   },
+  background:{
+    backgroundColor:'#121212',
+    flex:1,
+    
+},
 
   actionButtonIcon: {
     //size of the actionbutton icons. Icons only used in the action button
-      zIndex:999,
+      //zIndex:999,
       position:'relative',
       fontSize: 30,
       height: 33,
@@ -800,9 +961,9 @@ const styles = StyleSheet.create({
   },
 
   OptionsButton:{
-    fontSize:10, 
+    fontSize:dynamicFont, 
     left:Platform.OS === 'android' ? '54%':'60%', 
-    bottom:Platform.OS === 'android' ?'-96%':'-99%', 
+    //bottom:Platform.OS === 'android' ?'-96%':'0%', 
     color:'white',
     opacity:1,      
     //justifyContent:'center'
@@ -812,19 +973,20 @@ const styles = StyleSheet.create({
 
 
 const options = {
-  container: {
-    position:'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'#121212',
-    height:70
-  }, 
+  // container: {
+  //   //position:'absolute',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   backgroundColor:'#121212',
+  //   height:70,
+  //   flex:1
+  // }, 
   text: {
     fontSize: 70,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
     color: '#FFF',
     opacity:.87,
     marginLeft: 0,
-    top:-150,
+    top:'270%',
   },
 };

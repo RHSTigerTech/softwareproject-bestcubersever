@@ -1,4 +1,4 @@
-import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet } from "react-native";
+import { Dimensions, ScrollView, StatusBar, Flex, SafeAreaView, StyleSheet, FlatList } from "react-native";
 import React, { useState, Component, useEffect } from 'react';
 import {Header, Card} from 'react-native-elements';
 import {storeData, getData} from './Timer';
@@ -9,12 +9,19 @@ import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-nat
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
 import AwesomeButton from "react-native-really-awesome-button";
-import {newList, randomthing} from './NumberList'
-import _ from 'lodash';
+import _, { last } from 'lodash';
 import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ErrorBoundary from "./ErrorBoundary";
 import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exception-handler'
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { Platform } from "react-native";
+
+// setJSExceptionHandler((error, isFatal) => {
+//   console.log(error, isFatal)
+//   alert(error.name)
+// // return(
+// //   <View>
 
 // setJSExceptionHandler((error, isFatal) => {
 //   console.log(error, isFatal)
@@ -63,7 +70,8 @@ const chartConfigs = [
     },    
   ];
 
-let data=[]
+
+let data=[];
 let removeZero=[]
 let undef;
 //removeZero=times()
@@ -74,14 +82,16 @@ let undef;
 // }
 
 
+
 export const timerthing = () => {
   if(typeof data== 'undefined'){
     undef=true;
-    console.log('data is undefined')
+    //console.log('data is undefined')
 }
-console.log(typeof data)
+//console.log(typeof data)
   if(times()[times().length-1]!==deletetime()[deletetime().length-1] && deletetime().length>0){
     data=deletetime();
+    
     data.pop();
     data.pop(); 
       if(data[0]==0){
@@ -92,6 +102,7 @@ console.log(typeof data)
 
   else{
     data=times();
+    
     if(data[data.length-1]==data[data.length-2]){
     data.pop();
     }
@@ -100,24 +111,31 @@ console.log(typeof data)
       data.shift();
       }
   }
-  console.log(data)
-  console.log('---------------------')
+  
+        
+    
+  
+  //console.log(data)
+  //console.log('---------------------')
 }
+
+
 export {data};
 // console.log(times().length)
 // console.log('whhhhhhhhhy isnt this woooooooooooooooorking')
-  export default class Stats extends React.Component { 
+  export default class Stats extends React.PureComponent { 
     
-    UNSAFE_componentWillMount() {
-         
-  }
+    
     renderTabBar() {
       return <StatusBar hidden />;
       
     }
-    
+    UNSAFE_componentDidMount(){
+      this.scrollViewRef.scrollToEnd({ animated: true })
+    }
 
     render() {
+      
       
       const {navigate} = this.props.navigation;
       const {push} = this.props.navigation;
@@ -128,11 +146,14 @@ export {data};
   try{ 
      
     let width;
-    
 
     let average=0.0;
 
     let Avg5=0.0;
+
+    let Avg10=0.0;
+
+    
 
     let notEnough5='Not enough data'
 
@@ -146,7 +167,28 @@ export {data};
 
     let changedList=[1];
 
-    const height=360;
+    const height= Platform.OS === 'android' ? ((Dimensions.get('window').height)*.50) : ((Dimensions.get('screen').height)*.50-getStatusBarHeight())
+    
+    // console.log(height)
+
+    // console.log('height of window')
+    // console.log((Dimensions.get('window').height))
+
+    // console.log('height of screen')
+    // console.log((Dimensions.get('screen').height))
+
+
+    // let iosStatusBar=getStatusBarHeight(true);
+
+    // console.log(iosStatusBar)
+
+    
+
+
+    
+
+    
+    
 
         
     timerthing()
@@ -157,22 +199,11 @@ export {data};
     for(let i=0;i<data.length;i++){
       if(data[i]!=0){
         numData.push(parseFloat(data[i])) 
-      }            
-    }
-    console.log(numData)
-    
-
-    //Average
-    for(let i=0;i<data.length;i++){
+      }    
       floatnum=parseFloat(data[i])
-      average=floatnum+average
-    }
-    average=average/data.length
-    // console.log(average)
-    // console.log(data.length)
-
-    //Best Time
-    for(let i=0;i<data.length;i++){
+      
+      average=floatnum+average 
+      
       if(data[i]==0){
         data.splice(i,1);
       }
@@ -181,13 +212,7 @@ export {data};
       }
       if(parseFloat(data[i])<besttime){
         besttime=parseFloat(data[i])
-      }
-      
-    }
-    //console.log(besttime)
-
-    //Worst Time
-    for(let i=0;i<data.length;i++){
+      }       
       if(i===0){
         worsttime=parseFloat(data[i])
       }
@@ -195,6 +220,21 @@ export {data};
         worsttime=parseFloat(data[i])
       }
     }
+    //console.log(numData)
+    
+
+    //Average
+    
+    average=average/data.length
+    // console.log(average)
+    // console.log(data.length)
+
+    //Best Time
+
+    //console.log(besttime)
+
+    //Worst Time
+    
     //console.log(worsttime)
 
     //Median
@@ -203,7 +243,7 @@ export {data};
     }
     let len=numData.length;
     let arrSort=numData.slice(0).sort(sorter);
-    console.log(arrSort)
+    //console.log(arrSort)
     let mid = Math.ceil(len/2);
     //console.log(arrSort[mid-1])
     let Median= len % 2 == 0 ? (arrSort[mid] + arrSort[mid-1]) / 2 :arrSort[mid-1]
@@ -219,6 +259,60 @@ export {data};
     Avg5=Avg5/5
     //console.log(Avg5)
     }
+
+    //3 of 5
+    let stored3of5=[];
+    stored3of5 = arrSort.slice(Math.max(arrSort.length - 5, 0))
+    let last5= numData.slice(Math.max(arrSort.length - 5, 0))
+    let last5sorted=last5.slice(0).sort(sorter)
+    last5sorted.pop()
+    last5sorted.shift()
+    let total5=0.0;
+    if(data.length>=5){
+    for(let i=0;i<3;i++){
+      total5=last5sorted[i]+total5
+    }
+    total5=total5/3
+  }
+
+  //3 of 5
+  let stored10of12=[];
+  stored10of12 = arrSort.slice(Math.max(arrSort.length - 12, 0))
+  let last12= numData.slice(Math.max(arrSort.length - 12, 0))
+  let last12sorted=last12.slice(0).sort(sorter)
+  last12sorted.pop()
+  last12sorted.shift()
+  //console.log(last12sorted)
+  let total12=0.0;
+  if(data.length>=12){
+  for(let i=0;i<10;i++){
+    total12=last12sorted[i]+total12
+  }
+  total12=total12/10
+}
+
+let best10=[];
+let best10Avg=0.0;
+
+if(data.length>=10){
+    best10=arrSort.slice(0,10)
+    for(let i=0;i<10;i++){
+      best10Avg=best10[i]+best10Avg
+    }
+    best10Avg=best10Avg/10
+}
+
+
+//console.log(best10)
+
+    if(data.length>=10){
+      for(let i=data.length-1;i>data.length-11;i--){
+          floatnum=parseFloat(data[i])
+          Avg10=floatnum+Avg10
+      }
+      Avg10=Avg10/10
+      //console.log(Avg5)
+      }
     
     //Best 3 of 5
     // if(data.length>=5){
@@ -231,13 +325,25 @@ export {data};
     //   Avg5='Not Enough Data'
     // }
 
+    
+
+
+
+    // overflowdata=data;
+    //console.log(newArray.length)
+
+    
+    
+    
+    
+
     let xcords=[]
     for(let i=1;i<=data.length;i++){
       xcords.push(i)
     }
 
-    if (data.length>8){
-        width = data.length*50;
+    if (data.length>15){
+        width = data.length*25;
     }
     else{
         width = Dimensions.get("window").width;
@@ -245,29 +351,35 @@ export {data};
 
       return (
        
-      <View style={{backgroundColor:'#121212', height:'100%'}}>
-        <View style={{backgroundColor: '#121212',height:'90%'}} >
+        
+      <SafeAreaView style={styles.background}>
+        <View style={styles.ViewContainer} >
+        <StatusBar
+          hidden={true}
+          
+        />
+            <View style={{height: '90%'}}>
          
-        <View style={{top:'7%', alignItems:'center'}}>
         <AwesomeButton 
-                        
-                        width={300} 
-                        height={40}
+                        style={{alignSelf:'center',top: Platform.OS== 'android' ? ((Dimensions.get('window').height)*.03):0}}
+                        width={(Dimensions.get('window').width)*.8} 
+                        height={(Dimensions.get('window').height)*.067}
                         backgroundColor='#6d00eb'
                         textSize={27}
+                        bottom={0}
                         borderRadius={10}
                         activeOpacity={.8}	
                         backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
+                       
                         raiseLevel={5}
                         onPress={() => push('NumberList')}
                     >
                         List View
              </AwesomeButton>
-             </View>
+             
         {/* <Card.Title style={styles.textSummary}>yo</Card.Title> */}
-        <Card containerStyle={{backgroundColor: '#121212',height:'28%', top:'7%',zIndex:5}}>
-      <ScrollView >
+        <Card containerStyle={{backgroundColor: '#121212',top:((Dimensions.get('window').height)*.03),height:((Dimensions.get('window').height)*.29)}}>
+      <ScrollView indicatorStyle='white' showsVerticalScrollIndicator={true} persistentScrollbar={true}>
         {/* <Card.Title style={styles.textTitle}>Stats</Card.Title> */}
         <Text style={styles.textSummary}>Best: {besttime.toFixed(3)}</Text>
         <Card.Divider/>
@@ -279,22 +391,20 @@ export {data};
         <Card.Divider/>
         <Text style={styles.textSummary}>Avg 5: {Avg5.toFixed(3)}</Text>
         <Card.Divider/>
-        {/* start at the first 5 numbers and sort them.
-            remove the fastest and slowest times and take that average of the other 3
-            assign this average to best 3 of 5
-            then do the same for numbers 1-6 then 2-7 etc...
-            if one of these averages is lower than the assigned average replace it
-             */}
-        <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
+        <Text style={styles.textSummary}>3 of 5: {total5.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Avg 12: not added</Text>
+        <Text style={styles.textSummary}>Avg 10: {Avg10.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
+        <Text style={styles.textSummary}>10 of 12: {total12.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best 10 Avg: {best10Avg.toFixed(3)}</Text>
         <Card.Divider/>
       </ScrollView>
     </Card>
-        <ScrollView bottom={'-17%'} directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
-          {chartConfigs.map(chartConfig => {
+        <ScrollView ref={ref => (this.scrollViewRef = ref)}  directionalLockEnabled='vertical' automaticallyAdjustContentInsets={false} vertical={false} horizontal={true}  scrollEventThrottle={16} renderTabBar={this.renderTabBar}>
+          
+          {
+            chartConfigs.map(chartConfig => {
             const labelStyle = {
               color: 'white',
               opacity:.87,
@@ -307,6 +417,7 @@ export {data};
             bottom:0,
               ...chartConfig.style
             };
+            
             <Text style={labelStyle}>Bezier Line Chart</Text>
             return (
               <ScrollView
@@ -314,13 +425,18 @@ export {data};
                 automaticallyAdjustContentInsets={false} 
                 vertical={false} 
                 horizontal={true}
+                
+                
                 style={{
-                  backgroundColor: chartConfig.backgroundColor
+                  backgroundColor: chartConfig.backgroundColor,
+                  top:((Dimensions.get('window').height)*.05)
+                  
+                
                 }}
               >
 
-              <LineChart               
-                //bezier
+              <LineChart            
+                bezier
                 data={{
                   labels: xcords,                  
                   datasets: [{data}]}
@@ -342,8 +458,8 @@ export {data};
                 }       
  
                         
-              />   
-                        
+              />  
+                                      
         </ScrollView>        
             );            
           })}          
@@ -353,37 +469,7 @@ export {data};
 
     
     </View>
-      <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
-                
-                <Icon.Button
-                    name='cube-outline'
-                    flexDirection='column'
-                    backgroundColor='transparent'
-                    //backgroundColor='#121212'
-                    alignItems='center'
-                    color='white'
-                    opacity={1}
-                    size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                    onPress={({}) => navigate('VirtualCube')}
-                    >
-                    <Text style={styles.BottomTabText}>3DCube</Text>
-                </Icon.Button>
-                {/* Statistics */}
-                <Icon.Button            
-                    name='camera'
-                    alignItems='center'
-                    flexDirection='column'
-                    backgroundColor='transparent'
-                    //backgroundColor='#121212'
-                    color='white'
-                    opacity={1}
-                    size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
-                    onPress={() => navigate('Scanner')}
-                >
-                <Text style={styles.BottomTabText}>Solver</Text>
-                </Icon.Button>
+      <View style={{flexDirection:'row', left:Platform.OS=='android' ? '1.1%':'1.1%'}}>
                 {/* Home Screen */}
                 <Icon.Button
                     name='home' 
@@ -393,7 +479,7 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Gradient')}
                 >
                 <Text style={styles.BottomTabText}>Home</Text>
@@ -407,7 +493,7 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Learn')}
                 >
                 <Text style={styles.BottomTabText}>Learn</Text>
@@ -421,13 +507,45 @@ export {data};
                     color='white'
                     opacity={1}
                     size={30}
-                    paddingHorizontal={Platform.OS === 'ios' ? '3%':'4.5%'}
+                    paddingHorizontal='4%'
                     onPress={() => navigate('Timer')}
                     >
                     <Text style={styles.BottomTabText}>Timer</Text>
                 </Icon.Button>
+                <Icon.Button            
+                    name='camera'
+                    alignItems='center'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal='4%'
+                    onPress={() => navigate('Scanner')}
+                >
+                <Text style={styles.BottomTabText}>Solver</Text>
+                </Icon.Button>
+                <Icon.Button
+                    name='cube-outline'
+                    flexDirection='column'
+                    backgroundColor='transparent'
+                    //backgroundColor='#121212'
+                    alignItems='center'
+                    color='white'
+                    opacity={1}
+                    size={30}
+                    paddingHorizontal='4%'
+                    onPress={({}) => navigate('VirtualCube')}
+                    >
+                    <Text style={styles.BottomTabText}>3DCube</Text>
+                </Icon.Button>
+                {/* Statistics */}
+                
+                
             </View>
     </View> 
+    </SafeAreaView>  
     
     );
   }
@@ -464,11 +582,7 @@ export {data};
   
 
 const styles = StyleSheet.create({
-    ViewContainer:{
-        flex: 1, 
-        alignItems: 'center', 
-        paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
-    },  
+    
     ErrorContainer:{
       flex: 1, 
       alignItems: 'center', 
@@ -478,14 +592,22 @@ const styles = StyleSheet.create({
 
 
     },
-    AverageTime:{
-      color:'white',
-      opacity:.87,
-      top:'-3%',
-      textAlign:'center',
-      fontSize:30,
-      borderColor:'white',
-    },
+    ViewContainer:{
+      // Holds the whole screen
+      flex: 1, 
+      //justifyContent: 'space-evenly', 
+      alignItems: 'center', 
+      backgroundColor:'#121212',
+      //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+  },
+    background:{
+      //backgroundColor:'#121212',
+      flex:1,
+      backgroundColor: "#121212",
+      //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      
+  },
+    
     scroll:{
       backgroundColor:'transparent'
     },
@@ -505,11 +627,14 @@ const styles = StyleSheet.create({
     BottomTabText:{
       //Text used for the bottom menu
       fontSize:10,
-      color:'white',
-      opacity:1,
-      justifyContent:'center',
-      left:'-7%',
-      paddingHorizontal:'1%'
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
     },
+    AndroidSafeArea: {
+      
+    }
 
 })
