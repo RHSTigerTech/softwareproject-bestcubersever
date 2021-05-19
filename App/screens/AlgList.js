@@ -649,6 +649,83 @@ export default class App extends Component {
                             </Card>
                         </ScrollView>
                     </View>
+                    <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', left:'1.35%'}}>
+                 {/* Home Screen */}
+                 <Icon.Button
+                        name='home' 
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        alignSelf='center'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Gradient')}
+                    >
+                    <Text style={styles.BottomTabText}>Home</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                        name='timer-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignSelf='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Timer')}
+                        >
+                        <Text style={styles.BottomTabText}>Timer</Text>
+                    </Icon.Button>
+                    {/* Learn */}
+                    <Icon.Button
+                        name='camera'
+                        backgroundColor='transparent'
+                        flexDirection='column'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        alignSelf='center'
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Scanner')}
+                    >
+                    <Text style={styles.BottomTabText}>Solver</Text>
+                    </Icon.Button>
+                    
+            <Icon.Button
+                        name='cube-outline'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        alignSelf='center'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={({}) => navigate('VirtualCube')}
+                        >
+                        <Text style={styles.BottomTabText}>3DCube</Text>
+                    </Icon.Button>
+                    {/* Statistics */}
+                    <Icon.Button            
+                        name='chart-line'
+                        alignSelf='center'
+                        flexDirection='column'
+                        backgroundColor='transparent'
+                        //backgroundColor='#121212'
+                        color='white'
+                        opacity={1}
+                        size={30}
+                        paddingHorizontal='4%'
+                        onPress={() => navigate('Statistics')}
+                    >
+                    <Text style={styles.BottomTabText}>Statistics</Text>
+                    </Icon.Button>
+                   
+            </View>
                 </View>
             </SafeAreaView>
         );

@@ -84,7 +84,7 @@ export default class App extends Component {
                             <Card.Title style={styles.textTitle}>Algorithm Notation</Card.Title>
                             <Card.Divider/>
                             <Text style={styles.textDescripWide}>
-                                All algorithms are made up of letters, numbers, and apostrophes that represent moves.  Moves are seperated with 
+                                All algorithms are made up of letters, numbers, and apostrophes that represent moves.  Moves are separated with 
                                 spaces.  The letter represents which side to turn.  If it doesn't have an apostrophe, you turn that side 
                                 clockwise and if it does, you turn that side counter clockwise.  Wide moves are where you move 2 layers of the 
                                 cube and they are represented by either lowercase letters or the letter and "w".  There are also three different 
