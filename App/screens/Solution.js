@@ -86,14 +86,14 @@ export default class App extends Component {
     // b - blue
 
 
-    let cubeState = [
-      totalPositionGreenSide, // front
-      totalPositionRedSide, // right
-      totalPositionWhiteSide, // up
-      totalPositionYellowSide, // down
-      totalPositionOrangeSide, // left
-      totalPositionBlueSide // back
-    ].join('');
+    // let cubeState = [
+    //   totalPositionGreenSide, // front
+    //   totalPositionRedSide, // right
+    //   totalPositionWhiteSide, // up
+    //   totalPositionYellowSide, // down
+    //   totalPositionOrangeSide, // left
+    //   totalPositionBlueSide // back
+    // ].join('');
     // let solveMoves = solver(cubeState);
     // console.log(solveMoves);
     // console.log('yoooo')
@@ -104,14 +104,14 @@ export default class App extends Component {
     let CrossStepImages=[];
     let CrossStepText=[];
 
-    // let cubeState = [
-    //   'flulfbddr', // front
-    //   'rudrruddl', // right
-    //   'dbbburrfb', // up
-    //   'llffdrubf', // down
-    //   'rludlubrf', // left
-    //   'lubfbfudl' // back
-    // ].join('');
+    let cubeState = [
+      'flulfbddr', // front
+      'rudrruddl', // right
+      'dbbburrfb', // up
+      'llffdrubf', // down
+      'rludlubrf', // left
+      'lubfbfudl' // back
+    ].join('');
     let options = { partitioned: true };
     let solveMoves = solver(cubeState, options);
     let solveMovesString = solver(cubeState);
@@ -209,7 +209,8 @@ let sectionData=[]
             id:i+'cross',
             title: '\n',
             images: crossImg,
-            notation:'Blue Infront White On Top'
+            notation:'Blue Infront White On Top',
+            
             
           })
         }
@@ -487,7 +488,8 @@ let sectionData=[]
             id: i+'b2',
             title: '\n'+num+': Rotate the back layer and the middle layer clockwise twice',
             images: Bw,
-            notation:'b2'
+            notation:'b2',
+            double:'2x'
 
           })
         }
@@ -498,7 +500,8 @@ let sectionData=[]
             id: i+'f2',
             title: '\n'+num+': Rotate the front layer and the middle layer clockwise twice',
             images: Fw,
-            notation:'f2'
+            notation:'f2',
+            double:'2x'
 
           })
         }
@@ -508,7 +511,8 @@ let sectionData=[]
             id: i+'r2',
             title: '\n'+num+': Rotate the right layer and the middle layer clockwise twice',
             images: Rw,
-            notation:'r2'
+            notation:'r2',
+            double:'2x'
 
           })
         }
@@ -518,7 +522,8 @@ let sectionData=[]
             id: i+'l2',
             title: '\n'+num+': Rotate the left layer and the middle layer clockwise twice',
             images: Lw,
-            notation:'l2'
+            notation:'l2',
+            double:'2x'
 
           })
         }
@@ -528,7 +533,8 @@ let sectionData=[]
             id: i+'u2',
             title: '\n'+num+': Rotate the top layer and the middle layer clockwise twice',
             images: Uw,
-            notation:'u2'
+            notation:'u2',
+            double:'2x'
 
           })
         }
@@ -538,7 +544,8 @@ let sectionData=[]
             id: i+'d2',
             title: '\n'+num+': Rotate the bottom layer and the middle layer clockwise twice',
             images: Dw,
-            notation:'d2'
+            notation:'d2',
+            double:'2x'
 
           })
         }
@@ -549,7 +556,8 @@ let sectionData=[]
             id: i+'F2',
             title: '\n'+num+': Rotate the front layer clockwise twice',
             images: F,
-            notation:'F2'
+            notation:'F2',
+            double:'2x'
 
           })
         }
@@ -559,7 +567,8 @@ let sectionData=[]
             id: i+'R2',
             title: '\n'+num+': Rotate the right layer clockwise twice',
             images: R,
-            notation:'R2'
+            notation:'R2',
+            double:'2x'
 
           })
         }
@@ -569,7 +578,8 @@ let sectionData=[]
             id: i+'L2',
             title: '\n'+num+': Rotate the left layer clockwise twice',
             images: L,
-            notation:'L2'
+            notation:'L2',
+            double:'2x'
 
           })
         }
@@ -579,7 +589,8 @@ let sectionData=[]
             id: i+'B2',
             title: '\n'+num+': Rotate the back layer clockwise twice',
             images: B,
-            notation:'B2'
+            notation:'B2',
+            double:'2x'
 
           })
         }
@@ -589,7 +600,8 @@ let sectionData=[]
             id: i+'D2',
             title: '\n'+num+': Rotate the bottom layer clockwise twice',
             images: D,
-            notation:'D2'
+            notation:'D2',
+            double:'2x'
 
           })
         }
@@ -599,7 +611,8 @@ let sectionData=[]
             id: i+'U2',
             title: '\n'+num+': Rotate the top layer clockwise twice',
             images: U,
-            notation:'U2'
+            notation:'U2',
+            double:'2x'
 
           })
         }
@@ -660,16 +673,17 @@ let sectionData=[]
 
 
 
-    const Item= ({img, txt, no}) => (
+    const Item= ({img, txt, no, twice}) => (
       <View style={{marginHorizontal: '-15%', left:'29%', paddingBottom:'30%'}}>
         <ImageBackground style={styles.movesImage} source={img} >
+        <Text style={{position:'absolute', color:'white'}}><Bold>{twice}</Bold></Text>
           <Text style={styles.textDescrip2}><Bold>{no}</Bold>{txt}</Text>
           </ImageBackground>
       </View>
       );
     
       const renderItem = ({item}) => (
-        <Item img={item.images} txt={item.title} no={item.notation}/>
+        <Item img={item.images} txt={item.title} no={item.notation} twice={item.double}/>
       )
 
       const CrossHeader = ({}) =>
