@@ -86,14 +86,7 @@ export default class App extends Component {
     // b - blue
 
 
-    // let cubeState = [
-    //   totalPositionGreenSide, // front
-    //   totalPositionRedSide, // right
-    //   totalPositionWhiteSide, // up
-    //   totalPositionYellowSide, // down
-    //   totalPositionOrangeSide, // left
-    //   totalPositionBlueSide // back
-    // ].join('');
+    
     // let solveMoves = solver(cubeState);
     // console.log(solveMoves);
     // console.log('yoooo')
@@ -101,55 +94,99 @@ export default class App extends Component {
     
 
     const solver = require('rubiks-cube-solver');
+
+    const cubeSolver= require('cube-solver');
+
+
+
+
     let CrossStepImages=[];
     let CrossStepText=[];
 
     let cubeState = [
-      'flulfbddr', // front
-      'rudrruddl', // right
-      'dbbburrfb', // up
-      'llffdrubf', // down
-      'rludlubrf', // left
-      'lubfbfudl' // back
+      totalPositionGreenSide, // front
+      totalPositionRedSide, // right
+      totalPositionWhiteSide, // up
+      totalPositionYellowSide, // down
+      totalPositionOrangeSide, // left
+      totalPositionBlueSide // back
     ].join('');
+
+    // let cubeState = [
+    //   'flulfbddr', // front
+    //   'rudrruddl', // right
+    //   'dbbburrfb', // up
+    //   'llffdrubf', // down
+    //   'rludlubrf', // left
+    //   'lubfbfudl' // back
+    // ].join('');
     let options = { partitioned: true };
     let solveMoves = solver(cubeState, options);
     let solveMovesString = solver(cubeState);
     //console.log(solveMoves, options);
 
 
-    console.log(solveMoves.cross)
+    //console.log(solveMoves.cross)
     let crossSteps= solveMoves.cross.join(',')
     crossSteps=crossSteps.replace(/,/g, ' ')
     crossSteps=crossSteps.split(' ')
     crossSteps.unshift('cross')
-    console.log(crossSteps)
+    //console.log(crossSteps)
 
-    console.log(solveMoves.f2l)
+    //console.log(solveMoves.f2l)
     let f2lSteps= solveMoves.f2l.join(',')
     f2lSteps=f2lSteps.replace(/,/g, ' ')
     f2lSteps=f2lSteps.split(' ')
     f2lSteps.unshift('f2l')
-    console.log(f2lSteps)
-    console.log('f2l')
+    //console.log(f2lSteps)
+    //console.log('f2l')
 
     let ollSteps= solveMoves.oll.split(' ')
     ollSteps.unshift('oll')
-    console.log(ollSteps)
-    console.log('oll')
+    //console.log(ollSteps)
+    //console.log('oll')
 
     let pllSteps= solveMoves.pll.split(' ')
     pllSteps.unshift('pll')
-    console.log(pllSteps)
-    console.log('pll')
+    //console.log(pllSteps)
+    //console.log('pll')
 
-    console.log(solveMovesString)
+    //console.log(solveMovesString)
 
     crossSteps.push(...f2lSteps)
     crossSteps.push(...ollSteps)
     crossSteps.push(...pllSteps)
     console.log(crossSteps)
     console.log('everything')
+
+    let reverseStep=crossSteps;
+    console.log(reverseStep)
+    reverseStep = reverseStep.filter(e => e !== 'cross'); 
+    reverseStep = reverseStep.filter(e => e !== 'f2l'); 
+    reverseStep = reverseStep.filter(e => e !== 'pll'); 
+    reverseStep = reverseStep.filter(e => e !== 'oll'); 
+    console.log(reverseStep)
+
+    let scrambleTest= reverseStep.join(',')
+    scrambleTest=scrambleTest.replace(/,/g, ' ')
+    scrambleTest=scrambleTest.replace(/prime/g, '\'')
+    scrambleTest=scrambleTest.replace(/l'/g, 'L\' M\'')
+    scrambleTest=scrambleTest.replace(/b'/g, 'B\' S')
+    scrambleTest=scrambleTest.replace(/d'/g, 'D\' E E E')
+
+
+
+    //reverseStep=reverseStep.replace(/,/g, ' ')
+    console.log(scrambleTest)
+
+
+
+    //crossSteps.join(',')
+    //crossSteps= solveMoves.cross.join(',')
+    //crossSteps=crossSteps.replace(/,/g, ' ')
+    //const scramble = `D' R' D' R B2 d B' D B D' B D' E E E B2 B' S D2 B D B' D b R' D' R D2 R' D' R D2 F D' F' B' D B D' B' D B D' B' D B D R D' R' B D' B' D' U B U' R U' L' U U L U' B U F U'`;
+
+    console.log(cubeSolver.solve(scrambleTest,'kociemba'))
 
     const {navigate} = this.props.navigation;
 //create function that return a text input depending on the the string type

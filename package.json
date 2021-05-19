@@ -18,6 +18,7 @@
     "@react-navigation/stack": "^5.14.3",
     "@unimodules/core": "~6.0.0",
     "babel-polyfill": "^6.26.0",
+    "cube-solver": "^2.4.0",
     "expo": "^40.0.1",
     "expo-asset": "~8.2.1",
     "expo-av": "~8.7.0",
