@@ -1,13 +1,11 @@
-
 import React, { useState, Component, useEffect } from 'react';
-import { StyleSheet, View, Platform, StatusBar, Text, Image, Button, ScrollView, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
-import { Header, Card } from 'react-native-elements';
+import { StyleSheet, View,
+ Platform, StatusBar, Text, Image, ScrollView, SafeAreaView, Dimensions, TouchableOpacity} from 'react-native';
+import {Header, Card} from 'react-native-elements';
+import GradientButton from 'react-native-gradient-buttons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-
-const B = (props) => <Text style={{ fontWeight: 'bold', fontSize: 17, lineHeight: 18, letterSpacing: .2 }}>{props.children}</Text>
-
 export default class App extends Component {
+    
     render() {
         const {navigate} = this.props.navigation;
     return (
@@ -27,7 +25,6 @@ export default class App extends Component {
                     >
                     <Text style={styles.contentButtons}>1: Algorithm Notation</Text>
                     </TouchableOpacity>
-
                     <TouchableOpacity
                         onPress={() => {
                             this.scrollViewRef.scrollTo({y: this.SideMoves.y,animated: true});
@@ -35,7 +32,6 @@ export default class App extends Component {
                     >
                     <Text style={styles.contentButtons}>2: Side Moves</Text>
                     </TouchableOpacity>
-
                     <TouchableOpacity
                         onPress={() => {
                             this.scrollViewRef.scrollTo({y: this.MiddleMoves.y,animated: true});
@@ -51,7 +47,6 @@ export default class App extends Component {
                     >
                     <Text style={styles.contentButtons}>4: Orientation Moves</Text>
                     </TouchableOpacity>
-
                     
                     </Card>
                         <Card containerStyle={{backgroundColor: '#121212'}}>
@@ -67,7 +62,7 @@ export default class App extends Component {
                                       Blue and green are always opposites
                                 {'\n'}Red and orange are always opposites
                                 {'\n'}White and yellow are always opposites
-                                {'\n'}When white is on the bottom and yellow is on the top, the colors in the middle layer (starting from the
+                                {'\n'}When white is on the bottom and yellow is on the top, the colors in the middle layer (starting from the 
                                 front facing color going to the right) are in this order: blue, red, green, then orange.{'\n'}
                             </Text>
                             <Card.Divider/>
@@ -78,16 +73,13 @@ export default class App extends Component {
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <Image style={styles.exImage} source={require('../Assets/basics/cb_centers.jpg')}/>
                                 <Text style={styles.textDescrip}>Center pieces: These only have one color on them</Text>
-
                                 <Image style={styles.exImage} source={require('../Assets/basics/cb_edges.jpg')}/>
                                 <Text style={styles.textDescrip}>Edge Pieces: These have two colors on them</Text>
-
                                 <Image style={styles.exImage} source={require('../Assets/basics/cb_corners.jpg')}/>
                                 <Text style={styles.textDescrip}>Corner Pieces: These have three colors on them</Text>
                             </View>
                         </Card>
                         <Text onLayout={event =>(this.AlgorithmNotation = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Card.Title style={styles.textTitle}>Algorithm Notation</Card.Title>
                             <Card.Divider/>
@@ -98,13 +90,13 @@ export default class App extends Component {
                                 cube and they are represented by either lowercase letters or the letter and "w".  There are also three different 
                                 types of moves: side, middle, and orientation.  Side moves are when you rotate one or more of the layers on one 
                                 side of the cube.  Middle moves are where you rotate just the center of the cube.  Orientation moves are when 
+                                you rotate the whole cube.
                                 you rotate the whole cube. If a move has a 2 at the end that means you would repeat the move twice to make a full 180 degree turn.
                                 {'\n'}{'\n'}Ex: f (R U R' U') f' means wide front turn clockwise, right turn clockwise, up turn clockwise, right turn 
                                 counter clockwise, up turn counter clockwise, and wide front turn counter clockwise.{'\n'}
                             </Text>
                             </Card>
                             <Text onLayout={event =>(this.SideMoves = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-
                             <Card containerStyle={{backgroundColor: '#121212'}}>
                             <Text style={styles.textHeader}>Side Moves</Text>
                             <Text style={styles.textSubHeader}>R moves</Text>
@@ -117,7 +109,6 @@ export default class App extends Component {
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_rcc.jpg')}/>
                                     <Text style={styles.textDescrip2}>R' {'\n'}Rotate the right layer counter clockwise</Text>
                                 </View>
-
                                 <View style={styles.viewMove}>
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_rwc.jpg')}/>
                                     <Text style={styles.textDescrip2}>Rw OR r {'\n'}Rotate the right layer and the middle layer clockwise</Text>
@@ -127,7 +118,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>Rw' OR r' {'\n'}Rotate the right layer and middle layer counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}L moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -138,7 +128,6 @@ export default class App extends Component {
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_lcc.jpg')}/>
                                     <Text style={styles.textDescrip2}>L' {'\n'}Rotate the left layer counter clockwise</Text>
                                 </View>
-
                                 <View style={styles.viewMove}>
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_lwc.jpg')}/>
                                     <Text style={styles.textDescrip2}>Lw OR l {'\n'}Rotate the left layer and the middle layer clockwise</Text>
@@ -148,7 +137,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>Lw' OR l' {'\n'}Rotate the left layer and middle layer counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}U moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -159,7 +147,6 @@ export default class App extends Component {
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_ucc.jpg')}/>
                                     <Text style={styles.textDescrip2}>U' {'\n'}Rotate the top layer counter clockwise</Text>
                                 </View>
-
                                 <View style={styles.viewMove}>
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_uwc.jpg')}/>
                                     <Text style={styles.textDescrip2}>Uw OR u {'\n'}Rotate the top layer and the middle layer clockwise</Text>
@@ -169,7 +156,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>Uw' OR u' {'\n'}Rotate the top layer and middle layer counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}D moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -180,7 +166,6 @@ export default class App extends Component {
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_dcc.jpg')}/>
                                     <Text style={styles.textDescrip2}>D' {'\n'}Rotate the bottom layer counter clockwise</Text>
                                 </View>
-
                                 <View style={styles.viewMove}>
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_dwc.jpg')}/>
                                     <Text style={styles.textDescrip2}>Dw OR d {'\n'}Rotate the bottom layer and the middle layer clockwise</Text>
@@ -190,7 +175,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>Dw' OR d' {'\n'}Rotate the bottom layer and middle layer counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}F moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -201,7 +185,6 @@ export default class App extends Component {
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_fcc.jpg')}/>
                                     <Text style={styles.textDescrip2}>F' {'\n'}Rotate the front layer counter clockwise</Text>
                                 </View>
-
                                 <View style={styles.viewMove}>
                                     <Image style={styles.movesImage} source={require('../Assets/basics/cb_fwc.jpg')}/>
                                     <Text style={styles.textDescrip2}>Fw OR f {'\n'}Rotate the front layer and the middle layer clockwise</Text>
@@ -248,7 +231,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>M' {'\n'}Rotate the middle layer between R and L counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}E moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -260,7 +242,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>E' {'\n'}Rotate the middle layer between U and D counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}S moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -287,7 +268,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>x' {'\n'}Rotate the cube on its x-axis counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}Y moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -299,7 +279,6 @@ export default class App extends Component {
                                     <Text style={styles.textDescrip2}>y' {'\n'}Rotate the cube on its y-axis counter clockwise</Text>
                                 </View>
                             </View>
-
                             <Text style={styles.textSubHeader}>{'\n'}Z moves</Text>
                             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 <View style={styles.viewMove}>
@@ -396,211 +375,81 @@ export default class App extends Component {
     );
 }
 }
-
-
 const styles = StyleSheet.create({
-    background: {
-        backgroundColor: '#121212',
-        flex: 1
+    background:{
+        backgroundColor:'#121212',
+        flex:1
     },
-
-    BottomTabText: {
-        //Text used for the bottom menu
-        fontSize: 10,
-        color: 'white',
-        opacity: 1,
-        justifyContent: 'center',
-        left: '-7%',
-        paddingHorizontal: '1%'
+    exImage: {
+        width: '35%', 
+        height: (Dimensions.get('window').width*.35), 
+        resizeMode: 'contain', 
+        marginRight: '5%', 
     },
-
-    contentButtons: {
-        color: '#7600ff',
-        //textAlign:'center',
-        fontSize: 20,
-        //textDecorationLine: 'underline',
-        fontWeight: 'bold',
-        paddingTop: '5%',
-        top: '-30%'
+    movesImage: {
+        width: '80%', 
+        height: (Dimensions.get('window').width*.5)*.8, 
+        resizeMode: 'contain', 
     },
-
-    contentLocal: {
-        fontSize: .1,
-        color: 'transparent',
-        alignItems: 'center'
-    },
-
-    ContentsTitle: {
-        // Table of contents title
-        color: 'white',
-        fontSize: 25,
-        fontWeight: 'bold',
-    },
-
     image: {
         // Background image of cube
-        width: '100%',
+        width:'100%',
         height: '100%',
         position: 'absolute',
+        //color: 'transparent',
+        //top: 24,
     },
-
-    imageEx: {
-        width: '35%',
-        height: (Dimensions.get('window').width) * .35,
-        resizeMode: 'contain',
-        marginRight: '5%',
-    },
-
-    imageInstructions: {
-        width: '35%',
-        height: (Dimensions.get('window').width) * .35,
-        resizeMode: 'contain',
-        marginLeft: '5%',
-    },
-
-    imageMoves: {
-        width: '80%',
-        height: (Dimensions.get('window').width * .5) * .8,
-        resizeMode: 'contain',
-    },
-
-    pageHeader: {
+    pageHeader:{
         // Header
         backgroundColor: '#121212',
     },
-
     placeHolder: {
         // Text with this style holds the place of something that will be implemented later
         color: 'blue',
         fontWeight: 'bold',
         width: '40%',
     },
-
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
     },
-
-    textDescrip: {
-        // Text thats a description
-        paddingTop: 10,
-    },
-
-    BottomTabText: {
+    BottomTabText:{
         //Text used for the bottom menu
-        fontSize: 10,
-        color: 'white',
-        opacity: 1,
-        justifyContent: 'center',
-        left: '-7%',
-        paddingHorizontal: '1%'
-    },
-
+        fontSize:10,
+        color:'white',
+        opacity:1,
+        justifyContent:'center',
+        left:'-7%',
+        paddingHorizontal:'1%'
+      },
     textHeader: {
         //headers
         color: 'white',
-        fontSize: 14,
-        width: '60%',
-        lineHeight: 18,
-        letterSpacing: .2,
+        fontWeight: 'bold',
+        fontSize: 17.5,
+        textAlign: 'center',
     },
-
-    textDescrip2: {
-        paddingTop: 10,
-        color: 'white',
-        fontSize: 14,
-        lineHeight: 18,
-        letterSpacing: .2,
-        width: '80%'
-    },
-
-    textDescripWrap: {
+    textDescrip:{
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: RFPercentage(2.1),
-
+        fontSize: 13,
         width: '60%',
-        lineHeight: 18,
-        letterSpacing: .2,
-        height: (Dimensions.get('window').width) * .35,
-        //flexGrow:10,  
-
     },
-
-    textDescripPlus: {
-        fontWeight: 'bold',
-        fontSize: 17,
-        lineHeight: 25,
-        letterSpacing: .2,
-        paddingTop: 10,
+    textDescrip2:{
+        // Text thats a description
         color: 'white',
-        width: '60%',
+        fontSize: 13,
+        width: '80%',
     },
-
-    textDescripWide: {
+    textDescripWide:{
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
-        //fontSize: RFPercentage(2.1), 
-        fontSize: 14,
-        width: '100%',
-        lineHeight: 18,
-        letterSpacing: .2
+        fontSize: 13,
+        width: '100%'
     },
-
-    textDescripWideTip: {
-        // Text thats a description but full width
-        paddingTop: 10,
-        color: 'white',
-        //opacity:.8,
-        //fontSize: RFPercentage(2.1), 
-        fontSize: 14,
-        width: '100%',
-        lineHeight: 18,
-        letterSpacing: .2,
-        paddingLeft: '5%',
-        paddingRight: '5%',
-        textAlign: 'center'
-
-    },
-
-    textHeader: {
-        //headers
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 19,
-        textAlign: 'center',
-    },
-
-    textSubHeader: {
-        //Text that goes under headers
-        color: 'white',
-        fontSize: 14,
-        textAlign: 'center',
-        lineHeight: 18,
-        letterSpacing: .2,
-        paddingTop: 2,
-        paddingBottom: 5
-    },
-
-    textSummary: {
-        // the summary of the step
-        color: 'white',
-        fontSize: 16,
-        paddingBottom: '6%',
-        lineHeight: 20,
-        letterSpacing: .2
-    },
-
-    textTitle: {
-        // Titles of the cards
-        color: 'white',
-        fontSize: 25,
-        fontWeight: 'bold'
-    },
-
-    textWideCenter: {
+    textWideCenter:{
         // Text thats a description but full width and centered
         paddingTop: 10,
         color: 'white',
@@ -609,21 +458,57 @@ const styles = StyleSheet.create({
         width: '100%',
         textAlign: 'center'
     },
-
-    ViewContainer: {
+    textSubHeader: {
+        //Text that goes under headers
+        color: 'white',
+        fontSize: 15,
+        textAlign: 'center'
+    },
+    textSummary: {
+        // the summary of the step
+        color: 'white',
+        fontSize: 15,
+    },
+    textTitle: {
+        // Titles of the cards
+        color: 'white',
+        fontSize: 20
+    },
+    ViewContainer:{
         // Holds the whole screen
-        flex: 1,
+        flex: 1, 
         //justifyContent: 'space-evenly', 
-        alignItems: 'center',
-        backgroundColor: '#121212',
+        alignItems: 'center', 
+        backgroundColor:'#121212',
         //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
-
-    viewMove: {
+    viewMove:{
         //Holds a move's picture and description
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-        width: '50%',
-        alignContent: 'center',
+        flexDirection: 'column', 
+        flexWrap: 'wrap', 
+        width: '50%', 
+        alignContent: 'center', 
+    },
+    contentLocal:{
+        fontSize:.1,
+        color:'transparent',
+        alignItems:'center'
+    },
+    
+    contentButtons:{
+        color:'#7600ff',
+        //textAlign:'center',
+        fontSize:20,
+        //textDecorationLine: 'underline',
+        fontWeight:'bold',
+        paddingTop:'5%',
+        top:'-30%'
+    },
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 25,
+        fontWeight:'bold',
+        
     },
 })
