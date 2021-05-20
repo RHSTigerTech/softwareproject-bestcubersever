@@ -21,54 +21,88 @@ export default class App extends Component {
         <SafeAreaView style={styles.background}>
             <View style={styles.ViewContainer} >
                 <View style={{height: '90%'}}>
-                
                     <ScrollView
                         ref={ref => (this.scrollViewRef = ref)}
                         style={styles.scroll}>
 
-                    
-                <Card containerStyle={{backgroundColor: '#121212'}}>
-                {/* should probably add or change description. */}
-                <Text style={styles.textDescripWideTip}>Intro to Advanced Methods.</Text>
-                <Text style={styles.textDescripWideTip}>
-                    There are plenty of advanced methods used to solve a rubiks cube. 
-                    They all have there pros and cons and it really comes down to which one 
-                    makes the most sense to you personally.  
-                </Text>
-
-
-                    </Card>
-
-                    <Card containerStyle={{backgroundColor: '#121212'}}>
-
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
+                            {/* should probably add or change description. */}
+                            <Text style={styles.textDescripWideTip}>Intro to Advanced Methods.</Text>
+                            <Text style={styles.textDescripWideTip}>
+                                There are plenty of advanced methods used to solve a rubiks cube. 
+                                They all have there pros and cons and it really comes down to which one 
+                                makes the most sense to you personally.  
+                            </Text>
+                        </Card>
+                        
                 {/* dont actually know what are considered advanced methods so i just put random ones down. Should probably be changed idk. 
                 The websites they naviagte to need to also be added/changed. Not sure what the best site to learn this would be */}
+                            {/* CFOP is what i did for intermediate so i'll take that out then try to find a different one to take its place so we still have 3 */}
 
                 {/* it also might make more sense to give advanced ways to solve each step rather than just three full advanced methods. 
                 Might be easier to find sites that have the steps to do a certain step of solving a rubiks cube rather than an entire method due to the length*/}
-                <Text style={styles.textDescripWideTip}>CFOP Method</Text>
-                <Text style={styles.textDescripWide}>Description</Text>
-                <Text style={styles.textDescripWide}>Pros:</Text>
-                <Text style={styles.textDescripWide}>Cons:</Text>
-                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('CFOP')}> Cube Basics </Text>
 
-                </Card>
-                <Card containerStyle={{backgroundColor: '#121212'}}>
-                <Text style={styles.textDescripWideTip}>ZZ Method</Text>
-                <Text style={styles.textDescripWide}>Description</Text>
-                <Text style={styles.textDescripWide}>Pros:</Text>
-                <Text style={styles.textDescripWide}>Cons:</Text>
-                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('ZZ')}> Cube Basics </Text>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
+                            <Text style={styles.textDescripWideTip}>ZZ Method</Text>
+                            <Text style={styles.textDescripWide}>
+                                This method has 3 steps and is focused on low move count and high turning speed.  During most of F2L, the 
+                                solver only has to make L, U, and R moves which reduces time taken up by cube rotations or hand 
+                                repositioning.  When the solver reaches the last layer, the edges are already oriented.
+                            </Text>
+                            <Text style={styles.textDescripWide}>
+                                Pros: 
+                                {'\n'}{'\t'}<B>1:</B> Reduced Move Set: The F2L step only uses R, U, and L moves and no cube rotations
+                                {'\n'}{'\t'}<B>2:</B> Lookahead: Having the edges pre-oriented greatly reduces the time spent on F2L.  Having 
+                                the cube in one orientation because you know where the edges are also reduces time because you aren't making 
+                                cube rotations.
+                                {'\n'}{'\t'}<B>3:</B> Efficiency: With pre-orientation of LL edges and blockbuilding-based F2L, this method 
+                                can be completed in around 55 moves.  
+                                {'\n'}{'\t'}<B>4:</B> Ease of Learning: The EOLine stage is the most difficult in ZZ and it is where most of 
+                                the difficulty is confined.  Intuitive blockbuilding in F2L and the 20 algorithms for a 2-look last layer are 
+                                easy to pick up and memorize.
+                                {'\n'}{'\t'}<B>5:</B> Felxibility: There are many systems to complete the last layer in a ZZ solve since edges 
+                                are preoriented.  Short cuts and tricks are easy to develop with blockbuilding F2L.
+                            </Text>
+                            <Text style={styles.textDescripWide}>
+                                Cons:
+                                {'\n'}{'\t'}<B>1:</B> Reliance on Inspection: If no inspection time is given, it becomes a problem because this 
+                                method is so reliant on it.
+                                {'\n'}{'\t'}<B>2:</B> Difficulty of EOLine: The EOLine step takes a long time to master.  It could take months 
+                                to have full EOLine inspection in 15 seconds.
+                                {'\n'}{'\t'}<B>3:</B> 2 Extra F2L Cubies to Solve: There are 2 more "cubies" to solve in ZZ F2L than CFOP F2L.
+                                {'\n'}{'\t'}<B>4:</B> Switching between L and R moves: This takes some time to get used to.
+                            </Text>
+                            <Text style={styles.NavigateScreenButtons} onPress={() => navigate('ZZ')}> Cube Basics </Text>
+                        </Card>
 
-                </Card>
-                <Card containerStyle={{backgroundColor: '#121212'}}>
-                <Text style={styles.textDescripWideTip}>Roux Method</Text>
-                <Text style={styles.textDescripWide}>Description</Text>
-                <Text style={styles.textDescripWide}>Pros:</Text>
-                <Text style={styles.textDescripWide}>Cons:</Text>
-                <Text style={styles.NavigateScreenButtons} onPress={() => navigate('Roux')}> Cube Basics </Text>
-
-                </Card>
+                        <Card containerStyle={{backgroundColor: '#121212'}}>
+                            <Text style={styles.textDescripWideTip}>Roux Method</Text>
+                            <Text style={styles.textDescripWide}>
+                                This method is based on blockbuilding and "corners first" methods.  It has a low move count, low number of 
+                                rotations, high number of M moves in the last step, and it can be adapted to One-Handed solving.
+                            </Text>
+                            <Text style={styles.textDescripWide}>
+                                Pros:
+                                {'\n'}{'\t'}<B>1:</B> Fewer Moves: This method uses less moves than CFOP.
+                                {'\n'}{'\t'}<B>2:</B> Intuitive: There is less algorithms to memorize.
+                                {'\n'}{'\t'}<B>3:</B> Fewer Rotations: The cube can be solved with mostly R, r, M, and U moves after the first 
+                                block is built.
+                                {'\n'}{'\t'}<B>4:</B> Fast and Few Algorithms: CMLL only has 42 cases and most are fast algorithms from OLLCPs 
+                                from CFOP.
+                                {'\n'}{'\t'}<B>5:</B> Lookahead and Inspection: This method allows for rapid improvement of lookahead and 
+                                inspection because of the intuitiveness and blockbuilding nature.
+                            </Text>
+                            <Text style={styles.textDescripWide}>
+                                Cons:
+                                {'\n'}{'\t'}<B>1:</B> Block Building: This can be difficult to get used to for beginners.
+                                {'\n'}{'\t'}<B>2:</B> Larger Chance of DNE: There is a larger chance of a DNE instead of a +2 in competitions 
+                                because M is used so often.
+                                {'\n'}{'\t'}<B>3:</B> M on Larger Puzzles: Once you get to puzzles like 7x7x7 and 6x6x6 or larger, the M moves 
+                                get increasingly difficult.
+                                {'\n'}{'\t'}<B>4:</B> M on One-Handed: M moves are hard to do one handed without a table to set the cube on.
+                            </Text>
+                            <Text style={styles.NavigateScreenButtons} onPress={() => navigate('Roux')}> Cube Basics </Text>
+                        </Card>
                     </ScrollView>
                 </View>
                 

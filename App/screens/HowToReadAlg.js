@@ -471,6 +471,11 @@ const styles = StyleSheet.create({
     textDescrip: {
         // Text thats a description
         paddingTop: 10,
+        color: 'white',
+        fontSize: 14,
+        width: '60%',
+        lineHeight: 18,
+        letterSpacing: .2,
     },
 
     BottomTabText: {

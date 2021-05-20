@@ -23,13 +23,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BackHandler, Alert } from 'react-native';
 
-
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
-
-
 
 const App = () => {
 
@@ -39,9 +34,7 @@ const App = () => {
       BackHandler.removeEventListener('hardwareBackPress', () => true)
   }, [])
   return (
-
     <NavigationContainer>
-
       <Stack.Navigator>
         {/*   Home Screens   */}
         <Stack.Screen
@@ -50,8 +43,6 @@ const App = () => {
           options={{ headerTitle: 'Virtual Cube', headerStyle: { backgroundColor: '#121212' }, headerTintColor: '#fff' }}
 
         />
-
-
 
         <Stack.Screen
           name="Gradient"
@@ -142,12 +133,6 @@ const App = () => {
 
         />
 
-
-        <Stack.Screen
-          name='CFOP'
-          component={CFOP}
-          options={{ gestureEnabled: false }}
-        />
         <Stack.Screen
           name='ZZ'
           component={ZZ}
