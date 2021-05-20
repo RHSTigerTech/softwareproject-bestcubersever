@@ -57,7 +57,7 @@ export default class App extends Component {
         
 
         <Button onPress={() => {{defaultCube=false} push('White')}} title="Take a photo" />
-        <Button onPress={() => {{defaultCube=true} push('confirmWhite')}} title="confirm" />
+        <Button onPress={() => {{defaultCube=true} navigate('confirmWhite')}} title="confirm" />
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}

@@ -31,51 +31,43 @@ const colorPosition=['u', 'b', 'l', 'f', 'r', 'd']
 let amount =1;
 let colorName='';
 
-let colorSwitch1=0;
+let colorSwitch1;
 let startColor1;
 let PhotoColor1;
 
-let colorSwitch2=0;
+let colorSwitch2;
 let startColor2;
 let PhotoColor2;
 
-let colorSwitch3=0;
+let colorSwitch3;
 let startColor3;
 let PhotoColor3;
 
-let colorSwitch4=0;
+let colorSwitch4;
 let startColor4;
 let PhotoColor4;
 
-let colorSwitch5=0;
+let colorSwitch5;
 let startColor5;
 let PhotoColor5;
 
-let colorSwitch6=0;
+let colorSwitch6;
 let startColor6;
 let PhotoColor6;
 
-let colorSwitch7=0;
+let colorSwitch7;
 let startColor7;
 let PhotoColor7;
 
-let colorSwitch8=0;
+let colorSwitch8;
 let startColor8;
 let PhotoColor8;
 
-let colorSwitch9=0;
+let colorSwitch9;
 let startColor9;
 let PhotoColor9;
 
-startColor1=0
-startColor2=0
-startColor3=0
-startColor4=0
-startColor5=2
-startColor6=0
-startColor7=0
-startColor8=0
-startColor9=0
+
   
 let data1;
 let data2;
@@ -126,6 +118,26 @@ export default class App extends Component {
     constructor(props){
         super(props);
         if(defaultCube==true){
+          
+          colorSwitch1=0
+          colorSwitch2=0
+          colorSwitch3=0                          
+          colorSwitch4=0                          
+          colorSwitch5=0                          
+          colorSwitch6=0                          
+          colorSwitch7=0                          
+          colorSwitch8=0                          
+          colorSwitch9=0
+          startColor1=0
+          startColor2=0
+          startColor3=0
+          startColor4=0
+          startColor5=2
+          startColor6=0
+          startColor7=0
+          startColor8=0
+          startColor9=0
+
            data1=colorPosition[startColor1]
 
  data2=colorPosition[startColor2]
