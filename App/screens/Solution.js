@@ -98,29 +98,40 @@ export default class App extends Component {
 
     const cubeSolver= require('cube-solver');
 
+    const newSolver = require('cubejs');
+
+    newSolver.initSolver();
+
+    const newCube= new newSolver()
+
+// Create a new solved cube instance
+//const cube = new Cube();
+
+
+
 
 
 
     let CrossStepImages=[];
     let CrossStepText=[];
 
-    // let cubeState = [
-    //   totalPositionGreenSide, // front
-    //   totalPositionRedSide, // right
-    //   totalPositionWhiteSide, // up
-    //   totalPositionYellowSide, // down
-    //   totalPositionOrangeSide, // left
-    //   totalPositionBlueSide // back
-    // ].join('');
-
     let cubeState = [
-      'flulfbddr', // front
-      'rudrruddl', // right
-      'dbbburrfb', // up
-      'llffdrubf', // down
-      'rludlubrf', // left
-      'lubfbfudl' // back
+      totalPositionGreenSide, // front
+      totalPositionRedSide, // right
+      totalPositionWhiteSide, // up
+      totalPositionYellowSide, // down
+      totalPositionOrangeSide, // left
+      totalPositionBlueSide // back
     ].join('');
+
+    // let cubeState = [
+    //   'flulfbddr', // front
+    //   'rudrruddl', // right
+    //   'dbbburrfb', // up
+    //   'llffdrubf', // down
+    //   'rludlubrf', // left
+    //   'lubfbfudl' // back
+    // ].join('');
     let options = { partitioned: true };
     let solveMoves = solver(cubeState, options);
     let solveMovesString = solver(cubeState);
@@ -252,6 +263,12 @@ console.log('---------------------')
     let scrambleTest= reverseStep.join(',')
     scrambleTest=scrambleTest.replace(/,/g, ' ')
     scrambleTest=scrambleTest.replace(/prime/g, '\'')
+    newCube.move(scrambleTest)
+    // newCube.initSolver();
+    //console.log(newCube.solve([30]))
+    console.log('yo0000000000000000000')
+    let cubeSolutionString= newCube.solve([30])
+    let finalSolution=cubeSolutionString.split(' ')
     scrambleTest=scrambleTest.replace(/l'/g, 'L\' M\'')
     scrambleTest=scrambleTest.replace(/b'/g, 'B\' S')
     scrambleTest=scrambleTest.replace(/d'/g, 'D\' E E E')
@@ -269,10 +286,10 @@ console.log('---------------------')
     //const scramble = `D' R' D' R B2 d B' D B D' B D' E E E B2 B' S D2 B D B' D b R' D' R D2 R' D' R D2 F D' F' B' D B D' B' D B D' B' D B D R D' R' B D' B' D' U B U' R U' L' U U L U' B U F U'`;
     const scramble = `D' L D2 L' D B' D' B D2 F D F2 D' F D2 L2 D2 L D L' D L2 D B D' B' D' R' D R B D2 B2 D' B D' B' D2 R B R' B' D' B L2 d L' D L D' L D' E E E L2 D`;
 
-    console.log(cubeSolver.solve(scrambleTest))
+    //console.log(cubeSolver.solve(scrambleTest))
 
-    let finalSolutionString=cubeSolver.solve(scrambleTest)
-    let finalSolution=finalSolutionString.split(' ')
+    // let finalSolutionString=cubeSolver.solve(scrambleTest)
+    // let finalSolution=finalSolutionString.split(' ')
     console.log(finalSolution)
     const {navigate} = this.props.navigation;
 //create function that return a text input depending on the the string type
