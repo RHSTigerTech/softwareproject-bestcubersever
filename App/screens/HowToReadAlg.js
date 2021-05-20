@@ -413,7 +413,18 @@ const styles = StyleSheet.create({
         // Scroll view
         backgroundColor: "transparent",
     },
-    BottomTabText:{
+
+    textDescrip: {
+        // Text thats a description
+        paddingTop: 10,
+        color: 'white',
+        fontSize: 14,
+        width: '60%',
+        lineHeight: 18,
+        letterSpacing: .2,
+    },
+
+    BottomTabText: {
         //Text used for the bottom menu
         fontSize:10,
         color:'white',
@@ -428,13 +439,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 17.5,
         textAlign: 'center',
-    },
-    textDescrip:{
-        // Text thats a description
-        paddingTop: 10,
-        color: 'white',
-        fontSize: 13,
-        width: '60%',
     },
     textDescrip2:{
         // Text thats a description
