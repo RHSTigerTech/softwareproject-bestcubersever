@@ -167,6 +167,17 @@ export default class App extends Component {
     reverseStep = reverseStep.filter(e => e !== 'oll'); 
     console.log(reverseStep)
 
+for(let i=0;i<reverseStep.length;i++){
+  if(reverseStep[i]=='R'){
+    reverseStep[i]='Rprime'
+  }
+  else if(reverseStep[i]=='Rprime'){
+    reverseStep[i]='R'
+  }
+}
+console.log(reverseStep)
+console.log('---------------------')
+
     let scrambleTest= reverseStep.join(',')
     scrambleTest=scrambleTest.replace(/,/g, ' ')
     scrambleTest=scrambleTest.replace(/prime/g, '\'')
@@ -185,6 +196,7 @@ export default class App extends Component {
     //crossSteps= solveMoves.cross.join(',')
     //crossSteps=crossSteps.replace(/,/g, ' ')
     //const scramble = `D' R' D' R B2 d B' D B D' B D' E E E B2 B' S D2 B D B' D b R' D' R D2 R' D' R D2 F D' F' B' D B D' B' D B D' B' D B D R D' R' B D' B' D' U B U' R U' L' U U L U' B U F U'`;
+    const scramble = `U2 B2 D R' F R2 U2 L D R2 L2 F2 U R2 U' L2 D F2 R2`;
 
     console.log(cubeSolver.solve(scrambleTest,'kociemba'))
 
