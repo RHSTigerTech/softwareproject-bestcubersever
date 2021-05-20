@@ -9,8 +9,7 @@ import { Button, Menu, Divider, Provider, Text, Dialog, Portal } from 'react-nat
 import {LineChart,BarChart,PieChart,ProgressChart,ContributionGraph,StackedBarChart} from "react-native-chart-kit";
 import { View } from "react-native";
 import AwesomeButton from "react-native-really-awesome-button";
-import {newList, randomthing} from './NumberList'
-import _ from 'lodash';
+import _, { last } from 'lodash';
 import {isEqual} from 'lodash/isEqual'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ErrorBoundary from "./ErrorBoundary";
@@ -152,6 +151,10 @@ export {data};
 
     let Avg5=0.0;
 
+    let Avg10=0.0;
+
+    
+
     let notEnough5='Not enough data'
 
     let floatnum;
@@ -168,11 +171,11 @@ export {data};
     
     // console.log(height)
 
-    console.log('height of window')
-    console.log((Dimensions.get('window').height))
+    // console.log('height of window')
+    // console.log((Dimensions.get('window').height))
 
-    console.log('height of screen')
-    console.log((Dimensions.get('screen').height))
+    // console.log('height of screen')
+    // console.log((Dimensions.get('screen').height))
 
 
     // let iosStatusBar=getStatusBarHeight(true);
@@ -198,6 +201,7 @@ export {data};
         numData.push(parseFloat(data[i])) 
       }    
       floatnum=parseFloat(data[i])
+      
       average=floatnum+average 
       
       if(data[i]==0){
@@ -255,6 +259,60 @@ export {data};
     Avg5=Avg5/5
     //console.log(Avg5)
     }
+
+    //3 of 5
+    let stored3of5=[];
+    stored3of5 = arrSort.slice(Math.max(arrSort.length - 5, 0))
+    let last5= numData.slice(Math.max(arrSort.length - 5, 0))
+    let last5sorted=last5.slice(0).sort(sorter)
+    last5sorted.pop()
+    last5sorted.shift()
+    let total5=0.0;
+    if(data.length>=5){
+    for(let i=0;i<3;i++){
+      total5=last5sorted[i]+total5
+    }
+    total5=total5/3
+  }
+
+  //3 of 5
+  let stored10of12=[];
+  stored10of12 = arrSort.slice(Math.max(arrSort.length - 12, 0))
+  let last12= numData.slice(Math.max(arrSort.length - 12, 0))
+  let last12sorted=last12.slice(0).sort(sorter)
+  last12sorted.pop()
+  last12sorted.shift()
+  //console.log(last12sorted)
+  let total12=0.0;
+  if(data.length>=12){
+  for(let i=0;i<10;i++){
+    total12=last12sorted[i]+total12
+  }
+  total12=total12/10
+}
+
+let best10=[];
+let best10Avg=0.0;
+
+if(data.length>=10){
+    best10=arrSort.slice(0,10)
+    for(let i=0;i<10;i++){
+      best10Avg=best10[i]+best10Avg
+    }
+    best10Avg=best10Avg/10
+}
+
+
+//console.log(best10)
+
+    if(data.length>=10){
+      for(let i=data.length-1;i>data.length-11;i--){
+          floatnum=parseFloat(data[i])
+          Avg10=floatnum+Avg10
+      }
+      Avg10=Avg10/10
+      //console.log(Avg5)
+      }
     
     //Best 3 of 5
     // if(data.length>=5){
@@ -333,17 +391,13 @@ export {data};
         <Card.Divider/>
         <Text style={styles.textSummary}>Avg 5: {Avg5.toFixed(3)}</Text>
         <Card.Divider/>
-        {/* start at the first 5 numbers and sort them.
-            remove the fastest and slowest times and take that average of the other 3
-            assign this average to best 3 of 5
-            then do the same for numbers 1-6 then 2-7 etc...
-            if one of these averages is lower than the assigned average replace it
-             */}
-        <Text style={styles.textSummary}>Best 3 of 5: not added</Text>
+        <Text style={styles.textSummary}>3 of 5: {total5.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Avg 12: not added</Text>
+        <Text style={styles.textSummary}>Avg 10: {Avg10.toFixed(3)}</Text>
         <Card.Divider/>
-        <Text style={styles.textSummary}>Best 10 of 12: not added</Text>
+        <Text style={styles.textSummary}>10 of 12: {total12.toFixed(3)}</Text>
+        <Card.Divider/>
+        <Text style={styles.textSummary}>Best 10 Avg: {best10Avg.toFixed(3)}</Text>
         <Card.Divider/>
       </ScrollView>
     </Card>
