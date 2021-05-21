@@ -14,9 +14,10 @@ import { Camera } from "expo-camera";
 import { Video } from "expo-av";
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
-const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.032);
+const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.14);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
 export default function App() {
+  const [imageUri, setImageUri]= useState(null);
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
   const [isPreview, setIsPreview] = useState(false);
@@ -33,11 +34,15 @@ export default function App() {
   const onCameraReady = () => {
     setIsCameraReady(true);
   };
+
+ 
+
   const takePicture = async () => {
     if (cameraRef.current) {
       const options = { quality: 0.5, base64: true, skipProcessing: true };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
+      setImageUri(data.uri)
       if (source) {
         await cameraRef.current.pausePreview();
         setIsPreview(true);
@@ -45,6 +50,33 @@ export default function App() {
       }
     }
   };
+
+  const uploadImageAsync = (pictureuri) =>{
+    let apiUrl= 'https://metal-density-310218.wl.r.appspot.com/endpoint';
+    var data= new FormData();
+    data.append('file',{
+      uri:pictureuri,
+      name:'white666666.jpeg',
+      type:'image/jpeg'
+    })
+    fetch(apiUrl, {
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+      method: 'POST',
+      body:data
+    }).then(
+      response => {
+        console.log('succ ')
+        console.log(response)
+      }
+      ).catch(err => {
+      console.log('err ')
+      console.log(err)
+      amount--;
+    } )
+  }
   const recordVideo = async () => {
     if (cameraRef.current) {
       try {
@@ -86,12 +118,31 @@ export default function App() {
     setIsPreview(false);
     setVideoSource(null);
   };
+  const SendPreview = async () => {
+    await cameraRef.current.resumePreview();
+    uploadImageAsync(imageUri);
+    setIsPreview(false);
+    setVideoSource(null);
+  };
+
+  
   const renderCancelPreviewButton = () => (
     <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
-      <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
+      {/* <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
       <View
         style={[styles.closeCross, { transform: [{ rotate: "-45deg" }] }]}
-      />
+      /> */}
+      <Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>Retake</Text>
+    </TouchableOpacity>
+  );
+
+  const renderSendPreviewButton = () => (
+    <TouchableOpacity onPress={SendPreview} style={styles.SendButton}>
+      {/* <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
+      <View
+        style={[styles.closeCross, { transform: [{ rotate: "-45deg" }] }]}
+      /> */}
+      <Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>Send</Text>
     </TouchableOpacity>
   );
   const renderVideoPlayer = () => (
@@ -161,6 +212,7 @@ export default function App() {
         {isVideoRecording && renderVideoRecordIndicator()}
         {videoSource && renderVideoPlayer()}
         {isPreview && renderCancelPreviewButton()}
+        {isPreview && renderSendPreviewButton()}
         {!videoSource && !isPreview && renderCaptureControl()}
         {renderGrid()}
       </View>
@@ -173,15 +225,28 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: "absolute",
-    top: 35,
-    left: 15,
+    top: '80%',
+    left: '10%',
     height: closeButtonSize,
-    width: closeButtonSize,
-    borderRadius: Math.floor(closeButtonSize / 2),
+    width: closeButtonSize*1.5,
+    borderRadius: Math.floor(closeButtonSize / 4),
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#c4c5c4",
-    opacity: 0.7,
+    backgroundColor: "#121212",
+    //opacity: 1,
+    zIndex: 2,
+  },
+  SendButton: {
+    position: "absolute",
+    top: '80%',
+    right: '10%',
+    height: closeButtonSize,
+    width: closeButtonSize*1.5,
+    borderRadius: Math.floor(closeButtonSize / 4),
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#121212",
+    //opacity: 1,
     zIndex: 2,
   },
   media: {
