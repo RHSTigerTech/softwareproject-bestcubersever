@@ -16,7 +16,7 @@ export default class App extends Component {
                             style={styles.scroll}
                         >
                             <Card containerStyle={{ backgroundColor: '#121212' }}>
-                                <Card.Title style={styles.ContentsTitle}>Steps{/* Card Title*/}</Card.Title>
+                                <Card.Title style={styles.ContentsTitle}>Algorithm Steps{/* Card Title*/}</Card.Title>
                                 <Card.Divider />
                                 <TouchableOpacity
                                     onPress={() => {
@@ -35,13 +35,20 @@ export default class App extends Component {
                             </Card>
 
                             <Text onLayout={event => (this.beginner = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-                            <Card containerStyle={{ backgroundColor: 'black' }}>
+                            <Card containerStyle={{ backgroundColor: '#121212' }}>
                                 <Card.Title style={styles.textTitle}>Beginner's Method</Card.Title>
                                 <Card.Divider />
                                 <Text style={styles.textHeader}>Step 4: Orient Yellow Edges</Text>
                                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_L.png')} />
-                                    <Text style={styles.textDescrip}>U2 F (R' U' R U) F'</Text>
+                                    
+                                    <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_line.png')}/>
+                                <Text style={styles.textDescrip}>Line{'\n'}F (R U R' U') F'</Text>
+                            
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_L.png')}/>
+                                <Text style={styles.textDescrip}>L-shape{'\n'}Fw (R U R' U') Fw'</Text>
+                            
+                                <Image style={styles.imageEx} source={require('../Assets/beginners/b_ye_dot.png')}/>
+                                <Text style={styles.textDescrip}>Dot{'\n'}F R U R' U' F' Fw (R U R' U') Fw'</Text>
                                 </View>
 
                                 <Text style={styles.textHeader}>Step 5: Orient Yellow Corners</Text>
@@ -147,7 +154,7 @@ export default class App extends Component {
 
 
                             <Text onLayout={event => (this.intermediate = event.nativeEvent.layout)} style={styles.contentLocal}>y</Text>
-                            <Card containerStyle={{ backgroundColor: 'black' }}>
+                            <Card containerStyle={{ backgroundColor: '#121212' }}>
                                 <Card.Title style={styles.textTitle}>Intermediate Method</Card.Title>
                                 <Card.Divider />
                                 <Text style={styles.textHeader}>3: Orient Last Layer (OLL)</Text>
@@ -820,6 +827,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
         width: '60%',
+        fontWeight:'bold',
         lineHeight: 18,
         letterSpacing: .2,
     },

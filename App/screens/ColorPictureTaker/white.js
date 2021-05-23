@@ -40,7 +40,7 @@ export default function App() {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 1, base64: true, skipProcessing: true };
+      const options = { quality: 1, base64: true, skipProcessing: true, aspect: [4, 3] };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       
