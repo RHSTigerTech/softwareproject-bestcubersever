@@ -1078,6 +1078,12 @@ data4=colorPosition[PhotoColor4]
       image
     } = this.state;
     
+    const Item= ({}) => (
+      <View style={{marginHorizontal: '-15%', left:'29%', paddingBottom:'30%'}}>
+        <Text style={{color:'white', fontSize:30}}>YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+      </View>
+      );
+
     
     return (
       <View style={{backgroundColor:'#121212', flex:1}}>
@@ -1173,7 +1179,7 @@ data4=colorPosition[PhotoColor4]
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => {navigate('Solution'), console.log(totalPositionYellowSide), console.log('final')}}
+                        onPress={() => {Item(), navigate('Solution'), console.log(totalPositionYellowSide), console.log('final')}}
                     >
                     <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>

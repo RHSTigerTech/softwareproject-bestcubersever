@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Camera } from "expo-camera";
 import { Video } from "expo-av";
+import * as ImageManipulator from 'expo-image-manipulator';
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.14);
@@ -39,9 +40,11 @@ export default function App() {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.5, base64: true, skipProcessing: true };
+      const options = { quality: 1, base64: true, skipProcessing: true };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
+      
+      ImageManipulator.manipulateAsync(data.uri, [{resize:{width:600, height:480}}], {compress:1, format:ImageManipulator.SaveFormat.JPEG})
       setImageUri(data.uri)
       if (source) {
         await cameraRef.current.pausePreview();
