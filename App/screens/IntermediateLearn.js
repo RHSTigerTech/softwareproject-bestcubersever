@@ -52,7 +52,7 @@ export default class App extends Component {
                                     <Text style={styles.contentButtons}>4. Permute Last Layer (PLL)</Text>
                                 </TouchableOpacity>
                             </Card>
-
+                            
                             <View style={styles.pageHeader}>
                                 <Text style={styles.AboveSubHeader}>
                                     {'\n'}
@@ -827,7 +827,7 @@ const styles = StyleSheet.create({
         //headers
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 17.5,
+        fontSize: 19,
         textAlign: 'center',
     },
 
@@ -850,27 +850,36 @@ const styles = StyleSheet.create({
         paddingHorizontal: '1%'
     },
 
+    
     textDescrip: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: 13,
+        fontSize: 14,
         width: '60%',
+        lineHeight: 18,
+        letterSpacing: .2,
     },
 
     textDescripWide: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
-        fontSize: 13,
-        width: '100%'
+        //fontSize: RFPercentage(2.1), 
+        fontSize: 14,
+        width: '100%',
+        lineHeight: 18,
+        letterSpacing: .2
     },
+    
 
-    textWideCenter: {
+    textWideCenter:{
         // Text thats a description but full width and centered
         paddingTop: 10,
+        lineHeight: 18,
+        letterSpacing: .2,
         color: 'white',
-        fontSize: 13,
+        fontSize: 15,
         fontWeight: 'bold',
         width: '100%',
         textAlign: 'center'
@@ -879,11 +888,13 @@ const styles = StyleSheet.create({
     AboveSubHeader: {
         //same as text sub header but without text align center
         color: 'white',
-        fontSize: 15,
+        fontSize: 16,
         //textAlign: 'center',
-        marginHorizontal: '3%'
+        marginHorizontal: '3%',
+        lineHeight: 20,
+        letterSpacing: .2
     },
-
+    
     textSubHeader: {
         //Text that goes under headers
         color: 'white',
@@ -899,7 +910,7 @@ const styles = StyleSheet.create({
     ContentsTitle: {
         // Table of contents title
         color: 'white',
-        fontSize: 23,
+        fontSize: 25,
         fontWeight: 'bold',
 
     },
@@ -917,7 +928,10 @@ const styles = StyleSheet.create({
     textSummary: {
         // the summary of the step
         color: 'white',
-        fontSize: 15,
+        fontSize: 16,
+        paddingBottom: '6%',
+        lineHeight: 20,
+        letterSpacing: .2
     },
 
     textTitle: {
