@@ -1154,7 +1154,9 @@ data4=colorPosition[PhotoColor4]
   <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="green" strokeWidth="10" pointerEvents="none"/>
   </Svg>
       <View style={{flex:2}}>
-      
+      <Card containerStyle={{backgroundColor:'#121212', top:'15%'}}>
+  <Text style={styles.Warning}> Make sure the outside grid colors correspond with each faces center.</Text>
+  </Card>
       </View>
       
       <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
@@ -1170,7 +1172,7 @@ data4=colorPosition[PhotoColor4]
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => push('Scanner')}
+                        onPress={() => navigate('Scanner')}
                     >
                     <Text style={styles.BottomTabTextLeft}>Back</Text>
                     </Icon.Button>

@@ -10,6 +10,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Alert
 } from 'react-native';
 import Svg, {Line, Polygon} from 'react-native-svg'
 
@@ -23,6 +24,7 @@ import {Card} from 'react-native-elements';
 
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.children}</Text>
 
+let show=true;
 
 let checkState=defaultCube;
 const colors=['white', 'blue', 'darkorange', 'green', 'red', 'yellow' ]
@@ -175,7 +177,7 @@ export default class App extends Component {
           buttonColor7:'grey',
           buttonColor8:'grey',
           buttonColor9:'grey',
-            
+          isLoading:false
         }
       }
       else{
@@ -231,14 +233,34 @@ data4=colorPosition[PhotoColor4]
           
       }
       }
+      //this.isLoading=this.isLoading.bind(this);
+
     }
 
-  state = {
-    image: null,
-    uploading: false,
+  
+  //this.addUser=this.addUser.bind(this);
+
+
+  doSignup = () => {
+    this.setState({ isLoading: true });
+    // await asyncSignupFunction();
+    // this.setState({ isLoading: false })
+    
   };
 
-  
+  createTwoButtonAlert = () =>{
+    const {navigate} = this.props.navigation;
+    this.setState({ isLoading: true });
+    //navigate('Solution')
+    Alert.alert(
+      "Loading Solution",
+      "This can take a while the first time. Press OK to start loading.",
+      [
+        
+        { text: "OK", onPress: () => {navigate('Solution')} }
+      ]
+    );
+    }
   onButtonPress1 = () => {
       if(colorSwitch1==1){
         this.setState({buttonColor1: 'white'});
@@ -1078,35 +1100,61 @@ data4=colorPosition[PhotoColor4]
       image
     } = this.state;
     
+    const Item= ({}) => (
+      <View style={{marginHorizontal: '-15%', left:'29%', paddingBottom:'30%'}}>
+        <Text style={{color:'white', fontSize:30}}>YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
+      </View>
+      );
+    function LoadingSolver(){
+      return(
+        <View style={{position:'absolute'}} >
+          
+          {console.log('yoooooo')}
+
+          <ActivityIndicator size="large" color="white" />
+          <Text style={styles.Warning}>Calculating Solve. Depeding on your phone and connection this may take a while.</Text>
+
+        </View>
+      )
+    }
+  
+
     
     return (
+
       <View style={{backgroundColor:'#121212', flex:1}}>
+        
 <StatusBar barStyle="default" />
 <View style={{position:'absolute',left:0, right:0}}>
 <Card containerStyle={{backgroundColor:'#121212'}}>
+
   <Text style={styles.Warning}><B>Warning:</B> Going back will reset the state of the current side.</Text>
   </Card>
 </View>
 <View style={{flex:2}}></View>
+
       <View style={styles.topcontainer}>
-      
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor7, width:70, height:70}} onPress={colorSwitch7++,  this.onButtonPress7} />
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor4, width:70, height:70}} onPress={colorSwitch4++,  this.onButtonPress4} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor1, width:70, height:70}} onPress={colorSwitch1++, this.onButtonPress1} />
-        <Button buttonStyle={{backgroundColor:this.state.buttonColor2, width:70, height:70}} onPress={colorSwitch2++,  this.onButtonPress2} />
-        <Button buttonStyle={{backgroundColor:this.state.buttonColor3, width:70, height:70}} onPress={colorSwitch3++,  this.onButtonPress3} />  
+
         
 
       </View>
 
       <View style={styles.middlecontainer}>
-        <Button buttonStyle={{backgroundColor:this.state.buttonColor4, width:70, height:70}} onPress={colorSwitch4++,  this.onButtonPress4} />
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor8, width:70, height:70}} onPress={colorSwitch8++,  this.onButtonPress8} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor5, width:70, height:70}} onPress={colorSwitch5++,  this.onButtonPress5} />
-        <Button buttonStyle={{backgroundColor:this.state.buttonColor6, width:70, height:70}} onPress={colorSwitch6++,  this.onButtonPress6} />   
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor2, width:70, height:70}} onPress={colorSwitch2++,  this.onButtonPress2} />
+
       </View>
 
       <View style={styles.bottomcontainer}>
-        <Button buttonStyle={{backgroundColor:this.state.buttonColor7, width:70, height:70}} onPress={colorSwitch7++,  this.onButtonPress7} />
-        <Button buttonStyle={{backgroundColor:this.state.buttonColor8, width:70, height:70}} onPress={colorSwitch8++,  this.onButtonPress8} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor9, width:70, height:70}} onPress={colorSwitch9++,  this.onButtonPress9} />   
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor6, width:70, height:70}} onPress={colorSwitch6++,  this.onButtonPress6} />   
+        <Button buttonStyle={{backgroundColor:this.state.buttonColor3, width:70, height:70}} onPress={colorSwitch3++,  this.onButtonPress3} />  
+
+
       </View>
       <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
   <Line x1="10%" y1="37%" x2="90%" y2="37%" stroke="white" strokeWidth="2" pointerEvents="none"/>
@@ -1118,7 +1166,7 @@ data4=colorPosition[PhotoColor4]
   <Line x1="10%" y1="53%" x2="90%" y2="53%" stroke="white" strokeWidth="2" pointerEvents="none"/>
   </Svg>
       <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="10%" y1="20%" x2="10%" y2="70%" stroke="darkorange" strokeWidth="10" pointerEvents="none"  />
+  <Line x1="10%" y1="20%" x2="10%" y2="70%" stroke="blue" strokeWidth="10" pointerEvents="none"  />
   </Svg>
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
   <Line x1="37.5%" y1="20%" x2="37.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
@@ -1127,20 +1175,22 @@ data4=colorPosition[PhotoColor4]
   <Line x1="62.5%" y1="20%" x2="62.5%" y2="70%" stroke="white" strokeWidth="2" pointerEvents="none"/>
   </Svg>
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="90%" y1="20%" x2="90%" y2="70%" stroke="red" strokeWidth="10" pointerEvents="none"/>
+  <Line x1="90%" y1="20%" x2="90%" y2="70%" stroke="green" strokeWidth="10" pointerEvents="none"/>
   </Svg>
 
 
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="8.5%" y1="20%" x2="91.5%" y2="20%" stroke="green" strokeWidth="10" pointerEvents="none"/>
+  <Line x1="8.5%" y1="20%" x2="91.5%" y2="20%" stroke="darkorange" strokeWidth="10" pointerEvents="none"/>
 </Svg>
 
 
   <Svg height="100%" width="100%" position='absolute' pointerEvents='none' >
-  <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="blue" strokeWidth="10" pointerEvents="none"/>
+  <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="red" strokeWidth="10" pointerEvents="none"/>
   </Svg>
       <View style={{flex:2}}>
-      
+      <Card containerStyle={{backgroundColor:'#121212', top:'15%'}}>
+  <Text style={styles.Warning}> Make sure the outside grid colors correspond with each faces center.</Text>
+  </Card>
       </View>
       <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
         <View style={{paddingRight:'25%'}}>
@@ -1173,10 +1223,16 @@ data4=colorPosition[PhotoColor4]
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => {navigate('Solution'), console.log(totalPositionYellowSide), console.log('final')}}
-                    >
+                        onPress={this.createTwoButtonAlert}
+                      >
                     <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>
+                    </View>
+                    <View style={{position:'absolute'}}>
+                      {console.log(this.state.isLoading)}
+                    <ActivityIndicator size="large" color="white" animating={this.state.isLoading} />
+
+
                     </View>
 
       </View>
@@ -1226,6 +1282,15 @@ const styles = StyleSheet.create({
     paddingVertical:'5%',
     backgroundColor:'#121212',
     
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10
   },
   BottomTabTextLeft:{
     //Text used for the bottom menu

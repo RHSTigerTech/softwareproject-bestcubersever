@@ -36,10 +36,12 @@ import Solution from './App/screens/Solution'
 import recieveColors from './App/screens/recieveColors'
 
 import {NavigationContainer} from '@react-navigation/native'
-import {createStackNavigator} from '@react-navigation/stack';
+
+
+import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import {BackHandler, Alert} from 'react-native';
+import {BackHandler, Alert, Button} from 'react-native';
 import {SafeAreaProvider, SafeAreaView } from 'react-native';
 
 const Stack = createStackNavigator();

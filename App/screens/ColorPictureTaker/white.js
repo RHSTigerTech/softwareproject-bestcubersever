@@ -10,13 +10,31 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
+import {val} from '../PictureTaker';
 import { Camera } from "expo-camera";
 import { Video } from "expo-av";
+import {Card} from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+
+import * as ImageManipulator from 'expo-image-manipulator';
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
-const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.032);
+const w= Dimensions.get("window").width;
+const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.14);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
+let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
+const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.children}</Text>
+const Green = (props) => <Text style={{color:'green'}}>{props.children}</Text>
+const Red = (props) => <Text style={{color:'red'}}>{props.children}</Text>
+const Blue = (props) => <Text style={{color:'blue'}}>{props.children}</Text>
+const Orange = (props) => <Text style={{color:'darkorange'}}>{props.children}</Text>
+const Yellow = (props) => <Text style={{color:'yellow'}}>{props.children}</Text>
+const White = (props) => <Text style={{color:'white'}}>{props.children}</Text>
+
+
+
 export default function App() {
+  const [imageUri, setImageUri]= useState(null);
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
   const [isPreview, setIsPreview] = useState(false);
@@ -33,11 +51,17 @@ export default function App() {
   const onCameraReady = () => {
     setIsCameraReady(true);
   };
+
+ 
+
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.5, base64: true, skipProcessing: true };
+      const options = { quality: 1, base64: true, skipProcessing: true };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
+      
+      ImageManipulator.manipulateAsync(data.uri, [{resize:{width:600, height:480}}], {compress:1, format:ImageManipulator.SaveFormat.JPEG})
+      setImageUri(data.uri)
       if (source) {
         await cameraRef.current.pausePreview();
         setIsPreview(true);
@@ -45,6 +69,34 @@ export default function App() {
       }
     }
   };
+
+  const uploadImageAsync = (pictureuri) =>{
+    let apiUrl= 'https://metal-density-310218.wl.r.appspot.com/endpoint';
+    var data= new FormData();
+    console.log('white'+val+'.'+fileType)
+    data.append('file',{
+      uri:pictureuri,
+      name:'white'+val+'.'+fileType,
+      type:'image/'+fileType
+    })
+    fetch(apiUrl, {
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+      method: 'POST',
+      body:data
+    }).then(
+      response => {
+        console.log('succ ')
+        console.log(response)
+      }
+      ).catch(err => {
+      console.log('err ')
+      console.log(err)
+      amount--;
+    } )
+  }
   const recordVideo = async () => {
     if (cameraRef.current) {
       try {
@@ -86,14 +138,40 @@ export default function App() {
     setIsPreview(false);
     setVideoSource(null);
   };
+  const SendPreview = async () => {
+    await cameraRef.current.resumePreview();
+    uploadImageAsync(imageUri);
+    setIsPreview(false);
+    setVideoSource(null);
+    
+  };
+  
+
+  
   const renderCancelPreviewButton = () => (
     <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
-      <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
+      {/* <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
       <View
         style={[styles.closeCross, { transform: [{ rotate: "-45deg" }] }]}
-      />
+      /> */}
+      <Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>Retake</Text>
     </TouchableOpacity>
   );
+
+  function renderSendPreviewButton () {
+    const navigation = useNavigation();
+    
+
+return(
+    <TouchableOpacity onPress={() => {SendPreview(), navigation.navigate('Green')} } style={styles.SendButton}>
+      {/* <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
+      <View
+        style={[styles.closeCross, { transform: [{ rotate: "-45deg" }] }]}
+      /> */}
+      <Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>Send</Text>
+    </TouchableOpacity>
+);
+  }
   const renderVideoPlayer = () => (
     <Video
       source={{ uri: videoSource }}
@@ -107,7 +185,9 @@ export default function App() {
       <Text style={styles.recordTitle}>{"Recording..."}</Text>
     </View>
   );
-  const renderCaptureControl = () => (
+  function renderCaptureControl (){
+        const navigation = useNavigation();
+return(
     <View style={styles.control}>
       <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
         <Text style={styles.text}>{"Flip"}</Text>
@@ -120,22 +200,26 @@ export default function App() {
         onPress={takePicture}
         style={styles.capture}
       />
+      <TouchableOpacity disabled={!isCameraReady} onPress={() => {navigation.navigate('Gradient')}}>
+        <Text style={styles.textLeft}>{"Home"}</Text>
+      </TouchableOpacity>
       
     </View>
   );
+  }
 
   const renderGrid = () => (
     <Svg height="100%" width="100%">
-  <Line x1="12.5%" y1="25%" x2="12.5%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="37.5%" y1="25%" x2="37.5%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="62.5%" y1="25%" x2="62.5%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="87.5%" y1="25%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" />
+  <Line x1={w*.15} y1={w*.495} x2={w*.15} y2={w*1.195} stroke="darkorange" strokeWidth="5"  />
+  <Line x1={w*.38333} y1={w*.495} x2={w*.38333} y2={w*1.195} stroke="white" strokeWidth="2" />
+  <Line x1={w*.61667} y1={w*.495} x2={w*.61667} y2={w*1.195} stroke="white" strokeWidth="2" />
+  <Line x1={w*.85} y1={w*.495} x2={w*.85} y2={w*1.195} stroke="red" strokeWidth="5" />
 
 
-  <Line x1="12.5%" y1="25%" x2="87.5%" y2="25%" stroke="white" strokeWidth="2" />
-  <Line x1="12.5%" y1="40%" x2="87.5%" y2="40%" stroke="white" strokeWidth="2" />
-  <Line x1="12.5%" y1="55%" x2="87.5%" y2="55%" stroke="white" strokeWidth="2" />
-  <Line x1="12.5%" y1="70%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" />
+  <Line x1={w*.142} y1={w*.495} x2={w*.856} y2={w*.495} stroke="blue" strokeWidth="5" />
+  <Line x1={w*.15} y1={w*.72833} x2={w*.85} y2={w*.72833} stroke="white" strokeWidth="2" />
+  <Line x1={w*.15} y1={w*.96167} x2={w*.85} y2={w*.96167} stroke="white" strokeWidth="2" />
+  <Line x1={w*.142} y1={w*1.195} x2={w*.856} y2={w*1.195} stroke="green" strokeWidth="5" />
 </Svg>
   );
 
@@ -147,9 +231,15 @@ export default function App() {
   }
   return (
     <SafeAreaView style={styles.container}>
+    <Card containerStyle={{backgroundColor:'#121212'}}>
+  <Text style={styles.Warning}> Make sure the outside grid colors correspond with each faces center.
+                              
+                              
+                              </Text>
+  </Card>
       <Camera
         ref={cameraRef}
-        style={styles.container}
+        style={{position: "absolute", width:'100%',height:WINDOW_WIDTH*.75, top:'25%', justifyContent:'center'}}
         type={cameraType}
         //flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
@@ -157,10 +247,11 @@ export default function App() {
           console.log("cammera error", error);
         }}
       />
-      <View style={styles.container}>
+      <View style={styles.Bottomcontainer}>
         {isVideoRecording && renderVideoRecordIndicator()}
         {videoSource && renderVideoPlayer()}
         {isPreview && renderCancelPreviewButton()}
+        {isPreview && renderSendPreviewButton()}
         {!videoSource && !isPreview && renderCaptureControl()}
         {renderGrid()}
       </View>
@@ -169,19 +260,60 @@ export default function App() {
 }
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
-  },
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor:'#121212'
+    },
+    Bottomcontainer: {
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+        
+      },
   closeButton: {
     position: "absolute",
-    top: 35,
-    left: 15,
+    top: '80%',
+    left: '10%',
     height: closeButtonSize,
-    width: closeButtonSize,
-    borderRadius: Math.floor(closeButtonSize / 2),
+    width: closeButtonSize*1.5,
+    borderRadius: Math.floor(closeButtonSize / 4),
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#c4c5c4",
-    opacity: 0.7,
+    backgroundColor: "#121212",
+    //opacity: 1,
+    zIndex: 2,
+  },
+  Warning:{
+    //Text used for the bottom menu
+    fontSize:20,
+    color:'white',
+    opacity:1,
+    //justifyContent:'center',
+    textAlign:'center',
+    //paddingHorizontal:'5%',
+    
+    //top:'5%',
+    //flexWrap:'wrap',
+
+    //left:'-11%',
+    //paddingHorizontal:'1%'
+  },
+  SendButton: {
+    position: "absolute",
+    top: '80%',
+    right: '10%',
+    height: closeButtonSize,
+    width: closeButtonSize*1.5,
+    borderRadius: Math.floor(closeButtonSize / 4),
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#121212",
+    //opacity: 1,
     zIndex: 2,
   },
   media: {
@@ -190,7 +322,7 @@ const styles = StyleSheet.create({
   closeCross: {
     width: "68%",
     height: 1,
-    backgroundColor: "black",
+    backgroundColor: "#121212",
   },
   control: {
     position: "absolute",
@@ -232,5 +364,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+    fontSize:20,
+    position:'absolute',
+    left:w*.5
+  },
+  textLeft: {
+    color: "#fff",
+    fontSize:20,
+    position:'absolute',
+    right:w*.45
   },
 });
