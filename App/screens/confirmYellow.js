@@ -251,16 +251,12 @@ data4=colorPosition[PhotoColor4]
   createTwoButtonAlert = () =>{
     const {navigate} = this.props.navigation;
     this.setState({ isLoading: true });
-
+    //navigate('Solution')
     Alert.alert(
       "Loading Solution",
-      "The rubiks cube solution is loading. Because it's attempting to find a solution with the fewest possible moves, depending on your phone, this can take a while to calulate the first time. Please be patient and don't press the back button. The screen wil appear to be frozen.",
+      "This can take a while the first time. Press OK to start loading.",
       [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
+        
         { text: "OK", onPress: () => {navigate('Solution')} }
       ]
     );
