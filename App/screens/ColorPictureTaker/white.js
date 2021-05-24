@@ -10,13 +10,27 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
+import {val} from '../PictureTaker';
 import { Camera } from "expo-camera";
 import { Video } from "expo-av";
+import {Card} from 'react-native-elements';
+
 import * as ImageManipulator from 'expo-image-manipulator';
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.14);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
+let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
+const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.children}</Text>
+const Green = (props) => <Text style={{color:'green'}}>{props.children}</Text>
+const Red = (props) => <Text style={{color:'red'}}>{props.children}</Text>
+const Blue = (props) => <Text style={{color:'blue'}}>{props.children}</Text>
+const Orange = (props) => <Text style={{color:'darkorange'}}>{props.children}</Text>
+const Yellow = (props) => <Text style={{color:'yellow'}}>{props.children}</Text>
+const White = (props) => <Text style={{color:'white'}}>{props.children}</Text>
+
+
+
 export default function App() {
   const [imageUri, setImageUri]= useState(null);
   const [hasPermission, setHasPermission] = useState(null);
@@ -40,11 +54,11 @@ export default function App() {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 1, base64: true, skipProcessing: true, aspect: [4, 3] };
+      const options = { quality: 1, base64: true, skipProcessing: true };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       
-      ImageManipulator.manipulateAsync(data.uri, [{crop:{originX:0,originY:0,width:600, height:480}}], {compress:1, format:ImageManipulator.SaveFormat.JPEG})
+      ImageManipulator.manipulateAsync(data.uri, [{resize:{width:600, height:480}}], {compress:1, format:ImageManipulator.SaveFormat.JPEG})
       setImageUri(data.uri)
       if (source) {
         await cameraRef.current.pausePreview();
@@ -57,10 +71,11 @@ export default function App() {
   const uploadImageAsync = (pictureuri) =>{
     let apiUrl= 'https://metal-density-310218.wl.r.appspot.com/endpoint';
     var data= new FormData();
+    console.log('white'+val+'.'+fileType)
     data.append('file',{
       uri:pictureuri,
-      name:'white666888.jpeg',
-      type:'image/jpeg'
+      name:'white'+val+'.'+fileType,
+      type:'image/'+fileType
     })
     fetch(apiUrl, {
       headers:{
@@ -180,16 +195,16 @@ export default function App() {
 
   const renderGrid = () => (
     <Svg height="100%" width="100%">
-  <Line x1="12.5%" y1="25%" x2="12.5%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="37.5%" y1="25%" x2="37.5%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="62.5%" y1="25%" x2="62.5%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="87.5%" y1="25%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" />
+  <Line x1="14%" y1="27%" x2="14%" y2="70%" stroke="darkorange" strokeWidth="5"  />
+  <Line x1="38.333%" y1="27%" x2="38.333%" y2="70%" stroke="white" strokeWidth="2" />
+  <Line x1="62.6667%" y1="27%" x2="62.6667%" y2="70%" stroke="white" strokeWidth="2" />
+  <Line x1="87%" y1="27%" x2="87%" y2="70%" stroke="red" strokeWidth="5" />
 
 
-  <Line x1="12.5%" y1="25%" x2="87.5%" y2="25%" stroke="white" strokeWidth="2" />
-  <Line x1="12.5%" y1="40%" x2="87.5%" y2="40%" stroke="white" strokeWidth="2" />
-  <Line x1="12.5%" y1="55%" x2="87.5%" y2="55%" stroke="white" strokeWidth="2" />
-  <Line x1="12.5%" y1="70%" x2="87.5%" y2="70%" stroke="white" strokeWidth="2" />
+  <Line x1="13.3%" y1="27%" x2="87.7%" y2="27%" stroke="blue" strokeWidth="5" />
+  <Line x1="14%" y1="41.333%" x2="87%" y2="41.333%" stroke="white" strokeWidth="2" />
+  <Line x1="14%" y1="55.667%" x2="87%" y2="55.667%" stroke="white" strokeWidth="2" />
+  <Line x1="13.3%" y1="70%" x2="87.7%" y2="70%" stroke="green" strokeWidth="5" />
 </Svg>
   );
 
@@ -201,9 +216,15 @@ export default function App() {
   }
   return (
     <SafeAreaView style={styles.container}>
+    <Card containerStyle={{backgroundColor:'#121212'}}>
+  <Text style={styles.Warning}> Make sure the outside grid color corresponds with each faces center.
+                              
+                              
+                              </Text>
+  </Card>
       <Camera
         ref={cameraRef}
-        style={styles.container}
+        style={{position: "absolute", width:'100%',height:WINDOW_WIDTH*.75, top:'25%', justifyContent:'center'}}
         type={cameraType}
         //flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
@@ -211,7 +232,7 @@ export default function App() {
           console.log("cammera error", error);
         }}
       />
-      <View style={styles.container}>
+      <View style={styles.Bottomcontainer}>
         {isVideoRecording && renderVideoRecordIndicator()}
         {videoSource && renderVideoPlayer()}
         {isPreview && renderCancelPreviewButton()}
@@ -224,8 +245,21 @@ export default function App() {
 }
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
-  },
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor:'black'
+    },
+    Bottomcontainer: {
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+        
+      },
   closeButton: {
     position: "absolute",
     top: '80%',
@@ -238,6 +272,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#121212",
     //opacity: 1,
     zIndex: 2,
+  },
+  Warning:{
+    //Text used for the bottom menu
+    fontSize:20,
+    color:'white',
+    opacity:1,
+    //justifyContent:'center',
+    textAlign:'center',
+    //paddingHorizontal:'5%',
+    
+    //top:'5%',
+    //flexWrap:'wrap',
+
+    //left:'-11%',
+    //paddingHorizontal:'1%'
   },
   SendButton: {
     position: "absolute",
