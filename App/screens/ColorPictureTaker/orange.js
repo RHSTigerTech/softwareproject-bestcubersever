@@ -21,6 +21,8 @@ const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.14);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
+const w= Dimensions.get("window").width;
+
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.children}</Text>
 const Green = (props) => <Text style={{color:'green'}}>{props.children}</Text>
@@ -203,16 +205,16 @@ return(
 
   const renderGrid = () => (
     <Svg height="100%" width="100%">
-  <Line x1="14%" y1="27%" x2="14%" y2="70%" stroke="darkorange" strokeWidth="5"  />
-  <Line x1="38.333%" y1="27%" x2="38.333%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="62.6667%" y1="27%" x2="62.6667%" y2="70%" stroke="white" strokeWidth="2" />
-  <Line x1="87%" y1="27%" x2="87%" y2="70%" stroke="red" strokeWidth="5" />
+  <Line x1={w*.15} y1={w*.495} x2={w*.15} y2={w*1.195} stroke="blue" strokeWidth="5"  />
+  <Line x1={w*.38333} y1={w*.495} x2={w*.38333} y2={w*1.195} stroke="white" strokeWidth="2" />
+  <Line x1={w*.61667} y1={w*.495} x2={w*.61667} y2={w*1.195} stroke="white" strokeWidth="2" />
+  <Line x1={w*.85} y1={w*.495} x2={w*.85} y2={w*1.195} stroke="green" strokeWidth="5" />
 
 
-  <Line x1="13.3%" y1="27%" x2="87.7%" y2="27%" stroke="blue" strokeWidth="5" />
-  <Line x1="14%" y1="41.333%" x2="87%" y2="41.333%" stroke="white" strokeWidth="2" />
-  <Line x1="14%" y1="55.667%" x2="87%" y2="55.667%" stroke="white" strokeWidth="2" />
-  <Line x1="13.3%" y1="70%" x2="87.7%" y2="70%" stroke="green" strokeWidth="5" />
+  <Line x1={w*.142} y1={w*.495} x2={w*.856} y2={w*.495} stroke="white" strokeWidth="5" />
+  <Line x1={w*.15} y1={w*.72833} x2={w*.85} y2={w*.72833} stroke="white" strokeWidth="2" />
+  <Line x1={w*.15} y1={w*.96167} x2={w*.85} y2={w*.96167} stroke="white" strokeWidth="2" />
+  <Line x1={w*.142} y1={w*1.195} x2={w*.856} y2={w*1.195} stroke="yellow" strokeWidth="5" />
 </Svg>
   );
 
