@@ -1867,7 +1867,8 @@ textSummary: {
         fontSize: 25,
         textAlign:'center',
         fontWeight:'700',
-        paddingHorizontal:'5%'
+        paddingHorizontal:'5%',
+        paddingVertical:'15%'
     },
 
   });
