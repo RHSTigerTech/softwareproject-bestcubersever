@@ -14,6 +14,7 @@ import {val} from '../PictureTaker';
 import { Camera } from "expo-camera";
 import { Video } from "expo-av";
 import {Card} from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 import * as ImageManipulator from 'expo-image-manipulator';
 const WINDOW_HEIGHT = Dimensions.get("window").height;
@@ -141,7 +142,9 @@ export default function App() {
     uploadImageAsync(imageUri);
     setIsPreview(false);
     setVideoSource(null);
+    
   };
+  
 
   
   const renderCancelPreviewButton = () => (
@@ -154,15 +157,20 @@ export default function App() {
     </TouchableOpacity>
   );
 
-  const renderSendPreviewButton = () => (
-    <TouchableOpacity onPress={SendPreview} style={styles.SendButton}>
+  function renderSendPreviewButton () {
+    const navigation = useNavigation();
+    
+
+return(
+    <TouchableOpacity onPress={() => {SendPreview(), navigation.navigate('Green')} } style={styles.SendButton}>
       {/* <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
       <View
         style={[styles.closeCross, { transform: [{ rotate: "-45deg" }] }]}
       /> */}
       <Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>Send</Text>
     </TouchableOpacity>
-  );
+);
+  }
   const renderVideoPlayer = () => (
     <Video
       source={{ uri: videoSource }}
