@@ -239,7 +239,7 @@ return(
   </Card>
       <Camera
         ref={cameraRef}
-        style={{position: "absolute", width:'100%',height:WINDOW_WIDTH*.75, top:'25%', justifyContent:'center'}}
+        style={{position: "absolute", width:w ,height:w*.75, top:w*.47, justifyContent:'center'}}
         type={cameraType}
         //flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
