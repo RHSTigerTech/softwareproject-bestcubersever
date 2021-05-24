@@ -1170,7 +1170,7 @@ data4=colorPosition[PhotoColor4]
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => push('Scanner')}
+                        onPress={() => navigate('Scanner')}
                     >
                     <Text style={styles.BottomTabTextLeft}>Back</Text>
                     </Icon.Button>

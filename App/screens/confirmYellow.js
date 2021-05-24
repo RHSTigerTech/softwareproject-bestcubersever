@@ -10,6 +10,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Alert
 } from 'react-native';
 import Svg, {Line, Polygon} from 'react-native-svg'
 
@@ -23,6 +24,7 @@ import {Card} from 'react-native-elements';
 
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.children}</Text>
 
+let show=true;
 
 let checkState=defaultCube;
 const colors=['white', 'blue', 'darkorange', 'green', 'red', 'yellow' ]
@@ -175,7 +177,7 @@ export default class App extends Component {
           buttonColor7:'grey',
           buttonColor8:'grey',
           buttonColor9:'grey',
-            
+          isLoading:false
         }
       }
       else{
@@ -231,14 +233,38 @@ data4=colorPosition[PhotoColor4]
           
       }
       }
+      //this.isLoading=this.isLoading.bind(this);
+
     }
 
-  state = {
-    image: null,
-    uploading: false,
+  
+  //this.addUser=this.addUser.bind(this);
+
+
+  doSignup = () => {
+    this.setState({ isLoading: true });
+    // await asyncSignupFunction();
+    // this.setState({ isLoading: false })
+    
   };
 
-  
+  createTwoButtonAlert = () =>{
+    const {navigate} = this.props.navigation;
+    this.setState({ isLoading: true });
+
+    Alert.alert(
+      "Loading Solution",
+      "The rubiks cube solution is loading. Because it's attempting to find a solution with the fewest possible moves, depending on your phone, this can take a while to calulate the first time. Please be patient and don't press the back button. The screen wil appear to be frozen.",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => {navigate('Solution')} }
+      ]
+    );
+    }
   onButtonPress1 = () => {
       if(colorSwitch1==1){
         this.setState({buttonColor1: 'white'});
@@ -1083,19 +1109,35 @@ data4=colorPosition[PhotoColor4]
         <Text style={{color:'white', fontSize:30}}>YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</Text>
       </View>
       );
+    function LoadingSolver(){
+      return(
+        <View style={{position:'absolute'}} >
+          
+          {console.log('yoooooo')}
+
+          <ActivityIndicator size="large" color="white" />
+          <Text style={styles.Warning}>Calculating Solve. Depeding on your phone and connection this may take a while.</Text>
+
+        </View>
+      )
+    }
+  
 
     
     return (
+
       <View style={{backgroundColor:'#121212', flex:1}}>
+        
 <StatusBar barStyle="default" />
 <View style={{position:'absolute',left:0, right:0}}>
 <Card containerStyle={{backgroundColor:'#121212'}}>
+
   <Text style={styles.Warning}><B>Warning:</B> Going back will reset the state of the current side.</Text>
   </Card>
 </View>
 <View style={{flex:2}}></View>
+
       <View style={styles.topcontainer}>
-      
         <Button buttonStyle={{backgroundColor:this.state.buttonColor1, width:70, height:70}} onPress={colorSwitch1++, this.onButtonPress1} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor2, width:70, height:70}} onPress={colorSwitch2++,  this.onButtonPress2} />
         <Button buttonStyle={{backgroundColor:this.state.buttonColor3, width:70, height:70}} onPress={colorSwitch3++,  this.onButtonPress3} />  
@@ -1146,7 +1188,6 @@ data4=colorPosition[PhotoColor4]
   <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="blue" strokeWidth="10" pointerEvents="none"/>
   </Svg>
       <View style={{flex:2}}>
-      
       </View>
       <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
         <View style={{paddingRight:'25%'}}>
@@ -1179,10 +1220,16 @@ data4=colorPosition[PhotoColor4]
                         opacity={1}
                         size={40}
                         //paddingHorizontal='4%'
-                        onPress={() => {Item(), navigate('Solution'), console.log(totalPositionYellowSide), console.log('final')}}
-                    >
+                        onPress={this.createTwoButtonAlert}
+                      >
                     <Text style={styles.BottomTabTextRight}>Next</Text>
                     </Icon.Button>
+                    </View>
+                    <View style={{position:'absolute'}}>
+                      {console.log(this.state.isLoading)}
+                    <ActivityIndicator size="large" color="white" animating={this.state.isLoading} />
+
+
                     </View>
 
       </View>
@@ -1232,6 +1279,15 @@ const styles = StyleSheet.create({
     paddingVertical:'5%',
     backgroundColor:'#121212',
     
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10
   },
   BottomTabTextLeft:{
     //Text used for the bottom menu

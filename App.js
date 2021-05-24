@@ -158,7 +158,7 @@ const App = () => {
         <Stack.Screen
           name='Scanner'
           component={Scanner}
-          options={{headerTitle:'Scanner', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerLeft:(<HeaderBackButton onPress={()=>{navigation.navigate('Gradient')}}/>)}}
+          options={{headerTitle:'Scanner', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff'}}
         />
 
         <Stack.Screen
