@@ -10,6 +10,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
 import { Constants } from 'expo';
 import * as Permissions from 'expo-permissions';
@@ -21,6 +22,10 @@ import AwesomeButton from "react-native-really-awesome-button";
 const val = Math.floor(100000 + Math.random() * 9999999);
 let amount =0;
 let colorName='';
+
+const ButtonHeight = (Dimensions.get('window').height) * .1;
+const ButtonWidth = (Dimensions.get('window').width) * .8;
+const ButtonRadius = 10;
 
 let defaultCube= false;
 
@@ -55,9 +60,39 @@ export default class App extends Component {
           Example: Upload ImagePicker result
         </Text> */}
         
+        
+        <AwesomeButton
+                        width={ButtonWidth}
+                        height={ButtonHeight}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        style={{bottom:'5%'}}
 
-        <Button onPress={() => {{defaultCube=false} push('White')}} title="Take a photo" />
-        <Button onPress={() => {{defaultCube=true} navigate('confirmWhite')}} title="confirm" />
+                        onPress={() => {{defaultCube=false} push('White')}}
+                    >
+                        Camera Solver
+        </AwesomeButton>
+        <AwesomeButton
+                        width={ButtonWidth}
+                        height={ButtonHeight}
+                        backgroundColor='#6d00eb'
+                        textSize={27}
+                        borderRadius={ButtonRadius}
+                        activeOpacity={.8}
+                        backgroundDarker='#5c00c7'
+                        backgroundShadow='transparent'
+                        raiseLevel={5}
+                        style={{top:'5%'}}
+                        onPress={() => {{defaultCube=true} navigate('confirmWhite')}}
+                    >
+                        Manually Enter
+        </AwesomeButton>
+        
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}

@@ -1144,7 +1144,9 @@ data4=colorPosition[PhotoColor4]
   </Svg>
 
       <View style={{flex:2}}>
-      
+      <Card containerStyle={{backgroundColor:'#121212', top:'15%'}}>
+  <Text style={styles.Warning}> Make sure the outside grid colors correspond with each faces center.</Text>
+  </Card>
       </View>
       <View style={{bottom:'5%',justifyContent:'center', flexDirection:'row'}}>
         <View style={{paddingRight:'25%'}}>

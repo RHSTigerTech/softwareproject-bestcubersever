@@ -19,6 +19,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as ImageManipulator from 'expo-image-manipulator';
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
+const w= Dimensions.get("window").width;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.14);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
@@ -203,7 +204,7 @@ return(
 
   const renderGrid = () => (
     <Svg height="100%" width="100%">
-  <Line x1="14%" y1="27%" x2="14%" y2="70%" stroke="darkorange" strokeWidth="5"  />
+  <Line x1={w*.14} y1="27%" x2="14%" y2="70%" stroke="darkorange" strokeWidth="5"  />
   <Line x1="38.333%" y1="27%" x2="38.333%" y2="70%" stroke="white" strokeWidth="2" />
   <Line x1="62.6667%" y1="27%" x2="62.6667%" y2="70%" stroke="white" strokeWidth="2" />
   <Line x1="87%" y1="27%" x2="87%" y2="70%" stroke="red" strokeWidth="5" />
@@ -225,7 +226,7 @@ return(
   return (
     <SafeAreaView style={styles.container}>
     <Card containerStyle={{backgroundColor:'#121212'}}>
-  <Text style={styles.Warning}> Make sure the outside grid color corresponds with each faces center.
+  <Text style={styles.Warning}> Make sure the outside grid colors correspond with each faces center.
                               
                               
                               </Text>

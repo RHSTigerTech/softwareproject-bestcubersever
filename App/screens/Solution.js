@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AwesomeButton from "react-native-really-awesome-button";
+
 import {
   ActivityIndicator,
   Button,
@@ -72,8 +74,13 @@ const Bwprime=require('../Assets/basics/cb_bwcc.jpg')
 export default class App extends Component {
   
   
+    
+  
   render() {
 
+    const {navigate} = this.props.navigation;
+
+    try{
     //console.log(totalPositionWhiteSide)
 
 
@@ -685,7 +692,6 @@ console.log('---------------------')
     // let finalSolutionString=cubeSolver.solve(scrambleTest)
     // let finalSolution=finalSolutionString.split(' ')
     //console.log(finalSolution)
-    const {navigate} = this.props.navigation;
 //create function that return a text input depending on the the string type
 //create for loop function that calls function as many times as there are moves
    
@@ -1753,8 +1759,36 @@ let sectionData=[]
             </View>
   </SafeAreaView>
     );
+      }
+      catch(err){
+        return(
+          <View style={styles.ErrorContainer}>
+            <Text style={styles.textSummary}>
+            There was an error calculating the solution.
+            This is likely due to an incorrect input.{'\n'}             
+            </Text>
+            <AwesomeButton 
+                              width={300} 
+                              height={40}
+                              backgroundColor='#6d00eb'
+                              textSize={27}
+                              borderRadius={10}
+                              activeOpacity={.8}	
+                              backgroundDarker='#5c00c7'
+                              backgroundShadow='transparent'
+                              raiseLevel={5}
+                              onPress={() => navigate('Scanner')}
+                          >
+                              Retry
+                   </AwesomeButton>
+          </View>
+          )
+      }
   }
-}
+
+} 
+
+
 
   const styles = StyleSheet.create({
     container: {
@@ -1817,4 +1851,23 @@ BottomTabText: {
   left: '-7%',
   paddingHorizontal: '1%'
 },
+ErrorContainer:{
+  flex: 1, 
+  alignItems: 'center', 
+  justifyContent:'center',
+  paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
+  backgroundColor:'#121212'
+
+
+},
+textSummary: {
+        // the summary of the step
+        color: 'white',
+        opacity:87,
+        fontSize: 25,
+        textAlign:'center',
+        fontWeight:'700',
+        paddingHorizontal:'5%'
+    },
+
   });
