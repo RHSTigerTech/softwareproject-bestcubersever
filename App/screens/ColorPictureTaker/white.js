@@ -209,7 +209,7 @@ return(
   }
 
   const renderGrid = () => (
-    <Svg height="100%" width="100%">
+    <Svg height={w*1.2} width="100%" position='absolute'>
   <Line x1={w*.15} y1={w*.495} x2={w*.15} y2={w*1.195} stroke="darkorange" strokeWidth="5"  />
   <Line x1={w*.38333} y1={w*.495} x2={w*.38333} y2={w*1.195} stroke="white" strokeWidth="2" />
   <Line x1={w*.61667} y1={w*.495} x2={w*.61667} y2={w*1.195} stroke="white" strokeWidth="2" />
