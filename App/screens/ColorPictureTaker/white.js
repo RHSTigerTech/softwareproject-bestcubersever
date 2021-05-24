@@ -44,7 +44,7 @@ export default function App() {
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       
-      ImageManipulator.manipulateAsync(data.uri, [{resize:{width:600, height:480}}], {compress:1, format:ImageManipulator.SaveFormat.JPEG})
+      ImageManipulator.manipulateAsync(data.uri, [{crop:{originX:0,originY:0,width:600, height:480}}], {compress:1, format:ImageManipulator.SaveFormat.JPEG})
       setImageUri(data.uri)
       if (source) {
         await cameraRef.current.pausePreview();
@@ -59,7 +59,7 @@ export default function App() {
     var data= new FormData();
     data.append('file',{
       uri:pictureuri,
-      name:'white666666.jpeg',
+      name:'white666888.jpeg',
       type:'image/jpeg'
     })
     fetch(apiUrl, {
