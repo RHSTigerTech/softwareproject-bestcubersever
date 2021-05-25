@@ -555,6 +555,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 25,
         fontWeight: 'bold',
+        textAlign:'center'
     },
    
 
@@ -733,7 +734,8 @@ const styles = StyleSheet.create({
         // Titles of the cards
         color: 'white',
         fontSize: 25,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign:'center'
     },
 
     ViewContainer: {
