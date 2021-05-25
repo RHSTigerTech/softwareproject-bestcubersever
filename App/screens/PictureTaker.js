@@ -19,7 +19,7 @@ import AwesomeButton from "react-native-really-awesome-button";
 
 
 
-const val = Math.floor(100000 + Math.random() * 9999999);
+let val;
 let amount =0;
 let colorName='';
 
@@ -73,7 +73,7 @@ export default class App extends Component {
                         raiseLevel={5}
                         style={{bottom:'5%'}}
 
-                        onPress={() => {{defaultCube=false} push('White')}}
+                        onPress={() => {{defaultCube=false} push('White'), val = Math.floor(100000 + Math.random() * 9999999);}}
                     >
                         Camera Solver
         </AwesomeButton>
