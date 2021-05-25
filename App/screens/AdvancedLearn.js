@@ -13,6 +13,8 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 // use to bold certain word or phrases. Such as Pros and Cons ex: <Text><B>Pros:</B> pros of method/step </Text>
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:17, lineHeight:18,letterSpacing:.2}}>{props.children}</Text>
+const SuperB = (props) => <Text style={{fontWeight: 'bold',fontSize:20, lineHeight:18,letterSpacing:.2, textDecorationLine: 'underline',}}>{props.children}</Text>
+
 
  
 export default class App extends Component {
@@ -30,7 +32,7 @@ export default class App extends Component {
 
                         <Card containerStyle={{backgroundColor: '#121212'}}>
                             {/* should probably add or change description. */}
-                            <Text style={styles.textDescripWideTip}>Intro to Advanced Methods.</Text>
+                            <Text style={styles.textTitle}>Intro to Advanced Methods.</Text>
                             <Text style={styles.textDescripWideTip}>
                                 There are plenty of advanced methods used to solve a rubiks cube. 
                                 They all have there pros and cons and it really comes down to which one 
@@ -46,63 +48,72 @@ export default class App extends Component {
                 Might be easier to find sites that have the steps to do a certain step of solving a rubiks cube rather than an entire method due to the length*/}
 
                         <Card containerStyle={{backgroundColor: '#121212'}}>
-                            <Text style={styles.textDescripWideTip}>ZZ Method</Text>
+                            <Text style={styles.textTitle}>ZZ Method</Text>
                             <Text style={styles.textDescripWide}>
                                 This method has 3 steps and is focused on low move count and high turning speed.  During most of F2L, the 
                                 solver only has to make L, U, and R moves which reduces time taken up by cube rotations or hand 
-                                repositioning.  When the solver reaches the last layer, the edges are already oriented.
+                                repositioning.  When the solver reaches the last layer, the edges are already oriented. {'\n'}
                             </Text>
-                            <Text style={styles.textDescripWide}>
-                                Pros: 
-                                {'\n'}{'\t'}<B>1:</B> Reduced Move Set: The F2L step only uses R, U, and L moves and no cube rotations
-                                {'\n'}{'\t'}<B>2:</B> Lookahead: Having the edges pre-oriented greatly reduces the time spent on F2L.  Having 
+                            <Text style={styles.textDescripWide}><SuperB>Pros:</SuperB></Text>
+                            <Text style={styles.textDescripWideTab}>
+                                <B>1:</B> Reduced Move Set: The F2L step only uses R, U, and L moves and no cube rotations
+                                {'\n'}<B>2:</B> Lookahead: Having the edges pre-oriented greatly reduces the time spent on F2L.  Having 
                                 the cube in one orientation because you know where the edges are also reduces time because you aren't making 
                                 cube rotations.
-                                {'\n'}{'\t'}<B>3:</B> Efficiency: With pre-orientation of LL edges and blockbuilding-based F2L, this method 
+                                {'\n'}<B>3:</B> Efficiency: With pre-orientation of LL edges and block-building-based F2L, this method 
                                 can be completed in around 55 moves.  
-                                {'\n'}{'\t'}<B>4:</B> Ease of Learning: The EOLine stage is the most difficult in ZZ and it is where most of 
-                                the difficulty is confined.  Intuitive blockbuilding in F2L and the 20 algorithms for a 2-look last layer are 
+                                {'\n'}<B>4:</B> Ease of Learning: The EOLine stage is the most difficult in ZZ and it is where most of 
+                                the difficulty is confined.  Intuitive block-building in F2L and the 20 algorithms for a 2-look last layer are 
                                 easy to pick up and memorize.
-                                {'\n'}{'\t'}<B>5:</B> Felxibility: There are many systems to complete the last layer in a ZZ solve since edges 
-                                are preoriented.  Short cuts and tricks are easy to develop with blockbuilding F2L.
+                                {'\n'}<B>5:</B> Flexibility: There are many systems to complete the last layer in a ZZ solve since edges 
+                                are pre-oriented.  Short cuts and tricks are easy to develop with block-building F2L.
+                                {'\n'}
                             </Text>
-                            <Text style={styles.textDescripWide}>
-                                Cons:
-                                {'\n'}{'\t'}<B>1:</B> Reliance on Inspection: If no inspection time is given, it becomes a problem because this 
+                            
+                            <Text style={styles.textDescripWide}><SuperB>Cons:</SuperB></Text>
+
+                            <Text style={styles.textDescripWideTab}>
+                                <B>1:</B> Reliance on Inspection: If no inspection time is given, it becomes a problem because this 
                                 method is so reliant on it.
-                                {'\n'}{'\t'}<B>2:</B> Difficulty of EOLine: The EOLine step takes a long time to master.  It could take months 
+                                {'\n'}<B>2:</B> Difficulty of EOLine: The EOLine step takes a long time to master.  It could take months 
                                 to have full EOLine inspection in 15 seconds.
-                                {'\n'}{'\t'}<B>3:</B> 2 Extra F2L Cubies to Solve: There are 2 more "cubies" to solve in ZZ F2L than CFOP F2L.
-                                {'\n'}{'\t'}<B>4:</B> Switching between L and R moves: This takes some time to get used to.
+                                {'\n'}<B>3:</B> 2 Extra F2L Cubies to Solve: There are 2 more "cubies" to solve in ZZ F2L than CFOP F2L.
+                                {'\n'}<B>4:</B> Switching between L and R moves: This takes some time to get used to.{'\n'}
                             </Text>
                             <Text style={styles.NavigateScreenButtons} onPress={() => navigate('ZZ')}> Cube Basics </Text>
                         </Card>
 
                         <Card containerStyle={{backgroundColor: '#121212'}}>
-                            <Text style={styles.textDescripWideTip}>Roux Method</Text>
+                            <Text style={styles.textTitle}>Roux Method</Text>
                             <Text style={styles.textDescripWide}>
-                                This method is based on blockbuilding and "corners first" methods.  It has a low move count, low number of 
+                                This method is based on block-building and "corners first" methods.  It has a low move count, low number of 
                                 rotations, high number of M moves in the last step, and it can be adapted to One-Handed solving.
                             </Text>
-                            <Text style={styles.textDescripWide}>
-                                Pros:
-                                {'\n'}{'\t'}<B>1:</B> Fewer Moves: This method uses less moves than CFOP.
-                                {'\n'}{'\t'}<B>2:</B> Intuitive: There is less algorithms to memorize.
-                                {'\n'}{'\t'}<B>3:</B> Fewer Rotations: The cube can be solved with mostly R, r, M, and U moves after the first 
+
+                            <Text style={styles.textDescripWide}><SuperB>Pros:</SuperB></Text>
+                            <Text style={styles.textDescripWideTab}>
+                                
+                                <B>1:</B> Fewer Moves: This method uses less moves than CFOP.
+                                {'\n'}<B>2:</B> Intuitive: There is less algorithms to memorize.
+                                {'\n'}<B>3:</B> Fewer Rotations: The cube can be solved with mostly R, r, M, and U moves after the first 
                                 block is built.
-                                {'\n'}{'\t'}<B>4:</B> Fast and Few Algorithms: CMLL only has 42 cases and most are fast algorithms from OLLCPs 
+                                {'\n'}<B>4:</B> Fast and Few Algorithms: CMLL only has 42 cases and most are fast algorithms from OLLCPs 
                                 from CFOP.
-                                {'\n'}{'\t'}<B>5:</B> Lookahead and Inspection: This method allows for rapid improvement of lookahead and 
-                                inspection because of the intuitiveness and blockbuilding nature.
+                                {'\n'}<B>5:</B> Lookahead and Inspection: This method allows for rapid improvement of lookahead and 
+                                inspection because of the intuitiveness and block-building nature.{'\n'}
                             </Text>
-                            <Text style={styles.textDescripWide}>
-                                Cons:
-                                {'\n'}{'\t'}<B>1:</B> Block Building: This can be difficult to get used to for beginners.
-                                {'\n'}{'\t'}<B>2:</B> Larger Chance of DNE: There is a larger chance of a DNE instead of a +2 in competitions 
+
+                            <Text style={styles.textDescripWide}><SuperB>Cons:</SuperB></Text>
+
+                            <Text style={styles.textDescripWideTab}>
+                                
+                                <B>1:</B> Block Building: This can be difficult to get used to for beginners.
+                                {'\n'}<B>2:</B> Larger Chance of DNE: There is a larger chance of a DNE instead of a +2 in competitions 
                                 because M is used so often.
-                                {'\n'}{'\t'}<B>3:</B> M on Larger Puzzles: Once you get to puzzles like 7x7x7 and 6x6x6 or larger, the M moves 
+                                {'\n'}<B>3:</B> M on Larger Puzzles: Once you get to puzzles like 7x7x7 and 6x6x6 or larger, the M moves 
                                 get increasingly difficult.
-                                {'\n'}{'\t'}<B>4:</B> M on One-Handed: M moves are hard to do one handed without a table to set the cube on.
+                                {'\n'}<B>4:</B> M on One-Handed: M moves are hard to do one handed without a table to set the cube on.
+                                {'\n'}
                             </Text>
                             <Text style={styles.NavigateScreenButtons} onPress={() => navigate('Roux')}> Cube Basics </Text>
                         </Card>
@@ -193,29 +204,64 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-    background:{
-        backgroundColor:'#121212',
-        flex:1
+    background: {
+        backgroundColor: '#121212',
+        flex: 1
     },
 
-    exImage: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginRight: '5%', 
+    BottomTabText: {
+        //Text used for the bottom menu
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
     },
-    InstructionsImage: {
-        width: '35%', 
-        height: (Dimensions.get('window').width)*.35, 
-        resizeMode: 'contain', 
-        marginLeft: '5%', 
+
+    contentButtons: {
+        color: '#7600ff',
+        //textAlign:'center',
+        fontSize: 20,
+        //textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        paddingTop: '5%',
+        top: '-30%'
     },
+
+    contentLocal: {
+        fontSize: .1,
+        color: 'transparent',
+        alignItems: 'center'
+    },
+
+    ContentsTitle: {
+        // Table of contents title
+        color: 'white',
+        fontSize: 25,
+        fontWeight: 'bold',
+    },
+   
 
     image: {
         // Background image of cube
-        width:'100%',
+        width: '100%',
         height: '100%',
         position: 'absolute',
+    },
+
+    imageEx: {
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginRight: '5%',
+    },
+
+    imageInstructions: {
+        width: '35%',
+        height: (Dimensions.get('window').width) * .35,
+        resizeMode: 'contain',
+        marginLeft: '5%',
     },
 
     placeHolder: {
@@ -225,76 +271,77 @@ const styles = StyleSheet.create({
         width: '40%',
     },
 
-    BottomTabText:{
+    BottomTabText: {
         //Text used for the bottom menu
-        fontSize:10,
-        color:'white',
-        opacity:1,
-        justifyContent:'center',
-        left:'-7%',
-        paddingHorizontal:'1%'
-      },
+        fontSize: 10,
+        color: 'white',
+        opacity: 1,
+        justifyContent: 'center',
+        left: '-7%',
+        paddingHorizontal: '1%'
+    },
 
     scroll: {
         // Scroll view
         backgroundColor: "transparent",
     },
 
-    textHeader: {
-        //headers
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 19,
-        textAlign: 'center',
-        //letterSpacing:1,
-        //textDecorationLine:'underline'
-        
-    },
-
-    textDescrip:{
+    textDescrip: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: 14,        
+        fontSize: 14,
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,
+        lineHeight: 18,
+        letterSpacing: .2,
     },
 
-    textDescripWrap:{
+    textDescripWrap: {
         // Text thats a description
         paddingTop: 10,
         color: 'white',
-        fontSize: RFPercentage(2.1),  
-               
+        fontSize: RFPercentage(2.1),
+
         width: '60%',
-        lineHeight:18,
-        letterSpacing:.2,  
-        height: (Dimensions.get('window').width)*.35, 
-        //flexGrow:10,  
-        
+        lineHeight: 18,
+        letterSpacing: .2,
+        height: (Dimensions.get('window').width) * .35,
+        //flexGrow:10,
     },
-    textDescripPlus:{
+
+    textDescripPlus: {
         fontWeight: 'bold',
-        fontSize:17, 
-        lineHeight:25,
-        letterSpacing:.2,
+        fontSize: 17,
+        lineHeight: 25,
+        letterSpacing: .2,
         paddingTop: 10,
         color: 'white',
         width: '60%',
     },
 
-    textDescripWide:{
+    textDescripWide: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
         //fontSize: RFPercentage(2.1), 
         fontSize: 14,
         width: '100%',
-        lineHeight:18,
-        letterSpacing:.2
+        lineHeight: 18,
+        letterSpacing: .2
     },
-    textDescripWideTip:{
+
+    textDescripWideTab: {
+        // Text thats a description but full width
+        paddingTop: 10,
+        color: 'white',
+        //fontSize: RFPercentage(2.1), 
+        fontSize: 14,
+        width: '100%',
+        lineHeight: 18,
+        letterSpacing: .2,
+        paddingLeft:'5%'
+    },
+    textDescripWideTip: {
         // Text thats a description but full width
         paddingTop: 10,
         color: 'white',
@@ -317,14 +364,30 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
 
-    contentButtons:{
+    textHeader: {
+        //headers
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 19,
+        textAlign: 'center',
+    },
+    NavigateScreenButtons:{
         color:'#7600ff',
         //textAlign:'center',
-        fontSize:20,
+        fontSize:18,
         //textDecorationLine: 'underline',
         fontWeight:'bold',
-        paddingTop:'5%',
-        top:'-30%'
+        textAlign: 'center',
+        lineHeight:20,
+        letterSpacing:.2,
+        position:'absolute',
+        //paddingTop:2,
+        top:'20%',
+        //bottom:-10,
+        textDecorationLine: 'underline',
+        //paddingTop:5
+        //paddingTop:'5%',
+        //top:'-30%'
     },
     NavigateScreenButtons:{
         color:'#7600ff',
@@ -359,31 +422,25 @@ const styles = StyleSheet.create({
         // the summary of the step
         color: 'white',
         fontSize: 16,
-        paddingBottom:'6%',
-        lineHeight:20,
-        letterSpacing:.2
+        paddingBottom: '6%',
+        lineHeight: 20,
+        letterSpacing: .2
     },
 
     textTitle: {
         // Titles of the cards
         color: 'white',
         fontSize: 25,
-        fontWeight:'bold'
-    },
-    ContentsTitle: {
-        // Table of contents title
-        color: 'white',
-        fontSize: 25,
-        fontWeight:'bold',
-        
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
 
-    ViewContainer:{
+    ViewContainer: {
         // Holds the whole screen
-        flex: 1, 
+        flex: 1,
         //justifyContent: 'space-evenly', 
-        alignItems: 'center', 
-        backgroundColor:'#121212',
+        alignItems: 'center',
+        backgroundColor: '#121212',
         //paddingTop: Platform.OS === 'android' ?  StatusBar.currentHeight: 0,
     },
 })

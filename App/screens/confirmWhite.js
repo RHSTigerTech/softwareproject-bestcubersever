@@ -13,6 +13,9 @@ import {
   View,
 } from 'react-native';
 
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
+
 import Svg, {Line, Polygon} from 'react-native-svg'
 
 
@@ -1154,8 +1157,8 @@ data4=colorPosition[PhotoColor4]
   <Line x1="8.5%" y1="70%" x2="91.5%" y2="70%" stroke="green" strokeWidth="10" pointerEvents="none"/>
   </Svg>
       <View style={{flex:2}}>
-      <Card containerStyle={{backgroundColor:'#121212', top:'15%'}}>
-  <Text style={styles.Warning}> Make sure the outside grid colors correspond with each faces center.</Text>
+      <Card containerStyle={{backgroundColor:'#121212', top:'8%'}}>
+  <Text style={styles.Warning}>Make sure the outside grid colors correspond with each faces center.</Text>
   </Card>
       </View>
       
@@ -1265,7 +1268,9 @@ const styles = StyleSheet.create({
   },
   Warning:{
     //Text used for the bottom menu
-    fontSize:20,
+    // fontSize:20,
+    fontSize: RFPercentage(2.7), 
+
     color:'white',
     opacity:1,
     //justifyContent:'center',

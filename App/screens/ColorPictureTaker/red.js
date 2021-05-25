@@ -19,10 +19,9 @@ import { useNavigation } from '@react-navigation/native';
 import * as ImageManipulator from 'expo-image-manipulator';
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const WINDOW_WIDTH = Dimensions.get("window").width;
+const w= Dimensions.get("window").width;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.14);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
-const w= Dimensions.get("window").width;
-
 let fileType= Platform.OS === 'ios' ? 'jpeg':'png'
 const B = (props) => <Text style={{fontWeight: 'bold',fontSize:25}}>{props.children}</Text>
 const Green = (props) => <Text style={{color:'green'}}>{props.children}</Text>
@@ -186,7 +185,9 @@ return(
       <Text style={styles.recordTitle}>{"Recording..."}</Text>
     </View>
   );
-  const renderCaptureControl = () => (
+  function renderCaptureControl (){
+        const navigation = useNavigation();
+return(
     <View style={styles.control}>
       <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
         <Text style={styles.text}>{"Flip"}</Text>
@@ -199,12 +200,16 @@ return(
         onPress={takePicture}
         style={styles.capture}
       />
+      <TouchableOpacity disabled={!isCameraReady} onPress={() => {navigation.navigate('Gradient')}}>
+        <Text style={styles.textLeft}>{"Home"}</Text>
+      </TouchableOpacity>
       
     </View>
   );
+  }
 
   const renderGrid = () => (
-    <Svg height="100%" width="100%">
+    <Svg height={w*1.2} width="100%" position='absolute'>
   <Line x1={w*.15} y1={w*.495} x2={w*.15} y2={w*1.195} stroke="green" strokeWidth="5"  />
   <Line x1={w*.38333} y1={w*.495} x2={w*.38333} y2={w*1.195} stroke="white" strokeWidth="2" />
   <Line x1={w*.61667} y1={w*.495} x2={w*.61667} y2={w*1.195} stroke="white" strokeWidth="2" />
@@ -227,14 +232,14 @@ return(
   return (
     <SafeAreaView style={styles.container}>
     <Card containerStyle={{backgroundColor:'#121212'}}>
-  <Text style={styles.Warning}> Make sure the outside grid color corresponds with each faces center.
+  <Text style={styles.Warning}> Make sure the outside grid colors correspond with each faces center.
                               
                               
                               </Text>
   </Card>
       <Camera
         ref={cameraRef}
-        style={{position: "absolute", width:'100%',height:WINDOW_WIDTH*.75, top:'25%', justifyContent:'center'}}
+        style={{position: "absolute", width:w ,height:w*.75, top:w*.47, justifyContent:'center'}}
         type={cameraType}
         //flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
@@ -260,7 +265,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     bottom: 0,
-    backgroundColor:'black'
+    backgroundColor:'#121212'
     },
     Bottomcontainer: {
       position: "absolute",
@@ -317,7 +322,7 @@ const styles = StyleSheet.create({
   closeCross: {
     width: "68%",
     height: 1,
-    backgroundColor: "black",
+    backgroundColor: "#121212",
   },
   control: {
     position: "absolute",
@@ -359,5 +364,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+    fontSize:20,
+    position:'absolute',
+    left:w*.5
+  },
+  textLeft: {
+    color: "#fff",
+    fontSize:20,
+    position:'absolute',
+    right:w*.45
   },
 });
