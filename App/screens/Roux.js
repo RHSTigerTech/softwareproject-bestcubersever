@@ -11,10 +11,10 @@ export default class App extends React.PureComponent {
 
   render() {
     const {navigate} = this.props.navigation;
-    if(shouldRender==1){
-      navigate('Gradient')
-      shouldRender=0;
-    }
+    // if(shouldRender==1){
+    //   navigate('Gradient')
+    //   shouldRender=0;
+    // }
     // const myScript = 
       
     //   setTimeout(function() { window.alert('hi') }, 2000);
