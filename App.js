@@ -147,12 +147,12 @@ const App = () => {
         <Stack.Screen
           name='ZZ'
           component={ZZ}
-          options={{ gestureEnabled: false }}
+          options={{headerTitle:'ZZ Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' } }}
         />
         <Stack.Screen
           name='Roux'
           component={Roux}
-          options={{ gestureEnabled: false }}
+          options={{ headerTitle:'Roux Method', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
         />
 
         <Stack.Screen

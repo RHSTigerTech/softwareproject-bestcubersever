@@ -1,1 +1,2 @@
-GET https://metal-density-310218.wl.r.appspot.com/endpoint
+//GET https://metal-density-310218.wl.r.appspot.com/sendColors?serial=8164474&extension=jpeg
+GET https://storage.googleapis.com/metal-density-310218.appspot.com/white608594.jpeg

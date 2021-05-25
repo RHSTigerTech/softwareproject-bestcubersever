@@ -19,6 +19,8 @@ export default class App extends Component {
 
     render(){
     const {navigate} = this.props.navigation;
+    const {push} = this.props.navigation;
+
 
     const ButtonHeight=(Dimensions.get('window').height)*.09;
     const ButtonWidth=(Dimensions.get('window').width)*.8;
@@ -84,7 +86,7 @@ export default class App extends Component {
                             width={ButtonWidth}
                             radius={ButtonRadius}
                             impact
-                            onPressAction={() => navigate('Scanner')}
+                            onPressAction={() => push('Scanner')}
                         >
                         </GradientButton>
 
