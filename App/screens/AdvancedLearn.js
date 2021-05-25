@@ -80,7 +80,7 @@ export default class App extends Component {
                                 {'\n'}<B>3:</B> 2 Extra F2L Cubies to Solve: There are 2 more "cubies" to solve in ZZ F2L than CFOP F2L.
                                 {'\n'}<B>4:</B> Switching between L and R moves: This takes some time to get used to.{'\n'}
                             </Text>
-                            <Text style={styles.NavigateScreenButtons} onPress={() => navigate('ZZ')}> Cube Basics </Text>
+                            <Text style={styles.NavigateScreenButtons} onPress={() => navigate('ZZ')}> ZZ Method Steps </Text>
                         </Card>
 
                         <Card containerStyle={{backgroundColor: '#121212'}}>
@@ -115,7 +115,7 @@ export default class App extends Component {
                                 {'\n'}<B>4:</B> M on One-Handed: M moves are hard to do one handed without a table to set the cube on.
                                 {'\n'}
                             </Text>
-                            <Text style={styles.NavigateScreenButtons} onPress={() => navigate('Roux')}> Cube Basics </Text>
+                            <Text style={styles.NavigateScreenButtons} onPress={() => navigate('Roux')}> Roux Method Steps </Text>
                         </Card>
                     </ScrollView>
                 </View>
