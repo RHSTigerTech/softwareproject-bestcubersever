@@ -37,6 +37,9 @@ import {totalPositionYellowSide} from './confirmYellow'
 const Bold = (props) => <Text style={{fontWeight: 'bold',fontSize:60}}>{props.children}</Text>
 const Important = (props) => <Text style={{fontWeight: 'bold', fontSize: RFPercentage(2.7)}}>{props.children}</Text>
 
+const ButtonHeight = (Dimensions.get('window').height) * .1;
+const ButtonWidth = (Dimensions.get('window').width) * .8;
+const ButtonRadius = 10; // effects how circular the buttons look
 
 const crossImg= require('../Assets/CrossStep.png')
 
@@ -1241,6 +1244,8 @@ let sectionData=[]
         keyExtractor={item => item.id}  
         
         />
+        
+        
 
         
           
@@ -1268,9 +1273,11 @@ let sectionData=[]
   
  
   
+       
+  </View>
+            
+  </View>
   
-  </View>
-  </View>
   <View style={{backgroundColor:'#121212', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly', left:'1.35%'}}>
                  {/* Home Screen */}
                  <Icon.Button
