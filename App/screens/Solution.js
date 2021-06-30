@@ -32,7 +32,7 @@ import {totalPositionRedSide} from './confirmRed'
 import {totalPositionYellowSide} from './confirmYellow'
 //import {FlatList} from 'react-native-gesture-handler'
 
-const Bold = (props) => <Text style={{fontWeight: 'bold',fontSize:23}}>{props.children}</Text>
+const Bold = (props) => <Text style={{fontWeight: 'bold',fontSize:60}}>{props.children}</Text>
 
 const crossImg= require('../Assets/CrossStep.png')
 
@@ -1597,7 +1597,7 @@ let sectionData=[]
 
 
     const Item= ({img, txt, no, twice}) => (
-      <View style={{marginHorizontal: '-15%', left:'29%', paddingBottom:'30%'}}>
+      <View style={{marginHorizontal: '-15%', left:'20%', paddingBottom:'30%'}}>
         <ImageBackground style={styles.movesImage} source={img} >
         <Text style={{position:'absolute', color:'white'}}><Bold>{twice}</Bold></Text>
           <Text style={styles.textDescrip2}><Bold>{no}</Bold>{txt}</Text>
@@ -1641,8 +1641,8 @@ let sectionData=[]
       <View style={styles.ViewContainer}>
       <FlatList 
         top='3%'
-        numColumns={2}
-        style={{height: '100%', flexGrow: 0}}
+        numColumns={1}
+        style={{height: '100%', width:'100%', flexGrow: 0}}
         data={DATA} 
         renderItem={renderItem}
         keyExtractor={item => item.id}  
@@ -1798,25 +1798,27 @@ let sectionData=[]
       backgroundColor:'#121212'
     },
     movesImage: {
-      width: '75%', 
-      height: (Dimensions.get('window').width*.5)*.7, 
+      width: '83%', 
+      height: (Dimensions.get('window').width*.83), 
+      //height: 240,
       resizeMode: 'contain', 
       flexDirection:'row'
+      
       
     },
     textDescrip2:{
       // Text thats a description
       color: 'white',
-      fontSize: 15,
-      width: '80%',
-      top:'65%'
+      fontSize: 30,
+      width: '83%',
+      top:'61%'
     },
     viewMove:{
       //Holds a move's picture and description
       flexDirection: 'row', 
       flexWrap: 'wrap', 
       width: '100%', 
-      alignContent: 'center', 
+      alignContent: 'center',
       
     },
     background:{
