@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AwesomeButton from "react-native-really-awesome-button";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
 
 import {
   ActivityIndicator,
@@ -33,6 +35,8 @@ import {totalPositionYellowSide} from './confirmYellow'
 //import {FlatList} from 'react-native-gesture-handler'
 
 const Bold = (props) => <Text style={{fontWeight: 'bold',fontSize:60}}>{props.children}</Text>
+const Important = (props) => <Text style={{fontWeight: 'bold', fontSize: RFPercentage(2.7)}}>{props.children}</Text>
+
 
 const crossImg= require('../Assets/CrossStep.png')
 
@@ -1175,424 +1179,7 @@ let sectionData=[]
     }
 
 
-    // function renderfinalSolution() {
-    //   let num;
-    //   for( let i=0; i<finalSolution.length;i++){
-    //     num=i+1;
-        
-    //     if(finalSolution[i]=='R'){
-          
-    //       DATA.push({
-    //         id: i+'R',
-    //         title: '\n'+num+': Rotate the right layer clockwise',
-    //         images: R,
-    //         notation:'R'
-    //       })
-    //     }
-    //     if(finalSolution[i]=='R\''){
-          
-    //       DATA.push({
-    //         id: i+'Rprime',
-    //         title: '\n'+num+': Rotate the right layer counter clockwise',
-    //         images: Rprime,
-    //         notation:'R\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='r'){
-          
-    //       DATA.push({
-    //         id: i+'r',
-    //         title: '\n'+num+': Rotate the right layer and the middle layer clockwise',
-    //         images: Rw,
-    //         notation:'Rw OR r'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='r\''){
-          
-    //       DATA.push({
-    //         id: i+'rprime',
-    //         title: '\n'+num+': Rotate the right layer and middle layer counter clockwise',
-    //         images: Rwprime,
-    //         notation:'Rw\' OR r\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='L'){
-          
-    //       DATA.push({
-    //         id: i+'L',
-    //         title: '\n'+num+': Rotate the left layer clockwise',
-    //         images: L,
-    //         notation:'L'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='L\''){
-          
-    //       DATA.push({
-    //         id: i+'Lprime',
-    //         title: '\n'+num+': Rotate the left layer counter clockwise',
-    //         images: Lprime,
-    //         notation:'L\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='l'){
-         
-    //       DATA.push({
-    //         id: i+'l',
-    //         title: '\n'+num+': Rotate the left layer and the middle layer clockwise',
-    //         images: Lw,
-    //         notation:'Lw OR l'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='l\''){
-          
-    //       DATA.push({
-    //         id: i+'lprime',
-    //         title: '\n'+num+': Rotate the left layer and middle layer counter clockwise',
-    //         images: Lwprime,
-    //         notation:'Lw\' OR l\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='U'){
-          
-    //       DATA.push({
-    //         id: i+'U',
-    //         title: '\n'+num+': Rotate the top layer clockwise',
-    //         images: U,
-    //         notation:'U'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='U\''){
-          
-    //       DATA.push({
-    //         id: i+'Uprime',
-    //         title: '\n'+num+': Rotate the top layer counter clockwise',
-    //         images: Uprime,
-    //         notation:'U\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='u'){
-          
-    //       DATA.push({
-    //         id: i+'u',
-    //         title: '\n'+num+': Rotate the top layer and the middle layer clockwise',
-    //         images: Uw,
-    //         notation:'Uw OR u'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='u\''){
-          
-    //       DATA.push({
-    //         id: i+'uprime',
-    //         title: '\n'+num+': Rotate the top layer and middle layer counter clockwise',
-    //         images: Uwprime,
-    //         notation:'Uw\' OR u\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='D'){
-          
-    //       DATA.push({
-    //         id: i+'D',
-    //         title: '\n'+num+': Rotate the bottom layer clockwise',
-    //         images: D,
-    //         notation:'D'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='D\''){
-          
-    //       DATA.push({
-    //         id: i+'Dprime',
-    //         title: '\n'+num+': Rotate the bottom layer counter clockwise',
-    //         images: Dprime,
-    //         notation:'D\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='d'){
-          
-    //       DATA.push({
-    //         id: i+'d',
-    //         title: '\n'+num+': Rotate the bottom layer and the middle layer clockwise',
-    //         images: Dw,
-    //         notation:'Dw OR d'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='d\''){
-          
-    //       DATA.push({
-    //         id: i+'dprime',
-    //         title: '\n'+num+': Rotate the bottom layer and middle layer counter clockwise',
-    //         images: Dwprime,
-    //         notation:'Dw\' OR d\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='F'){
-          
-    //       DATA.push({
-    //         id: i+'F',
-    //         title: '\n'+num+': Rotate the front layer clockwise',
-    //         images: F,
-    //         notation:'F'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='F\''){
-          
-    //       DATA.push({
-    //         id: i+'Fprime',
-    //         title: '\n'+num+': Rotate the front layer counter clockwise',
-    //         images: Fprime,
-    //         notation:'F\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='f'){
-          
-    //       DATA.push({
-    //         id: i+'f',
-    //         title: '\n'+num+': Rotate the front layer and the middle layer clockwise',
-    //         images: Fw,
-    //         notation:'Fw OR f'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='f\''){
-         
-    //       DATA.push({
-    //         id: i+'fprime',
-    //         title: '\n'+num+': Rotate the front layer and middle layer counter clockwise',
-    //         images: Fwprime,
-    //         notation:'Fw\' OR f\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='B'){
-          
-    //       DATA.push({
-    //         id: i+'B',
-    //         title: '\n'+num+': Rotate the back layer clockwise',
-    //         images: B,
-    //         notation:'B'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='B\''){
-          
-    //       DATA.push({
-    //         id: i+'Bprime',
-    //         title: '\n'+num+': Rotate the back layer counter clockwise',
-    //         images: Bprime,
-    //         notation:'B\''
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='b'){
-         
-    //       DATA.push({
-    //         id: i+'b',
-    //         title: '\n'+num+': Rotate the back layer and the middle layer clockwise',
-    //         images: Bw,
-    //         notation:'Bw OR b'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='b\''){
-          
-    //       DATA.push({
-    //         id: i+'bprime',
-    //         title: '\n'+num+': Rotate the back layer and middle layer counter clockwise',
-    //         images: Bwprime,
-    //         notation:'Bw\' OR b\''
-
-    //       })
-    //     }
-    //     //F2, R2, L2, B2, D2, U2, f2, r2, l2, b2, d2, u2
-
-    //     if(finalSolution[i]=='b2'){
-         
-    //       DATA.push({
-    //         id: i+'b2',
-    //         title: '\n'+num+': Rotate the back layer and the middle layer clockwise twice',
-    //         images: Bw,
-    //         notation:'b2',
-    //         double:'2x'
-
-    //       })
-    //     }
-
-    //     if(finalSolution[i]=='f2'){
-         
-    //       DATA.push({
-    //         id: i+'f2',
-    //         title: '\n'+num+': Rotate the front layer and the middle layer clockwise twice',
-    //         images: Fw,
-    //         notation:'f2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='r2'){
-         
-    //       DATA.push({
-    //         id: i+'r2',
-    //         title: '\n'+num+': Rotate the right layer and the middle layer clockwise twice',
-    //         images: Rw,
-    //         notation:'r2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='l2'){
-         
-    //       DATA.push({
-    //         id: i+'l2',
-    //         title: '\n'+num+': Rotate the left layer and the middle layer clockwise twice',
-    //         images: Lw,
-    //         notation:'l2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='u2'){
-         
-    //       DATA.push({
-    //         id: i+'u2',
-    //         title: '\n'+num+': Rotate the top layer and the middle layer clockwise twice',
-    //         images: Uw,
-    //         notation:'u2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='d2'){
-         
-    //       DATA.push({
-    //         id: i+'d2',
-    //         title: '\n'+num+': Rotate the bottom layer and the middle layer clockwise twice',
-    //         images: Dw,
-    //         notation:'d2',
-    //         double:'2x'
-
-    //       })
-    //     }
-
-    //     if(finalSolution[i]=='F2'){
-          
-    //       DATA.push({
-    //         id: i+'F2',
-    //         title: '\n'+num+': Rotate the front layer clockwise twice',
-    //         images: F,
-    //         notation:'F2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='R2'){
-          
-    //       DATA.push({
-    //         id: i+'R2',
-    //         title: '\n'+num+': Rotate the right layer clockwise twice',
-    //         images: R,
-    //         notation:'R2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='L2'){
-         
-    //       DATA.push({
-    //         id: i+'L2',
-    //         title: '\n'+num+': Rotate the left layer clockwise twice',
-    //         images: L,
-    //         notation:'L2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='B2'){
-          
-    //       DATA.push({
-    //         id: i+'B2',
-    //         title: '\n'+num+': Rotate the back layer clockwise twice',
-    //         images: B,
-    //         notation:'B2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='D2'){
-          
-    //       DATA.push({
-    //         id: i+'D2',
-    //         title: '\n'+num+': Rotate the bottom layer clockwise twice',
-    //         images: D,
-    //         notation:'D2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //     if(finalSolution[i]=='U2'){
-          
-    //       DATA.push({
-    //         id: i+'U2',
-    //         title: '\n'+num+': Rotate the top layer clockwise twice',
-    //         images: U,
-    //         notation:'U2',
-    //         double:'2x'
-
-    //       })
-    //     }
-    //   }
-    // }
-    // function FlatListItemSeparator  () {
-    //   return (
-    //     <View
-    //       style={{
-    //         height: 1,
-    //         width: "100%",
-    //         backgroundColor: "#000",
-    //       }}
-    //     />
-    //   );
-    // }
-
-    // function FlatListHeader () {
-    //   return (
-    //     <View elevation={1} 
-    //       style={{
-    //         height: 100,
-    //         width: "97%",
-    //         margin: 5,
-    //         backgroundColor: "#fff",
-    //         border: 2.9,
-    //         borderColor: "black",
-    //         alignSelf: "center",
-    //         shadowColor: "#000",
-    //         shadowOffset: {
-    //           width: 0,
-    //           height: 16,
-    //         },
-    //         shadowOpacity: 1,
-    //         shadowRadius: 7.49
-    //       }}
-    //     >
-    //       <Text style={{  textShadowColor: 'black', textShadowOffset: { width: 1, height: 3 },textShadowRadius: 10, fontSize: 40, fontWeight: '800', flex: 1, alignSelf: "center", paddingTop: 30, fontSize: 40}}>Latest articles</Text>
-    //     </View>
-    //   );
-    // }
+    
 
 
 
@@ -1638,9 +1225,15 @@ let sectionData=[]
       <SafeAreaView style={styles.background}>
       
       <View style={{height: '90%'}}>
+      <Card containerStyle={{backgroundColor:'#121212'}}>
+            <Text style={styles.Caution}><Important>NEVER</Important> Rotate The Entire Cube!</Text>
+            <Text style={styles.Caution}>Always keep the <Important>GREEN CENTER</Important> in front and the <Important>WHITE CENTER</Important> on top</Text>
+      </Card>
       <View style={styles.ViewContainer}>
+      
+
       <FlatList 
-        top='3%'
+        top='1%'
         numColumns={1}
         style={{height: '100%', width:'100%', flexGrow: 0}}
         data={DATA} 
@@ -1812,6 +1405,14 @@ let sectionData=[]
       fontSize: 30,
       width: '83%',
       top:'61%'
+    },
+    Caution:{
+      // Text thats a description
+      fontSize: RFPercentage(2.7), 
+      color:'white',
+      opacity:1,
+      textAlign:'center',
+      width:'100%',
     },
     viewMove:{
       //Holds a move's picture and description

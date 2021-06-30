@@ -232,7 +232,7 @@ const App = () => {
         <Stack.Screen
           name="Solution"
           component={Solution}
-          options={{headerTitle:'Solution', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
+          options={{headerLeft: null, gestureEnabled: false, headerTitle:'Solution', headerStyle:{backgroundColor:'#121212'}, headerTintColor:'#fff', headerForceInset: { top: 'never', bottom: 'never' }}}
 
           //options={{headerShown:false}}
         />
