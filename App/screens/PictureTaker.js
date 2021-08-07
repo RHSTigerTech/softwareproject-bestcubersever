@@ -61,6 +61,7 @@ export default class App extends Component {
         </Text> */}
         
         
+        
         <AwesomeButton
                         width={ButtonWidth}
                         height={ButtonHeight}
@@ -71,23 +72,7 @@ export default class App extends Component {
                         backgroundDarker='#5c00c7'
                         backgroundShadow='transparent'
                         raiseLevel={5}
-                        style={{bottom:'5%'}}
-
-                        onPress={() => {{defaultCube=false} push('White'), val = Math.floor(100000 + Math.random() * 9999999);}}
-                    >
-                        Camera Solver
-        </AwesomeButton>
-        <AwesomeButton
-                        width={ButtonWidth}
-                        height={ButtonHeight}
-                        backgroundColor='#6d00eb'
-                        textSize={27}
-                        borderRadius={ButtonRadius}
-                        activeOpacity={.8}
-                        backgroundDarker='#5c00c7'
-                        backgroundShadow='transparent'
-                        raiseLevel={5}
-                        style={{top:'5%'}}
+                        style={{}}
                         onPress={() => {{defaultCube=true} navigate('confirmWhite')}}
                     >
                         Manually Enter

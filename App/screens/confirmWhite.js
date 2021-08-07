@@ -187,6 +187,15 @@ export default class App extends Component {
         }
       }
       else{
+        colorSwitch1=0
+          colorSwitch2=0
+          colorSwitch3=0                          
+          colorSwitch4=0                          
+          colorSwitch5=0                          
+          colorSwitch6=0                          
+          colorSwitch7=0                          
+          colorSwitch8=0                          
+          colorSwitch9=0
         PhotoColor1=Math.floor(Math.random() * 6)
         PhotoColor2=Math.floor(Math.random() * 6)
         PhotoColor3=Math.floor(Math.random() * 6)
