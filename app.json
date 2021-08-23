@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "splash": {
-      "image": "./app/assets/MobileRubiksCubeBackground.jpg",
+      "image": "./app/assets/MobileRubiksCubeBackgroundSplash.png",
       "resizeMode": "cover",
       "backgroundColor": "#121212"
     },
@@ -17,14 +17,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nathanl.rubikscubeproject",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.nathanl.rubikscubeproject",
+      "versionCode": 1
+
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
