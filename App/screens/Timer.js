@@ -982,7 +982,7 @@ const options = {
   //   flex:1
   // }, 
   text: {
-    fontSize: 70,
+    fontSize: (Dimensions.get('window').width)*.185,
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
     color: '#FFF',
     opacity:.87,
