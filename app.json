@@ -18,7 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.nathanl.rubikscubeproject",
+      "bundleIdentifier": "com.nathanl.rubikscubeapp",
       "buildNumber": "1.0.0"
     },
     "android": {
@@ -27,7 +27,7 @@
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.nathanl.rubikscubeproject",
+      "package": "com.nathanl.rubikscubeapp",
       "versionCode": 1
 
     },
